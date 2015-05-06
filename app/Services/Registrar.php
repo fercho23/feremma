@@ -1,6 +1,6 @@
-<?php namespace App\Services;
+<?php namespace FerEmma\Services;
 
-use App\User;
+use FerEmma\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

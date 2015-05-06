@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace FerEmma;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

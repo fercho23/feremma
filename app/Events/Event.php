@@ -1,4 +1,4 @@
-<?php namespace App\Events;
+<?php namespace FerEmma\Events;
 
 abstract class Event {
 

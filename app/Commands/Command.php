@@ -1,4 +1,4 @@
-<?php namespace App\Commands;
+<?php namespace FerEmma\Commands;
 
 abstract class Command {
 

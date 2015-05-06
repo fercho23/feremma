@@ -139,11 +139,11 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'App\Providers\AppServiceProvider',
-		'App\Providers\BusServiceProvider',
-		'App\Providers\ConfigServiceProvider',
-		'App\Providers\EventServiceProvider',
-		'App\Providers\RouteServiceProvider',
+		'FerEmma\Providers\AppServiceProvider',
+		'FerEmma\Providers\BusServiceProvider',
+		'FerEmma\Providers\ConfigServiceProvider',
+		'FerEmma\Providers\EventServiceProvider',
+		'FerEmma\Providers\RouteServiceProvider',
 
 	],
 
