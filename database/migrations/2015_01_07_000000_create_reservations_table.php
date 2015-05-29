@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration {
+class CreateReservationsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,13 +12,16 @@ class CreateTasksTable extends Migration {
      */
     public function up()
     {
-        Schema::create('tasks', function(Blueprint $table)
+        Schema::create('reservations', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->integer('priority');
-            $table->string('state', 100);
+            $table->integer('owner_id')->unsigned();
             $table->text('description');
+            $table->decimal('total_price', 10, 2);
+            $table->decimal('sign', 10, 2);
+            $table->decimal('due', 10, 2);
+            $table->date('check_in');
+            $table->date('check_out');
             $table->timestamps();
         });
     }
@@ -30,7 +33,7 @@ class CreateTasksTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('tasks');
+        Schema::drop('reservations');
     }
 
 }
