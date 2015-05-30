@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration {
         {
             $table->increments('id');
             $table->integer('post_id')->unsigned();
+            //$table->foreign('post_id')->references('id')->on('posts');
             $table->string('username', 100);
             $table->string('name', 150);
             $table->string('surname', 150);

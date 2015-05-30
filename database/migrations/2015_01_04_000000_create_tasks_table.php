@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration {
             $table->tinyInteger('priority');
             $table->string('state', 20);
             $table->integer('post_id')->unsigned();
+            //$table->foreign('post_id')->references('id')->on('posts');
             $table->timestamps();
         });
     }

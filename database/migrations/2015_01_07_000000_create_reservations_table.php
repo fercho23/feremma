@@ -16,6 +16,7 @@ class CreateReservationsTable extends Migration {
         {
             $table->increments('id');
             $table->integer('owner_id')->unsigned();
+            //$table->foreign('owner_id')->references('id')->on('users');
             $table->text('description');
             $table->decimal('total_price', 10, 2);
             $table->decimal('sign', 10, 2);
