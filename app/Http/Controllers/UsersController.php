@@ -13,14 +13,10 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-		//return "Hola desde UsersController/index";
-		//$users ="lalala";// User::all();
-		$users = User::all();
-		//echo debug($users, $showHtml = null, $showFrom = true);
-		//exit;
-		return $users;
-		//return view('users.index',['users'=>$users]);
+	{		
+		$users = User::all();		
+		//return $users;
+		return view('users.index',['users'=>$users]);
 	}
 
 	/**

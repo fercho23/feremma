@@ -11,7 +11,13 @@
 			<div class="thumbnail">
 				<div class="caption">
 					<h3>{{$user->surname}}, {{$user->name}}</h3> 
-					<p>{{$user->address}}</p>				
+					<p>Dirección:{{$user->address}}</p>
+					<p>Teléfono: {{$user->phone}}</p>
+					<p>CUIL: {{$user->cuil}}</p>
+					<p>Nombre de Usuario: {{$user->username}}</p>
+					<p>DNI: {{$user->dni}}</p>
+					<p>Email: {{$user->email}}</p>
+			
 				</div>
 			</div>
 		</div>
