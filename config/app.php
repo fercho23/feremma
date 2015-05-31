@@ -135,6 +135,7 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		'Laracasts\Generators\GeneratorsServiceProvider',
 
 		/*
 		 * Application Service Providers...
