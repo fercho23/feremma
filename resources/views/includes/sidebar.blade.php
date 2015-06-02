@@ -8,7 +8,7 @@
                 <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p>Admin</p>
+                <p>Emmanuel Sanchez</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -34,12 +34,6 @@
                 <ul class="treeview-menu">
                     <li><a href="{{URL::to('/users')}}"><i class="fa fa-circle-o"></i> Ver</a></li>                    
                 </ul>
-            </li>            
-            <li>
-                <a href="pages/mailbox/mailbox.html">
-                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                <small class="label pull-right bg-yellow">12</small>
-                </a>
             </li>            
             <li class="header">SOPORTE</li>
             <li><a href="documentation/index.html"><i class="fa fa-book"></i> Ayuda</a></li>

@@ -60,7 +60,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 2.0
                 </div>
-                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+                Tesis Licenciatura en Sistemas USAL 2015<strong> <a href="#">Fernando Ariel Mateos</a> - <a href="#">Gustavo Emmanuel Sanchez Figueroa</a></strong>.
             </footer>
         </div><!-- ./wrapper -->
  
