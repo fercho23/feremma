@@ -5,6 +5,14 @@
 	<h1>Nuevo Usuario</h1>
 	<hr/>
 	{!! Form::open(['url'=>'users'])!!}
+		@if ($errors->any())
+		<div class="">
+			@foreach ($errors->all() as $error)
+				<div class="alert alert-danger" role="alert">{{ $error }}</div>				
+			@endforeach
+		</div>
+		<br>
+		@endif
 		<div class="form-group">
 			{!!Form::label('name','Nombre: ')!!}
 			{!!Form::text('name', null, ['class'=>'form-control'])!!}
@@ -49,8 +57,11 @@
 			{!!Form::label('sex','Sexo: ')!!}
 			{!!Form::text('sex', null, ['class'=>'form-control'])!!}
 		</div>
+		
 		<div class="form-group">
 			{!!Form::submit('Enviar', ['class'=>'btn btn-primary form-control'])!!}
 		</div>
+
 	{!! Form::close()!!}
+	
 @stop

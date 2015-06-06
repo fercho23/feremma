@@ -54,11 +54,17 @@
                 <!-- Main content -->
                 <section class="content">
                     @yield('content')
-                </section><!-- /.content -->
+                </section><!-- /.content -->                
             </div><!-- /.content-wrapper -->
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.0
+                    <b>
+                        <?php 
+                            echo "Environment: ".$app->environment();
+                        ?>
+                        Version
+                    </b> 
+                    2.0
                 </div>
                 Tesis Licenciatura en Sistemas USAL 2015<strong> <a href="#">Fernando Ariel Mateos</a> - <a href="#">Gustavo Emmanuel Sanchez Figueroa</a></strong>.
             </footer>
