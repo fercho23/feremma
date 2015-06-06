@@ -137,9 +137,6 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		'Laracasts\Generators\GeneratorsServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
-		'Collective\Html\HtmlServiceProvider',
-		'Laracasts\Flash\FlashServiceProvider',
-		'Mitul\Generator\GeneratorServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -197,9 +194,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-		'Form' => 'Collective\Html\FormFacade',
-		'Html' => 'Collective\Html\HtmlFacade',
-		'Flash' => 'Laracasts\Flash\Flash'
+		'Form'		=> 'Illuminate\Html\FormFacade', 
+		'HTML'		=> 'Illuminate\Html\HtmlFacade'
 
 	],
 
