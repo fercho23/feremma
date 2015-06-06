@@ -43,7 +43,7 @@
 		</div>		
 		<div class="form-group">
 			{!!Form::label('birthday','Fecha de nacimiento: ')!!}
-			{!!Form::text('birthday', null, ['class'=>'form-control'])!!}
+			{!!Form::input('date','birthday', null, ['class'=>'form-control'])!!}
 		</div>
 		<div class="form-group">
 			{!!Form::label('sex','Sexo: ')!!}

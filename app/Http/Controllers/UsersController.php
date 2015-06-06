@@ -2,8 +2,10 @@
 
 use FerEmma\User;
 use FerEmma\Http\Requests;
+use FerEmma\Http\Requests\CreateUserRequest;
+use Illuminate\HttpResponse;
+use Illuminate\Support\Facades\Request;
 use FerEmma\Http\Controllers\Controller;
-use Request;
 
 class UsersController extends Controller {
 
@@ -34,10 +36,9 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateUserRequest $request)
 	{
-		$input=Request::all();
-		User::create($input);
+		User::create($request->all());
 		return redirect('users');
 	}
 
