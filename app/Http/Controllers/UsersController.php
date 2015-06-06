@@ -3,7 +3,7 @@
 use FerEmma\User;
 use FerEmma\Http\Requests;
 use FerEmma\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Request;
 
 class UsersController extends Controller {
 
@@ -25,9 +25,9 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-		//
-	}
+    {
+        return view('users.create');
+    }
 
 	/**
 	 * Store a newly created resource in storage.
@@ -36,7 +36,9 @@ class UsersController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$input=Request::all();
+		User::create($input);
+		return redirect('users');
 	}
 
 	/**
