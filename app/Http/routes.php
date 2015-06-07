@@ -14,9 +14,11 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
-Route::get('users', 'UsersController@index');
-Route::get('users/create', 'UsersController@create');
-Route::post('users', 'UsersController@store');
+//Route::get('users', 'UsersController@index');
+//Route::get('users/create', 'UsersController@create');
+//Route::post('users', 'UsersController@store');
+
+Route::resource('users','UsersController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

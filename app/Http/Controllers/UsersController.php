@@ -2,7 +2,7 @@
 
 use FerEmma\User;
 use FerEmma\Http\Requests;
-use FerEmma\Http\Requests\CreateUserRequest;
+use FerEmma\Http\Requests\UserRequest;
 use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 use FerEmma\Http\Controllers\Controller;
@@ -36,7 +36,7 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(CreateUserRequest $request)
+	public function store(UserRequest $request)
 	{
 		User::create($request->all());
 		return redirect('users');
@@ -61,7 +61,8 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$user=User::findOrFail($id);
+		return view('users.edit',compact('user'));
 	}
 
 	/**
@@ -70,9 +71,11 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, UserRequest $request)
 	{
-		//
+		$user = User::findOrFail($id);
+		$user->update($request->all());
+		return redirect('users');
 	}
 
 	/**
@@ -83,7 +86,7 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		return "Método no implementado";
 	}
 
 }
