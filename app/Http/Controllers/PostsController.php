@@ -1,13 +1,14 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use FerEmma\User;
+use FerEmma\Post;
 use FerEmma\Http\Requests;
-use FerEmma\Http\Requests\UserRequest;
+use FerEmma\Http\Requests\PostRequest;
 use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 use FerEmma\Http\Controllers\Controller;
 
-class UsersController extends Controller {
+
+class PostsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,9 +16,9 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{		
-		$users = User::all();
-		return view('users.index',['users'=>$users]);
+	{
+		$posts = Post::all();
+		return view('posts.index',['posts'=>$posts]);
 	}
 
 	/**
@@ -26,19 +27,19 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-    {
-        return view('users.create');
-    }
+	{
+		return view('posts.create');
+	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store(UserRequest $request)
+	public function store(PostRequest $request)
 	{
-		User::create($request->all());
-		return redirect('users');
+		Post::create($request->all());
+		return redirect('posts');
 	}
 
 	/**
@@ -60,8 +61,8 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$user=User::findOrFail($id);
-		return view('users.edit',compact('user'));
+		$post=Post::findOrFail($id);
+		return view('posts.edit',compact('post'));
 	}
 
 	/**
@@ -70,11 +71,11 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, UserRequest $request)
+	public function update($id, PostRequest $request)
 	{
-		$user = User::findOrFail($id);
-		$user->update($request->all());
-		return redirect('users');
+		$post = Post::findOrFail($id);
+		$post->update($request->all());
+		return redirect('posts');
 	}
 
 	/**
@@ -85,9 +86,9 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$user = User::findOrFail($id);
-		$user->delete();
-		return redirect('users');
+		$post = Post::findOrFail($id);
+		$post->delete();
+		return redirect('posts');
 	}
 
 }

@@ -19,6 +19,7 @@ Route::get('home', 'HomeController@index');
 //Route::post('users', 'UsersController@store');
 
 Route::resource('users','UsersController');
+Route::resource('posts','PostsController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

@@ -31,15 +31,17 @@
 		          <td>{{$user->cuil}}</td>
 		          <td>{{$user->address}}</td>
 		          <td>{{$user->phone}}</td>
-		          <td>{{$user->email}}</td>		          
+		          <td>{{$user->email}}</td>
 		          <td>
 		              <a href="{{URL::to('users/'.$user->id.'/edit')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 		          </td>
 		          <td>
-		          		<a><i class="glyphicon glyphicon-trash"></i></a>		              
+		          	{!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user->id]]) !!}
+					    <button class="btn-link" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
+					{!! Form::close() !!}
 		          </td>
 		        </tr>
-		        @endforeach		        
+		        @endforeach
 		      </tbody>
 		    </table>
 		</div>

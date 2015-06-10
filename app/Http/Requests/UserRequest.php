@@ -22,11 +22,11 @@ class UserRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name'=>'required|min:2',
-			'surname'=>'required',
-			'username'=>'required',
+			'name'=>'required|min:2|max:150',
+			'surname'=>'required|min:2|max:150',
+			'username'=>'required|min:2|max:100',
 			'password'=>'required',
-			'email'=>'required|email',
+			'email'=>'required|email|max:100',
 			'dni'=>'required',
 			'address'=>'required',
 			'phone'=>'required',

@@ -1,8 +1,8 @@
 @if ($errors->any())
-		<div class="">
-			@foreach ($errors->all() as $error)
-				<div class="alert alert-danger" role="alert">{{ $error }}</div>				
-			@endforeach
-		</div>
-		<br>
+	<dl class="">
+		@foreach ($errors->all() as $error)
+			<dt class="alert alert-danger" role="alert">{{ $error }}</dt>				
+		@endforeach
+	</dl>
+	<br>
 @endif
