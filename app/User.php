@@ -19,19 +19,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token'];
 
     public function reservations() {
-        return $this->hasMany('Reservation', 'owner_id');
+        return $this->hasMany('FerEmma\Reservation', 'owner_id');
     }
 
     public function post() {
-        return $this->belongsTo('Post', 'post_id');
+        return $this->belongsTo('FerEmma\Post', 'post_id');
     }
 
     public function booking() {
-        return $this->belongsToMany('Reservation', 'reservation_user');
+        return $this->belongsToMany('FerEmma\Reservation', 'reservation_user');
     }
 
     public function tasks() {
-        return $this->belongsToMany('Task', 'user_task')
+        return $this->belongsToMany('FerEmma\Task', 'user_task')
                     ->withPivot('check_in', 'check_out');
     }
 

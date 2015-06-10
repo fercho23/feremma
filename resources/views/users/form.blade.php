@@ -42,6 +42,10 @@
 	{!!Form::label('sex','Sexo: ')!!}
 	{!!Form::text('sex', null, ['class'=>'form-control'])!!}
 </div>
+<div class="form-group">
+	{!!Form::label('post_id','Cargo: ')!!}
+	{!!Form::select('post_id', $posts, null, ['class'=>'form-control'])!!}
+</div>
 
 <div class="form-group">
 	{!!Form::submit($submitButtontext, ['class'=>'btn btn-primary form-control'])!!}

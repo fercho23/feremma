@@ -1,5 +1,6 @@
 <?php namespace FerEmma\Http\Controllers;
 
+use FerEmma\Post;
 use FerEmma\User;
 use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\UserRequest;
@@ -27,7 +28,14 @@ class UsersController extends Controller {
 	 */
 	public function create()
     {
-        return view('users.create');
+    	$datas = Post::all();
+		$posts = array();
+
+		foreach ($datas as $data) {
+		    $posts[$data->id] = $data->name;
+		}
+    	
+        return view('users.create',['posts'=>$posts]);
     }
 
 	/**

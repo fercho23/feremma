@@ -17,6 +17,7 @@
 		          <th>Dirección</th>
 		          <th>Telefono</th>
 		          <th>Email</th>
+		          <th>Cargo</th>
 		          <th style="width: 36px;"></th>
 		        </tr>
 		      </thead>
@@ -32,6 +33,7 @@
 		          <td>{{$user->address}}</td>
 		          <td>{{$user->phone}}</td>
 		          <td>{{$user->email}}</td>
+		          <td>{!! $user->post->name !!}</td>
 		          <td>
 		              <a href="{{URL::to('users/'.$user->id.'/edit')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 		          </td>
