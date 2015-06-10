@@ -11,7 +11,7 @@ class Service extends Model {
     public $timestamps = true;
 
     public function reservations() {
-        return $this->belongsToMany('Reservation', 'service_reservation')
+        return $this->belongsToMany('FerEmma\Reservation', 'service_reservation')
                     ->withPivot('moment', 'price', 'name');
     }
 

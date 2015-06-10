@@ -16,17 +16,17 @@ class Reservation extends Model {
     }
 
     public function rooms() {
-        return $this->belongsToMany('Room', 'room_reservation')
+        return $this->belongsToMany('FerEmma\Room', 'room_reservation')
                     ->withPivot('check_in', 'check_out');
     }
 
     public function services() {
-        return $this->belongsToMany('Service', 'service_reservation')
+        return $this->belongsToMany('FerEmma\Service', 'service_reservation')
                     ->withPivot('moment', 'price', 'name');
     }
 
     public function booking() {
-        return $this->belongsToMany('User', 'reservation_user');
+        return $this->belongsToMany('FerEmma\User', 'reservation_user');
     }
 
 

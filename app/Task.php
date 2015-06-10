@@ -12,11 +12,11 @@ class Task extends Model {
     public $timestamps = true;
 
     public function post() {
-        return $this->belongsTo('Post', 'post_id');
+        return $this->belongsTo('FerEmma\Post', 'post_id');
     }
 
     public function tasks() {
-        return $this->belongsToMany('Task', 'user_task')
+        return $this->belongsToMany('FerEmma\Task', 'user_task')
                     ->withPivot('check_in', 'check_out');
     }
 

@@ -12,7 +12,7 @@ class Room extends Model {
     public $timestamps = true;
 
     public function reservations() {
-        return $this->belongsToMany('Reservation', 'room_reservation')
+        return $this->belongsToMany('FerEmma\Reservation', 'room_reservation')
                     ->withPivot('check_in', 'check_out');
     }
 
