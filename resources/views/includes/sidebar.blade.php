@@ -76,6 +76,16 @@
                     <li><a href="{{URL::to('/services/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                <i class="fa fa-edit"></i> <span>Tareas</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::to('/tasks')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                    <li><a href="{{URL::to('/tasks/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                </ul>
+            </li>
             <li class="header">SOPORTE</li>
             <li><a href="documentation/index.html"><i class="fa fa-book"></i> Ayuda</a></li>
             <li><a href="#"><i class="fa fa-circle-o text-info"></i> Acerca de...</a></li>
