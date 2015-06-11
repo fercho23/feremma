@@ -8,6 +8,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Cargo</th>
                                 <th>Prioridad</th>
                                 <th>Estado</th>
                                 <th>Descripción</th>
@@ -19,6 +20,11 @@
                             <tr>
                                 <td>{!! $task->id !!}</td>
                                 <td>{!! $task->name !!}</td>
+                                <td>
+                                    @if (sizeof($task->post)>0)
+                                        {!! $task->post->name !!}
+                                    @endif
+                                </td>
                                 <td>{!! $task->priority !!}</td>
                                 <td>{!! $task->state !!}</td>
                                 <td>{!! $task->description !!}</td>

@@ -3,6 +3,10 @@
     {!! Form::text('name', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
+    {!! Form::label('post_id','Cargo:') !!}
+    {!! Form::select('post_id', $posts, null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
     {!! Form::label('priority','Prioridad:')!!}
     {!! Form::input('number', 'priority', null, ['class'=>'form-control',
                                                    'max'=>'256',

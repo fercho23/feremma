@@ -26,7 +26,11 @@
                                 <td>{!! $user->id !!}</td>
                                 <td>{!! $user->name !!}</td>
                                 <td>{!! $user->surname !!}</td>
-                                <td>{!! $user->post->name !!}</td>
+                                <td>
+                                    @if (sizeof($user->post)>0)
+                                        {!! $user->post->name !!}
+                                    @endif
+                                </td>
                                 <td>{!! $user->username !!}</td>
                                 <td>{!! $user->dni !!}</td>
                                 <td>{!! $user->cuil !!}</td>

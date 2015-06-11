@@ -69,8 +69,13 @@ class UsersController extends Controller {
      */
     public function edit($id)
     {
+        $datas = Post::all();
+        $posts = array();
+        foreach ($datas as $data) {
+            $posts[$data->id] = $data->name;
+        }
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'posts'));
     }
 
     /**

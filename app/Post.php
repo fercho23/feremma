@@ -14,4 +14,8 @@ class Post extends Model {
         return $this->hasMany('FerEmma\User', 'post_id');
     }
 
+    public function tasks() {
+        return $this->hasMany('FerEmma\Task', 'post_id');
+    }
+
 }
