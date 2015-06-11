@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model {
 
-    protected $table = 'categories';
+    protected $table = 'rooms';
 
     protected $fillable = ['name', 'description', 'types_beds', 'total_beds',
                            'location', 'plan'];

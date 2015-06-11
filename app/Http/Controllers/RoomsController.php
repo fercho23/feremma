@@ -3,12 +3,12 @@
 use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 
-use FerEmma\Post;
+use FerEmma\Room;
 use FerEmma\Http\Requests;
-use FerEmma\Http\Requests\PostRequest;
+use FerEmma\Http\Requests\RoomRequest;
 use FerEmma\Http\Controllers\Controller;
 
-class PostsController extends Controller {
+class RoomsController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class PostsController extends Controller {
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('posts.index', ['posts'=>$posts]);
+        $rooms = Room::all();
+        return view('rooms.index', ['rooms'=>$rooms]);
     }
 
     /**
@@ -28,7 +28,7 @@ class PostsController extends Controller {
      */
     public function create()
     {
-        return view('posts.create');
+        return view('rooms.create');
     }
 
     /**
@@ -36,10 +36,10 @@ class PostsController extends Controller {
      *
      * @return Response
      */
-    public function store(PostRequest $request)
+    public function store(RoomRequest $request)
     {
-        Post::create($request->all());
-        return redirect('posts');
+        Room::create($request->all());
+        return redirect('rooms');
     }
 
     /**
@@ -61,8 +61,8 @@ class PostsController extends Controller {
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-        return view('posts.edit', compact('post'));
+        $room = Room::findOrFail($id);
+        return view('rooms.edit', compact('room'));
     }
 
     /**
@@ -71,11 +71,11 @@ class PostsController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update($id, PostRequest $request)
+    public function update($id, RoomRequest $request)
     {
-        $post = Post::findOrFail($id);
-        $post->update($request->all());
-        return redirect('posts');
+        $room = Room::findOrFail($id);
+        $room->update($request->all());
+        return redirect('rooms');
     }
 
     /**
@@ -86,9 +86,9 @@ class PostsController extends Controller {
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
-        return redirect('posts');
+        $room = Room::findOrFail($id);
+        $room->delete();
+        return redirect('rooms');
     }
 
 }

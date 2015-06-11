@@ -21,6 +21,7 @@ Route::get('home', 'HomeController@index');
 Route::resource('users','UsersController');
 Route::resource('posts','PostsController');
 Route::resource('reservations','ReservationsController');
+Route::resource('rooms','RoomsController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
