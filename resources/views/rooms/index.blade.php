@@ -8,11 +8,11 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
                                 <th>Tipos de Camas</th>
                                 <th>Total Plazas</th>
                                 <th>Ubicación</th>
                                 <th>Plano</th>
+                                <th>Descripción</th>
                                 <th style="width: 36px;"></th>
                             </tr>
                         </thead>
@@ -21,11 +21,11 @@
                             <tr>
                                 <td>{!! $room->id !!}</td>
                                 <td>{!! $room->name !!}</td>
-                                <td>{!! $room->description !!}</td>
                                 <td>{!! $room->types_beds !!}</td>
                                 <td>{!! $room->total_beds !!}</td>
                                 <td>{!! $room->location !!}</td>
                                 <td>{!! $room->plan !!}</td>
+                                <td>{!! $room->description !!}</td>
                                 <td>
                                     <a href="{!! URL::to('rooms/'.$room->id.'/edit') !!}">
                                         <i class="glyphicon glyphicon-pencil"></i>

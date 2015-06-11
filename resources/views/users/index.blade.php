@@ -10,13 +10,13 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
+                                <th>Cargo</th>
                                 <th>Nombre de Usuario</th>
                                 <th>DNI</th>
                                 <th>CUIL</th>
                                 <th>Dirección</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
-                                <th>Cargo</th>
                                 <th style="width: 36px;"></th>
                             </tr>
                         </thead>
@@ -26,13 +26,13 @@
                                 <td>{!! $user->id !!}</td>
                                 <td>{!! $user->name !!}</td>
                                 <td>{!! $user->surname !!}</td>
+                                <td>{!! $user->post->name !!}</td>
                                 <td>{!! $user->username !!}</td>
                                 <td>{!! $user->dni !!}</td>
                                 <td>{!! $user->cuil !!}</td>
                                 <td>{!! $user->address !!}</td>
                                 <td>{!! $user->phone !!}</td>
                                 <td>{!! $user->email !!}</td>
-                                <td>{!! $user->post->name !!}</td>
                                 <td>
                                     <a href="{!! URL::to('users/'.$user->id.'/edit') !!}">
                                         <i class="glyphicon glyphicon-pencil"></i>

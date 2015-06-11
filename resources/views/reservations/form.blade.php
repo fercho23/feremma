@@ -1,8 +1,4 @@
 <div class="form-group">
-    {!! Form::label('description','Descripción:')!!}
-    {!! Form::text('description', null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
     {!! Form::label('total_price','Precio Total:')!!}
     {!! Form::input('number', 'total_price', null, ['class'=>'form-control',
                                                     'max'=>'9999999999',
@@ -30,6 +26,10 @@
 <div class="form-group">
     {!! Form::label('check_out','Fecha salida:') !!}
     {!! Form::input('date','check_out', null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('description','Descripción:')!!}
+    {!! Form::text('description', null, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group">

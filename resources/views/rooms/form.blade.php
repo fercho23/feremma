@@ -3,10 +3,6 @@
     {!! Form::text('name', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('description','Descripción:')!!}
-    {!! Form::text('description', null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
     {!! Form::label('types_beds','Tipos de Camas:') !!}
     {!! Form::text('types_beds', null, ['class'=>'form-control']) !!}
 </div>
@@ -23,6 +19,10 @@
 <div class="form-group">
     {!! Form::label('plan','Plano:')!!}
     {!! Form::text('plan', null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('description','Descripción:')!!}
+    {!! Form::text('description', null, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group">

@@ -8,9 +8,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
                                 <th>Prioridad</th>
                                 <th>Estado</th>
+                                <th>Descripción</th>
                                 <th style="width: 36px;"></th>
                             </tr>
                         </thead>
@@ -19,9 +19,9 @@
                             <tr>
                                 <td>{!! $task->id !!}</td>
                                 <td>{!! $task->name !!}</td>
-                                <td>{!! $task->description !!}</td>
                                 <td>{!! $task->priority !!}</td>
                                 <td>{!! $task->state !!}</td>
+                                <td>{!! $task->description !!}</td>
                                 <td>
                                     <a href="{!! URL::to('tasks/'.$task->id.'/edit') !!}">
                                         <i class="glyphicon glyphicon-pencil"></i>

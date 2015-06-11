@@ -8,8 +8,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
                                 <th>Precio</th>
+                                <th>Descripción</th>
                                 <th style="width: 36px;"></th>
                             </tr>
                         </thead>
@@ -18,8 +18,8 @@
                             <tr>
                                 <td>{!! $service->id !!}</td>
                                 <td>{!! $service->name !!}</td>
-                                <td>{!! $service->description !!}</td>
                                 <td>{!! $service->price !!}</td>
+                                <td>{!! $service->description !!}</td>
                                 <td>
                                     <a href="{!! URL::to('services/'.$service->id.'/edit') !!}">
                                         <i class="glyphicon glyphicon-pencil"></i>

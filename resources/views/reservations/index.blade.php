@@ -8,12 +8,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Descripción</th>
                                 <th>Precio Total</th>
                                 <th>Seña</th>
                                 <th>Deuda</th>
                                 <th>Fecha entrada</th>
                                 <th>Fecha salida</th>
+                                <th>Descripción</th>
                                 <th style="width: 36px;"></th>
                             </tr>
                         </thead>
@@ -21,12 +21,12 @@
                         @foreach ($reservations as $reservation)
                             <tr>
                                 <td>{!! $reservation->id !!}</td>
-                                <td>{!! $reservation->description !!}</td>
                                 <td>{!! $reservation->total_price !!}</td>
                                 <td>{!! $reservation->sign !!}</td>
                                 <td>{!! $reservation->due !!}</td>
                                 <td>{!! $reservation->check_in !!}</td>
                                 <td>{!! $reservation->check_out !!}</td>
+                                <td>{!! $reservation->description !!}</td>
                                 <td>
                                     <a href="{!! URL::to('reservations/'.$reservation->id.'/edit') !!}">
                                         <i class="glyphicon glyphicon-pencil"></i>
