@@ -15,7 +15,7 @@ class Task extends Model {
         return $this->belongsTo('FerEmma\Post', 'post_id');
     }
 
-    public function tasks() {
+    public function users() {
         return $this->belongsToMany('FerEmma\Task', 'user_task')
                     ->withPivot('check_in', 'check_out');
     }

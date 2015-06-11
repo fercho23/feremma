@@ -10,8 +10,12 @@ class PostTableSeeder extends Seeder {
     {
         DB::table('posts')->delete();
 
-        Post::create(array('description' => 'fgsfsdfsdfsdf', 'name'=>'Conserje'));
-        Post::create(array('description' => 'sfskdhfñslkdjf', 'name'=>'Desarrollador'));
+        Post::create(array('description' => 'Tipos ree grosos',
+                           'name'=>'Desarrollador'
+                           ));
+        Post::create(array('description' => 'lala',
+                           'name'=>'Conserje'
+                           ));
     }
 
 }
