@@ -12,7 +12,7 @@ class Reservation extends Model {
     public $timestamps = true;
 
     public function owner() {
-        return $this->belongsTo('User', 'owner_id');
+        return $this->belongsTo('FerEmma\User', 'owner_id');
     }
 
     public function rooms() {

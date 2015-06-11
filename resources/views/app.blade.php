@@ -54,22 +54,22 @@
                 <!-- Main content -->
                 <section class="content">
                     @yield('content')
-                </section><!-- /.content -->                
+                </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
                     <b>
-                        <?php 
+                        <?php
                             echo "Environment: ".$app->environment();
                         ?>
                         Version
-                    </b> 
+                    </b>
                     2.0
                 </div>
                 Tesis Licenciatura en Sistemas USAL 2015<strong> <a href="#">Fernando Ariel Mateos</a> - <a href="#">Gustavo Emmanuel Sanchez Figueroa</a></strong>.
             </footer>
         </div><!-- ./wrapper -->
- 
+
         <!-- jQuery 2.1.3 -->
         <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
         <!-- jQuery UI 1.11.2 -->

@@ -3,13 +3,12 @@
 use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 
-use FerEmma\User;
-use FerEmma\Post;
+use FerEmma\Reservation;
 use FerEmma\Http\Requests;
-use FerEmma\Http\Requests\UserRequest;
+use FerEmma\Http\Requests\ReservationRequest;
 use FerEmma\Http\Controllers\Controller;
 
-class UsersController extends Controller {
+class ReservationsController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class UsersController extends Controller {
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', ['users'=>$users]);
+        $reservations = Reservation::all();
+        return view('reservations.index', ['reservations'=>$reservations]);
     }
 
     /**
@@ -29,14 +28,7 @@ class UsersController extends Controller {
      */
     public function create()
     {
-        $datas = Post::all();
-        $posts = array();
-
-        foreach ($datas as $data) {
-            $posts[$data->id] = $data->name;
-        }
-
-        return view('users.create', ['posts'=>$posts]);
+        return view('reservations.create');
     }
 
     /**
@@ -44,10 +36,10 @@ class UsersController extends Controller {
      *
      * @return Response
      */
-    public function store(UserRequest $request)
+    public function store(ReservationRequest $request)
     {
-        User::create($request->all());
-        return redirect('users');
+        Reservation::create($request->all());
+        return redirect('reservations');
     }
 
     /**
@@ -69,8 +61,8 @@ class UsersController extends Controller {
      */
     public function edit($id)
     {
-        $user=User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        $reservation = Reservation::findOrFail($id);
+        return view('reservations.edit', compact('reservation'));
     }
 
     /**
@@ -79,11 +71,11 @@ class UsersController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update($id, UserRequest $request)
+    public function update($id, ReservationRequest $request)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return redirect('users');
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update($request->all());
+        return redirect('reservations');
     }
 
     /**
@@ -94,9 +86,9 @@ class UsersController extends Controller {
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect('users');
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+        return redirect('reservations');
     }
 
 }

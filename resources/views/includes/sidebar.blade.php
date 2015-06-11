@@ -25,7 +25,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MENÚ</li>
-            
+
             <li class="treeview">
                 <a href="#">
                 <i class="fa fa-edit"></i> <span>Usuarios</span>
@@ -44,6 +44,16 @@
                 <ul class="treeview-menu">
                     <li><a href="{{URL::to('/posts')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
                     <li><a href="{{URL::to('/posts/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                <i class="fa fa-edit"></i> <span>Reservas</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::to('/reservations')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                    <li><a href="{{URL::to('/reservations/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
                 </ul>
             </li>
             <li class="header">SOPORTE</li>
