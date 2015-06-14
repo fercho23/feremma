@@ -19,6 +19,7 @@ class CreateServiceReservationRutaTable extends Migration {
             $table->integer('reservation_id')->unsigned();
             //$table->foreign('reservation_id')->references('id')->on('reservations');
             $table->datetime('moment');
+            $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->string('name', 100);
         });

@@ -21,6 +21,7 @@ class CreateRoomsTable extends Migration {
             $table->integer('total_beds');
             $table->string('location', 150);
             $table->text('plan');
+            $table->boolean('available');
             $table->timestamps();
         });
     }

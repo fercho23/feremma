@@ -7,7 +7,7 @@ class Room extends Model {
     protected $table = 'rooms';
 
     protected $fillable = ['name', 'description', 'types_beds', 'total_beds',
-                           'location', 'plan'];
+                           'location', 'plan', 'available'];
 
     public $timestamps = true;
 
