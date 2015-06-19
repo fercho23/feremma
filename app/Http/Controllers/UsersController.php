@@ -4,7 +4,7 @@ use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 
 use FerEmma\User;
-use FerEmma\Post;
+use FerEmma\Role;
 use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\UserRequest;
 use FerEmma\Http\Controllers\Controller;
@@ -29,14 +29,14 @@ class UsersController extends Controller {
      */
     public function create()
     {
-        $datas = Post::all();
-        $posts = array();
+        $datas = Role::all();
+        $roles = array();
 
         foreach ($datas as $data) {
-            $posts[$data->id] = $data->name;
+            $roles[$data->id] = $data->name;
         }
 
-        return view('users.create', ['posts'=>$posts]);
+        return view('users.create', ['roles'=>$roles]);
     }
 
     /**
@@ -69,13 +69,13 @@ class UsersController extends Controller {
      */
     public function edit($id)
     {
-        $datas = Post::all();
-        $posts = array();
+        $datas = Role::all();
+        $roles = array();
         foreach ($datas as $data) {
-            $posts[$data->id] = $data->name;
+            $roles[$data->id] = $data->name;
         }
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user', 'posts'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**

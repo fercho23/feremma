@@ -26,7 +26,7 @@ class TaskRequest extends Request {
             'description'=>'',
             'priority'=>'required|integer|min:1|max:256',
             'state'=>'required|min:1|max:20',
-            //'post_id'=>'',
+            
         ];
     }
 

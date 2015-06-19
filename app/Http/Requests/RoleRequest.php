@@ -2,10 +2,10 @@
 
 use FerEmma\Http\Requests\Request;
 
-class PostRequest extends Request {
+class RoleRequest extends Request {
 
     /**
-     * Determine if the post is authorized to make this request.
+     * Determine if the role is authorized to make this request.
      *
      * @return bool
      */

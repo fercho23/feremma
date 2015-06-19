@@ -3,12 +3,18 @@
 use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 
-use FerEmma\Post;
+use FerEmma\Role;
 use FerEmma\Http\Requests;
-use FerEmma\Http\Requests\PostRequest;
+use FerEmma\Http\Requests\RoleRequest;
 use FerEmma\Http\Controllers\Controller;
 
-class PostsController extends Controller {
+class RolesController extends Controller {
+
+    public function __construct()
+    {
+        $this->middleware('');
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -17,8 +23,8 @@ class PostsController extends Controller {
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('posts.index', ['posts'=>$posts]);
+        $roles = Role::all();
+        return view('roles.index', ['roles'=>$roles]);
     }
 
     /**
@@ -28,7 +34,7 @@ class PostsController extends Controller {
      */
     public function create()
     {
-        return view('posts.create');
+        return view('roles.create');
     }
 
     /**
@@ -36,10 +42,10 @@ class PostsController extends Controller {
      *
      * @return Response
      */
-    public function store(PostRequest $request)
+    public function store(RoleRequest $request)
     {
-        Post::create($request->all());
-        return redirect('posts');
+        Role::create($request->all());
+        return redirect('roles');
     }
 
     /**
@@ -61,8 +67,8 @@ class PostsController extends Controller {
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-        return view('posts.edit', compact('post'));
+        $role = Role::findOrFail($id);
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -71,11 +77,11 @@ class PostsController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update($id, PostRequest $request)
+    public function update($id, RoleRequest $request)
     {
-        $post = Post::findOrFail($id);
-        $post->update($request->all());
-        return redirect('posts');
+        $role = Role::findOrFail($id);
+        $role->update($request->all());
+        return redirect('roles');
     }
 
     /**
@@ -86,9 +92,9 @@ class PostsController extends Controller {
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
-        return redirect('posts');
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return redirect('roles');
     }
 
 }

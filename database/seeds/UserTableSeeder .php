@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder {
                            'address'  => 'Sarmiento 2345',
                            'username' => 'emmanuelsf',
                            'phone'    => '2235398647',
-                           'post_id'  => '1',
+                           'role_id'  => '1',
                            'password' => '1234'
                            ));
         User::create(array('email'    => 'hola@bar.com',
@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder {
                            'address'  => 'Cabeza De Termo 1234',
                            'username' => 'fernandom',
                            'phone'    => '00000000000',
-                           'post_id'  => '1',
+                           'role_id'  => '1',
                            'password' => '678'
                            ));
     }

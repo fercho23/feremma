@@ -16,10 +16,9 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 //Route::get('users', 'UsersController@index');
 //Route::get('users/create', 'UsersController@create');
-//Route::post('users', 'UsersController@store');
 
 Route::resource('users','UsersController');
-Route::resource('posts','PostsController');
+Route::resource('roles','RolesController');
 Route::resource('reservations','ReservationsController');
 Route::resource('rooms','RoomsController');
 Route::resource('services','ServicesController');

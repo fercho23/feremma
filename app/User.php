@@ -5,14 +5,16 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use FerEmma\UserACL;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
     use Authenticatable, CanResetPassword;
+    use UserACL;
 
     protected $table = 'users';
 
-    protected $fillable = ['post_id', 'username', 'password', 'name',
+    protected $fillable = ['role_id', 'username', 'password', 'name',
                            'surname', 'email', 'dni', 'address',
                            'phone', 'cuil', 'birthday', 'sex'];
 
@@ -22,8 +24,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('FerEmma\Reservation', 'owner_id');
     }
 
-    public function post() {
-        return $this->belongsTo('FerEmma\Post', 'post_id');
+    public function role() {
+        return $this->belongsTo('FerEmma\Role', 'role_id');
     }
 
     public function booking() {

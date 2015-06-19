@@ -22,7 +22,7 @@ class UserRequest extends Request {
     public function rules()
     {
         return [
-            //'post_id'=>'',
+            
             'username'=>'required|min:2|max:100',
             'name'=>'required|min:2|max:150',
             'surname'=>'required|min:2|max:150',

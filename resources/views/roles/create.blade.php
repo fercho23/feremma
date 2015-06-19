@@ -2,8 +2,8 @@
     @section('content')
         <h1>Nuevo Cargo</h1>
         <hr/>
-        {!! Form::open(['url'=>'posts']) !!}
+        {!! Form::open(['url'=>'roles']) !!}
             @include('errors.list')
-            @include('posts.form', ['submitButtontext'=>'Guardar'])
+            @include('roles.form', ['submitButtontext'=>'Guardar'])
         {!! Form::close() !!}
     @stop

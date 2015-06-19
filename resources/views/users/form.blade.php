@@ -7,8 +7,8 @@
     {!! Form::text('surname', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('post_id','Cargo:') !!}
-    {!! Form::select('post_id', $posts, null, ['class'=>'form-control']) !!}
+    {!! Form::label('role_id','Cargo:') !!}
+    {!! Form::select('role_id', $roles, null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('username','Nombre de Usuario:') !!}

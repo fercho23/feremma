@@ -21,8 +21,8 @@
                                 <td>{!! $task->id !!}</td>
                                 <td>{!! $task->name !!}</td>
                                 <td>
-                                    @if (sizeof($task->post)>0)
-                                        {!! $task->post->name !!}
+                                    @if (sizeof($task->role)>0)
+                                        {!! $task->role->name !!}
                                     @endif
                                 </td>
                                 <td>{!! $task->priority !!}</td>

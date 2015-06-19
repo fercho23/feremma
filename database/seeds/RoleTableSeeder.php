@@ -1,19 +1,19 @@
 <?php
 
-use FerEmma\Post;
+use FerEmma\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class PostTableSeeder extends Seeder {
+class RoleTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('posts')->delete();
+        DB::table('roles')->delete();
 
-        Post::create(array('description' => 'Tipos ree grosos',
+        Role::create(array('description' => 'Tipos ree grosos',
                            'name'=>'Desarrollador'
                            ));
-        Post::create(array('description' => 'lala',
+        Role::create(array('description' => 'lala',
                            'name'=>'Conserje'
                            ));
     }

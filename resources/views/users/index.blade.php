@@ -27,8 +27,8 @@
                                 <td>{!! $user->name !!}</td>
                                 <td>{!! $user->surname !!}</td>
                                 <td>
-                                    @if (sizeof($user->post)>0)
-                                        {!! $user->post->name !!}
+                                    @if (sizeof($user->role)>0)
+                                        {!! $user->role->name !!}
                                     @endif
                                 </td>
                                 <td>{!! $user->username !!}</td>

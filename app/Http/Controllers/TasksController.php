@@ -4,7 +4,7 @@ use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 
 use FerEmma\Task;
-use FerEmma\Post;
+use FerEmma\Role;
 use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\TaskRequest;
 use FerEmma\Http\Controllers\Controller;
@@ -29,14 +29,14 @@ class TasksController extends Controller {
      */
     public function create()
     {
-        $datas = Post::all();
-        $posts = array();
+        $datas = Role::all();
+        $roles = array();
 
         foreach ($datas as $data) {
-            $posts[$data->id] = $data->name;
+            $roles[$data->id] = $data->name;
         }
 
-        return view('tasks.create', ['posts'=>$posts]);
+        return view('tasks.create', ['roles'=>$roles]);
         //return view('tasks.create');
     }
 
@@ -70,13 +70,13 @@ class TasksController extends Controller {
      */
     public function edit($id)
     {
-        $datas = Post::all();
-        $posts = array();
+        $datas = Role::all();
+        $roles = array();
         foreach ($datas as $data) {
-            $posts[$data->id] = $data->name;
+            $roles[$data->id] = $data->name;
         }
         $task = Task::findOrFail($id);
-        return view('tasks.edit', compact('task', 'posts'));
+        return view('tasks.edit', compact('task', 'roles'));
     }
 
     /**

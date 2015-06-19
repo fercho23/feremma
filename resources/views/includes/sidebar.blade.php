@@ -42,8 +42,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/posts')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                    <li><a href="{{URL::to('/posts/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                    <li><a href="{{URL::to('/roles')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                    <li><a href="{{URL::to('/roles/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
                 </ul>
             </li>
             <li class="treeview">

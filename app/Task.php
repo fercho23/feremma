@@ -7,12 +7,12 @@ class Task extends Model {
     protected $table = 'tasks';
 
     protected $fillable = ['name', 'description', 'priority', 'state',
-                           'post_id'];
+                           'role_id'];
 
     public $timestamps = true;
 
-    public function post() {
-        return $this->belongsTo('FerEmma\Post', 'post_id');
+    public function role() {
+        return $this->belongsTo('FerEmma\Role', 'role_id');
     }
 
     public function users() {
