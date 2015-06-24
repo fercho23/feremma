@@ -8,7 +8,7 @@ class UserTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('users')->delete();
+        DB::table('users')->truncate();
 
         User::create(array('email'    => 'foo@bar.com',
                            'name'     => 'Emmanuel',
@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder {
                            'username' => 'emmanuelsf',
                            'phone'    => '2235398647',
                            'role_id'  => '1',
-                           'password' => '1234'
+                           'password' => Hash::make('1234')
                            ));
         User::create(array('email'    => 'hola@bar.com',
                            'name'     => 'Fernando',
@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder {
                            'username' => 'fernandom',
                            'phone'    => '00000000000',
                            'role_id'  => '1',
-                           'password' => '678'
+                           'password' => Hash::make('678')
                            ));
     }
 

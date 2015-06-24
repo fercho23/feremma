@@ -27,7 +27,7 @@ class Kernel extends HttpKernel {
         'auth' => 'FerEmma\Http\Middleware\Authenticate',
         'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
         'guest' => 'FerEmma\Http\Middleware\RedirectIfAuthenticated',
-        'acl' => 'App\Http\Middleware\CheckPermission',
+        'acl' => 'FerEmma\Http\Middleware\CheckPermission',
     ];
 
 }

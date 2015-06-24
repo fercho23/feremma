@@ -8,14 +8,39 @@ class RoleTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('roles')->delete();
+        DB::table('roles')->truncate();
 
-        Role::create(array('description' => 'Tipos ree grosos',
-                           'name'=>'Desarrollador'
-                           ));
-        Role::create(array('description' => 'lala',
-                           'name'=>'Conserje'
-                           ));
+        $role = Role::create(array(//1
+                'description'   => '',
+                'name'          =>'Super Usuario',
+                'slug'          =>'super_user'
+                ));
+        $role->permissions()->sync([1]);
+        Role::create(array(//2
+                'description'   => '',
+                'name'          =>'Director',
+                'slug'          =>'director'
+                ));
+        Role::create(array(//3
+                'description'   => '',
+                'name'          =>'Recepcion y Conserjeria',
+                'slug'          =>'reception_janitor'
+                ));
+        Role::create(array(//4
+                'description'   => '',
+                'name'          =>'Mantenimiento, servicios técnicos y seguridad:',
+                'slug'          =>'maintenance'
+                ));
+        Role::create(array(//5
+                'description'   => '',
+                'name'          =>'Cliente',
+                'slug'          =>'client'
+                ));
+        Role::create(array(//6
+                'description'   => '',
+                'name'          =>'Pisos',
+                'slug'          =>'cleaning'
+                ));
     }
 
 }

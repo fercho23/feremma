@@ -8,7 +8,7 @@ class TaskTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('tasks')->delete();
+        DB::table('tasks')->truncate();
 
         Task::create(array('description' => 'Hacer el sistema.',
                 'name'        => 'Desarrollar',

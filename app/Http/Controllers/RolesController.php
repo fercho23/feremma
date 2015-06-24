@@ -10,12 +10,6 @@ use FerEmma\Http\Controllers\Controller;
 
 class RolesController extends Controller {
 
-    public function __construct()
-    {
-        $this->middleware('');
-    }
-
-
     /**
      * Display a listing of the resource.
      *

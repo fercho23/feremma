@@ -8,7 +8,7 @@ class ServiceTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('services')->delete();
+        DB::table('services')->truncate();
 
         Service::create(array('description'    => 'Acceso al Spa mayores de 18 años (sauna seco, baño finlandés, duchas escocesas, sala de relax, piscina climatizada, gimnasio).',
                  'name'     => 'Acceso al Spa',

@@ -2,6 +2,8 @@
 
 use Closure;
 use Illuminate\Contracts\Routing\Middleware;
+use Illuminate\HttpResponse;
+
 
 class CheckPermission implements Middleware {
 
@@ -20,8 +22,8 @@ class CheckPermission implements Middleware {
 			
 			return $next($request);
 		}
-
-		return redirect()->route('home');
+		return redirect('home');
+		// return redirect()->route('home');
 	}
 
 	/*
@@ -38,6 +40,7 @@ class CheckPermission implements Middleware {
 	 */
 	protected function userHasAccessTo($request)
 	{
+		// dd("Hola");
 		return $this->hasPermission($request);
 	}
 
@@ -49,7 +52,10 @@ class CheckPermission implements Middleware {
 	 */
 	protected function hasPermission($request)
 	{
+		// dd("Hola2");
 		$required = $this->requiredPermission($request);
+		// dd($required);
+		//dd(!$this->forbiddenRoute($request), $request->user()->can($required));
 
 		return !$this->forbiddenRoute($request) && $request->user()->can($required);
 	}
@@ -62,9 +68,13 @@ class CheckPermission implements Middleware {
 	 */
 	protected function requiredPermission($request)
 	{
-		$action = $request->route()->getAction();
+		//$action = $request->route()->getAction();
+		//dd($request->route()->getPath());
+		$action = $request->route()->getPath();
+		//dd($request->route()->getActionName());
 
-		return isset($action['permission']) ? explode('|', $action['permission']) : null;
+		// return isset($action) ? explode('/', $action) : null;
+		return isset($action) ? $action : null;
 	}
 
 	/**
@@ -79,7 +89,7 @@ class CheckPermission implements Middleware {
 
 		if(isset($action['except'])) {
 			
-			return $action['except'] == $request->user()->role->role_slug;
+			return $action['except'] == $request->user()->role->slug;
 		}
 
 		return false;
