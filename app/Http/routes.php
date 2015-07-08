@@ -16,17 +16,17 @@ Route::get('home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('login', 'AuthController@login');
-	Route::get('logout', 'AuthController@logout');
+    Route::get('login', 'AuthController@login');
+    Route::get('logout', 'AuthController@logout');
 
-	Route::group(['middleware' => 'acl'], function () {
-		Route::resource('users','UsersController');
-		Route::resource('roles','RolesController');
-		Route::resource('reservations','ReservationsController');
-		Route::resource('rooms','RoomsController');
-		Route::resource('services','ServicesController');
-		Route::resource('tasks','TasksController');
-	});
+    Route::group(['middleware' => 'acl'], function () {
+        Route::resource('users','UsersController');
+        Route::resource('roles','RolesController');
+        Route::resource('reservations','ReservationsController');
+        Route::resource('rooms','RoomsController');
+        Route::resource('services','ServicesController');
+        Route::resource('tasks','TasksController');
+    });
 
 });
 
