@@ -17,7 +17,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//2
             'permission_title'         =>'Detalle Usuario',
-            'permission_slug'          =>'users/detail',
+            'permission_slug'          =>'users/show',
             'permission_description'   =>'Detalle de usuario.'
             ));
         Permission::create(array(//3
@@ -27,12 +27,12 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//4
             'permission_title'         =>'Eliminar Usuario',
-            'permission_slug'          =>'users/delete',
+            'permission_slug'          =>'users/destroy',
             'permission_description'   =>'Elimina un usuario.'
             ));
         Permission::create(array(//5
             'permission_title'         =>'Listar Usuarios',
-            'permission_slug'          =>'users/list',
+            'permission_slug'          =>'users/index',
             'permission_description'   =>'Lista de usuarios.'
             ));
 
@@ -44,7 +44,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//7
             'permission_title'         =>'Detalle Cliente',
-            'permission_slug'          =>'clients/detail',
+            'permission_slug'          =>'clients/show',
             'permission_description'   =>'Detalle de cliente.'
             ));
         Permission::create(array(//8
@@ -54,12 +54,12 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//9
             'permission_title'         =>'Eliminar Cliente',
-            'permission_slug'          =>'clients/delete',
+            'permission_slug'          =>'clients/destroy',
             'permission_description'   =>'Elimina un cliente.'
             ));
         Permission::create(array(//10
             'permission_title'         =>'Listar Clientes',
-            'permission_slug'          =>'clients/list',
+            'permission_slug'          =>'clients/index',
             'permission_description'   =>'Lista de clientes.'
             ));
 
@@ -71,7 +71,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//12
             'permission_title'         =>'Detalle Habitación',
-            'permission_slug'          =>'rooms/detail',
+            'permission_slug'          =>'rooms/show',
             'permission_description'   =>'Detalle de habitación.'
             ));
         Permission::create(array(//13
@@ -81,12 +81,12 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//14
             'permission_title'         =>'Eliminar Habitación',
-            'permission_slug'          =>'rooms/delete',
+            'permission_slug'          =>'rooms/destroy',
             'permission_description'   =>'Elimina una habitación.'
             ));
         Permission::create(array(//15
             'permission_title'         =>'Listar Habitaciones',
-            'permission_slug'          =>'rooms/list',
+            'permission_slug'          =>'rooms/index',
             'permission_description'   =>'Lista de habitaciones.'
             ));
         Permission::create(array(//16
@@ -103,7 +103,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//18
             'permission_title'         =>'Detalle Servicio',
-            'permission_slug'          =>'services/detail',
+            'permission_slug'          =>'services/show',
             'permission_description'   =>'Detalle de servicio.'
             ));
         Permission::create(array(//19
@@ -113,12 +113,12 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//20
             'permission_title'         =>'Eliminar Servicio',
-            'permission_slug'          =>'services/delete',
+            'permission_slug'          =>'services/destroy',
             'permission_description'   =>'Elimina un servicio.'
             ));
         Permission::create(array(//21
             'permission_title'         =>'Listar Servicios',
-            'permission_slug'          =>'services/list',
+            'permission_slug'          =>'services/index',
             'permission_description'   =>'Lista de servicios.'
             ));
 
@@ -130,7 +130,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//23
             'permission_title'         =>'Detalle Cargo',
-            'permission_slug'          =>'roles/detail',
+            'permission_slug'          =>'roles/show',
             'permission_description'   =>'Detalle de cargo.'
             ));
         Permission::create(array(//24
@@ -140,12 +140,12 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//25
             'permission_title'         =>'Eliminar Cargo',
-            'permission_slug'          =>'roles/delete',
+            'permission_slug'          =>'roles/destroy',
             'permission_description'   =>'Elimina un cargo.'
             ));
         Permission::create(array(//26
             'permission_title'         =>'Listar Cargos',
-            'permission_slug'          =>'roles/list',
+            'permission_slug'          =>'roles/index',
             'permission_description'   =>'Lista de cargos.'
             ));
 
@@ -157,7 +157,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//28
             'permission_title'         =>'Detalle Reserva',
-            'permission_slug'          =>'roles/detail',
+            'permission_slug'          =>'roles/show',
             'permission_description'   =>'Detalle de reserva.'
             ));
         Permission::create(array(//29
@@ -167,12 +167,12 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//30
             'permission_title'         =>'Eliminar Reserva',
-            'permission_slug'          =>'reservations/delete',
+            'permission_slug'          =>'reservations/destroy',
             'permission_description'   =>'Elimina uns reserva.'
             ));
         Permission::create(array(//31
             'permission_title'         =>'Listar Reservas',
-            'permission_slug'          =>'reservations/list',
+            'permission_slug'          =>'reservations/index',
             'permission_description'   =>'Lista de reservas.'
             ));
         Permission::create(array(//32
@@ -208,7 +208,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//38
             'permission_title'         =>'Detalle Tarea',
-            'permission_slug'          =>'tasks/detail',
+            'permission_slug'          =>'tasks/show',
             'permission_description'   =>'Detalle de tarea.'
             ));
         Permission::create(array(//39
@@ -218,12 +218,12 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//40
             'permission_title'         =>'Eliminar Tarea',
-            'permission_slug'          =>'tasks/delete',
+            'permission_slug'          =>'tasks/destroy',
             'permission_description'   =>'Elimina una tarea.'
             ));
         Permission::create(array(//41
             'permission_title'         =>'Listar Tareas',
-            'permission_slug'          =>'tasks/list',
+            'permission_slug'          =>'tasks/index',
             'permission_description'   =>'Lista de tareas.'
             ));
         Permission::create(array(//42

@@ -67,28 +67,17 @@ class CheckPermission implements Middleware {
      */
     protected function requiredPermission($request)
     {
-        $method = $request->method();
-        $action = $request->route()->getPath();
+        $route = \Route::currentRouteAction();
+        $route = class_basename($route);
+        $route = explode("Controller@", $route, 2);
 
-        if((strpos($action, '/create') === false) && (strpos($action, '/edit') === false)) {
-            if(strpos($action,'/') === false) {
-                if($method == 'GET')
-                    $action .= '/list';
-                if($method == 'POST')
-                    $action .= '/create';
-            } else {
-                if($method == 'GET')
-                    $action .= '/detail';
-                if(($method == 'PUT') || ($method == 'PATCH'))
-                    $action .= '/edit';
-                if($method == 'DELETE')
-                    $action .= '/delete';
-            }
-        }
+        if($route[1] == "store")
+            $route[1] = "create";
+        if($route[1] == "update")
+            $route[1] = "edit";
 
-        $action = preg_replace('/({\w+}\/)/', '', $action);
+        $action = strtolower($route[0]).'/'.$route[1];
 
-        // return isset($action) ? explode('/', $action) : null;
         return isset($action) ? $action : null;
     }
 
