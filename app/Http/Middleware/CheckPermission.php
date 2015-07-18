@@ -52,7 +52,7 @@ class CheckPermission implements Middleware {
      */
     protected function hasPermission($request)
     {
-        $required = $this->requiredPermission($request);
+        $required = $this->requiredPermission();
          //dd($required);
         //dd(!$this->forbiddenRoute($request), $request->user()->can($required));
 
@@ -65,7 +65,7 @@ class CheckPermission implements Middleware {
      * @param  \Illuminate\Http\Request  $request
      * @return String permission_slug connected to the Route
      */
-    protected function requiredPermission($request)
+    protected function requiredPermission()
     {
         $route = \Route::currentRouteAction();
         $route = class_basename($route);
