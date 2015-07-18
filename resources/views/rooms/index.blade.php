@@ -13,7 +13,9 @@
                                 <th>Ubicación</th>
                                 <th>Plano</th>
                                 <th>Descripción</th>
-                                <th style="width: 36px;"></th>
+                                @if(Auth::user()->can('rooms/edit') || Auth::user()->can('rooms/destroy'))
+                                    <th style="width: 36px;"></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -26,18 +28,22 @@
                                 <td>{!! $room->location !!}</td>
                                 <td>{!! $room->plan !!}</td>
                                 <td>{!! $room->description !!}</td>
-                                <td>
-                                    <a href="{!! URL::to('rooms/'.$room->id.'/edit') !!}">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    {!! Form::open(['method' => 'DELETE', 'action' => ['RoomsController@destroy', $room->id]]) !!}
-                                        <button class="btn-link" type="submit">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                        </button>
-                                    {!! Form::close() !!}
-                                </td>
+                                @if(Auth::user()->can('rooms/edit'))
+                                    <td>
+                                        <a href="{!! URL::to('rooms/'.$room->id.'/edit') !!}">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->can('rooms/destroy'))
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE', 'action' => ['RoomsController@destroy', $room->id]]) !!}
+                                            <button class="btn-link" type="submit">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

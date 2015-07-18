@@ -10,7 +10,9 @@
                                 <th>Nombre</th>
                                 <th>Precio</th>
                                 <th>Descripción</th>
-                                <th style="width: 36px;"></th>
+                                @if(Auth::user()->can('services/edit') || Auth::user()->can('services/destroy'))
+                                    <th style="width: 36px;"></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -20,18 +22,21 @@
                                 <td>{!! $service->name !!}</td>
                                 <td>{!! $service->price !!}</td>
                                 <td>{!! $service->description !!}</td>
+                                @if(Auth::user()->can('services/edit'))
                                 <td>
                                     <a href="{!! URL::to('services/'.$service->id.'/edit') !!}">
                                         <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
                                 </td>
-                                <td>
-                                    {!! Form::open(['method' => 'DELETE', 'action' => ['ServicesController@destroy', $service->id]]) !!}
-                                        <button class="btn-link" type="submit">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                        </button>
-                                    {!! Form::close() !!}
-                                </td>
+                                @if(Auth::user()->can('services/destroy'))
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE', 'action' => ['ServicesController@destroy', $service->id]]) !!}
+                                            <button class="btn-link" type="submit">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

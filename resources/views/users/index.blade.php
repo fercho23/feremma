@@ -17,7 +17,9 @@
                                 <th>Dirección</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
-                                <th style="width: 36px;"></th>
+                                @if(Auth::user()->can('users/edit') || Auth::user()->can('users/destroy'))
+                                    <th style="width: 36px;"></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -37,18 +39,22 @@
                                 <td>{!! $user->address !!}</td>
                                 <td>{!! $user->phone !!}</td>
                                 <td>{!! $user->email !!}</td>
-                                <td>
-                                    <a href="{!! URL::to('users/'.$user->id.'/edit') !!}">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    {!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user->id]]) !!}
-                                        <button class="btn-link" type="submit">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                         </button>
-                                    {!! Form::close() !!}
-                                </td>
+                                @if(Auth::user()->can('users/edit'))
+                                    <td>
+                                        <a href="{!! URL::to('users/'.$user->id.'/edit') !!}">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->can('users/destroy'))
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user->id]]) !!}
+                                            <button class="btn-link" type="submit">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                             </button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

@@ -12,7 +12,9 @@
                                 <th>Prioridad</th>
                                 <th>Estado</th>
                                 <th>Descripción</th>
-                                <th style="width: 36px;"></th>
+                                @if(Auth::user()->can('tasks/edit') || Auth::user()->can('tasks/destroy'))
+                                    <th style="width: 36px;"></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -28,18 +30,22 @@
                                 <td>{!! $task->priority !!}</td>
                                 <td>{!! $task->state !!}</td>
                                 <td>{!! $task->description !!}</td>
-                                <td>
-                                    <a href="{!! URL::to('tasks/'.$task->id.'/edit') !!}">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    {!! Form::open(['method' => 'DELETE', 'action' => ['TasksController@destroy', $task->id]]) !!}
-                                        <button class="btn-link" type="submit">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                        </button>
-                                    {!! Form::close() !!}
-                                </td>
+                                @if(Auth::user()->can('tasks/edit'))
+                                    <td>
+                                        <a href="{!! URL::to('tasks/'.$task->id.'/edit') !!}">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->can('tasks/destroy'))
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE', 'action' => ['TasksController@destroy', $task->id]]) !!}
+                                            <button class="btn-link" type="submit">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

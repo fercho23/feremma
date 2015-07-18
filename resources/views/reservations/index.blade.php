@@ -14,7 +14,9 @@
                                 <th>Fecha entrada</th>
                                 <th>Fecha salida</th>
                                 <th>Descripción</th>
-                                <th style="width: 36px;"></th>
+                                @if(Auth::user()->can('reservations/edit') || Auth::user()->can('reservations/destroy'))
+                                    <th style="width: 36px;"></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -27,18 +29,22 @@
                                 <td>{!! $reservation->check_in !!}</td>
                                 <td>{!! $reservation->check_out !!}</td>
                                 <td>{!! $reservation->description !!}</td>
-                                <td>
-                                    <a href="{!! URL::to('reservations/'.$reservation->id.'/edit') !!}">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    {!! Form::open(['method' => 'DELETE', 'action' => ['ReservationsController@destroy', $reservation->id]]) !!}
-                                        <button class="btn-link" type="submit">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                         </button>
-                                    {!! Form::close() !!}
-                                </td>
+                                @if(Auth::user()->can('reservations/edit'))
+                                    <td>
+                                        <a href="{!! URL::to('reservations/'.$reservation->id.'/edit') !!}">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->can('reservations/destroy'))
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE', 'action' => ['ReservationsController@destroy', $reservation->id]]) !!}
+                                            <button class="btn-link" type="submit">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                             </button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

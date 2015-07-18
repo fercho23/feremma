@@ -28,73 +28,112 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
 
         <ul class="sidebar-menu">
-            <li class="header">MENÚ</li>
 
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-edit"></i> <span>Usuarios</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/users')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                    <li><a href="{{URL::to('/users/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
-                </ul>
-            </li>
+            @if(Auth::check())
+                <li class="header">MENÚ</li>
 
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-edit"></i> <span>Cargos</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/roles')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                    <li><a href="{{URL::to('/roles/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
-                </ul>
-            </li>
+                @if(Auth::user()->can('users/index') || Auth::user()->can('users/create'))
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-edit"></i> <span>Usuarios</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->can('users/index'))
+                                <li><a href="{{URL::to('/users')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            @endif
+                            @if(Auth::user()->can('users/create'))
+                                <li><a href="{{URL::to('/users/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-edit"></i> <span>Reservas</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/reservations')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                    <li><a href="{{URL::to('/reservations/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
-                </ul>
-            </li>
+                @if(Auth::user()->can('roles/index') || Auth::user()->can('roles/create'))
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-edit"></i> <span>Cargos</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->can('roles/index'))
+                                <li><a href="{{URL::to('/roles')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            @endif
+                            @if(Auth::user()->can('roles/create'))
+                                <li><a href="{{URL::to('/roles/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-edit"></i> <span>Habitaciones</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/rooms')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                    <li><a href="{{URL::to('/rooms/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
-                </ul>
-            </li>
+                @if(Auth::user()->can('reservations/index') || Auth::user()->can('reservations/create'))
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-edit"></i> <span>Reservas</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->can('reservations/index'))
+                                <li><a href="{{URL::to('/reservations')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            @endif
+                            @if(Auth::user()->can('reservations/create'))
+                                <li><a href="{{URL::to('/reservations/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-edit"></i> <span>Servicios</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/services')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                    <li><a href="{{URL::to('/services/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
-                </ul>
-            </li>
+                @if(Auth::user()->can('rooms/index') || Auth::user()->can('rooms/create'))
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-edit"></i> <span>Habitaciones</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->can('rooms/index'))
+                                <li><a href="{{URL::to('/rooms')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            @endif
+                            @if(Auth::user()->can('rooms/create'))
+                                <li><a href="{{URL::to('/rooms/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-edit"></i> <span>Tareas</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/tasks')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                    <li><a href="{{URL::to('/tasks/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
-                </ul>
-            </li>
+                @if(Auth::user()->can('services/index') || Auth::user()->can('services/create'))
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-edit"></i> <span>Servicios</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->can('services/index'))
+                                <li><a href="{{URL::to('/services')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            @endif
+                            @if(Auth::user()->can('services/create'))
+                                <li><a href="{{URL::to('/services/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
+                @if(Auth::user()->can('tasks/index') || Auth::user()->can('tasks/create'))
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-edit"></i> <span>Tareas</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->can('tasks/index'))
+                                <li><a href="{{URL::to('/tasks')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            @endif
+                            @if(Auth::user()->can('tasks/create'))
+                                <li><a href="{{URL::to('/tasks/create')}}"><i class="fa fa-circle-o"></i> Nuevo</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+            @endif
 
             <li class="header">SOPORTE</li>
 

@@ -9,7 +9,9 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
-                                <th style="width: 36px;"></th>
+                                @if(Auth::user()->can('roles/edit') || Auth::user()->can('roles/destroy'))
+                                    <th style="width: 36px;"></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -18,18 +20,22 @@
                                 <td>{!! $role->id !!}</td>
                                 <td>{!! $role->name !!}</td>
                                 <td>{!! $role->description !!}</td>
-                                <td>
-                                    <a href="{!! URL::to('roles/'.$role->id.'/edit') !!}">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    {!! Form::open(['method' => 'DELETE', 'action' => ['RolesController@destroy', $role->id]]) !!}
-                                        <button class="btn-link" type="submit">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                        </button>
-                                    {!! Form::close() !!}
-                                </td>
+                                @if(Auth::user()->can('roles/edit'))
+                                    <td>
+                                        <a href="{!! URL::to('roles/'.$role->id.'/edit') !!}">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->can('roles/destroy'))
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE', 'action' => ['RolesController@destroy', $role->id]]) !!}
+                                            <button class="btn-link" type="submit">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>
