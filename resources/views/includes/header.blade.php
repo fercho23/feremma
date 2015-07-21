@@ -1,11 +1,11 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{URL::to('/')}}" class="logo"><b>Admin</b>LTE</a>
+    <a href="{{ URL::to('/') }}" class="logo"><b>Admin</b>LTE</a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">Toggle navigation</span>
         </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
@@ -22,27 +22,27 @@
                             <ul class="menu">
                                 <li>
                                     <a href="#">
-                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                    <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                                        <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                    <i class="fa fa-users text-red"></i> 5 new members joined
+                                        <i class="fa fa-users text-red"></i> 5 new members joined
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                    <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                        <i class="fa fa-shopping-cart text-green"></i> 25 sales made
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                    <i class="fa fa-user text-red"></i> You changed your username
+                                        <i class="fa fa-user text-red"></i> You changed your username
                                     </a>
                                 </li>
                             </ul>
@@ -133,7 +133,7 @@
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle" alt="User Image" />
+                                <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle" alt="User Image"/>
                                 <p>
                                     {!! Auth::user()->name !!} {!! Auth::user()->surname !!}
                                 </p>
@@ -160,11 +160,9 @@
                                 </div>
                             </li>
                         </ul>
-
                     @else
                         <a href="{{ URL('auth/login') }}">Login</a>
                     @endif
-
 
                 </li>
             </ul>
