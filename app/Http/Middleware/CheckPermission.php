@@ -23,7 +23,6 @@ class CheckPermission implements Middleware {
             return $next($request);
         }
         return redirect('home');
-        // return redirect()->route('home');
     }
 
     /*
@@ -40,7 +39,6 @@ class CheckPermission implements Middleware {
      */
     protected function userHasAccessTo($request)
     {
-        // dd("Hola");
         return $this->hasPermission($request);
     }
 
@@ -53,8 +51,6 @@ class CheckPermission implements Middleware {
     protected function hasPermission($request)
     {
         $required = $this->requiredPermission();
-         //dd($required);
-        //dd(!$this->forbiddenRoute($request), $request->user()->can($required));
 
         return !$this->forbiddenRoute($request) && $request->user()->can($required);
     }

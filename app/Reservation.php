@@ -29,5 +29,9 @@ class Reservation extends Model {
         return $this->belongsToMany('FerEmma\User', 'reservation_user');
     }
 
+    public function save() {
+        dd(parrent::save());
+    }
+
 
 }

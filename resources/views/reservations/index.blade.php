@@ -23,6 +23,11 @@
                         @foreach ($reservations as $reservation)
                             <tr>
                                 <td>{!! $reservation->id !!}</td>
+                                <td>
+                                    @if (sizeof($reservation->owner)>0)
+                                        {!! $reservation->owner->name !!} {!! $reservation->owner->surname !!}
+                                    @endif
+                                </td>
                                 <td>{!! $reservation->total_price !!}</td>
                                 <td>{!! $reservation->sign !!}</td>
                                 <td>{!! $reservation->due !!}</td>

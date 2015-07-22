@@ -28,8 +28,20 @@ class ReservationRequest extends Request {
             'sign'=>'required|between:0,9999999999.99',
             'due'=>'required|between:0,9999999999.99',
             'check_in'=>'required|date',
-            'check_out'=>'required|date',
+            'check_out'=>'required|date'
         ];
     }
+
+    public function getValidatorInstance() {
+        $validator = parent::getValidatorInstance();
+
+        $validator->after(function() use ($validator) {
+            if($validator->getData()['sign'] > $validator->getData()['total_price'])
+                $validator->errors()->add('sign', 'La seña debe ser menor al precio total.');
+        });
+
+        return $validator;
+}
+
 
 }

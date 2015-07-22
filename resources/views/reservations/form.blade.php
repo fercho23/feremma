@@ -1,4 +1,8 @@
 <div class="form-group">
+    {!! Form::label('owner_id','Titular:') !!}
+    {!! Form::select('owner_id', $persons, null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
     {!! Form::label('total_price','Precio Total:')!!}
     {!! Form::input('number', 'total_price', null, ['class'=>'form-control',
                                                     'max'=>'9999999999',

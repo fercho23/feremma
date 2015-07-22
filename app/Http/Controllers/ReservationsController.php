@@ -3,6 +3,7 @@
 use Illuminate\HttpResponse;
 use Illuminate\Support\Facades\Request;
 
+use FerEmma\User;
 use FerEmma\Reservation;
 use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\ReservationRequest;
@@ -28,7 +29,14 @@ class ReservationsController extends Controller {
      */
     public function create()
     {
-        return view('reservations.create');
+        $datas = User::all();
+        $persons = array();
+
+        foreach ($datas as $data) {
+            $persons[$data->id] = $data->name.' '.$data->surname;
+        }
+
+        return view('reservations.create', ['persons'=>$persons]);
     }
 
     /**
@@ -39,6 +47,7 @@ class ReservationsController extends Controller {
     public function store(ReservationRequest $request)
     {
         Reservation::create($request->all());
+        //Reservation::rules($request->all());
         return redirect('reservations');
     }
 
@@ -62,7 +71,14 @@ class ReservationsController extends Controller {
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
-        return view('reservations.edit', compact('reservation'));
+        $datas = User::all();
+        $persons = array();
+
+        foreach ($datas as $data) {
+            $persons[$data->id] = $data->name.' '.$data->surname;
+        }
+
+        return view('reservations.edit', ['persons' => $persons, 'reservation' => $reservation]);
     }
 
     /**
