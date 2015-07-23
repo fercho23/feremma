@@ -7,3 +7,9 @@
             @include('reservations.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
     @stop
+
+    @section('extra_js')
+        {{--
+        @include('reservations.form_js')
+        --}}
+    @stop

@@ -47,7 +47,6 @@ class ReservationsController extends Controller {
     public function store(ReservationRequest $request)
     {
         Reservation::create($request->all());
-        //Reservation::rules($request->all());
         return redirect('reservations');
     }
 

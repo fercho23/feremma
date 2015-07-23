@@ -1,23 +1,26 @@
 <div class="form-group">
     {!! Form::label('owner_id','Titular:') !!}
     {!! Form::select('owner_id', $persons, null, ['class'=>'form-control']) !!}
+    {{--
+    {!! Form::text('owner_id', ($reservation->owner ? $reservation->owner->name.' '.$reservation->owner->surname : ''), ['class'=>'form-control']) !!}
+    --}}
 </div>
 <div class="form-group">
-    {!! Form::label('total_price','Precio Total:')!!}
+    {!! Form::label('total_price','Precio Total:') !!}
     {!! Form::input('number', 'total_price', null, ['class'=>'form-control',
                                                     'max'=>'9999999999',
                                                     'min'=>'0',
                                                     'step'=>'0.01']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('sign','Seña:')!!}
+    {!! Form::label('sign','Seña:') !!}
     {!! Form::input('number', 'sign', null, ['class'=>'form-control',
                                              'max'=>'9999999999',
                                              'min'=>'0',
                                              'step'=>'0.01']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('due','Deuda:')!!}
+    {!! Form::label('due','Deuda:') !!}
     {!! Form::input('number', 'due', null, ['class'=>'form-control',
                                             'max'=>'9999999999',
                                             'min'=>'0',
@@ -32,7 +35,7 @@
     {!! Form::input('date','check_out', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('description','Descripción:')!!}
+    {!! Form::label('description','Descripción:') !!}
     {!! Form::text('description', null, ['class'=>'form-control']) !!}
 </div>
 

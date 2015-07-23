@@ -28,6 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('tasks','TasksController');
     });
 
+    Route::group(array('prefix' => 'search'), function() {
+        Route::get('user', array('as' => 'search-user', 'uses' => 'SearchController@getUserByName'));
+        Route::get('users', array('as' => 'search-remaining-users', 'uses' => 'SearchController@getRemainingUsersByName'));
+    });
+
 });
 
 Route::controllers([
