@@ -38,10 +38,12 @@ class ReservationRequest extends Request {
         $validator->after(function() use ($validator) {
             if($validator->getData()['sign'] > $validator->getData()['total_price'])
                 $validator->errors()->add('sign', 'La seña debe ser menor al precio total.');
+            if($validator->getData()['check_out'] < $validator->getData()['check_in'])
+                $validator->errors()->add('sign', 'La fecha de salida debe ser posterior a la de entrada.');
         });
 
         return $validator;
-}
+    }
 
 
 }

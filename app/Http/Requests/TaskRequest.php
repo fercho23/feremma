@@ -24,7 +24,7 @@ class TaskRequest extends Request {
         return [
             'name'=>'required|min:2|max:100',
             'description'=>'',
-            'priority'=>'required|integer|min:1|max:256',
+            'priority'=>'required|integer|min:1|max:10',
             'state'=>'required|min:1|max:20',
             
         ];

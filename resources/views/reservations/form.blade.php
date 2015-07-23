@@ -6,6 +6,10 @@
     --}}
 </div>
 <div class="form-group">
+    {!! Form::label('owner_id','Titular:') !!}
+    {!! Form::select('owner_id', $persons, null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
     {!! Form::label('total_price','Precio Total:') !!}
     {!! Form::input('number', 'total_price', null, ['class'=>'form-control',
                                                     'max'=>'9999999999',
@@ -19,13 +23,13 @@
                                              'min'=>'0',
                                              'step'=>'0.01']) !!}
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     {!! Form::label('due','Deuda:') !!}
     {!! Form::input('number', 'due', null, ['class'=>'form-control',
                                             'max'=>'9999999999',
                                             'min'=>'0',
                                             'step'=>'0.01']) !!}
-</div>
+</div> -->
 <div class="form-group">
     {!! Form::label('check_in','Fecha entrada:') !!}
     {!! Form::input('date','check_in', null, ['class'=>'form-control']) !!}

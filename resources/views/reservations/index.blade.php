@@ -8,6 +8,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Titular</th>
                                 <th>Precio Total</th>
                                 <th>Seña</th>
                                 <th>Deuda</th>
