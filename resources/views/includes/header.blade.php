@@ -135,7 +135,7 @@
                             <li class="user-header">
                                 <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle" alt="User Image"/>
                                 <p>
-                                    {!! Auth::user()->name !!} {!! Auth::user()->surname !!}
+                                    {!! Auth::user()->fullname() !!}
                                 </p>
                             </li>
                             <!-- Menu Body -->

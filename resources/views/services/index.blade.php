@@ -28,6 +28,7 @@
                                         <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
                                 </td>
+                                @endif
                                 @if(Auth::user()->can('services/destroy'))
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'action' => ['ServicesController@destroy', $service->id]]) !!}

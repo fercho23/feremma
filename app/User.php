@@ -37,4 +37,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                     ->withPivot('check_in', 'check_out');
     }
 
+    public function fullname() {
+        return $this->name.' '.$this->surname;
+    }
+
 }

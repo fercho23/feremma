@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(array('prefix' => 'search'), function() {
         Route::get('user', array('as' => 'search-user', 'uses' => 'SearchController@getUserByName'));
         Route::get('users', array('as' => 'search-remaining-users', 'uses' => 'SearchController@getRemainingUsersByName'));
+        Route::get('rooms', array('as' => 'search-remaining-rooms', 'uses' => 'SearchController@getRemainingRoomsByName'));
+        Route::get('services', array('as' => 'search-remaining-services', 'uses' => 'SearchController@getRemainingServicesByName'));
     });
 
 });

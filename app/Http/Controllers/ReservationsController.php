@@ -1,11 +1,13 @@
 <?php namespace FerEmma\Http\Controllers;
 
 use Illuminate\HttpResponse;
-use Illuminate\Support\Facades\Request;
+use Request;
+
+//use Illuminate\Support\Facades\Request;
 
 use FerEmma\User;
 use FerEmma\Reservation;
-use FerEmma\Http\Requests;
+//use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\ReservationRequest;
 use FerEmma\Http\Controllers\Controller;
 
@@ -88,8 +90,16 @@ class ReservationsController extends Controller {
      */
     public function update($id, ReservationRequest $request)
     {
+        $rooms_id = (Request::input('rooms_id') ? array_map('intval', explode(',', Request::input('rooms_id'))) : []);
+        $services_id = (Request::input('services_id') ? array_map('intval', explode(',', Request::input('services_id'))) : []);
+        $persons_id = (Request::input('persons_id') ? array_map('intval', explode(',', Request::input('persons_id'))) : []);
+
         $reservation = Reservation::findOrFail($id);
         $reservation->update($request->all());
+        $reservation->rooms()->sync($rooms_id);
+        $reservation->services()->sync($services_id);
+        $reservation->booking()->sync($services_id);
+
         return redirect('reservations');
     }
 
