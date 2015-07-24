@@ -8,15 +8,15 @@ class Permission extends Model {
 
     protected $fillable = ['permission_title', 'permission_description', 'permission_slug'];
 
-	public $timestamps = false;
+    public $timestamps = false;
 
-	/**
-	 * roles() many-to-many relationship method
-	 * 
-	 * @return QueryBuilder
-	 */
-	public function roles()
-	{
-		return $this->belongsToMany('FerEmma\Role');
-	}
+    /**
+     * roles() many-to-many relationship method
+     *
+     * @return QueryBuilder
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('FerEmma\Role');
+    }
 }

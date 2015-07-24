@@ -1,13 +1,9 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Illuminate\HttpResponse;
-use Illuminate\Support\Facades\Request;
 
 use FerEmma\Task;
 use FerEmma\Role;
-use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\TaskRequest;
-use FerEmma\Http\Controllers\Controller;
 
 class TasksController extends Controller {
 

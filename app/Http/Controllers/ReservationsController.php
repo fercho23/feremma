@@ -1,12 +1,10 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Illuminate\HttpResponse;
 use Request;
 
 use FerEmma\User;
 use FerEmma\Reservation;
 use FerEmma\Http\Requests\ReservationRequest;
-use FerEmma\Http\Controllers\Controller;
 
 class ReservationsController extends Controller {
 
