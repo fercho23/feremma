@@ -9,7 +9,7 @@
     <div class="group-labels" id="label-rooms" style="margin-bottom:5px;">
         @foreach ($reservation->rooms as $room)
             <span id="room-{!! $room->id !!}" class="label label-info" style="margin:5px;">
-                {!! $room->name !!} <i class="fa fa-times-circle"></i>
+                {!! $room->name !!} <i name="fa-kill" class="fa fa-times-circle"></i>
             </span>
         @endforeach
     </div>
@@ -22,7 +22,7 @@
     <div class="group-labels" id="label-services" style="margin-bottom:5px;">
         @foreach ($reservation->services as $service)
             <span id="service-{!! $service->id !!}" class="label label-info" style="margin:5px;">
-                {!! $service->name !!} <i class="fa fa-times-circle"></i>
+                {!! $service->name !!} <i name="fa-kill" class="fa fa-times-circle"></i>
             </span>
         @endforeach
     </div>
@@ -35,7 +35,7 @@
     <div class="group-labels" id="label-persons" style="margin-bottom:5px;">
         @foreach ($reservation->booking as $person)
             <span id="person-{!! $service->id !!}" class="label label-info" style="margin:5px;">
-                {!! $person->name !!} <i class="fa fa-times-circle"></i>
+                {!! $person->name !!} <i name="fa-kill" class="fa fa-times-circle"></i>
             </span>
         @endforeach
     </div>

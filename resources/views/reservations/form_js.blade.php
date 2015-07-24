@@ -10,8 +10,9 @@
     }
 
     $(document).on('click', 'i[name="fa-kill"]', function() {
+        $e = $(this).parent().parent().attr('id').split('label-')
         $(this).parent().remove();
-        countElement('rooms');
+        countElement($e[1]);
     });
 
     $('#room').autocomplete({
