@@ -100,4 +100,15 @@ class UsersController extends Controller {
         return redirect('users');
     }
 
+    /**
+     * Count how many users are registered.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public static function count($id)
+    {
+        return $user = User::all()->count();
+    }
+
 }
