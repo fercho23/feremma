@@ -231,7 +231,16 @@ class PermissionTableSeeder extends Seeder {
             'permission_slug'          =>'tasks/take',
             'permission_description'   =>'Toma una tareas.'
             ));
-
+        Permission::create(array(//43
+            'permission_title'         =>'Mostrar Mis Tareas',
+            'permission_slug'          =>'tasks/mine',
+            'permission_description'   =>'Muestra mis tareas.'
+            ));
+        Permission::create(array(//44
+            'permission_title'         =>'Crear Mis Tareas',
+            'permission_slug'          =>'tasks/create_mine',
+            'permission_description'   =>'Crear mis tareas.'
+            ));
     }
 
 }

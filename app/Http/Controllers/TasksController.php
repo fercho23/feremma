@@ -34,8 +34,17 @@ class TasksController extends Controller {
             $roles[$data->id] = $data->name;
         }
 
-        return view('tasks.create', ['roles'=>$roles]);
-        //return view('tasks.create');
+        return view('tasks.create', ['roles'=>$roles]);        
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create_mine()
+    {
+        return view('tasks.create-mine');        
     }
 
     /**
@@ -46,7 +55,7 @@ class TasksController extends Controller {
     public function store(TaskRequest $request)
     {
         Task::create($request->all());
-        return redirect('tasks');
+        return redirect('home');
     }
 
     /**
@@ -103,15 +112,4 @@ class TasksController extends Controller {
         return redirect('tasks');
     }
 
-    /**
-     * Shows my tasks.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function mine()
-    {
-        $tasks = Auth::user()->role->tasks;
-        return view('tasks.mine')->with('tasks',$tasks);
-    }
 }

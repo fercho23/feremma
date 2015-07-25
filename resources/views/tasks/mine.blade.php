@@ -37,6 +37,6 @@
             </div><!-- /.box-body -->
 
             <div class="box-footer clearfix no-border">
-                <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+                <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</a href="http://google.com">
             </div>
         </div><!-- /.box -->

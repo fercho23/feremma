@@ -21,7 +21,7 @@ class RoleTableSeeder extends Seeder {
                                     17, 18, 19, 20, 21,
                                     22, 23, 24, 25, 26,
                                     27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
-                                    37, 38, 39, 40, 41, 42,
+                                    37, 38, 39, 40, 41, 42, 43, 44
                                     ]);
 
         $role = Role::create(array(//2
@@ -35,7 +35,7 @@ class RoleTableSeeder extends Seeder {
                                     17, 18, 19, 20, 21,
                                     22, 23, 24, 25, 26,
                                     27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
-                                    37, 38, 39, 40, 41, 42,
+                                    37, 38, 39, 40, 41, 42, 43, 44
                                     ]);
 
 
@@ -49,7 +49,7 @@ class RoleTableSeeder extends Seeder {
                                     18, 21,
                                     23, 26,
                                     27, 28, 29, 31, 32, 33, 34, 35, 36,
-                                    37, 38, 39, 40, 41, 42,
+                                    37, 38, 39, 40, 41, 42, 43, 44
                                     ]);
 
         $role = Role::create(array(//4
@@ -58,7 +58,7 @@ class RoleTableSeeder extends Seeder {
                     'slug'          =>'cleaning'
                     ));
         $role->permissions()->sync([12, 15,
-                                    37, 38, 39, 40, 41, 42,
+                                    37, 38, 39, 40, 41, 42, 43, 44
                                     ]);
 
         $role = Role::create(array(//5
@@ -67,7 +67,7 @@ class RoleTableSeeder extends Seeder {
                     'slug'          =>'maintenance'
                     ));
         $role->permissions()->sync([12, 15,
-                                    37, 38, 39, 40, 41, 42,
+                                    37, 38, 39, 40, 41, 42, 43, 44
                                     ]);
 
         $role = Role::create(array(//6
@@ -77,7 +77,7 @@ class RoleTableSeeder extends Seeder {
                     ));
         $role->permissions()->sync([12, 15,
                                     18, 21,
-                                    27, 28, 33, 34, 35, 36,
+                                    27, 28, 33, 34, 35, 36, 43, 44
                                     ]);
 
 

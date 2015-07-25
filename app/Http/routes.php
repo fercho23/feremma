@@ -13,12 +13,12 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
-Route::get('tasks/mine', 'TasksController@mine');
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('login', 'AuthController@login');
     Route::get('logout', 'AuthController@logout');
+    Route::get('users/count', 'UsersController@count');
 
     Route::group(['middleware' => 'acl'], function () {
         Route::resource('users','UsersController');
@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('rooms','RoomsController');
         Route::resource('services','ServicesController');
         Route::resource('tasks','TasksController');
+        Route::get('tasks/create_mine', 'TasksController@create_mine');
 
     });
 
