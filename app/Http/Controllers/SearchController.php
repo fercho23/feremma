@@ -13,10 +13,11 @@ class SearchController extends Controller {
         $results = array();
         $queries = User::where('name', 'LIKE', '%'.$term.'%')
                        ->orwhere('surname', 'LIKE', '%'.$term.'%')
+                       ->orwhere('dni', 'LIKE', '%'.$term.'%')
                        ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
-                          'value' => $query->fullname()];
+                          'value' => $query->fullname().' ['.$query->dni.']'];
         return response()->json($results);
     }
 
@@ -28,11 +29,12 @@ class SearchController extends Controller {
         $results = array();
         $queries = User::where('name', 'LIKE', '%'.$term.'%')
                        ->orwhere('surname', 'LIKE', '%'.$term.'%')
+                       ->orwhere('dni', 'LIKE', '%'.$term.'%')
                        ->whereNotIn('id', $users_id)
                        ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
-                          'value' => $query->fullname()];
+                          'value' => $query->fullname().' ['.$query->dni.']'];
         return response()->json($results);
     }
 
@@ -47,7 +49,7 @@ class SearchController extends Controller {
                        ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
-                          'value' => $query->name];
+                          'value' => $query->name.' ['.$query->total_beds.']'];
         return response()->json($results);
     }
 
@@ -62,7 +64,8 @@ class SearchController extends Controller {
                           ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
-                          'value' => $query->name];
+                          'value' => $query->name,
+                          'price' => $query->price];
         return response()->json($results);
     }
 
