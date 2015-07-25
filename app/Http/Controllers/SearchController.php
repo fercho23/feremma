@@ -3,7 +3,6 @@
 use FerEmma\User;
 use FerEmma\Room;
 use FerEmma\Service;
-use FerEmma\Http\Controllers\Controller;
 
 use Request;
 

@@ -35,7 +35,7 @@
     <div class="group-labels" id="label-persons" style="margin-bottom:5px;">
         @foreach ($reservation->booking as $person)
             <span id="person-{!! $service->id !!}" class="label label-info" style="margin:5px;">
-                {!! $person->name !!} <i name="fa-kill" class="fa fa-times-circle"></i>
+                {!! $person->fullname() !!} <i name="fa-kill" class="fa fa-times-circle"></i>
             </span>
         @endforeach
     </div>

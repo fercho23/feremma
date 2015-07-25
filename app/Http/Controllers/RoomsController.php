@@ -1,12 +1,7 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Illuminate\HttpResponse;
-use Illuminate\Support\Facades\Request;
-
 use FerEmma\Room;
-use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\RoomRequest;
-use FerEmma\Http\Controllers\Controller;
 
 class RoomsController extends Controller {
 

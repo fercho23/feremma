@@ -1,15 +1,10 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Illuminate\HttpResponse;
 use Request;
-
-//use Illuminate\Support\Facades\Request;
 
 use FerEmma\User;
 use FerEmma\Reservation;
-//use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\ReservationRequest;
-use FerEmma\Http\Controllers\Controller;
 
 class ReservationsController extends Controller {
 
@@ -31,14 +26,8 @@ class ReservationsController extends Controller {
      */
     public function create()
     {
-        $datas = User::all();
-        $persons = array();
-
-        foreach ($datas as $data) {
-            $persons[$data->id] = $data->name.' '.$data->surname;
-        }
-
-        return view('reservations.create', ['persons'=>$persons]);
+        $reservation = new Reservation;
+        return view('reservations.create', ['reservation'=>$reservation]);
     }
 
     /**
@@ -72,14 +61,7 @@ class ReservationsController extends Controller {
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
-        $datas = User::all();
-        $persons = array();
-
-        foreach ($datas as $data) {
-            $persons[$data->id] = $data->name.' '.$data->surname;
-        }
-
-        return view('reservations.edit', ['persons' => $persons, 'reservation' => $reservation]);
+        return view('reservations.edit', ['reservation' => $reservation]);
     }
 
     /**
@@ -98,7 +80,7 @@ class ReservationsController extends Controller {
         $reservation->update($request->all());
         $reservation->rooms()->sync($rooms_id);
         $reservation->services()->sync($services_id);
-        $reservation->booking()->sync($services_id);
+        $reservation->booking()->sync($persons_id);
 
         return redirect('reservations');
     }

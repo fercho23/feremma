@@ -16,19 +16,10 @@
     });
 
     $('#room').autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: '{{ URL::route("search-remaining-rooms") }}',
-                    dataType: 'json',
-                    data: {
-                        term: request.term,
-                        rooms_id: $('#rooms_id').attr('value')
-                    },
-                    success: function(data) {
-                        response(data);
-                    }
-                });
-            },
+        source: '{!! URL::route("search-remaining-rooms") !!}',
+        extraParams: {
+            rooms_id: $('#rooms_id').attr('value')
+        },
         minLength: 2,
         select: function(event, ui){
             if(!$('span#room-'+ui.item.id).length>0) {
@@ -37,24 +28,16 @@
                                          ' <i name="fa-kill" class="fa fa-times-circle"></i></span>');
                 countElement('rooms');
             }
-            $('#rooms').val('');
+            $(this).val('');
+            return false;
         }
     });
 
     $('#service').autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: '{{ URL::route("search-remaining-services") }}',
-                    dataType: 'json',
-                    data: {
-                        term: request.term,
-                        services_id: $('#services_id').attr('value')
-                    },
-                    success: function(data) {
-                        response(data);
-                    }
-                });
-            },
+        source: '{!! URL::route("search-remaining-services") !!}',
+        extraParams: {
+            services_id: $('#services_id').attr('value')
+        },
         minLength: 2,
         select: function(event, ui){
             if(!$('span#service-'+ui.item.id).length>0) {
@@ -63,24 +46,16 @@
                                             ' <i name="fa-kill" class="fa fa-times-circle"></i></span>');
                 countElement('services');
             }
-
+            $(this).val('');
+            return false;
         }
     });
 
     $('#person').autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: '{{ URL::route("search-remaining-users") }}',
-                    dataType: 'json',
-                    data: {
-                        term: request.term,
-                        services_id: $('#persons_id').attr('value')
-                    },
-                    success: function(data) {
-                        response(data);
-                    }
-                });
-            },
+        source: '{!! URL::route("search-remaining-users") !!}',
+        extraParams: {
+            persons_id: $('#persons_id').attr('value')
+        },
         minLength: 2,
         select: function(event, ui){
             if(!$('span#person-'+ui.item.id).length>0) {
@@ -89,7 +64,8 @@
                                            ' <i name="fa-kill" class="fa fa-times-circle"></i></span>');
                 countElement('persons');
             }
-            $('#persons').val('');
+            $(this).val('');
+            return false;
         }
     });
 

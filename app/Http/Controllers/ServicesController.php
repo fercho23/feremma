@@ -1,12 +1,7 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Illuminate\HttpResponse;
-use Illuminate\Support\Facades\Request;
-
 use FerEmma\Service;
-use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\ServiceRequest;
-use FerEmma\Http\Controllers\Controller;
 
 class ServicesController extends Controller {
 

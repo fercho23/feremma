@@ -15,14 +15,14 @@ class Role extends Model {
     }
 
     /**
-	 * permissions() many-to-many relationship method
-	 * 
-	 * @return QueryBuilder
-	 */
-	public function permissions()
-	{
-		return $this->belongsToMany('FerEmma\Permission');
-	}
+     * permissions() many-to-many relationship method
+     *
+     * @return QueryBuilder
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany('FerEmma\Permission');
+    }
 
     public function tasks() {
         return $this->hasMany('FerEmma\Task', 'role_id');
