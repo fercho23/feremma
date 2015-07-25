@@ -1,7 +1,5 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Request;
-
 use FerEmma\User;
 use FerEmma\Reservation;
 use FerEmma\Http\Requests\ReservationRequest;
@@ -72,9 +70,21 @@ class ReservationsController extends Controller {
      */
     public function update($id, ReservationRequest $request)
     {
-        $rooms_id = (Request::input('rooms_id') ? array_map('intval', explode(',', Request::input('rooms_id'))) : []);
-        $services_id = (Request::input('services_id') ? array_map('intval', explode(',', Request::input('services_id'))) : []);
-        $persons_id = (Request::input('persons_id') ? array_map('intval', explode(',', Request::input('persons_id'))) : []);
+        $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
+        $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
+        $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
+
+        $a = [];
+        // dd( $request->all() );
+        foreach ($request->all() as $key => $value) {
+            dd( preg_match($key, '/^services/') );
+            // if(preg_match($key, '/services\-id\-/'))
+                // $a[] = $value;
+        }
+        // dd( $request->get(strcmp($request->all(), str2)'services-id-') );
+        dd( $a );
+
+
 
         $reservation = Reservation::findOrFail($id);
         $reservation->update($request->all());

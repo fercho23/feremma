@@ -10,40 +10,19 @@ trait UserACL {
      */
     public function can($perm = null)
     {
-        //dd($perm);
         if($perm) {
-            return $this->checkPermission($this->getArray($perm));
+            return $this->checkPermission($perm);
         }
 
         return false;
     }
 
-    /**
-     * Make string to array if already not
-     *
-     * @param  Mixed $perm String/Array
-     * @return Array
-     */
-    protected function getArray($perm)
+    protected function checkPermission($perm = '')
     {
-        return is_array($perm) ? $perm : explode('_', $perm);
-    }
 
-    /**
-     * Check if the permission matches with any permission user has
-     *
-     * @param  Array $perm Name of a permission (one or more separated with |)
-     * @return Boolean true if permission exists, otherwise false
-     */
-    protected function checkPermission(Array $permArray = [])
-    {
-        $perms = $this->role->permissions->fetch('permission_slug');
-        //dd($perms, $permArray);
-        $perms = array_map('strtolower', $perms->toArray());
+        $perm = Permission::where('permission_slug', '=', $perm)->first();
+        return in_array($perm->id, $this->role->permissions()->getRelatedIds());
 
-        //$permArray = preg_replace('/({\w+}\/)/', '', $permArray);
-
-        return count(array_intersect($perms, $permArray));
     }
 
     /**

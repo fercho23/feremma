@@ -19,16 +19,22 @@
 
 <div class="form-group">
     {!! Form::label('service','Servicios:') !!}
-    <div class="group-labels" id="label-services" style="margin-bottom:5px;">
+    <div class="group-labels" id="label-services">
         <div class="row">
             <div class="col-lg-5 col-xs-10">
-                {!! Form::text('service-id', 'Nombre del Servicio', ['class'=>'form-control', 'readonly'=>'True']) !!}
+                <div class="form-control" readonly="True">
+                    Nombre del Servicio
+                </div>
             </div>
             <div class="col-lg-3 col-xs-6">
-                {!! Form::text('service-quantity', 'Cantidad', ['class'=>'form-control', 'readonly'=>'True']) !!}
+                <div class="form-control" readonly="True">
+                    Cantidad
+                </div>  
             </div>
             <div class="col-lg-3 col-xs-6">
-                {!! Form::text('service-price', 'Precio', ['class'=>'form-control', 'readonly'=>'True']) !!}
+                <div class="form-control" readonly="True">
+                    Precio
+                </div>
             </div>
             <div class="col-lg-1 col-xs-2">
                 <i class="fa fa-times-circle"></i>
@@ -40,13 +46,13 @@
                     {!! Form::text('service-id-'.$service->id, $service->name, ['class'=>'form-control', 'readonly'=>'True']) !!}
                 </div>
                 <div class="col-lg-3 col-xs-6"> {!!$service->quantity!!}
-                    {!! Form::input('number', 'service-quantity', $service->quantity, ['class'=>'form-control', 'min'=>'1']) !!}
+                    {!! Form::input('number', 'service-quantity-'.$service->id, $service->quantity, ['class'=>'form-control', 'min'=>'1']) !!}
                 </div>
                 <div class="col-lg-3 col-xs-6">
-                    {!! Form::input('number', 'service-price', $service->price, ['class'=>'form-control',
-                                                                    'max'=>'9999999999',
-                                                                    'min'=>'0',
-                                                                    'step'=>'0.01']) !!}
+                    {!! Form::input('number', 'service-price-'.$service->id, $service->price, ['class'=>'form-control',
+                                                                                 'max'=>'9999999999',
+                                                                                 'min'=>'0',
+                                                                                 'step'=>'0.01']) !!}
                 </div>
                 <div class="col-lg-1 col-xs-2">
                     <i name="fa-kill" class="fa fa-times-circle"></i>

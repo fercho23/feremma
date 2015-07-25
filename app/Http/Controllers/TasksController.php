@@ -42,7 +42,7 @@ class TasksController extends Controller {
      *
      * @return Response
      */
-    public function create_mine()
+    public function createMine()
     {
         return view('tasks.create-mine');        
     }

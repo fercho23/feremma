@@ -60,15 +60,15 @@
         minLength: 2,
         select: function(event, ui){
             if(!$('div#services-'+ui.item.id).length>0) {
-                $('#label-services').append("<div class='row' id='services-'"+ui.item.id+">"+
+                $('#label-services').append("<div class='row' id='services-"+ui.item.id+"'>"+
                                                 "<div class='col-lg-5 col-xs-10'>"+
-                                                    "<input class='form-control' readonly='True' name='service-id-'"+ui.item.id+" type='text' value='"+ui.item.value+"'>"+
+                                                    "<input class='form-control' readonly='True' name='service-id-"+ui.item.id+"' type='text' value='"+ui.item.value+"'>"+
                                                 "</div>"+
                                                 "<div class='col-lg-3 col-xs-6'>"+
-                                                    "<input class='form-control' min='1' name='service-quantity' type='number' value='1'>"+
+                                                    "<input class='form-control' min='1' name='service-quantity-"+ui.item.id+"' type='number' value='1'>"+
                                                 "</div>"+
                                                 "<div class='col-lg-3 col-xs-6'>"+
-                                                    "<input class='form-control' max=9999999999' min='0' step='0.01' name='service-price' type='number' value='"+ui.item.price+"'>"+
+                                                    "<input class='form-control' max=9999999999' min='0' step='0.01' name='service-price-"+ui.item.id+"' type='number' value='"+ui.item.price+"'>"+
                                                 "</div>"+
                                                 "<div class='col-lg-1 col-xs-2'>"+
                                                     "<i name='fa-kill' class='fa fa-times-circle'></i>"+

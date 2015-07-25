@@ -1,6 +1,8 @@
 <?php namespace FerEmma;
 
 use FerEmma\Tasks;
+use FerEmma\Permission;
+
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;

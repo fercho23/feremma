@@ -21,14 +21,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/count', 'UsersController@count');
 
     Route::group(['middleware' => 'acl'], function () {
+        Route::get('tasks/create_mine', 'TasksController@createMine');
         Route::resource('users','UsersController');
         Route::resource('roles','RolesController');
         Route::resource('reservations','ReservationsController');
         Route::resource('rooms','RoomsController');
         Route::resource('services','ServicesController');
         Route::resource('tasks','TasksController');
-        Route::get('tasks/create_mine', 'TasksController@create_mine');
-
     });
 
     Route::group(array('prefix' => 'search'), function() {

@@ -238,7 +238,7 @@ class PermissionTableSeeder extends Seeder {
             ));
         Permission::create(array(//44
             'permission_title'         =>'Crear Mis Tareas',
-            'permission_slug'          =>'tasks/create_mine',
+            'permission_slug'          =>'tasks/createMine',
             'permission_description'   =>'Crear mis tareas.'
             ));
     }
