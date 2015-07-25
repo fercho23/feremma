@@ -17,12 +17,14 @@ class Reservation extends Model {
 
     public function rooms() {
         return $this->belongsToMany('FerEmma\Room', 'room_reservation')
-                    ->withPivot('check_in', 'check_out');
+                    ->withPivot('check_in', 'check_out')
+                    ->orderBy('room_reservation.check_in');
     }
 
     public function services() {
         return $this->belongsToMany('FerEmma\Service', 'service_reservation')
-                    ->withPivot('moment', 'price', 'name');
+                    ->withPivot('moment', 'quantity', 'price', 'name')
+                    ->orderBy('service_reservation.name');
     }
 
     public function booking() {
