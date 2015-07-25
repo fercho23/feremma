@@ -8,6 +8,7 @@ use FerEmma\Role;
 use FerEmma\Http\Requests;
 use FerEmma\Http\Requests\TaskRequest;
 use FerEmma\Http\Controllers\Controller;
+use Auth;
 
 class TasksController extends Controller {
 
@@ -105,4 +106,15 @@ class TasksController extends Controller {
         return redirect('tasks');
     }
 
+    /**
+     * Shows my tasks.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function mine()
+    {
+        $tasks = Auth::user()->role->tasks;
+        return view('tasks.mine')->with('tasks',$tasks);
+    }
 }

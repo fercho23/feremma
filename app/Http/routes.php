@@ -13,6 +13,7 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
+Route::get('tasks/mine', 'TasksController@mine');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -26,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('rooms','RoomsController');
         Route::resource('services','ServicesController');
         Route::resource('tasks','TasksController');
+
     });
 
     Route::group(array('prefix' => 'search'), function() {

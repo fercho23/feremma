@@ -22,5 +22,71 @@ class TaskTableSeeder extends Seeder {
                 'state'       => 'En Proceso',
                 'role_id'     => '1'
                 ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 1',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 2',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 3',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 4',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 5',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 6',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 7',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 8',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 9',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 10',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
+        Task::create(array('description' => 'Sin descripción',
+                'name'        => 'Tarea 11',
+                'priority'    => '',
+                'state'       => 'realizada',
+                'role_id'     => '1'
+                ));
     }
 }

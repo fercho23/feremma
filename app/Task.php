@@ -20,4 +20,7 @@ class Task extends Model {
                     ->withPivot('check_in', 'check_out');
     }
 
+    public function tasksFor(FerEmma\User $user){
+        return "proximamente"." ".$user->name;
+    }
 }

@@ -1,5 +1,6 @@
 <?php namespace FerEmma;
 
+use FerEmma\Tasks;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
@@ -40,5 +41,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function fullname() {
         return $this->name.' '.$this->surname;
     }
-
 }
