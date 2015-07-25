@@ -43,4 +43,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function fullname() {
         return $this->name.' '.$this->surname;
     }
+
+    public function myRolePendingTasks()
+    {
+        return $this->role->tasks->all();
+    }
 }

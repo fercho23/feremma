@@ -4,9 +4,9 @@
                 <h3 class="box-title">Mis Tareas</h3>                
             </div><!-- /.box-header -->                    
             <div class="box-body">
-                @if (sizeof($tasks)>0)
+                @if (sizeof(Auth::user()->myRolePendingTasks())>0)
                 <ul class="todo-list">
-                    @foreach ($tasks as $task)
+                    @foreach (Auth::user()->myRolePendingTasks() as $task)
                     <li>
                         <!-- drag handle -->
                         <span class="handle">

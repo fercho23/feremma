@@ -32,8 +32,7 @@ class HomeController extends Controller {
      */
     public function index()
     {
-        $tasks = Auth::user()->role->tasks;
-        return view('home')->with('tasks',$tasks)->with('User', new User);
+        return view('home');
     }
 
     
