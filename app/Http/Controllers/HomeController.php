@@ -1,5 +1,7 @@
 <?php namespace FerEmma\Http\Controllers;
+use FerEmma\User;
 use Auth;
+
 class HomeController extends Controller {
 
     /*
@@ -30,9 +32,8 @@ class HomeController extends Controller {
      */
     public function index()
     {
-        //return view('home');
         $tasks = Auth::user()->role->tasks;
-        return view('home')->with('tasks',$tasks);
+        return view('home')->with('tasks',$tasks)->with('User', new User);
     }
 
     

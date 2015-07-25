@@ -8,7 +8,7 @@
                             Home
                         </div>
                         <div class="panel-body">
-                            You are at HOME!
+                            You are at Welcome!
                         </div>
                     </div>
                 </div>
