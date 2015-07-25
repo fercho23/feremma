@@ -80,7 +80,7 @@ class ReservationsController extends Controller {
         $reservation->update($request->all());
         $reservation->rooms()->sync($rooms_id);
         $reservation->services()->sync($services_id);
-        $reservation->booking()->sync($services_id);
+        $reservation->booking()->sync($persons_id);
 
         return redirect('reservations');
     }
