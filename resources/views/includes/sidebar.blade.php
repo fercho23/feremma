@@ -152,16 +152,20 @@
                 @endif
             @endif
             <li class="header">SOPORTE</li>
-
             <li>
                 <a href="documentation/index.html">
                     <i class="fa fa-book"></i> Ayuda
                 </a>
             </li>
-
             <li>
                 <a href="#">
                     <i class="fa fa-circle-o text-info"></i> Acerca de...
+                </a>
+            </li>
+            <li class="header">PROYECTO</li>
+            <li>
+                <a target="_blank" href="https://drive.google.com/open?id=0B1_QXCJvjcF2fllFY2RpcHc4MDlfN2s3T1FMaWtkZGxCRmJMc0RaRFBxVV95S0E4SUUwR2s">
+                    <i class="fa fa-book"></i> Documentación
                 </a>
             </li>
         </ul>

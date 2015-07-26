@@ -13,7 +13,7 @@
                     <div class="icon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL('reservations/create') }}" class="small-box-footer">Nueva Reserva <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
 
@@ -41,7 +41,7 @@
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="{{ URL('users/create') }}" class="small-box-footer">Registrar <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL('users/create') }}" class="small-box-footer">Nuevo Usuario <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
 
@@ -68,33 +68,7 @@
                 @include('tasks.mine', ['state'=>'pendiente','title'=>'Tareas Pendientes', 'last'=>null])
                 @include('tasks.mine', ['state'=>'en proceso','title'=>'Mis Tareas En Proceso', 'last'=>null])
                 @include('tasks.mine', ['state'=>'finalizada','title'=>'Mis Tareas Finalizadas (en las últimas 24 hs)', 'last'=>'24h'])
-                <!-- quick email widget -->
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-envelope"></i>
-                        <h3 class="box-title">Quick Email</h3>
-                        <!-- tools box -->
-                        <div class="pull-right box-tools">
-                            <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-                        </div><!-- /. tools -->
-                    </div>
-                    <div class="box-body">
-                        <form action="#" method="post">
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="emailto" placeholder="Email to:"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" placeholder="Subject"/>
-                            </div>
-                            <div>
-                                <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="box-footer clearfix">
-                        <button class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>
-                    </div>
-                </div>
+                
             </section><!-- /.Left col -->
 
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -126,7 +100,6 @@
                         <!--The calendar -->
                         <div id="calendar" style="width: 100%"></div>
                     </div><!-- /.box-body -->
-
                     <div class="box-footer text-black">
                         <div class="row">
                             <div class="col-sm-6">
@@ -166,6 +139,33 @@
                         </div><!-- /.row -->
                     </div>
                 </div><!-- /.box -->
+                <!-- quick email widget -->
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-envelope"></i>
+                        <h3 class="box-title">Quick Email</h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                            <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                        </div><!-- /. tools -->
+                    </div>
+                    <div class="box-body">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="emailto" placeholder="Email to:"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" placeholder="Subject"/>
+                            </div>
+                            <div>
+                                <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="box-footer clearfix">
+                        <button class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>
+                    </div>
+                </div>
             </section><!-- right col -->
         </div><!-- /.row (main row) -->
     @endsection

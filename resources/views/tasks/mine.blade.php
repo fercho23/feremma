@@ -59,7 +59,7 @@
             @if($state=='pendiente')
                 @if(Auth::user()->can('tasks/createMine'))
                     <div class="box-footer clearfix no-border">
-                        <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</a>
+                        <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar tarea para mi sector</a>
                     </div>
                 @endif
             @endif                
