@@ -35,7 +35,27 @@ class ReservationsController extends Controller {
      */
     public function store(ReservationRequest $request)
     {
-        Reservation::create($request->all());
+        $reservation = Reservation::create($request->all());
+
+        $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
+        $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
+        $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
+
+        $reservation->update($request->all());
+
+        $services = [];
+        foreach($services_id as $id) {
+            $service = [];
+            $service["name"] = $request->input('service-name-'.$id);
+            $service["quantity"] = $request->input('service-quantity-'.$id);
+            $service["price"] = $request->input('service-price-'.$id);
+            $services[$id] = $service;
+        }
+
+        $reservation->rooms()->sync($rooms_id);
+        $reservation->services()->sync($services);
+        $reservation->booking()->sync($persons_id);
+
         return redirect('reservations');
     }
 
