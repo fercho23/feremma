@@ -20,18 +20,22 @@ class UserTableSeeder extends Seeder {
             'username' => 'emmanuelsf',
             'phone'    => '2235398647',
             'role_id'  => '1',
+            'birthday' => '1933/07/30',
+            'sex'      => 'f',
             'password' => Hash::make('1234')
         ));
         User::create(array(//2
             'email'    => 'hola@bar.com',
             'name'     => 'Fernando',
             'surname'  => 'Mateos',
-            'cuil'     => '000000000000',
-            'dni'      => '00000000',
+            'cuil'     => '003701191100',
+            'dni'      => '37011911',
             'address'  => 'Cabeza De Termo 1234',
             'username' => 'fernandom',
             'phone'    => '00000000000',
             'role_id'  => '1',
+            'birthday' => '1991/10/11',
+            'sex'      => 'm',
             'password' => Hash::make('1234')
          ));
         User::create(array(//3
@@ -44,6 +48,8 @@ class UserTableSeeder extends Seeder {
             'username' => 'user3',
             'phone'    => '12345678910',
             'role_id'  => '3',
+            'birthday' => '1990/01/01',
+            'sex'      => 'mf',
             'password' => Hash::make('1234')
         ));
         User::create(array(//4
@@ -56,6 +62,8 @@ class UserTableSeeder extends Seeder {
             'username' => 'user4',
             'phone'    => '12345678910',
             'role_id'  => '3',
+            'birthday' => '1990/01/01',
+            'sex'      => 'm',
             'password' => Hash::make('1234')
          ));
         User::create(array(//5
@@ -68,6 +76,8 @@ class UserTableSeeder extends Seeder {
             'username' => 'user5',
             'phone'    => '12345678910',
             'role_id'  => '4',
+            'birthday' => '1990/01/01',
+            'sex'      => 'f',
             'password' => Hash::make('1234')
         ));
         User::create(array(//6
@@ -80,6 +90,8 @@ class UserTableSeeder extends Seeder {
             'username' => 'user6',
             'phone'    => '12345678910',
             'role_id'  => '4',
+            'birthday' => '1990/01/01',
+            'sex'      => 'm',
             'password' => Hash::make('1234')
          ));
 

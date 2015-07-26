@@ -26,6 +26,24 @@ class TaskRequest extends Request {
             'description' => '',
             'priority'    => 'required|integer|min:1|max:10',
             'state'       => 'required|min:1|max:20',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required'    => 'El Nombre es requerido.',
+            'name.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
+            'name.max'         => 'El Nombre debe tener como máximo 100 caracteres.',
+
+            'priority.required' => 'La Prioridad es requerida.',
+            'priority.integer'  => 'La Prioridad debe ser un número entero.',
+            'priority.min'      => 'La Prioridad debe ser como mínimo 1.',
+            'priority.max'      => 'La Prioridad debe ser como máximo 256 caracteres.',
+
+            'state.required'    => 'El Nombre es requerido.',
+            'state.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
+            'state.max'         => 'El Nombre debe tener como máximo 2 caracteres.',
 
         ];
     }

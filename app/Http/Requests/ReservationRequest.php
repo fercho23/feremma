@@ -37,6 +37,27 @@ class ReservationRequest extends Request {
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'owner_id.required'     => 'El Propietario es requerido.',
+
+            'total_price.required'  => 'El Precio es requerido.',
+            'total_price.between'   => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
+
+            'sign.required'         => 'El Seña es requerida.',
+            'sign.between'          => 'El Seña debe ser mayor a 0 y menor a 9999999999.',
+
+            'check_in.required'     => 'La Fecha de Ingreso es requerida.',
+            'check_in.date'         => 'El campo Fecha de Ingreso debe ser una fecha válida.',
+
+            'check_out.required'    => 'La Fecha de Salida es requerida.',
+            'check_out.date'        => 'El campo Fecha de Salida debe ser una fecha válida.',
+
+            'rooms_id.required'     => 'El Propietario es requerido.',
+        ];
+    }
+
     public function getValidatorInstance() {
         $validator = parent::getValidatorInstance();
 
@@ -64,27 +85,5 @@ class ReservationRequest extends Request {
 
         return $validator;
     }
-
-    public function messages()
-    {
-        return [
-            'owner_id.required'     => 'El Propietario es requerido.',
-
-            'total_price.required'  => 'El Precio es requerido.',
-            'total_price.between'   => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
-
-            'sign.required'         => 'El Seña es requerida.',
-            'sign.between'          => 'El Seña debe ser mayor a 0 y menor a 9999999999.',
-
-            'check_in.required'     => 'La Fecha de Ingreso es requerida.',
-            'check_in.date'         => 'El campo Fecha de Ingreso debe ser una fecha válida.',
-
-            'check_out.required'    => 'La Fecha de Salida es requerida.',
-            'check_out.date'        => 'El campo Fecha de Salida debe ser una fecha válida.',
-
-            'rooms_id.required'     => 'El Propietario es requerido.',
-        ];
-    }
-
 
 }

@@ -27,4 +27,13 @@ class RoleRequest extends Request {
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'name.required' => 'El Nombre es requerido.',
+            'name.min'      => 'El Nombre debe tener como mínimo 2 caracteres.',
+            'name.max'      => 'El Nombre debe tener como máximo 100 caracteres.',
+        ];
+    }
+
 }

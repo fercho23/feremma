@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReservationUserRutaTable extends Migration {
+class CreateUserTaskTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,12 +12,14 @@ class CreateReservationUserRutaTable extends Migration {
      */
     public function up()
     {
-        Schema::create('reservation_user', function(Blueprint $table)
+        Schema::create('user_task', function(Blueprint $table)
         {
-            $table->integer('reservation_id')->unsigned();
-            //$table->foreign('reservation_id')->references('id')->on('reservations');
             $table->integer('user_id')->unsigned();
             //$table->foreign('user_id')->references('id')->on('users');
+            $table->integer('task_id')->unsigned();
+            //$table->foreign('task_id')->references('id')->on('tasks');
+            $table->datetime('check_in');
+            $table->datetime('check_out');
         });
     }
 
@@ -28,7 +30,7 @@ class CreateReservationUserRutaTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('reservation_user');
+        Schema::drop('user_task');
     }
 
 }
