@@ -7,6 +7,8 @@
 <div class="form-group">
     {!! Form::label('room','Habitaciones:') !!}
     <div class="group-labels" id="label-rooms" style="margin-bottom:5px;">
+
+
         @foreach ($reservation->rooms as $room)
             <div id="rooms-{!! $room->id !!}" class="label label-info" style="margin:5px;">
                 {!! $room->name !!} [{!! $room->total_beds !!}] <i name="fa-kill" class="fa fa-times-circle"></i>

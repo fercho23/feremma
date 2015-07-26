@@ -31,8 +31,4 @@ class Reservation extends Model {
         return $this->belongsToMany('FerEmma\User', 'reservation_user');
     }
 
-    public static function hola()
-    {
-        return "hola";
-    }
 }

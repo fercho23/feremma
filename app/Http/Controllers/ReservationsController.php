@@ -122,6 +122,9 @@ class ReservationsController extends Controller {
     public function destroy($id)
     {
         $reservation = Reservation::findOrFail($id);
+        $reservation->rooms()->detach();
+        $reservation->services()->detach();
+        $reservation->booking()->detach();
         $reservation->delete();
         return redirect('reservations');
     }

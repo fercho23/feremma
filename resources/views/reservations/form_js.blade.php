@@ -88,7 +88,7 @@
                 dataType: 'json',
                 data: {
                     term: request.term,
-                    persons_id: $('#persons_id').attr('value')
+                    persons_id: $('#persons_id').attr('value')+','+$('#owner_id').attr('value')
                 },
                 success: function(data) {
                     response(data);
