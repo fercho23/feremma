@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use FerEmma\UserACL;
+use \Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -44,8 +45,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->name.' '.$this->surname;
     }
 
-    public function myRolePendingTasks()
+    public function myRoleTasks($state)
     {
-        return $this->role->tasks->all();
+        return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->get();
     }
 }

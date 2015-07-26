@@ -7,11 +7,11 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>150</h3>
-                        <p>New Orders</p>
+                        <h3>{!!FerEmma\Reservation::count()!!}</h3>
+                        <p>Reservas</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-calendar"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -65,7 +65,8 @@
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
                 <!-- TO DO List -->
-                @include('tasks.mine', ['submitButtontext'=>'Guardar'])
+                @include('tasks.mine', ['state'=>'pendiente','title'=>'Tareas Pendientes'])
+                @include('tasks.mine', ['state'=>'en proceso','title'=>'Tareas En Proceso'])
                 <!-- quick email widget -->
                 <div class="box box-info">
                     <div class="box-header">

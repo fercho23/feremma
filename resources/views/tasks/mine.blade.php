@@ -1,12 +1,13 @@
         <div class="box box-primary">
             <div class="box-header">
                 <i class="ion ion-clipboard"></i>
-                <h3 class="box-title">Mis Tareas</h3>                
+                <h3 class="box-title">{!!$title!!}</h3>                
             </div><!-- /.box-header -->                    
             <div class="box-body">
-                @if (sizeof(Auth::user()->myRolePendingTasks())>0)
+                <?php $tasks=Auth::user()->myRoleTasks($state); ?>
+                @if (sizeof($tasks>0))
                 <ul class="todo-list">
-                    @foreach (Auth::user()->myRolePendingTasks() as $task)
+                    @foreach ($tasks as $task)
                     <li>
                         <!-- drag handle -->
                         <span class="handle">
@@ -18,25 +19,46 @@
                         <!-- todo text -->
                         <span class="text">{!! $task->name !!}</span>
                         <!-- Emphasis label -->
-                        <small class="label label-danger">
-                            <i class="glyphicon glyphicon-exclamation-sign"></i> {!! $task->priority !!}
-                        </small>
+                        
+                        @if($state=='pendiente')
+                            <small class="label label-primary">
+                                {!! "Prioridad:"." ".$task->priority !!}
+                            </small> 
+                            <small class="label label-danger">
+                                <i class="glyphicon glyphicon-exclamation-sign"></i>
+                            </small>
+                                                    
+                        @endif
+                        @if($state=='en proceso')
+                            <small class="label label-primary">
+                                {!! "Prioridad:"." ".$task->priority !!}
+                            </small>
+                            <small class="label label-warning">
+                                <i class="fa fa-spinner"></i>
+                            </small>
+                            
+                        @endif                        
                         <!-- General tools such as edit or delete-->
                         <div class="tools">
-                            <i class="fa fa-edit"></i>
-                            <i class="fa fa-trash-o"></i>
+                            @if($state=='pendiente')
+                                <i class="fa fa-play"></i>
+                            @endif
+                            @if($state=='en proceso')
+                                <i class="fa fa-check-square-o"></i>
+                            @endif
                         </div>
                     </li>
                     @endforeach
                 </ul>                
                 @else
-                    <div class="alert alert-danger">
+                    <div class="alert alert-success">
                         <p>No hay tareas Pendientes!.</p>
                     </div>
                 @endif
             </div><!-- /.box-body -->
-
-            <div class="box-footer clearfix no-border">
-                <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</a>
-            </div>
+            @if(Auth::user()->can('tasks/createMine'))
+                <div class="box-footer clearfix no-border">
+                    <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</a>
+                </div>
+            @endif
         </div><!-- /.box -->
