@@ -29,7 +29,7 @@
             <div class="col-lg-3 col-xs-6">
                 <div class="form-control" readonly="True">
                     Cantidad
-                </div>  
+                </div>
             </div>
             <div class="col-lg-3 col-xs-6">
                 <div class="form-control" readonly="True">
@@ -43,7 +43,7 @@
         @foreach ($reservation->services as $service)
             <div class="row" id="services-{!! $service->id !!}">
                 <div class="col-lg-5 col-xs-10">
-                    {!! Form::text('service-id-'.$service->id, $service->name, ['class'=>'form-control', 'readonly'=>'True']) !!}
+                    {!! Form::text('service-name-'.$service->id, $service->name, ['class'=>'form-control', 'readonly'=>'True']) !!}
                 </div>
                 <div class="col-lg-3 col-xs-6"> {!!$service->quantity!!}
                     {!! Form::input('number', 'service-quantity-'.$service->id, $service->quantity, ['class'=>'form-control', 'min'=>'1']) !!}

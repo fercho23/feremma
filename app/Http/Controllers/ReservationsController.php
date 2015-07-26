@@ -74,22 +74,20 @@ class ReservationsController extends Controller {
         $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
         $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
 
-        $a = [];
-        // dd( $request->all() );
-        foreach ($request->all() as $key => $value) {
-            dd( preg_match($key, '/^services/') );
-            // if(preg_match($key, '/services\-id\-/'))
-                // $a[] = $value;
-        }
-        // dd( $request->get(strcmp($request->all(), str2)'services-id-') );
-        dd( $a );
-
-
-
         $reservation = Reservation::findOrFail($id);
         $reservation->update($request->all());
+
+        $services = [];
+        foreach($services_id as $id) {
+            $service = [];
+            $service["name"] = $request->input('service-name-'.$id);
+            $service["quantity"] = $request->input('service-quantity-'.$id);
+            $service["price"] = $request->input('service-price-'.$id);
+            $services[$id] = $service;
+        }
+
         $reservation->rooms()->sync($rooms_id);
-        $reservation->services()->sync($services_id);
+        $reservation->services()->sync($services);
         $reservation->booking()->sync($persons_id);
 
         return redirect('reservations');

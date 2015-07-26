@@ -62,7 +62,7 @@
             if(!$('div#services-'+ui.item.id).length>0) {
                 $('#label-services').append("<div class='row' id='services-"+ui.item.id+"'>"+
                                                 "<div class='col-lg-5 col-xs-10'>"+
-                                                    "<input class='form-control' readonly='True' name='service-id-"+ui.item.id+"' type='text' value='"+ui.item.value+"'>"+
+                                                    "<input class='form-control' readonly='True' name='service-name-"+ui.item.id+"' type='text' value='"+ui.item.value+"'>"+
                                                 "</div>"+
                                                 "<div class='col-lg-3 col-xs-6'>"+
                                                     "<input class='form-control' min='1' name='service-quantity-"+ui.item.id+"' type='number' value='1'>"+
