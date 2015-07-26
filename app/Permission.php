@@ -6,7 +6,7 @@ class Permission extends Model {
 
     protected $table = 'permissions';
 
-    protected $fillable = ['permission_title', 'permission_description', 'permission_slug'];
+    protected $fillable = ['title', 'description', 'slug'];
 
     public $timestamps = false;
 

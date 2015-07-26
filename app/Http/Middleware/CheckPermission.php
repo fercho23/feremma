@@ -59,7 +59,7 @@ class CheckPermission implements Middleware {
      * Extract required permission from requested route
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return String permission_slug connected to the Route
+     * @return String slug connected to the Route
      */
     protected function requiredPermission()
     {

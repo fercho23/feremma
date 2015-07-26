@@ -18,10 +18,11 @@ class CreateRoomsTable extends Migration {
             $table->string('name', 100);
             $table->text('description');
             $table->string('types_beds', 100);
-            $table->integer('total_beds');
+            $table->tinyInteger('total_beds');
             $table->string('location', 150);
             $table->text('plan');
             $table->boolean('available');
+            $table->decimal('price', 10, 2);
             $table->timestamps();
         });
     }

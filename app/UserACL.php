@@ -20,7 +20,7 @@ trait UserACL {
     protected function checkPermission($perm = '')
     {
 
-        $perm = Permission::where('permission_slug', '=', $perm)->first();
+        $perm = Permission::where('slug', '=', $perm)->first();
         return in_array($perm->id, $this->role->permissions()->getRelatedIds());
 
     }
@@ -109,7 +109,7 @@ trait UserACL {
 
         $requiredPerm = array_pop($parts);
 
-        $perms = $this->role->permissions->fetch('permission_slug');
+        $perms = $this->role->permissions->fetch('slug');
 
         foreach ($perms as $perm)
         {
