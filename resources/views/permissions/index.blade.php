@@ -19,7 +19,6 @@
                                 <td>{!! $role->name !!}</td>
                                 <td>{!! $role->description !!}</td>
                                 <td>
-                                @foreach($role->permissions as $permission)
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -29,6 +28,7 @@
                                                 <th>Slug</th>
                                             </tr>
                                         </thead>
+                                        @foreach($role->permissions as $permission)
                                         <tbody>
                                             <tr>
                                                 <td>{!! $permission->id !!}</td>
@@ -37,8 +37,9 @@
                                                 <td>{!! $permission->slug !!}</td>                                                                                          
                                             </tr>
                                         </tbody>
+                                        @endforeach
                                     </table>
-                                @endforeach
+                                
                                 </td>                                           
                             </tr>
                         @endforeach
