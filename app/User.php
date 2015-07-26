@@ -37,8 +37,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     public function tasks() {
-        return $this->belongsToMany('FerEmma\Task', 'user_task')
-                    ->withPivot('check_in', 'check_out');
+        return $this->hasMany('FerEmma\Task', 'attendant_id');
     }
 
     public function fullname() {
@@ -54,6 +53,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         elseif ($last=='24h') 
         {
             return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->where('updated_at', '>', date('Y-m-d H:m:s',strtotime('-24 hours')))->get();
-        }        
+        }
     }
 }

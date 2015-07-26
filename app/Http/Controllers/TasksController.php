@@ -27,9 +27,7 @@ class TasksController extends Controller {
      */
     public function start($id)
     {
-        $task = Task::find($id);
-        $task->state='en proceso';
-        $task->update();
+        Task::find($id)->start();        
         return view('home');
     }
 
@@ -40,9 +38,7 @@ class TasksController extends Controller {
      */
     public function end($id)
     {
-        $task = Task::find($id);
-        $task->state='finalizada';
-        $task->update();
+        Task::find($id)->end();        
         return view('home');
     }
 

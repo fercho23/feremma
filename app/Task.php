@@ -1,7 +1,7 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Auth;
 class Task extends Model {
 
     protected $table = 'tasks';
@@ -15,8 +15,18 @@ class Task extends Model {
         return $this->belongsTo('FerEmma\Role', 'role_id');
     }
 
-    public function users() {
-        return $this->belongsToMany('FerEmma\Task', 'user_task')
-                    ->withPivot('check_in', 'check_out');
+    public function user() {
+        return $this->belongsTo('FerEmma\User', 'attendant_id');
+    }
+
+    public function end() {
+        $this->state='finalizada';
+        $this->update();
+    }
+
+    public function start() {
+        $this->state='en proceso';
+        $this->attendant_id=Auth::user()->id;
+        $this->update();
     }
 }

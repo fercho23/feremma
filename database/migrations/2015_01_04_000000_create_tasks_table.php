@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration {
             $table->tinyInteger('priority');
             $table->string('state', 20);
             $table->integer('role_id')->unsigned();
+            $table->integer('attendant_id')->unsigned();
             $table->timestamps();
         });
     }
