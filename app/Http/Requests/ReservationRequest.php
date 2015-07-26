@@ -22,13 +22,13 @@ class ReservationRequest extends Request {
     public function rules()
     {
         return [
-            'owner_id'=>'',
-            'description'=>'',
-            'total_price'=>'required|between:0,9999999999.99',
-            'sign'=>'required|between:0,9999999999.99',
-            'due'=>'required|between:0,9999999999.99',
-            'check_in'=>'required|date',
-            'check_out'=>'required|date'
+            'owner_id'    => '',
+            'description' => '',
+            'total_price' => 'required|between:0,9999999999.99',
+            'sign'        => 'required|between:0,9999999999.99',
+            'due'         => 'required|between:0,9999999999.99',
+            'check_in'    => 'required|date',
+            'check_out'   => 'required|date'
         ];
     }
 

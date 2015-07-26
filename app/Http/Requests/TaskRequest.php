@@ -22,11 +22,11 @@ class TaskRequest extends Request {
     public function rules()
     {
         return [
-            'name'=>'required|min:2|max:100',
-            'description'=>'',
-            'priority'=>'required|integer|min:1|max:10',
-            'state'=>'required|min:1|max:20',
-            
+            'name'        => 'required|min:2|max:100',
+            'description' => '',
+            'priority'    => 'required|integer|min:1|max:10',
+            'state'       => 'required|min:1|max:20',
+
         ];
     }
 

@@ -22,8 +22,8 @@ class RoleRequest extends Request {
     public function rules()
     {
         return [
-            'name'=>'required|min:2|max:100',
-            'description'=>'',
+            'name'        => 'required|min:2|max:100',
+            'description' => '',
         ];
     }
 

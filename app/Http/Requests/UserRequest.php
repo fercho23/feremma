@@ -22,18 +22,17 @@ class UserRequest extends Request {
     public function rules()
     {
         return [
-            
-            'username'=>'required|min:2|max:100',
-            'name'=>'required|min:2|max:150',
-            'surname'=>'required|min:2|max:150',
-            'email'=>'required|email|max:100',
-            'dni'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
-            'cuil'=>'required',
-            'birthday'=>'required|date',
-            'password'=>'required',
-            'sex'=>'required',
+            'username' => 'required|min:2|max:100',
+            'name'     => 'required|min:2|max:150',
+            'surname'  => 'required|min:2|max:150',
+            'email'    => 'required|email|max:100',
+            'dni'      => 'required',
+            'address'  => 'required',
+            'phone'    => 'required',
+            'cuil'     => 'required',
+            'birthday' => 'required|date',
+            'password' => 'required',
+            'sex'      => 'required',
         ];
     }
 

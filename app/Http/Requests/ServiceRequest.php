@@ -22,9 +22,9 @@ class ServiceRequest extends Request {
     public function rules()
     {
         return [
-            'name'=>'required|min:2|max:100',
-            'description'=>'',
-            'price'=>'required|between:0,9999999999.99',
+            'name'        => 'required|min:2|max:100',
+            'description' => '',
+            'price'       => 'required|between:0,9999999999.99',
         ];
     }
 

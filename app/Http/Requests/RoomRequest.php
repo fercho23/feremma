@@ -22,12 +22,13 @@ class RoomRequest extends Request {
     public function rules()
     {
         return [
-            'name'=>'required|min:2|max:100',
-            'description'=>'',
-            'types_beds'=>'required|min:2|max:100',
-            'total_beds'=>'required|integer|min:1|max:256',
-            'location'=>'required|min:2|max:150',
-            'plan'=>'',
+            'name'        => 'required|min:2|max:100',
+            'description' => '',
+            'types_beds'  => 'required|min:2|max:100',
+            'total_beds'  => 'required|integer|min:1|max:256',
+            'price'       => 'required|between:0,9999999999.99',
+            'location'    => 'required|min:2|max:150',
+            'plan'        => '',
         ];
     }
 

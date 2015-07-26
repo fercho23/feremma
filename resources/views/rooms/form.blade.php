@@ -13,6 +13,13 @@
                                                    'min'=>'1']) !!}
 </div>
 <div class="form-group">
+    {!! Form::label('price','Precio:')!!}
+    {!! Form::input('number', 'price', null, ['class'=>'form-control',
+                                              'max'=>'9999999999',
+                                              'min'=>'0',
+                                              'step'=>'0.01']) !!}
+</div>
+<div class="form-group">
     {!! Form::label('location','Ubicación:') !!}
     {!! Form::text('location', null, ['class'=>'form-control']) !!}
 </div>
