@@ -137,8 +137,20 @@
                         </ul>
                     </li>
                 @endif
+                @if(Auth::user()->can('permissions/index'))
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-edit"></i> <span>Permisos</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            @if(Auth::user()->can('permissions/index'))
+                                <li><a href="{{URL::to('/permissions/index')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
             @endif
-
             <li class="header">SOPORTE</li>
 
             <li>

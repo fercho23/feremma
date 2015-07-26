@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('rooms','RoomsController');
         Route::resource('services','ServicesController');
         Route::resource('tasks','TasksController');
+        Route::get('permissions/index', 'PermissionsController@index');        
     });
 
     Route::group(array('prefix' => 'search'), function() {
