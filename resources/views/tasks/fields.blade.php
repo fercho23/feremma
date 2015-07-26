@@ -14,7 +14,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('state','Estado:')!!}
-    {!! Form::text('state', null, ['class'=>'form-control']) !!}
+    {!! Form::text('state', 'pendiente', ['class'=>'form-control','readonly'=>'true']) !!}
 </div>
 <div class="form-group">
     {!! Form::submit($submitButtontext, ['class'=>'btn btn-primary form-control']) !!}

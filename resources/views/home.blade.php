@@ -65,8 +65,9 @@
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
                 <!-- TO DO List -->
-                @include('tasks.mine', ['state'=>'pendiente','title'=>'Tareas Pendientes'])
-                @include('tasks.mine', ['state'=>'en proceso','title'=>'Tareas En Proceso'])
+                @include('tasks.mine', ['state'=>'pendiente','title'=>'Tareas Pendientes', 'last'=>null])
+                @include('tasks.mine', ['state'=>'en proceso','title'=>'Tareas En Proceso', 'last'=>null])
+                @include('tasks.mine', ['state'=>'finalizada','title'=>'Tareas Finalizadas (en las últimas 24 hs)', 'last'=>'24h'])
                 <!-- quick email widget -->
                 <div class="box box-info">
                     <div class="box-header">

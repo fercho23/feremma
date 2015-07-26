@@ -19,6 +19,4 @@ class Task extends Model {
         return $this->belongsToMany('FerEmma\Task', 'user_task')
                     ->withPivot('check_in', 'check_out');
     }
-
-
 }

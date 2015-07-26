@@ -21,6 +21,32 @@ class TasksController extends Controller {
     }
 
     /**
+     * Starts one task.
+     *
+     * @return Response
+     */
+    public function start($id)
+    {
+        $task = Task::find($id);
+        $task->state='en proceso';
+        $task->update();
+        return view('home');
+    }
+
+    /**
+     * Ends one task.
+     *
+     * @return Response
+     */
+    public function end($id)
+    {
+        $task = Task::find($id);
+        $task->state='finalizada';
+        $task->update();
+        return view('home');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response

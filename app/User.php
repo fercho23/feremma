@@ -45,8 +45,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->name.' '.$this->surname;
     }
 
-    public function myRoleTasks($state)
+    public function myRoleTasks($state, $last=null)
     {
-        return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->get();
+        if($last==null)
+        {
+            return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->get();
+        }
+        elseif ($last=='24h') 
+        {
+            return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->where('updated_at', '>', date('Y-m-d H:m:s',strtotime('-24 hours')))->get();
+        }        
     }
 }

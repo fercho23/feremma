@@ -19,6 +19,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('login', 'AuthController@login');
     Route::get('logout', 'AuthController@logout');
     Route::get('users/count', 'UsersController@count');
+    Route::get('tasks/start/{id}', 'TasksController@start');
+    Route::get('tasks/end/{id}', 'TasksController@end');
 
     Route::group(['middleware' => 'acl'], function () {
         Route::get('tasks/create_mine', 'TasksController@createMine');
@@ -36,7 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('rooms', array('as' => 'search-remaining-rooms', 'uses' => 'SearchController@getRemainingRoomsByName'));
         Route::get('services', array('as' => 'search-remaining-services', 'uses' => 'SearchController@getRemainingServicesByName'));
     });
-
 });
 
 Route::controllers([

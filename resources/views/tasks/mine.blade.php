@@ -4,7 +4,7 @@
                 <h3 class="box-title">{!!$title!!}</h3>                
             </div><!-- /.box-header -->                    
             <div class="box-body">
-                <?php $tasks=Auth::user()->myRoleTasks($state); ?>
+                <?php $tasks=Auth::user()->myRoleTasks($state, $last); ?>
                 @if (sizeof($tasks>0))
                 <ul class="todo-list">
                     @foreach ($tasks as $task)
@@ -41,10 +41,10 @@
                         <!-- General tools such as edit or delete-->
                         <div class="tools">
                             @if($state=='pendiente')
-                                <i class="fa fa-play"></i>
+                                <a href="{{ URL('tasks/start/'.$task->id) }}"><i class="fa fa-play"></i></a>
                             @endif
                             @if($state=='en proceso')
-                                <i class="fa fa-check-square-o"></i>
+                                <a href="{{ URL('tasks/end/'.$task->id) }}"><i class="fa fa-check-square-o"></i></a>
                             @endif
                         </div>
                     </li>
@@ -56,9 +56,11 @@
                     </div>
                 @endif
             </div><!-- /.box-body -->
-            @if(Auth::user()->can('tasks/createMine'))
-                <div class="box-footer clearfix no-border">
-                    <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</a>
-                </div>
-            @endif
+            @if($state=='pendiente')
+                @if(Auth::user()->can('tasks/createMine'))
+                    <div class="box-footer clearfix no-border">
+                        <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</a>
+                    </div>
+                @endif
+            @endif                
         </div><!-- /.box -->
