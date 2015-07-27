@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder {
             'role_id'  => '1',
             'birthday' => '1933/07/30',
             'sex'      => 'f',
-            'password' => Hash::make('1234')
+            'password' => '1234'
         ));
         User::create(array(//2
             'email'    => 'hola@bar.com',
@@ -36,7 +36,7 @@ class UserTableSeeder extends Seeder {
             'role_id'  => '1',
             'birthday' => '1991/10/11',
             'sex'      => 'm',
-            'password' => Hash::make('1234')
+            'password' => '1234'
          ));
         User::create(array(//3
             'email'    => 'user3@user.com',
@@ -50,7 +50,7 @@ class UserTableSeeder extends Seeder {
             'role_id'  => '3',
             'birthday' => '1990/01/01',
             'sex'      => 'mf',
-            'password' => Hash::make('1234')
+            'password' => '1234'
         ));
         User::create(array(//4
             'email'    => 'user4@user.com',
@@ -64,7 +64,7 @@ class UserTableSeeder extends Seeder {
             'role_id'  => '3',
             'birthday' => '1990/01/01',
             'sex'      => 'm',
-            'password' => Hash::make('1234')
+            'password' => '1234'
          ));
         User::create(array(//5
             'email'    => 'user5@user.com',
@@ -78,7 +78,7 @@ class UserTableSeeder extends Seeder {
             'role_id'  => '4',
             'birthday' => '1990/01/01',
             'sex'      => 'f',
-            'password' => Hash::make('1234')
+            'password' => '1234'
         ));
         User::create(array(//6
             'email'    => 'user6@user.com',
@@ -92,7 +92,7 @@ class UserTableSeeder extends Seeder {
             'role_id'  => '4',
             'birthday' => '1990/01/01',
             'sex'      => 'm',
-            'password' => Hash::make('1234')
+            'password' => '1234'
          ));
 
     }

@@ -1,7 +1,5 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Hash;
-
 use FerEmma\User;
 use FerEmma\Role;
 use FerEmma\Http\Requests\UserRequest;
@@ -43,7 +41,6 @@ class UsersController extends Controller {
      */
     public function store(UserRequest $request)
     {
-        $request->password = Hash::make('secret');
         User::create($request->all());
         flash()->success('El Usuario fue ingresado con exito.');
         return redirect('users');

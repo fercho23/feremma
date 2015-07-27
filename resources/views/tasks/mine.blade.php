@@ -5,7 +5,7 @@
     </div><!-- /.box-header -->
     <div class="box-body">
         <?php $tasks=Auth::user()->myRoleTasks($state, $last); ?>
-        @if (sizeof($tasks>0))
+        @if (sizeof($tasks)>0)
         <ul class="todo-list">
             @foreach ($tasks as $task)
             <li>
