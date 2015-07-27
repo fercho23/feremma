@@ -34,6 +34,7 @@ class RolesController extends Controller {
     public function store(RoleRequest $request)
     {
         Role::create($request->all());
+        flash()->success('El Cargo fue ingresado con exito.');
         return redirect('roles');
     }
 
@@ -57,6 +58,7 @@ class RolesController extends Controller {
     public function edit($id)
     {
         $role = Role::findOrFail($id);
+        flash()->success('El Cargo fue editado con exito.');
         return view('roles.edit', compact('role'));
     }
 
@@ -83,6 +85,8 @@ class RolesController extends Controller {
     {
         $role = Role::findOrFail($id);
         $role->delete();
+        //$role->permissions()->detach();
+        flash()->success('El Cargo fue borrado con exito.');
         return redirect('roles');
     }
 

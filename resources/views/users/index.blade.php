@@ -1,6 +1,9 @@
 @extends('app')
 
     @section('content')
+
+        @include('flash::message')
+
         @if (sizeof($users)>0)
             <div class="row">
                 <div class="col-sm-6 col-md-12">

@@ -43,6 +43,7 @@ class UsersController extends Controller {
     {
         $request->password = Hash::make('secret');
         User::create($request->all());
+        flash()->success('El Usuario fue ingresado con exito.');
         return redirect('users');
     }
 
@@ -84,6 +85,7 @@ class UsersController extends Controller {
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
+        flash()->success('El Usuario fue editado con exito.');
         return redirect('users');
     }
 
@@ -97,6 +99,7 @@ class UsersController extends Controller {
     {
         $user = User::findOrFail($id);
         $user->delete();
+        flash()->success('El Usuario fue borrado con exito.');
         return redirect('users');
     }
 
