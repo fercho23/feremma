@@ -1,6 +1,8 @@
 @extends('app')
     @section('content')
 
+        @include('flash::message')
+
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-xs-6">
