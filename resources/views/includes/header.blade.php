@@ -13,7 +13,7 @@
                 <li class="dropdown user user-menu">
                     @if(Auth::check())
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ asset('dist/img/avatar5.png') }}" class="user-image" alt="User Image"/>
+                            <img src="{{ asset('dist/img/avatar'.(Auth::user()->sex == 'm' ? '5' : '2').'.png') }}" class="user-image" alt="User Image"/>
                             <span class="hidden-xs">
                                 {!! Auth::user()->username !!}
                             </span>
@@ -22,10 +22,13 @@
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle" alt="User Image"/>
+                                <img src="{{ asset('dist/img/avatar'.(Auth::user()->sex == 'm' ? '5' : '2').'.png') }}" class="img-circle" alt="User Image"/>
                                 <p>
                                     {!! Auth::user()->fullname() !!}
                                 </p>
+                                <small>
+                                    {!! Auth::user()->role->name !!}
+                                </small>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">

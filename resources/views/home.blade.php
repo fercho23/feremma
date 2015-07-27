@@ -1,13 +1,15 @@
 @extends('app')
     @section('content')
 
+        @include('flash::message')
+
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>{!!FerEmma\Reservation::count()!!}</h3>
+                        <h3>{!! FerEmma\Reservation::count() !!}</h3>
                         <p>Reservas</p>
                     </div>
                     <div class="icon">
@@ -35,7 +37,7 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>{{ Auth::user()->count() }}</h3>
+                        <h3>{!! Auth::user()->count() !!}</h3>
                         <p>Usuarios Registrados</p>
                     </div>
                     <div class="icon">
@@ -64,11 +66,10 @@
         <div class="row">
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
-                <!-- TO DO List -->
+                <!-- TO DO Lists -->
                 @include('includes.if-authorized', ['conditions'=> array('or'=>array(), 'and'=>array('tasks/mine','tasks/createMine'), 'rol'=>array()),'include'=>'tasks.mine', 'parameters'=>['state'=>'pendiente','title'=>'Tareas Pendientes', 'last'=>null]])
                 @include('includes.if-authorized', ['conditions'=> array('or'=>array(), 'and'=>array('tasks/mine','tasks/createMine'), 'rol'=>array()),'include'=>'tasks.mine', 'parameters'=>['state'=>'en proceso','title'=>'Mis Tareas En Proceso', 'last'=>null]])
                 @include('includes.if-authorized', ['conditions'=> array('or'=>array(), 'and'=>array('tasks/mine','tasks/createMine'), 'rol'=>array()),'include'=>'tasks.mine', 'parameters'=>['state'=>'finalizada','title'=>'Mis Tareas Finalizadas (en las últimas 24 hs)', 'last'=>'24h']])
-                                
             </section><!-- /.Left col -->
 
             <!-- right col (We are only adding the ID to make the widgets sortable)-->

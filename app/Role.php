@@ -14,13 +14,7 @@ class Role extends Model {
         return $this->hasMany('FerEmma\User', 'role_id');
     }
 
-    /**
-     * permissions() many-to-many relationship method
-     *
-     * @return QueryBuilder
-     */
-    public function permissions()
-    {
+    public function permissions() {
         return $this->belongsToMany('FerEmma\Permission');
     }
 

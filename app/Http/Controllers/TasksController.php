@@ -1,10 +1,9 @@
 <?php namespace FerEmma\Http\Controllers;
 
-
 use FerEmma\Task;
 use FerEmma\Role;
 use FerEmma\Http\Requests\TaskRequest;
-use FerEmma\Http\Controllers\Controller;
+
 use Auth;
 
 class TasksController extends Controller {
@@ -27,7 +26,7 @@ class TasksController extends Controller {
      */
     public function start($id)
     {
-        Task::find($id)->start();        
+        Task::find($id)->start();
         return view('home');
     }
 
@@ -38,7 +37,7 @@ class TasksController extends Controller {
      */
     public function end($id)
     {
-        Task::find($id)->end();        
+        Task::find($id)->end();
         return view('home');
     }
 
@@ -56,7 +55,7 @@ class TasksController extends Controller {
             $roles[$data->id] = $data->name;
         }
 
-        return view('tasks.create', ['roles'=>$roles]);        
+        return view('tasks.create', ['roles'=>$roles]);
     }
 
     /**
@@ -66,7 +65,7 @@ class TasksController extends Controller {
      */
     public function createMine()
     {
-        return view('tasks.create-mine');        
+        return view('tasks.create-mine');
     }
 
     /**
@@ -77,6 +76,7 @@ class TasksController extends Controller {
     public function store(TaskRequest $request)
     {
         Task::create($request->all());
+        flash()->success('La Tarea fue ingresada con exito.');
         return redirect('home');
     }
 
@@ -118,6 +118,7 @@ class TasksController extends Controller {
     {
         $task = Task::findOrFail($id);
         $task->update($request->all());
+        flash()->success('La Tarea fue editada con exito.');
         return redirect('tasks');
     }
 
@@ -131,6 +132,7 @@ class TasksController extends Controller {
     {
         $task = Task::findOrFail($id);
         $task->delete();
+        flash()->success('La Tarea fue borrada con exito.');
         return redirect('tasks');
     }
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+
 class Task extends Model {
 
     protected $table = 'tasks';

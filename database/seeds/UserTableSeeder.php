@@ -20,19 +20,23 @@ class UserTableSeeder extends Seeder {
             'username' => 'emmanuelsf',
             'phone'    => '2235398647',
             'role_id'  => '1',
-            'password' => Hash::make('1234')
+            'birthday' => '1933/07/30',
+            'sex'      => 'f',
+            'password' => '1234'
         ));
         User::create(array(//2
             'email'    => 'hola@bar.com',
             'name'     => 'Fernando',
             'surname'  => 'Mateos',
-            'cuil'     => '000000000000',
-            'dni'      => '00000000',
+            'cuil'     => '003701191100',
+            'dni'      => '37011911',
             'address'  => 'Cabeza De Termo 1234',
             'username' => 'fernandom',
             'phone'    => '00000000000',
             'role_id'  => '1',
-            'password' => Hash::make('1234')
+            'birthday' => '1991/10/11',
+            'sex'      => 'm',
+            'password' => '1234'
          ));
         User::create(array(//3
             'email'    => 'user3@user.com',
@@ -44,7 +48,9 @@ class UserTableSeeder extends Seeder {
             'username' => 'user3',
             'phone'    => '12345678910',
             'role_id'  => '3',
-            'password' => Hash::make('1234')
+            'birthday' => '1990/01/01',
+            'sex'      => 'mf',
+            'password' => '1234'
         ));
         User::create(array(//4
             'email'    => 'user4@user.com',
@@ -56,7 +62,9 @@ class UserTableSeeder extends Seeder {
             'username' => 'user4',
             'phone'    => '12345678910',
             'role_id'  => '3',
-            'password' => Hash::make('1234')
+            'birthday' => '1990/01/01',
+            'sex'      => 'm',
+            'password' => '1234'
          ));
         User::create(array(//5
             'email'    => 'user5@user.com',
@@ -68,7 +76,9 @@ class UserTableSeeder extends Seeder {
             'username' => 'user5',
             'phone'    => '12345678910',
             'role_id'  => '4',
-            'password' => Hash::make('1234')
+            'birthday' => '1990/01/01',
+            'sex'      => 'f',
+            'password' => '1234'
         ));
         User::create(array(//6
             'email'    => 'user6@user.com',
@@ -80,7 +90,9 @@ class UserTableSeeder extends Seeder {
             'username' => 'user6',
             'phone'    => '12345678910',
             'role_id'  => '4',
-            'password' => Hash::make('1234')
+            'birthday' => '1990/01/01',
+            'sex'      => 'm',
+            'password' => '1234'
          ));
 
     }

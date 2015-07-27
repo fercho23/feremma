@@ -36,4 +36,36 @@ class UserRequest extends Request {
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'username.required' => 'El Nombre de Usuario es requerido.',
+            'username.min'      => 'El Nombre de Usuario debe tener como mínimo 2 caracteres.',
+            'username.max'      => 'El Nombre de Usuario debe tener como máximo 100 caracteres.',
+
+            'name.required'     => 'El Nombre es requerido.',
+            'name.min'          => 'El Nombre debe tener como mínimo 2 caracteres.',
+            'name.max'          => 'El Nombre debe tener como máximo 150 caracteres.',
+
+            'surname.required'  => 'El Apellido es requerido.',
+            'surname.min'       => 'El Apellido debe tener como mínimo 2 caracteres.',
+            'surname.max'       => 'El Apellido debe tener como máximo 150 caracteres.',
+
+            'dni.required'      => 'El DNI es requerido.',
+
+            'address.required'  => 'La Dirección es requerida.',
+
+            'phone.required'    => 'El Teléfono es requerido.',
+
+            'cuil.required'     => 'El CUIL es requerido.',
+
+            'birthday.required' => 'La Fecha de Nacimiento es requerida.',
+            'check_in.date'     => 'La Fecha de Nacimiento debe ser una fecha válida.',
+
+            'password.required' => 'El Password es requerido.',
+
+            'sex.required'      => 'El Sexo es requerido.',
+        ];
+    }
+
 }

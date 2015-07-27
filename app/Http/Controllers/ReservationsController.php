@@ -56,6 +56,8 @@ class ReservationsController extends Controller {
         $reservation->services()->sync($services);
         $reservation->booking()->sync($persons_id);
 
+        flash()->success('La Reserva fue ingresada con exito.');
+
         return redirect('reservations');
     }
 
@@ -110,6 +112,8 @@ class ReservationsController extends Controller {
         $reservation->services()->sync($services);
         $reservation->booking()->sync($persons_id);
 
+        flash()->success('La Reserva fue editada con exito.');
+
         return redirect('reservations');
     }
 
@@ -126,6 +130,7 @@ class ReservationsController extends Controller {
         $reservation->services()->detach();
         $reservation->booking()->detach();
         $reservation->delete();
+        flash()->success('La Reserva fue borrada con exito.');
         return redirect('reservations');
     }
 

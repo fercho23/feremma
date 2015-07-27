@@ -34,6 +34,7 @@ class ServicesController extends Controller {
     public function store(ServiceRequest $request)
     {
         Service::create($request->all());
+        flash()->success('El Servicio fue ingresado con exito.');
         return redirect('services');
     }
 
@@ -70,6 +71,7 @@ class ServicesController extends Controller {
     {
         $service = Service::findOrFail($id);
         $service->update($request->all());
+        flash()->success('El Servicio fue editado con exito.');
         return redirect('services');
     }
 
@@ -83,6 +85,7 @@ class ServicesController extends Controller {
     {
         $service = Service::findOrFail($id);
         $service->delete();
+        flash()->success('El Servicio fue borrado con exito.');
         return redirect('services');
     }
 

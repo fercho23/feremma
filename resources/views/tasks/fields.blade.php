@@ -9,12 +9,12 @@
 <div class="form-group">
     {!! Form::label('priority','Prioridad:')!!}
     {!! Form::input('number', 'priority', null, ['class'=>'form-control',
-                                                   'max'=>'10',
-                                                   'min'=>'1']) !!}
+                                                 'max'=>'10',
+                                                 'min'=>'1']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('state','Estado:')!!}
-    {!! Form::text('state', 'pendiente', ['class'=>'form-control','readonly'=>'true']) !!}
+    {!! Form::text('state', 'pendiente', ['class'=>'form-control', 'readonly'=>'true']) !!}
 </div>
 <div class="form-group">
     {!! Form::submit($submitButtontext, ['class'=>'btn btn-primary form-control']) !!}

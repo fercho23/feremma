@@ -1,8 +1,5 @@
 <?php namespace FerEmma;
 
-use FerEmma\Tasks;
-use FerEmma\Permission;
-
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +12,6 @@ use Auth;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
     use Authenticatable, CanResetPassword;
-    use UserACL;
 
     protected $table = 'users';
 
@@ -45,16 +41,35 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->name.' '.$this->surname;
     }
 
-    public function myRoleTasks($state, $last=null)
-    {
-        if($last==null)
-        {
-            return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->get();
+    public function setPasswordAttribute($value) {
+        if(!empty($value))
+            $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function myRoleTasks($state, $last=null) {
+        if ($last == '24h')
+            return Task::where('role_id', '=', $this->role->id)
+                       ->where('state', '=', $state)
+                       ->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')))
+                       ->get();
+        return Task::where('role_id', '=', $this->role->id)
+                   ->where('state', '=', $state)
+                   ->get();
+    }
+
+    public function can($perm = null) {
+        if($perm)
+            return $this->checkPermission($perm);
+        return false;
+    }
+
+    protected function checkPermission($perm = '') {
+        $permission = Permission::where('slug', '=', $perm)->first();
+        if(!$permission) {
+            flash()->error('Ocurrio un error inesperado con el permiso: '.$perm);
+            return false;
         }
-        elseif ($last=='24h') 
-        {
-            return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->where('updated_at', '>', date('Y-m-d H:m:s',strtotime('-24 hours')))->get();
-        }
+        return in_array($permission->id, $this->role->permissions()->getRelatedIds());
     }
 
     public function canConsidering($conditions)
@@ -104,5 +119,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         if(($and and $or) and $competent)
             return true;
     }
-
 }

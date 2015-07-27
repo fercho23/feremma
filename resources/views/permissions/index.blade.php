@@ -1,5 +1,8 @@
 @extends('app')
     @section('content')
+
+        @include('flash::message')
+
         @if (sizeof($roles)>0)
             <div class="row">
                 <div class="col-sm-6 col-md-12">
@@ -34,13 +37,13 @@
                                                 <td>{!! $permission->id !!}</td>
                                                 <td>{!! $permission->title !!}</td>
                                                 <td>{!! $permission->description !!}</td>
-                                                <td>{!! $permission->slug !!}</td>                                                                                          
+                                                <td>{!! $permission->slug !!}</td>
                                             </tr>
                                         </tbody>
                                         @endforeach
                                     </table>
-                                
-                                </td>                                           
+
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

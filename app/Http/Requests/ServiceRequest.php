@@ -28,4 +28,16 @@ class ServiceRequest extends Request {
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'name.required'  => 'El Nombre es requerido.',
+            'name.min'       => 'El Nombre debe tener como mínimo 2 caracteres.',
+            'name.max'       => 'El Nombre debe tener como máximo 2 caracteres.',
+
+            'price.required' => 'El Precio es requerido.',
+            'price.between'  => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
+        ];
+    }
+
 }

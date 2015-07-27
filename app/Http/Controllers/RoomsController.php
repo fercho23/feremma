@@ -34,6 +34,7 @@ class RoomsController extends Controller {
     public function store(RoomRequest $request)
     {
         Room::create($request->all());
+        flash()->success('La Habitación fue ingresada con exito.');
         return redirect('rooms');
     }
 
@@ -70,6 +71,7 @@ class RoomsController extends Controller {
     {
         $room = Room::findOrFail($id);
         $room->update($request->all());
+        flash()->success('La Habitación fue editada con exito.');
         return redirect('rooms');
     }
 
@@ -83,6 +85,7 @@ class RoomsController extends Controller {
     {
         $room = Room::findOrFail($id);
         $room->delete();
+        flash()->success('La Habitación fue borrada con exito.');
         return redirect('rooms');
     }
 
