@@ -1,10 +1,9 @@
 <?php namespace FerEmma\Http\Controllers;
 
-
 use FerEmma\Task;
 use FerEmma\Role;
 use FerEmma\Http\Requests\TaskRequest;
-use FerEmma\Http\Controllers\Controller;
+
 use Auth;
 
 class TasksController extends Controller {
@@ -76,7 +75,7 @@ class TasksController extends Controller {
      */
     public function store(TaskRequest $request)
     {
-        Task::create($request->all());}
+        Task::create($request->all());
         flash()->success('La Tarea fue ingresada con exito.');
         return redirect('home');
     }

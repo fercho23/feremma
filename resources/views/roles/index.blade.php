@@ -1,4 +1,5 @@
 @extends('app')
+
     @section('content')
 
         @include('flash::message')

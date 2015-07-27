@@ -16,7 +16,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('password','Contraseña:') !!}
-    {!! Form::text('password', null, ['class'=>'form-control']) !!}
+    {!! Form::password('password', ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('email','Email:') !!}

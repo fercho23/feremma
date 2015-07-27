@@ -1,4 +1,3 @@
-
 @if($accepted)
-	@include($include, $parameters)
+    @include($include, $parameters)
 @endif

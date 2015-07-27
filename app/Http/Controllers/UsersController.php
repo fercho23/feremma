@@ -1,5 +1,7 @@
 <?php namespace FerEmma\Http\Controllers;
 
+use Hash;
+
 use FerEmma\User;
 use FerEmma\Role;
 use FerEmma\Http\Requests\UserRequest;
