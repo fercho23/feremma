@@ -1,1 +1,0 @@
-2015_02_03_000000_create_reservation_user_ruta_table.php
