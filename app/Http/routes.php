@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('login', 'AuthController@login');
     Route::get('logout', 'AuthController@logout');
-    Route::get('users/count', 'UsersController@count');
+    //Route::get('users/count', 'UsersController@count');
     Route::get('tasks/start/{id}', 'TasksController@start');
     Route::get('tasks/end/{id}', 'TasksController@end');
 
@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('rooms','RoomsController');
         Route::resource('services','ServicesController');
         Route::resource('tasks','TasksController');
-        Route::get('permissions/index', 'PermissionsController@index');        
+        Route::get('permissions', 'PermissionsController@index');
     });
 
     Route::group(array('prefix' => 'search'), function() {

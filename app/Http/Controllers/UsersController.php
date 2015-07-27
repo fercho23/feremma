@@ -108,9 +108,9 @@ class UsersController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public static function count($id)
-    {
-        return $user = User::all()->count();
-    }
+    //public static function count($id)
+    //{
+        //return $user = User::all()->count();
+    //}
 
 }

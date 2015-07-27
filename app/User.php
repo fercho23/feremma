@@ -65,10 +65,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected function checkPermission($perm = '') {
         $permission = Permission::where('slug', '=', $perm)->first();
-        if(!$permission) {
-            flash()->error('Ocurrio un error inesperado con el permiso: '.$perm);
+        if(!$permission)
             return false;
-        }
+        //if(!$permission) {
+            //flash()->error('Ocurrio un error inesperado con el permiso: '.$perm);
+            //return false;
+        //}
         return in_array($permission->id, $this->role->permissions()->getRelatedIds());
     }
 
