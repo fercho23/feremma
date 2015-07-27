@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use FerEmma\UserACL;
 use \Illuminate\Support\Facades\DB;
+use Auth;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -55,4 +56,53 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             return DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', $state)->where('updated_at', '>', date('Y-m-d H:m:s',strtotime('-24 hours')))->get();
         }
     }
+
+    public function canConsidering($conditions)
+    {
+        $or=false; $and=true; $competent=false;
+        if (count($conditions['or'])>0) {
+            foreach ($conditions['or'] as $condition => $value) {       
+                if(Auth::user()->can($value))
+                {
+                    $or=true;
+                    break;
+                }   
+            }
+        }
+        else
+        {
+            $or=true;
+        }
+        if (count($conditions['and'])>0) {
+            foreach ($conditions['and'] as $condition => $value) 
+            {
+                if(!Auth::user()->can($value))
+                {
+                    $and=false;
+                    break;
+                }   
+            }
+        }
+        else
+        {
+            $and=true;
+        }
+        if(count($conditions['rol'])>0)
+        {   
+            foreach ($conditions['rol'] as $condition => $value) 
+            {
+                if(Auth::user()->role->name==$value)
+                {
+                    $competent=true;
+                    break;
+                }   
+            }
+        }
+        else
+            $competent=true;
+
+        if(($and and $or) and $competent)
+            return true;
+    }
+
 }

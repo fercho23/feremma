@@ -65,10 +65,10 @@
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
                 <!-- TO DO List -->
-                @include('tasks.mine', ['state'=>'pendiente','title'=>'Tareas Pendientes', 'last'=>null])
-                @include('tasks.mine', ['state'=>'en proceso','title'=>'Mis Tareas En Proceso', 'last'=>null])
-                @include('tasks.mine', ['state'=>'finalizada','title'=>'Mis Tareas Finalizadas (en las últimas 24 hs)', 'last'=>'24h'])
-                
+                @include('includes.if-authorized', ['conditions'=> array('or'=>array(), 'and'=>array('tasks/mine','tasks/createMine'), 'rol'=>array()),'include'=>'tasks.mine', 'parameters'=>['state'=>'pendiente','title'=>'Tareas Pendientes', 'last'=>null]])
+                @include('includes.if-authorized', ['conditions'=> array('or'=>array(), 'and'=>array('tasks/mine','tasks/createMine'), 'rol'=>array()),'include'=>'tasks.mine', 'parameters'=>['state'=>'en proceso','title'=>'Mis Tareas En Proceso', 'last'=>null]])
+                @include('includes.if-authorized', ['conditions'=> array('or'=>array(), 'and'=>array('tasks/mine','tasks/createMine'), 'rol'=>array()),'include'=>'tasks.mine', 'parameters'=>['state'=>'finalizada','title'=>'Mis Tareas Finalizadas (en las últimas 24 hs)', 'last'=>'24h']])
+                                
             </section><!-- /.Left col -->
 
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
