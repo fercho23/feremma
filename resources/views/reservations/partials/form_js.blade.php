@@ -2,12 +2,11 @@
 
     function getServicesPrice(){
         $total = 0;
-        $('div#label-services div[id^=services-]').each(function() {
-            $n = parseInt($(this).attr('id').match(/[0-9]+/g));
-            $quantity = parseInt($('input[name=service-quantity-'+$n+']').attr('value'));
-            $price = parseFloat($('input[name=service-price-'+$n+']').attr('value'));
+        $('div#label-services div[id^=services-]').each(function(k, v) {
+            $n = parseInt($(v).attr('id').match(/[0-9]+/g));
+            $quantity = parseInt($('input[name=service-quantity-'+$n+']').val());
+            $price = parseFloat($('input[name=service-price-'+$n+']').val());
             $total += ($quantity * $price);
-            console.log($n, ':', $quantity, '*', $price, '=', ($quantity * $price));
         });
         return $total
     }
@@ -26,6 +25,7 @@
                 $.each(data, function(index, value) {
                     $suggested_price += parseFloat(value.value);
                 });
+                $suggested_price = $suggested_price.toFixed(2).replace('.', ',');
                 $('input[name=suggested_price]').attr('value', $suggested_price);
             }
         );
