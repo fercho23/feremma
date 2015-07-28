@@ -2,7 +2,6 @@
 
 use FerEmma\Task;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class TaskTableSeeder extends Seeder {
 

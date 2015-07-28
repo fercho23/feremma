@@ -2,7 +2,6 @@
 
 use FerEmma\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class UserTableSeeder extends Seeder {
 

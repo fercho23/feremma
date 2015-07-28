@@ -1,14 +1,19 @@
 <script type="text/javascript">
 
-    function suggestedPrice(){
-        $suggested_price = 0;
+    function getServicesPrice(){
+        $total = 0;
         $('div#label-services div[id^=services-]').each(function() {
             $n = parseInt($(this).attr('id').match(/[0-9]+/g));
             $quantity = parseInt($('input[name=service-quantity-'+$n+']').attr('value'));
             $price = parseFloat($('input[name=service-price-'+$n+']').attr('value'));
-            $suggested_price += ($quantity * $price);
+            $total += ($quantity * $price);
+            console.log($n, ':', $quantity, '*', $price, '=', ($quantity * $price));
         });
-        console.log($suggested_price);
+        return $total
+    }
+
+    function suggestedPrice(){
+        $suggested_price = getServicesPrice();
         $.ajax({
             url: '{!! URL::route("search-room-price-by-ids") !!}',
             type: 'GET',
@@ -36,10 +41,10 @@
         suggestedPrice();
     }
 
-    $('div[id^=services-]').on('change', 'input[name^=service-quantity-]', function() {
+    $(document).on('change', 'input[name^=service-quantity-]', function() {
         suggestedPrice();
     });
-    $('div[id^=services-]').on('change', 'input[name^=service-price-]', function() {
+    $(document).on('change', 'input[name^=service-price-]', function() {
         suggestedPrice();
     });
 
