@@ -1,4 +1,4 @@
-@if(Auth::user()->can($model.'/index') || Auth::user()->can($model.'/create'))
+@if(Auth::user()->canAnyActionsByModel($model, ['index', 'create']))
     <li class="treeview">
         <a href="#">
             <i class="fa fa-edit"></i> <span>{!! $title !!}</span>

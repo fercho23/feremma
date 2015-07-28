@@ -36,7 +36,6 @@
         <ul class="sidebar-menu">
 
             @if(Auth::check())
-
                 <li class="header">MENÚ</li>
                 @include('includes.partials.section', ['model'=>'users', 'title'=>'Usuarios'])
                 @include('includes.partials.section', ['model'=>'roles', 'title'=>'Cargos'])
@@ -45,7 +44,6 @@
                 @include('includes.partials.section', ['model'=>'services', 'title'=>'Servicios'])
                 @include('includes.partials.section', ['model'=>'tasks', 'title'=>'Tareas'])
                 @include('includes.partials.section', ['model'=>'permissions', 'title'=>'Permisos'])
-
             @endif
 
             <li class="header">SOPORTE</li>

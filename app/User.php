@@ -61,6 +61,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return false;
     }
 
+    public function canAnyActionsByModel($model, array $actions) {
+        foreach($actions as $action) {
+            if($this->checkPermission($model.'/'.$action))
+                return true;
+        }
+        return false;
+    }
+
+    public function canAllActionsByModel($model, array $actions) {
+        foreach($actions as $action) {
+            if(!$this->checkPermission($model.'/'.$action))
+                return false;
+        }
+        return true;
+    }
+
     protected function checkPermission($perm = '') {
         $permission = Permission::where('slug', '=', $perm)->first();
         if(!$permission)
