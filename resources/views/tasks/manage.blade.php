@@ -35,16 +35,7 @@
                                         @foreach ($tasks as $task)
                                             <?php $x++; ?>
                                             @if(($x % 2)!=0)                                                
-                                                @include('tasks.manage.task')
-                                                @if($task->state=='pendiente')
-                                                    @include('tasks.manage.progress_none')
-                                                @endif
-                                                @if($task->state=='en proceso')
-                                                    @include('tasks.manage.progress_half')
-                                                @endif
-                                                @if($task->state=='realizada')
-                                                    @include('tasks.manage.progress_complete')
-                                                @endif
+                                                @include('tasks.manage.task')                                                
                                             @endif
                                         @endforeach
                                 </div><!-- /.col -->
@@ -54,15 +45,6 @@
                                             <?php $y++; ?>
                                             @if(($y % 2)==0)                                                
                                                 @include('tasks.manage.task')
-                                                @if($task->state=='pendiente')
-                                                    @include('tasks.manage.progress_none')
-                                                @endif
-                                                @if($task->state=='en proceso')
-                                                    @include('tasks.manage.progress_half')
-                                                @endif
-                                                @if($task->state=='realizada')
-                                                    @include('tasks.manage.progress_complete')
-                                                @endif
                                             @endif
                                         @endforeach
                                 </div><!-- /.col -->                            
