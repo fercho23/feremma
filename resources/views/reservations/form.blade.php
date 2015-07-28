@@ -43,9 +43,9 @@
                 </div>
             </div>
             <div class="col-lg-1 col-xs-1">
-                <a class="btn btn-default" href="#">
+                <span class="btn btn-default">
                     <i class="fa fa-times-circle"></i>
-                </a>
+                </span>
             </div>
         </div>
         @foreach ($reservation->services as $service)
@@ -63,15 +63,18 @@
                                                                                  'step'=>'0.01']) !!}
                 </div>
                 <div class="col-lg-1 col-xs-1">
-                    <a class="btn btn-warning" href="#">
+                    <span class="btn btn-warning">
                         <i name="fa-kill" class="fa fa-times-circle"></i>
-                    </a>
+                    </span>
                 </div>
             </div>
         @endforeach
     </div>
     {!! Form::hidden('services_id', implode(",", $reservation->services()->getRelatedIds()), array('id' => 'services_id')) !!}
-    {!! Form::text('service', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Servicio . . .']) !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+        {!! Form::text('service', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Servicio . . .']) !!}
+    </div>
 </div>
 
 <div class="form-group">

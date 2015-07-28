@@ -120,9 +120,9 @@
                                                     "<input class='form-control' max=9999999999' min='0' step='0.01' name='service-price-"+ui.item.id+"' type='number' value='"+ui.item.price+"'>"+
                                                 "</div>"+
                                                 "<div class='col-lg-1 col-xs-1'>"+
-                                                    "<a class='btn btn-warning' href='#'>"+
+                                                    "<span class='btn btn-warning'>"+
                                                         "<i name='fa-kill' class='fa fa-times-circle'></i>"+
-                                                    "</a>"+
+                                                    "</span>"+
                                                 "</div>"+
                                              "</div>");
                 countElement('services');
