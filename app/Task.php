@@ -33,13 +33,7 @@ class Task extends Model {
 
     public function forToday()
     {        
-        return Task::where('role_id', '=', $this->role->id)
-                       ->where('state', '=', $state)
-                       ->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')))
-                       ->get();
-        return Task::where('role_id', '=', $this->role->id)
-                   ->where('state', '=', $state)
-                   ->get();
-    
+        $d=strtotime("today");        
+        return Task::where('created_at', '>=', date("Y-m-d H:i:s", $d))->get();    
     }
 }

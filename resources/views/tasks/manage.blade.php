@@ -24,33 +24,54 @@
                     </div><!-- /.box-body -->
                     <div class="box-footer text-black">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <!-- Progress bars -->
-                                <?php $tasks=Auth::user()->; ?>
-                                @if (sizeof($tasks)>0)
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #1</span>
-                                    <small class="pull-right">90%</small>
+                            <?php 
+                                $tasks=(new FerEmma\Task)->forToday(); 
+                                $x=0;
+                                $y=0;
+                            ?>
+                            @if (sizeof($tasks)>0)
+                                <div class="col-sm-6">
+                                    <!-- Progress bars -->                                    
+                                        @foreach ($tasks as $task)
+                                            <?php $x++; ?>
+                                            @if(($x % 2)!=0)                                                
+                                                @include('tasks.manage.task')
+                                                @if($task->state=='pendiente')
+                                                    @include('tasks.manage.progress_none')
+                                                @endif
+                                                @if($task->state=='en proceso')
+                                                    @include('tasks.manage.progress_half')
+                                                @endif
+                                                @if($task->state=='realizada')
+                                                    @include('tasks.manage.progress_complete')
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                </div><!-- /.col -->
+                                <div class="col-sm-6">
+                                    <!-- Progress bars -->                                    
+                                        @foreach ($tasks as $task)
+                                            <?php $y++; ?>
+                                            @if(($y % 2)==0)
+                                                
+                                                @include('tasks.manage.task')
+                                                @if($task->state=='pendiente')
+                                                    @include('tasks.manage.progress_none')
+                                                @endif
+                                                @if($task->state=='en proceso')
+                                                    @include('tasks.manage.progress_half')
+                                                @endif
+                                                @if($task->state=='realizada')
+                                                    @include('tasks.manage.progress_complete')
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                </div><!-- /.col -->                            
+                            @else
+                                <div class="alert alert-success">
+                                    <p>No hay tareas.</p>
                                 </div>
-                                
-                            </div><!-- /.col -->
-
-                            <div class="col-sm-6">
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #3</span>
-                                    <small class="pull-right">60%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                                </div>
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #4</span>
-                                    <small class="pull-right">40%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                                </div>
-                            </div><!-- /.col -->
+                            @endif
                         </div><!-- /.row -->
                     </div>
                 </div><!-- /.box -->
