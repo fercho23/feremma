@@ -165,6 +165,10 @@
         select: function(event, ui){
             $('#owner').val(ui.item.value);
             $('#owner_id').val(ui.item.id);
+            if($('div#persons-'+ui.item.id).length>0) {
+                $('div#persons-'+ui.item.id).remove();
+                countElement('persons');
+            }
         }
     });
 
