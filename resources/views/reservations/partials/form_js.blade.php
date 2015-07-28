@@ -72,7 +72,7 @@
                 dataType: 'json',
                 data: {
                     term: request.term,
-                    rooms_id: $('#rooms_id').attr('value')
+                    ids: $('#rooms_id').val()
                 },
                 success: function(data) {
                     response(data);
@@ -99,7 +99,7 @@
                 dataType: 'json',
                 data: {
                     term: request.term,
-                    services_id: $('#services_id').attr('value')
+                    ids: $('#services_id').val()
                 },
                 success: function(data) {
                     response(data);
@@ -139,7 +139,7 @@
                 dataType: 'json',
                 data: {
                     term: request.term,
-                    persons_id: $('#persons_id').attr('value')+','+$('#owner_id').attr('value')
+                    ids: $('#persons_id').val()+','+$('#owner_id').val()
                 },
                 success: function(data) {
                     response(data);
@@ -148,7 +148,7 @@
         },
         minLength: 2,
         select: function(event, ui){
-            if(!$('div#persons-'+ui.item.id).length>0) {
+            if((!$('div#persons-'+ui.item.id).length>0)&&($('#owner_id').val()!=ui.item.id)) {
                 $('#label-persons').append("<div id='persons-" + ui.item.id + "' class='label label-info'"+
                                            " style='margin:5px;'>" + ui.item.value +
                                            " <i name='fa-kill' class='fa fa-times-circle'></i></div>");

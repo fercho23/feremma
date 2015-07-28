@@ -21,9 +21,11 @@ class SearchController extends Controller {
     public function getUserByName() {
         $term = Request::input('term', '');
         $results = array();
-        $queries = User::where('name', 'LIKE', '%'.$term.'%')
-                       ->orwhere('surname', 'LIKE', '%'.$term.'%')
-                       ->orwhere('dni', 'LIKE', '%'.$term.'%')
+        $queries = User::where(function($query) use ($term){
+                            $query->where('name', 'LIKE', '%'.$term.'%');
+                            $query->orWhere('surname', 'LIKE', '%'.$term.'%');
+                            $query->orWhere('dni', 'LIKE', '%'.$term.'%');
+                        })
                        ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
@@ -33,15 +35,18 @@ class SearchController extends Controller {
 
     public function getRemainingUsersByName() {
         $term = Request::input('term', '');
-        $users_id = Request::input('users_id', '');
-        $users_id = ($users_id ? array_map('intval', explode(',', $users_id)) : []);
+        $ids = Request::input('ids', '');
+        $users_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
 
         $results = array();
-        $queries = User::where('name', 'LIKE', '%'.$term.'%')
-                       ->orwhere('surname', 'LIKE', '%'.$term.'%')
-                       ->orwhere('dni', 'LIKE', '%'.$term.'%')
-                       ->whereNotIn('id', $users_id)
+        $queries = User::whereNotIn('id', $users_id)
+                        ->where(function($query) use ($term){
+                            $query->where('name', 'LIKE', '%'.$term.'%');
+                            $query->orWhere('surname', 'LIKE', '%'.$term.'%');
+                            $query->orWhere('dni', 'LIKE', '%'.$term.'%');
+                        })
                        ->take(10)->get();
+
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
                           'value' => $query->fullname().' ['.$query->dni.']'];
@@ -50,8 +55,8 @@ class SearchController extends Controller {
 
     public function getRemainingRoomsByName() {
         $term = Request::input('term', '');
-        $rooms_id = Request::input('rooms_id', '');
-        $rooms_id = ($rooms_id ? array_map('intval', explode(',', $rooms_id)) : []);
+        $ids = Request::input('ids', '');
+        $rooms_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
 
         $results = array();
         $queries = Room::where('name', 'LIKE', '%'.$term.'%')
@@ -65,8 +70,8 @@ class SearchController extends Controller {
 
     public function getRemainingServicesByName() {
         $term = Request::input('term', '');
-        $services_id = Request::input('services_id', '');
-        $services_id = ($services_id ? array_map('intval', explode(',', $services_id)) : []);
+        $ids = Request::input('ids', '');
+        $services_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
 
         $results = array();
         $queries = Service::where('name', 'LIKE', '%'.$term.'%')
