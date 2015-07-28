@@ -52,7 +52,7 @@
         </ul>
         @else
             <div class="alert alert-success">
-                <p>No hay tareas Pendientes!.</p>
+                <p>No hay tareas con estado '{!!$state!!}'.</p>
             </div>
         @endif
     </div><!-- /.box-body -->

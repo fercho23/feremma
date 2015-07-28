@@ -77,7 +77,7 @@ class RoleTableSeeder extends Seeder {
                     ));
         $role->permissions()->sync([12, 15,
                                     18, 21,
-                                    27, 28, 33, 34, 35, 36, 43, 44
+                                    27, 28, 33, 34, 35, 36
                                     ]);
 
 

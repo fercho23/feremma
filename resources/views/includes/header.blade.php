@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{ URL::to('/') }}" class="logo"><b>Admin</b>LTE</a>
+    <a href="{{ URL::to('/') }}" class="logo"><b>Admin</b>HOTEL</a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->

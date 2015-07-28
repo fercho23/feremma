@@ -146,7 +146,6 @@ return [
         'FerEmma\Providers\ConfigServiceProvider',
         'FerEmma\Providers\EventServiceProvider',
         'FerEmma\Providers\RouteServiceProvider',
-
         'Laracasts\Flash\FlashServiceProvider',
 
     ],
@@ -198,7 +197,6 @@ return [
         'View'      => 'Illuminate\Support\Facades\View',
         'Form'      => 'Illuminate\Html\FormFacade',
         'HTML'      => 'Illuminate\Html\HtmlFacade',
-
         'Flash'     => 'Laracasts\Flash\Flash',
     ],
 
