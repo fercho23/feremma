@@ -1,7 +1,10 @@
 <div class="form-group">
     {!! Form::label('owner', 'Titular:') !!}
     {!! Form::hidden('owner_id', ($reservation->owner ? $reservation->owner->id : ''), array('id' => 'owner_id')) !!}
-    {!! Form::text('owner', ($reservation->owner ? $reservation->owner->fullname().' ['.$reservation->owner->dni.']' : ''), ['class'=>'form-control']) !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
+        {!! Form::text('owner', ($reservation->owner ? $reservation->owner->fullname().' ['.$reservation->owner->dni.']' : ''), ['class'=>'form-control']) !!}
+</div>
 </div>
 
 <div class="form-group">
@@ -14,14 +17,16 @@
         @endforeach
     </div>
     {!! Form::hidden('rooms_id', implode(",", $reservation->rooms()->getRelatedIds()), array('id' => 'rooms_id')) !!}
-    {!! Form::text('room', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de una Habitación . . .']) !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-bed"></i></span>
+        {!! Form::text('room', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de una Habitación . . .']) !!}
+    </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('service', 'Servicios:') !!}
     <div class="group-labels" id="label-services">
         <div class="row">
-
             <div class="col-lg-5 col-xs-5">
                 <div class="form-control" readonly="True">
                     <strong>Nombre del Servicio</strong>
@@ -42,7 +47,6 @@
                     <i class="fa fa-times-circle"></i>
                 </a>
             </div>
-
         </div>
         @foreach ($reservation->services as $service)
             <div class="row" id="services-{!! $service->id !!}">
@@ -80,7 +84,10 @@
         @endforeach
     </div>
     {!! Form::hidden('persons_id', implode(",", $reservation->booking()->getRelatedIds()), array('id' => 'persons_id')) !!}
-    {!! Form::text('person', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Pasajero . . .']) !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+        {!! Form::text('person', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Pasajero . . .']) !!}
+    </div>
 </div>
 
 <div class="form-group">
@@ -94,13 +101,22 @@
     </div>
     <div class="row">
         <div class="col-lg-6 col-xs-6 no-gutter-right">
-            {!! Form::input('number', 'total_price', null, ['class'=>'form-control',
-                                                            'max'=>'9999999999',
-                                                            'min'=>'0',
-                                                            'step'=>'0.01']) !!}
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-usd"></i>
+                    <i class="fa fa-usd"></i>
+                </span>
+                {!! Form::input('number', 'total_price', null, ['class'=>'form-control',
+                                                                'max'=>'9999999999',
+                                                                'min'=>'0',
+                                                                'step'=>'0.01']) !!}
+            </div>
         </div>
         <div class="col-lg-6 col-xs-6 no-gutter-left">
-            {!! Form::text('suggested_price', '0', ['class'=>'form-control', 'readonly'=>'True']) !!}
+            <div class="input-group">
+                {!! Form::text('suggested_price', '0', ['class'=>'form-control', 'readonly'=>'True']) !!}
+                <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+            </div>
         </div>
     </div>
 </div>
@@ -116,55 +132,72 @@
     </div>
     <div class="row">
         <div class="col-lg-6 col-xs-6 no-gutter-right">
-            {!! Form::input('number', 'sign', null, ['class'=>'form-control',
-                                                     'max'=>'9999999999',
-                                                     'min'=>'0',
-                                                     'step'=>'0.01']) !!}
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-usd"></i>
+                    <i class="fa fa-usd"></i>
+                </span>
+                {!! Form::input('number', 'sign', null, ['class'=>'form-control',
+                                                         'max'=>'9999999999',
+                                                         'min'=>'0',
+                                                         'step'=>'0.01']) !!}
+            </div>
         </div>
         <div class="col-lg-6 col-xs-6">
             <div class="form-horizontal">
                 <div class="row">
                         <div class="col-lg-5 col-xs-5 no-gutter-right">
-                            <div class="input-group no-gutter">
+                            <div class="input-group">
+                                <span class="input-group-addon">%</span>
                                 {!! Form::input('number', 'percentage_sign', '10', ['class'=>'form-control',
                                                                                     'max'=>'9999999999',
                                                                                     'min'=>'0',
-                                                                                    'step'=>'0.01',
-                                                                                    'aria-describedby'=>'basic-addon']) !!}
-                                <span class="input-group-addon"><strong>%</strong></span>
+                                                                                    'step'=>'0.01']) !!}
+                                <span class="input-group-addon"><i class="fa fa-arrow-right"></i></span>
                             </div>
                         </div>
                         <div class="col-lg-7 col-xs-7 no-gutter-left">
-                            {!! Form::text('suggested_sign', '0', ['class'=>'form-control', 'readonly'=>'True']) !!}
+                            <div class="input-group">
+                                {!! Form::text('suggested_sign', '0', ['class'=>'form-control', 'readonly'=>'True']) !!}
+                                <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                            </div>
                         </div>
                 </div>
             </div>
         </div>
     </div>
-{{--
-
-    {!! Form::label('sign', 'Seña:') !!}
-    {!! Form::input('number', 'sign', null, ['class'=>'form-control',
-                                             'max'=>'9999999999',
-                                             'min'=>'0',
-                                             'step'=>'0.01']) !!}
---}}
 </div>
+
 <div class="form-group">
     {!! Form::label('due', 'Deuda:') !!}
-    {!! Form::input('number', 'due', null, ['class'=>'form-control',
-                                            'max'=>'9999999999',
-                                            'min'=>'0',
-                                            'step'=>'0.01']) !!}
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="fa fa-usd"></i>
+            <i class="fa fa-usd"></i>
+        </span>
+        {!! Form::input('number', 'due', null, ['class'=>'form-control',
+                                                'max'=>'9999999999',
+                                                'min'=>'0',
+                                                'step'=>'0.01']) !!}
+    </div>
 </div>
+
 <div class="form-group">
     {!! Form::label('check_in', 'Fecha entrada:') !!}
-    {!! Form::input('date','check_in', null, ['class'=>'form-control']) !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        {!! Form::input('date','check_in', null, ['class'=>'form-control']) !!}
+    </div>
 </div>
+
 <div class="form-group">
     {!! Form::label('check_out', 'Fecha salida:') !!}
-    {!! Form::input('date','check_out', null, ['class'=>'form-control']) !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        {!! Form::input('date','check_out', null, ['class'=>'form-control']) !!}
+    </div>
 </div>
+
 <div class="form-group">
     {!! Form::label('description', 'Descripción:') !!}
     {!! Form::text('description', null, ['class'=>'form-control']) !!}
