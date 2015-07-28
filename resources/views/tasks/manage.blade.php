@@ -52,8 +52,7 @@
                                     <!-- Progress bars -->                                    
                                         @foreach ($tasks as $task)
                                             <?php $y++; ?>
-                                            @if(($y % 2)==0)
-                                                
+                                            @if(($y % 2)==0)                                                
                                                 @include('tasks.manage.task')
                                                 @if($task->state=='pendiente')
                                                     @include('tasks.manage.progress_none')

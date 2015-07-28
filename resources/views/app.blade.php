@@ -51,7 +51,13 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> AdminHotel</a></li>
-                        <li class="active">{!! Auth::user()->role->name !!}</li>
+                        <li class="active">
+                            @if(Auth::user())
+                                {!! Auth::user()->role->name !!}
+                            @else
+                                Invitado
+                            @endif
+                        </li>
                         <li class="active">{!!  explode("Controller@",class_basename(\Route::currentRouteAction()),2)[0] !!}</li>
                         <li class="active">{!!  explode("Controller@",class_basename(\Route::currentRouteAction()),2)[1] !!}</li>
                     </ol>
