@@ -24,17 +24,17 @@
 
             <div class="col-lg-5 col-xs-5">
                 <div class="form-control" readonly="True">
-                    Nombre del Servicio
+                    <strong>Nombre del Servicio</strong>
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-3">
+            <div class="col-lg-3 col-xs-3 no-gutter">
                 <div class="form-control" readonly="True">
-                    Cantidad
+                    <strong>Cantidad</strong>
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-3">
+            <div class="col-lg-3 col-xs-3 no-gutter">
                 <div class="form-control" readonly="True">
-                    Precio
+                    <strong>Precio</strong>
                 </div>
             </div>
             <div class="col-lg-1 col-xs-1">
@@ -49,10 +49,10 @@
                 <div class="col-lg-5 col-xs-5">
                     {!! Form::text('service-name-'.$service->id, $service->pivot->name, ['class'=>'form-control', 'readonly'=>'True']) !!}
                 </div>
-                <div class="col-lg-3 col-xs-3">
+                <div class="col-lg-3 col-xs-3 no-gutter">
                     {!! Form::input('number', 'service-quantity-'.$service->id, $service->pivot->quantity, ['class'=>'form-control', 'min'=>'1']) !!}
                 </div>
-                <div class="col-lg-3 col-xs-3">
+                <div class="col-lg-3 col-xs-3 no-gutter">
                     {!! Form::input('number', 'service-price-'.$service->id, $service->pivot->price, ['class'=>'form-control',
                                                                                  'max'=>'9999999999',
                                                                                  'min'=>'0',
@@ -75,7 +75,7 @@
     <div class="group-labels" id="label-persons" style="margin-bottom:5px;">
         @foreach ($reservation->booking as $person)
             <div id="persons-{!! $person->id !!}" class="label label-info" style="margin:5px;">
-                {!! $person->fullname() !!}  [{!! $person->dni !!}]<i name="fa-kill" class="fa fa-times-circle"></i>
+                {!! $person->fullname() !!} [{!! $person->dni !!}]<i name="fa-kill" class="fa fa-times-circle"></i>
             </div>
         @endforeach
     </div>
@@ -85,32 +85,70 @@
 
 <div class="form-group">
     <div class="row">
-        <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-6 col-xs-6 no-gutter-right">
             {!! Form::label('total_price','Precio Total:') !!}
         </div>
-        <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-6 col-xs-6 no-gutter-left">
             {!! Form::label('suggested_price','Precio Sugerido') !!}
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-6 col-xs-6 no-gutter-right">
             {!! Form::input('number', 'total_price', null, ['class'=>'form-control',
                                                             'max'=>'9999999999',
                                                             'min'=>'0',
                                                             'step'=>'0.01']) !!}
         </div>
-        <div class="col-lg-6 col-xs-6">
-            {!! Form::text('suggested_price', '', ['class'=>'form-control', 'readonly'=>'True']) !!}
+        <div class="col-lg-6 col-xs-6 no-gutter-left">
+            {!! Form::text('suggested_price', '0', ['class'=>'form-control', 'readonly'=>'True']) !!}
         </div>
     </div>
 </div>
 
 <div class="form-group">
+    <div class="row">
+        <div class="col-lg-6 col-xs-6 no-gutter-right">
+            {!! Form::label('sign','Seña:') !!}
+        </div>
+        <div class="col-lg-6 col-xs-6 no-gutter-left">
+            {!! Form::label('suggested_sign','Seña Sugerida') !!}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-xs-6 no-gutter-right">
+            {!! Form::input('number', 'sign', null, ['class'=>'form-control',
+                                                     'max'=>'9999999999',
+                                                     'min'=>'0',
+                                                     'step'=>'0.01']) !!}
+        </div>
+        <div class="col-lg-6 col-xs-6">
+            <div class="form-horizontal">
+                <div class="row">
+                        <div class="col-lg-5 col-xs-5 no-gutter-right">
+                            <div class="input-group no-gutter">
+                                {!! Form::input('number', 'percentage_sign', '10', ['class'=>'form-control',
+                                                                                    'max'=>'9999999999',
+                                                                                    'min'=>'0',
+                                                                                    'step'=>'0.01',
+                                                                                    'aria-describedby'=>'basic-addon']) !!}
+                                <span class="input-group-addon"><strong>%</strong></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-xs-7 no-gutter-left">
+                            {!! Form::text('suggested_sign', '0', ['class'=>'form-control', 'readonly'=>'True']) !!}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{--
+
     {!! Form::label('sign', 'Seña:') !!}
     {!! Form::input('number', 'sign', null, ['class'=>'form-control',
                                              'max'=>'9999999999',
                                              'min'=>'0',
                                              'step'=>'0.01']) !!}
+--}}
 </div>
 <div class="form-group">
     {!! Form::label('due', 'Deuda:') !!}

@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-    function getServicesPrice(){
+    function getServicesPrice() {
         $total = 0;
         $('div#label-services div[id^=services-]').each(function(k, v) {
             $n = parseInt($(v).attr('id').match(/[0-9]+/g));
@@ -11,8 +11,7 @@
         return $total
     }
 
-    function suggestedPrice(){
-        $suggested_price = getServicesPrice();
+    function suggestedPrice() {
         $.ajax({
             url: '{!! URL::route("search-room-price-by-ids") !!}',
             type: 'GET',
@@ -22,11 +21,17 @@
             },
         }).done(
             function(data) {
+                $suggested_price = getServicesPrice();
                 $.each(data, function(index, value) {
                     $suggested_price += parseFloat(value.value);
                 });
-                $suggested_price = $suggested_price.toFixed(2).replace('.', ',');
+
+                $percentage_sign = parseFloat($('input[name=percentage_sign]').val().replace(',', '.'));
+                $suggested_sign = (($percentage_sign * $suggested_price) / 100).toFixed(2).replace('.', ',');
+                $suggested_price = ($suggested_price).toFixed(2).replace('.', ',');
+
                 $('input[name=suggested_price]').attr('value', $suggested_price);
+                $('input[name=suggested_sign]').attr('value', $suggested_sign);
             }
         );
     }
@@ -41,6 +46,9 @@
         suggestedPrice();
     }
 
+    $(document).on('change', 'input[name=percentage_sign]', function() {
+        suggestedPrice();
+    });
     $(document).on('change', 'input[name^=service-quantity-]', function() {
         suggestedPrice();
     });
@@ -105,10 +113,10 @@
                                                 "<div class='col-lg-5 col-xs-5'>"+
                                                     "<input class='form-control' readonly='True' name='service-name-"+ui.item.id+"' type='text' value='"+ui.item.value+"'>"+
                                                 "</div>"+
-                                                "<div class='col-lg-3 col-xs-3'>"+
+                                                "<div class='col-lg-3 col-xs-3 no-gutter'>"+
                                                     "<input class='form-control' min='1' name='service-quantity-"+ui.item.id+"' type='number' value='1'>"+
                                                 "</div>"+
-                                                "<div class='col-lg-3 col-xs-3'>"+
+                                                "<div class='col-lg-3 col-xs-3 no-gutter'>"+
                                                     "<input class='form-control' max=9999999999' min='0' step='0.01' name='service-price-"+ui.item.id+"' type='number' value='"+ui.item.price+"'>"+
                                                 "</div>"+
                                                 "<div class='col-lg-1 col-xs-1'>"+

@@ -1,0 +1,12 @@
+.no-gutter{
+    padding-right:0!important;
+    padding-left:0!important;
+}
+
+.no-gutter-right{
+    padding-right:0!important;
+}
+.no-gutter-left{
+    padding-left:0!important;
+}
+

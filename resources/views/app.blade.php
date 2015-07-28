@@ -34,6 +34,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link href="{{ asset('/css/feremma.min.css') }}" rel="stylesheet" type="text/css" />
         @yield('extra_css')
     </head>
     <body class="skin-blue">
