@@ -5,8 +5,6 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use FerEmma\UserACL;
-use \Illuminate\Support\Facades\DB;
 use Auth;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
@@ -67,56 +65,47 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $permission = Permission::where('slug', '=', $perm)->first();
         if(!$permission)
             return false;
-        //if(!$permission) {
-            //flash()->error('Ocurrio un error inesperado con el permiso: '.$perm);
-            //return false;
-        //}
         return in_array($permission->id, $this->role->permissions()->getRelatedIds());
     }
 
     public function canConsidering($conditions)
     {
-        $or=false; $and=true; $competent=false;
+        $or = false;
+        $and = true;
+        $competent = false;
+
         if (count($conditions['or'])>0) {
-            foreach ($conditions['or'] as $condition => $value) {       
-                if(Auth::user()->can($value))
-                {
-                    $or=true;
+            foreach ($conditions['or'] as $condition => $value) {
+                if(Auth::user()->can($value)) {
+                    $or = true;
                     break;
-                }   
+                }
             }
+        } else {
+            $or = true;
         }
-        else
-        {
-            $or=true;
-        }
+
         if (count($conditions['and'])>0) {
-            foreach ($conditions['and'] as $condition => $value) 
-            {
-                if(!Auth::user()->can($value))
-                {
+            foreach ($conditions['and'] as $condition => $value) {
+                if(!Auth::user()->can($value)) {
                     $and=false;
                     break;
-                }   
+                }
             }
+        } else {
+            $and = true;
         }
-        else
-        {
-            $and=true;
-        }
-        if(count($conditions['rol'])>0)
-        {   
-            foreach ($conditions['rol'] as $condition => $value) 
-            {
-                if(Auth::user()->role->name==$value)
-                {
-                    $competent=true;
+
+        if(count($conditions['rol'])>0) {
+            foreach ($conditions['rol'] as $condition => $value) {
+                if(Auth::user()->role->name==$value) {
+                    $competent = true;
                     break;
-                }   
+                }
             }
         }
         else
-            $competent=true;
+            $competent = true;
 
         if(($and and $or) and $competent)
             return true;

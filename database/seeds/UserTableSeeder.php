@@ -49,7 +49,7 @@ class UserTableSeeder extends Seeder {
             'phone'    => '12345678910',
             'role_id'  => '3',//Recepcion y Conserjeria
             'birthday' => '1990/01/01',
-            'sex'      => 'mf',
+            'sex'      => 'f',
             'password' => '1234'
         ));
         User::create(array(//4
