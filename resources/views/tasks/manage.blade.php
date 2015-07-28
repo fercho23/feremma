@@ -9,10 +9,8 @@
                             <div class="btn-group">
                                 <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
                                 <ul class="dropdown-menu pull-right" role="menu">
-                                    <li><a href="#">Add new event</a></li>
-                                    <li><a href="#">Clear events</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">View calendar</a></li>
+                                    <li><a href="{{URL('tasks/create')}}">Nueva...</a></li>
+                                    <li><a href="{{URL('tasks')}}">Listado completo</a></li>                                    
                                 </ul>
                             </div>
                             <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -28,20 +26,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <!-- Progress bars -->
+                                <?php $tasks=Auth::user()->; ?>
+                                @if (sizeof($tasks)>0)
                                 <div class="clearfix">
                                     <span class="pull-left">Task #1</span>
                                     <small class="pull-right">90%</small>
                                 </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                                </div>
-                                <div class="clearfix">
-                                    <span class="pull-left">Task #2</span>
-                                    <small class="pull-right">70%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                </div>
+                                
                             </div><!-- /.col -->
 
                             <div class="col-sm-6">

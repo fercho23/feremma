@@ -101,16 +101,4 @@ class UsersController extends Controller {
         flash()->success('El Usuario fue borrado con exito.');
         return redirect('users');
     }
-
-    /**
-     * Count how many users are registered.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    //public static function count($id)
-    //{
-        //return $user = User::all()->count();
-    //}
-
 }

@@ -30,4 +30,16 @@ class Task extends Model {
         $this->attendant_id=Auth::user()->id;
         $this->update();
     }
+
+    public function forToday()
+    {        
+        return Task::where('role_id', '=', $this->role->id)
+                       ->where('state', '=', $state)
+                       ->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')))
+                       ->get();
+        return Task::where('role_id', '=', $this->role->id)
+                   ->where('state', '=', $state)
+                   ->get();
+    
+    }
 }

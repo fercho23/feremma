@@ -17,8 +17,7 @@ Route::get('home', 'HomeController@index');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('login', 'AuthController@login');
-    Route::get('logout', 'AuthController@logout');
-    //Route::get('users/count', 'UsersController@count');
+    Route::get('logout', 'AuthController@logout');    
     Route::get('tasks/start/{id}', 'TasksController@start');
     Route::get('tasks/end/{id}', 'TasksController@end');
 

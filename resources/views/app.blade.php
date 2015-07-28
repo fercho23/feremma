@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE 2 | Dashboard</title>
+        <title>AdminHOTEL | Gestión Hotelera</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- Bootstrap 3.3.2 -->
         <link href="{{ asset('/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -46,12 +46,14 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                    Dashboard
-                    <small>Control panel</small>
+                    AdminHOTEL
+                    <small>Gestión Hotelera</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        <li><a href="#"><i class="fa fa-dashboard"></i> AdminHotel</a></li>
+                        <li class="active">{!! Auth::user()->role->name !!}</li>
+                        <li class="active">{!!  explode("Controller@",class_basename(\Route::currentRouteAction()),2)[0] !!}</li>
+                        <li class="active">{!!  explode("Controller@",class_basename(\Route::currentRouteAction()),2)[1] !!}</li>
                     </ol>
                 </section>
                 <!-- Main content -->
@@ -69,7 +71,7 @@
                     </b>
                     2.0
                 </div>
-                Tesis Licenciatura en Sistemas USAL 2015<strong> <a href="#">Fernando Ariel Mateos</a> - <a href="#">Gustavo Emmanuel Sanchez Figueroa</a></strong>.
+                Tesis Licenciatura en Sistemas USAL 2015<strong> <a href="#">Fernando Ariel Mateos</a>, <a href="#">Gustavo Emmanuel Sanchez Figueroa</a></strong>.
             </footer>
         </div><!-- ./wrapper -->
 
