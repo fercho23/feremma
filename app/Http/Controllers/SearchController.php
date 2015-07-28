@@ -8,6 +8,16 @@ use Request;
 
 class SearchController extends Controller {
 
+    public function getRoomPriceByIds() {
+        $ids = Request::input('ids', '');
+        $ids = ($ids ? array_map('intval', explode(',', $ids)) : []);
+        $results = array();
+        $queries = Room::whereIn('id', $ids)->get();
+        foreach ($queries as $query)
+            $results[] = ['value' => $query->price];
+        return response()->json($results);
+    }
+
     public function getUserByName() {
         $term = Request::input('term', '');
         $results = array();
