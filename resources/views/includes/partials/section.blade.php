@@ -9,7 +9,7 @@
                 @if(Auth::user()->can($model.'/'.$v))
                     <li>
                         <a href="{!! URL::to($v != 'index' ? '/'.$model.'/'.$v : '/'.$model) !!}">
-                            <i class="fa fa-circle-o"></i> {!! $names[$k] !!}
+                            <i class="fa fa-{!! (isset($icons[$k]) && $icons[$k]? $icons[$k] : 'circle-o') !!}"></i> {!! $names[$k] !!}
                         </a>
                     </li>
                 @endif
