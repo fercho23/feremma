@@ -37,13 +37,41 @@
 
             @if(Auth::check())
                 <li class="header">MENÚ</li>
-                @include('includes.partials.section', ['model'=>'users', 'title'=>'Usuarios'])
-                @include('includes.partials.section', ['model'=>'roles', 'title'=>'Cargos'])
-                @include('includes.partials.section', ['model'=>'reservations', 'title'=>'Reservas'])
-                @include('includes.partials.section', ['model'=>'rooms', 'title'=>'Habitaciones'])
-                @include('includes.partials.section', ['model'=>'services', 'title'=>'Servicios'])
-                @include('includes.partials.section', ['model'=>'tasks', 'title'=>'Tareas'])
-                @include('includes.partials.section', ['model'=>'permissions', 'title'=>'Permisos'])
+                @include('includes.partials.section', ['model'=>'users',
+                                                       'title'=>'Usuarios',
+                                                       'icon'=>'users',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo']])
+                @include('includes.partials.section', ['model'=>'roles',
+                                                       'title'=>'Cargos',
+                                                       'icon'=>'shield',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo']])
+                @include('includes.partials.section', ['model'=>'reservations',
+                                                       'title'=>'Reservas',
+                                                       'icon'=>'suitcase',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo']])
+                @include('includes.partials.section', ['model'=>'rooms',
+                                                       'title'=>'Habitaciones',
+                                                       'icon'=>'bed',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo']])
+                @include('includes.partials.section', ['model'=>'services',
+                                                       'title'=>'Servicios',
+                                                       'icon'=>'rocket',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo']])
+                @include('includes.partials.section', ['model'=>'tasks',
+                                                       'title'=>'Tareas',
+                                                       'icon'=>'tags',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo']])
+                @include('includes.partials.section', ['model'=>'permissions',
+                                                       'title'=>'Permisos',
+                                                       'icon'=>'hand-paper-o',
+                                                       'actions'=>['index'],
+                                                       'names'=>['Ver']])
             @endif
 
             <li class="header">SOPORTE</li>

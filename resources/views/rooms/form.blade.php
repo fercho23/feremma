@@ -40,14 +40,14 @@
 <div class="form-group">
     {!! Form::label('location','Ubicación:') !!}
     <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+        <span class="input-group-addon"><i class="fa fa-crosshairs"></i></span>
         {!! Form::text('location', null, ['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! Form::label('plan','Plano:')!!}
     <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-crosshairs"></i></span>
+        <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
         {!! Form::text('plan', null, ['class'=>'form-control']) !!}
     </div>
 </div>
