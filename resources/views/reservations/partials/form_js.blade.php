@@ -12,6 +12,7 @@
     }
 
     function suggestedPrice() {
+
         $.ajax({
             url: '{!! URL::route("search-room-price-by-ids") !!}',
             type: 'GET',

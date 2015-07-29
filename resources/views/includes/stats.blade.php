@@ -32,7 +32,9 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>{!! count(FerEmma\Reservation::where('check_in', '=', date("Y-m-d", strtotime("today")))->get()) !!}<sup style="font-size: 20px"></sup></h3>
+                        <h3>
+                        {!! FerEmma\Reservation::todaysChekIns() !!}
+                        <sup style="font-size: 20px"></sup></h3>
                         <p>Check-ins para hoy</p>
                     </div>
                     <div class="icon">
@@ -46,7 +48,7 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>{!! count(FerEmma\Reservation::where('check_out', '=', date("Y-m-d", strtotime("today")))->get()) !!}</h3>
+                        <h3>{!! FerEmma\Reservation::todaysChekIns() !!}</h3>
                         <p>Check-outs para hoy</p>
                     </div>
                     <div class="icon">

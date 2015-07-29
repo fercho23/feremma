@@ -1,3 +1,3 @@
 @if(Auth::user()->canConsidering($conditions))
-	@include($include, $parameters)
+    @include($include, $parameters)
 @endif
