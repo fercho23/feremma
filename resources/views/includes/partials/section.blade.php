@@ -1,7 +1,7 @@
 @if(Auth::user()->canAnyActionsByModel($model, $actions))
     <li class="treeview">
         <a href="#">
-            @if(isset($icon))
+            @if(isset($icon) && $icon)
                 @if(is_array($icon))
                     @foreach ($icon as $i)
                         <i class="fa fa-{!! $i !!}"></i>
@@ -20,7 +20,7 @@
                 @if(Auth::user()->can($model.'/'.$v))
                     <li>
                         <a href="{!! URL::to($v != 'index' ? '/'.$model.'/'.$v : '/'.$model) !!}">
-                        @if(isset($icons[$k]))
+                        @if(isset($icons[$k]) && $icons[$k])
                             @if(is_array($icons[$k]))
                                 @foreach ($icons[$k] as $i)
                                     <i class="fa fa-{!! $i !!}"></i>

@@ -58,7 +58,6 @@ class RolesController extends Controller {
     public function edit($id)
     {
         $role = Role::findOrFail($id);
-        flash()->success('El Cargo fue editado con exito.');
         return view('roles.edit', compact('role'));
     }
 
@@ -72,6 +71,7 @@ class RolesController extends Controller {
     {
         $role = Role::findOrFail($id);
         $role->update($request->all());
+        flash()->success('El Cargo fue editado con exito.');
         return redirect('roles');
     }
 
