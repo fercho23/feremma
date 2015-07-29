@@ -16,20 +16,6 @@
 
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
-                        <p>Bounce Rate</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div><!-- ./col -->
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
                         <h3>{!! Auth::user()->count() !!}</h3>
@@ -44,15 +30,29 @@
 
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>65</h3>
-                        <p>Unique Visitors</p>
+                        <h3>{!! count(FerEmma\Reservation::where('check_in', '=', date("Y-m-d", strtotime("today")))->get()) !!}<sup style="font-size: 20px"></sup></h3>
+                        <p>Check-ins para hoy</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="fa fa-arrow-left"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ URL('reservations') }}" class="small-box-footer">Ver mas... <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div><!-- ./col -->
+
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>{!! count(FerEmma\Reservation::where('check_out', '=', date("Y-m-d", strtotime("today")))->get()) !!}</h3>
+                        <p>Check-outs para hoy</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-arrow-right"></i>
+                    </div>
+                    <a href="{{ URL('reservations') }}" class="small-box-footer">Ver mas... <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
         </div><!-- /.row -->

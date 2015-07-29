@@ -31,4 +31,15 @@ class Reservation extends Model {
         return $this->belongsToMany('FerEmma\User', 'reservation_user');
     }
 
+    static  function todaysChekIns()
+    {        
+        return Reservation::where('check_in', '=', date("Y-m-d", strtotime("today")))->get();
+    }
+
+    static function todaysChekOuts()
+    {        
+        //dd(date("Y-m-d H:i:s", strtotime("now")));
+        return count(Reservation::where('check_out', '=', date("Y-m-d", strtotime("today")))->get());
+    }
+
 }
