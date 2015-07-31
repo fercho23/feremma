@@ -1,10 +1,21 @@
 <?php namespace FerEmma\Http\Controllers;
 
+/**
+ * This is the file description
+ *
+ * @author Christian Weiske <cweiske@cweiske.de>
+ */
+
+
 use FerEmma\Task;
 use FerEmma\Role;
 use FerEmma\Http\Requests\TaskRequest;
 
 use Auth;
+
+/**
+ *  A test class. A more elaborate class description.
+ */
 
 class TasksController extends Controller {
 
@@ -92,7 +103,7 @@ class TasksController extends Controller {
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @brief Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return Response

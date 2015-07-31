@@ -1,4 +1,5 @@
 /vendor
+/doxy
 /node_modules
 .env
 feremma.nja
