@@ -14,7 +14,7 @@ class TaskRequest extends Request {
     }
 
     /// Determina las reglas para la Solicitud (Request) de una Tarea (Task).
-    /**
+    /*!
      * @return Array
      */
     public function rules() {
@@ -26,8 +26,8 @@ class TaskRequest extends Request {
         ];
     }
 
-    /// Mensajes para cada reglas de la Solicitud (Request) de una Tarea (Task).
-    /**
+    /// Mensajes para cada regla de la Solicitud (Request) de una Tarea (Task).
+    /*!
      * @return Array
      */
     public function messages() {

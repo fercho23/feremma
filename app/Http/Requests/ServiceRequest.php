@@ -14,7 +14,7 @@ class ServiceRequest extends Request {
     }
 
     /// Determina las reglas para la Solicitud (Request) de un Servicio (Service).
-    /**
+    /*!
      * @return Array
      */
     public function rules() {
@@ -25,8 +25,8 @@ class ServiceRequest extends Request {
         ];
     }
 
-    /// Mensajes para cada reglas de la Solicitud (Request) de un Servicio (Service).
-    /**
+    /// Mensajes para cada regla de la Solicitud (Request) de un Servicio (Service).
+    /*!
      * @return Array
      */
     public function messages() {

@@ -1,5 +1,6 @@
 <?php namespace FerEmma\Http\Controllers;
 
+//! Controlador de Usuarios No Logueados (Controller)
 class WelcomeController extends Controller {
 
     /*
@@ -13,23 +14,19 @@ class WelcomeController extends Controller {
     |
     */
 
+    /// Contructor de la clase.
     /**
-     * Create a new controller instance.
-     *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
     }
 
+    /// Muestra la Vista (View) al Usuario (User).
     /**
-     * Show the application welcome screen to the user.
-     *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         return view('welcome');
     }
 }

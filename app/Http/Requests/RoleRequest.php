@@ -14,7 +14,7 @@ class RoleRequest extends Request {
     }
 
     /// Reglas para la Solicitud (Request) de un Cargo (Role).
-    /**
+    /*!
      * @return Array
      */
     public function rules()
@@ -25,8 +25,8 @@ class RoleRequest extends Request {
         ];
     }
 
-    /// Mensajes para cada reglas de la Solicitud (Request) de un Cargo (Role).
-    /**
+    /// Mensajes para cada regla de la Solicitud (Request) de un Cargo (Role).
+    /*!
      * @return Array
      */
     public function messages()

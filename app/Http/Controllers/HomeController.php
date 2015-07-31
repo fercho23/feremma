@@ -1,7 +1,6 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use Auth;
-
+//! Controlador de Usuarios Logueados (Controller)
 class HomeController extends Controller {
 
     /*
@@ -15,25 +14,20 @@ class HomeController extends Controller {
     |
     */
 
+    /// Contructor de la clase.
     /**
-     * Create a new controller instance.
-     *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
+    /// Muestra la Vista (View) al Usuario (User).
     /**
-     * Show the application dashboard to the user.
-     *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         return view('home');
     }
-
 
 }

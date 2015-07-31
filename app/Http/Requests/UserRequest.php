@@ -14,7 +14,7 @@ class UserRequest extends Request {
     }
 
     /// Determina las reglas para la Solicitud (Request) de un Usuario (User).
-    /**
+    /*!
      * @return Array
      */
     public function rules() {
@@ -33,8 +33,8 @@ class UserRequest extends Request {
         ];
     }
 
-    /// Mensajes para cada reglas de la Solicitud (Request) de un Usuario (User).
-    /**
+    /// Mensajes para cada regla de la Solicitud (Request) de un Usuario (User).
+    /*!
      * @return Array
      */
     public function messages() {

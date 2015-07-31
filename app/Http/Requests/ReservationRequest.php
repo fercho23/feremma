@@ -14,7 +14,7 @@ class ReservationRequest extends Request {
     }
 
     /// Reglas para la Solicitud (Request) de una Reserva (Reservation).
-    /**
+    /*!
      * @return Array
      */
     public function rules() {
@@ -30,8 +30,8 @@ class ReservationRequest extends Request {
         ];
     }
 
-    /// Mensajes para cada reglas de la Solicitud (Request) de una Reserva (Reservation).
-    /**
+    /// Mensajes para cada regla de la Solicitud (Request) de una Reserva (Reservation).
+    /*!
      * @return Array
      */
     public function messages() {
@@ -54,6 +54,10 @@ class ReservationRequest extends Request {
         ];
     }
 
+    /// Realiza el control de las reglas de negocio.
+    /*!
+     * @return $validator
+     */
     public function getValidatorInstance() {
         $validator = parent::getValidatorInstance();
 

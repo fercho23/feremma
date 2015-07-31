@@ -14,7 +14,7 @@ class RoomRequest extends Request {
     }
 
     /// Reglas para la Solicitud (Request) de una Habitación (Room).
-    /**
+    /*!
      * @return Array
      */
     public function rules() {
@@ -29,8 +29,8 @@ class RoomRequest extends Request {
         ];
     }
 
-    /// Mensajes para cada reglas de la Solicitud (Request) de una Habitación (Room).
-    /**
+    /// Mensajes para cada regla de la Solicitud (Request) de una Habitación (Room).
+    /*!
      * @return Array
      */
     public function messages() {
