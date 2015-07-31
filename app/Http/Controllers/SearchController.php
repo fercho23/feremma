@@ -6,8 +6,15 @@ use FerEmma\Service;
 
 use Request;
 
+//! Controlador de Busquedas
 class SearchController extends Controller {
 
+    /*! \brief Obtiene Habitaciones (Room).
+     *
+     * Por medio de Request obtiene las $ids de las Habitaciones que posteriormente busca.
+     *
+     * @return Respose Json
+     */
     public function getRoomPriceByIds() {
         $ids = Request::input('ids', '');
         $ids = ($ids ? array_map('intval', explode(',', $ids)) : []);
@@ -18,6 +25,13 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /*! \brief Obtiene Usuarios (User).
+     *
+     * Por medio de Request obtiene los caracteres que usa para buscar al Usuario
+     * por el nombre, apellido o dni y devuelve las primeras 10 coincidencias.
+     *
+     * @return Respose Json
+     */
     public function getUserByName() {
         $term = Request::input('term', '');
         $results = array();
@@ -33,6 +47,14 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /*! \brief Obtiene Usuarios (User) restantes.
+     *
+     * Por medio de Request obtiene los $ids de los Usuarios que no debe retornar,
+     * los caracteres que usa para buscar el Usuario por nombre, apellido o dni
+     * y devuelve las primeras 10 coincidencias.
+     *
+     * @return Respose Json
+     */
     public function getRemainingUsersByName() {
         $term = Request::input('term', '');
         $ids = Request::input('ids', '');
@@ -53,6 +75,14 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /*! \brief Obtiene Habitaciones (Room) restantes.
+     *
+     * Por medio de Request obtiene los $ids de las Habitaciones que no debe retornar,
+     * los caracteres que usa para buscar el Habitación por nombre
+     * y devuelve las primeras 10 coincidencias.
+     *
+     * @return Respose Json
+     */
     public function getRemainingRoomsByName() {
         $term = Request::input('term', '');
         $ids = Request::input('ids', '');
@@ -68,6 +98,14 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /*! \brief Obtiene Servicios (Service) restantes.
+     *
+     * Por medio de Request obtiene los $ids de los Servicios que no debe retornar,
+     * los caracteres que usa para buscar el Servicio por nombre
+     * y devuelve las primeras 10 coincidencias.
+     *
+     * @return Respose Json
+     */
     public function getRemainingServicesByName() {
         $term = Request::input('term', '');
         $ids = Request::input('ids', '');

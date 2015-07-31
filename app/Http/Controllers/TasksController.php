@@ -44,8 +44,8 @@ class TasksController extends Controller {
 
     /*! \brief Fomulario de nueva Tarea (Task).
      *
-     * Muestra el formulario para ingresar una nueva Tarea esta función se
-     * llama con el método GET.
+     * Muestra el formulario para ingresar una nueva Tarea,
+     * esta función se llama con el método GET.
      *
      * @return Vista con una Tarea (Task) vacía
      */

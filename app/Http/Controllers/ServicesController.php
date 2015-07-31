@@ -17,8 +17,8 @@ class ServicesController extends Controller {
 
     /*! \brief Fomulario de nuevo Servicio (Service).
      *
-     * Muestra el formulario para ingresar un nuevo Servicio esta función se
-     * llama con el método GET.
+     * Muestra el formulario para ingresar un nuevo Servicio,
+     * esta función se llama con el método GET.
      *
      * @return Vista con un Servicio (Service) vacío
      */

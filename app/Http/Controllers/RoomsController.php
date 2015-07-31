@@ -17,8 +17,8 @@ class RoomsController extends Controller {
 
     /*! \brief Fomulario de nueva Habitación (Reservation).
      *
-     * Muestra el formulario para ingresar una nueva Habitación esta función se
-     * llama con el método GET.
+     * Muestra el formulario para ingresar una nueva Habitación,
+     * esta función se llama con el método GET.
      *
      * @return Vista con una Reserva (Reservation) vacía
      */

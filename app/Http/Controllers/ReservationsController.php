@@ -18,8 +18,8 @@ class ReservationsController extends Controller {
 
     /*! \brief Fomulario de nueva Reserva (Reservation).
      *
-     * Muestra el formulario para ingresar una nueva Reserva esta función se
-     * llama con el método GET.
+     * Muestra el formulario para ingresar una nueva Reserva,
+     * esta función se llama con el método GET.
      *
      * @return Vista con una Reserva (Reservation) vacía
      */

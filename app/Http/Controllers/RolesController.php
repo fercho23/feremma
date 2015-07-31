@@ -17,8 +17,8 @@ class RolesController extends Controller {
 
     /*! \brief Fomulario de nuevo Cargo (Role).
      *
-     * Muestra el formulario para ingresar un nuevo Cargo esta función se
-     * llama con el método GET.
+     * Muestra el formulario para ingresar un nuevo Cargo,
+     * esta función se llama con el método GET.
      *
      * @return Vista con un Cargo (Role) vacío
      */
