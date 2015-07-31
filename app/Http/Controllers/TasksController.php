@@ -1,28 +1,17 @@
 <?php namespace FerEmma\Http\Controllers;
 
-/**
- * This is the file description
- *
- * @author Christian Weiske <cweiske@cweiske.de>
- */
-
-
 use FerEmma\Task;
 use FerEmma\Role;
 use FerEmma\Http\Requests\TaskRequest;
 
 use Auth;
 
-/**
- *  A test class. A more elaborate class description.
- */
-
+//! Controlador de Tareas (Task)
 class TasksController extends Controller {
 
-    /**
-     * Display a listing of the resource.
+    /*! \brief Lista de Tareas (Task).
      *
-     * @return Response
+     * @return Vista con Tareas (Task)
      */
     public function index()
     {
@@ -52,13 +41,15 @@ class TasksController extends Controller {
         return view('home');
     }
 
-    /**
-     * Show the form for creating a new resource.
+
+    /*! \brief Fomulario de nueva Tarea (Task).
      *
-     * @return Response
+     * Muestra el formulario para ingresar una nueva Tarea esta función se
+     * llama con el método GET.
+     *
+     * @return Vista con una Tarea (Task) vacía
      */
-    public function create()
-    {
+    public function create() {
         $datas = Role::all();
         $roles = array();
 
@@ -69,47 +60,46 @@ class TasksController extends Controller {
         return view('tasks.create', ['roles'=>$roles]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function createMine()
     {
         return view('tasks.create-mine');
     }
 
-    /**
-     * Store a newly created resource in storage.
+    /*! \brief Crea una Tarea (Task).
      *
-     * @return Response
+     * Realiza el proceso de crear una nueva Tarea,
+     * esta función se llama con el método POST.
+     *
+     * @param TaskRequest $request
+     * @return Vista "index" con el mensaje Flash pertinente
      */
-    public function store(TaskRequest $request)
-    {
+    public function store(TaskRequest $request) {
         Task::create($request->all());
         flash()->success('La Tarea fue ingresada con exito.');
         return redirect('home');
     }
 
-    /**
-     * Display the specified resource.
+    /*! \brief Muestra una Tarea (Task) específica.
      *
-     * @param  int  $id
+     * Muestra específicamente una Tarea que es buscada por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
-    /**
-     * @brief Show the form for editing the specified resource.
+    /*! \brief Fomulario de edición de una Tarea (Task) específica.
      *
-     * @param  int  $id
+     * Muestra el formulario para editar una Tarea que es buscada por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $datas = Role::all();
         $roles = array();
         foreach ($datas as $data) {
@@ -119,28 +109,31 @@ class TasksController extends Controller {
         return view('tasks.edit', compact('task', 'roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
+    /*! \brief Edita una Tarea (Task) específica.
      *
-     * @param  int  $id
+     * Realiza el proceso de editar una Tarea que es buscada por su $id,
+     * esta función se llama con el método PUT/PATH.
+     *
+     * @param  int $id
+     * @param  TaskRequest $request
      * @return Response
      */
-    public function update($id, TaskRequest $request)
-    {
+    public function update($id, TaskRequest $request) {
         $task = Task::findOrFail($id);
         $task->update($request->all());
         flash()->success('La Tarea fue editada con exito.');
         return redirect('tasks');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /*! \brief Elimina una Tarea (Task) específica.
      *
-     * @param  int  $id
+     * Realiza el proceso de eliminar una Tarea que es buscada por su $id,
+     * esta función se llama con el método DELETE.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $task = Task::findOrFail($id);
         $task->delete();
         flash()->success('La Tarea fue borrada con exito.');

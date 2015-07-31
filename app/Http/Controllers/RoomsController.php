@@ -3,86 +3,93 @@
 use FerEmma\Room;
 use FerEmma\Http\Requests\RoomRequest;
 
+//! Controlador de Habitaciones (Room)
 class RoomsController extends Controller {
 
-    /**
-     * Display a listing of the resource.
+    /*! \brief Lista de Habitaciones (Room).
      *
-     * @return Response
+     * @return Vista con Habitaciones (Room)
      */
-    public function index()
-    {
+    public function index() {
         $rooms = Room::all();
         return view('rooms.index', ['rooms'=>$rooms]);
     }
 
-    /**
-     * Show the form for creating a new resource.
+    /*! \brief Fomulario de nueva Habitación (Reservation).
      *
-     * @return Response
+     * Muestra el formulario para ingresar una nueva Habitación esta función se
+     * llama con el método GET.
+     *
+     * @return Vista con una Reserva (Reservation) vacía
      */
-    public function create()
-    {
+    public function create() {
         return view('rooms.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
+    /*! \brief Crea una Habitación (Room).
      *
-     * @return Response
+     * Realiza el proceso de crear una nueva Habitación,
+     * esta función se llama con el método POST.
+     *
+     * @param RoomRequest $request
+     * @return Vista "index" con el mensaje Flash pertinente
      */
-    public function store(RoomRequest $request)
-    {
+    public function store(RoomRequest $request) {
         Room::create($request->all());
         flash()->success('La Habitación fue ingresada con exito.');
         return redirect('rooms');
     }
 
-    /**
-     * Display the specified resource.
+    /*! \brief Muestra una Habitación (Room) específica.
      *
-     * @param  int  $id
+     * Muestra específicamente una Habitación que es buscada por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
+    /*! \brief Fomulario de edición de una Habitación (Room) específica.
      *
-     * @param  int  $id
+     * Muestra el formulario para editar una Habitación que es buscada por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $room = Room::findOrFail($id);
         return view('rooms.edit', compact('room'));
     }
 
-    /**
-     * Update the specified resource in storage.
+    /*! \brief Edita una Habitación (Room) específica.
      *
-     * @param  int  $id
+     * Realiza el proceso de editar una Habitación que es buscada por su $id,
+     * esta función se llama con el método PUT/PATH.
+     *
+     * @param  int $id
+     * @param  RoomRequest $request
      * @return Response
      */
-    public function update($id, RoomRequest $request)
-    {
+    public function update($id, RoomRequest $request) {
         $room = Room::findOrFail($id);
         $room->update($request->all());
         flash()->success('La Habitación fue editada con exito.');
         return redirect('rooms');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /*! \brief Elimina una Habitación (Room) específica.
      *
-     * @param  int  $id
+     * Realiza el proceso de eliminar una Habitación que es buscada por su $id,
+     * esta función se llama con el método DELETE.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $room = Room::findOrFail($id);
         $room->delete();
         flash()->success('La Habitación fue borrada con exito.');

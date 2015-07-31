@@ -30,7 +30,7 @@ class ReservationsController extends Controller {
 
     /*! \brief Crea una Reserva (Reservation).
      *
-     * Realiza el proceso de crear una nueva reserva,
+     * Realiza el proceso de crear una nueva Reserva,
      * esta función se llama con el método POST.
      *
      * @param ReservationRequest $request
