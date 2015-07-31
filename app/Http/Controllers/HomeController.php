@@ -1,5 +1,5 @@
 <?php namespace FerEmma\Http\Controllers;
-use FerEmma\User;
+
 use Auth;
 
 class HomeController extends Controller {

@@ -7,19 +7,16 @@ use Illuminate\HttpResponse;
 
 class CheckPermission implements Middleware {
 
-    /**
-     * Handle an incoming request.
+    /*! \brief Maneja una petición.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * Maneja una petición.
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
         if($this->userHasAccessTo($request)) {
-
             view()->share('currentUser', $request->user());
-
             return $next($request);
         }
         return redirect('home');

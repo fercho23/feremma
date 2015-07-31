@@ -4,37 +4,39 @@ use FerEmma\User;
 use FerEmma\Reservation;
 use FerEmma\Http\Requests\ReservationRequest;
 
+//! Controlador de Reservas (Reservation)
 class ReservationsController extends Controller {
 
-    /**
-     * Display a listing of the resource.
+    /*! \brief Lista de Reservas (Reservation).
      *
-     * @return Response
+     * @return Vista con Reservas (Reservation)
      */
-    public function index()
-    {
+    public function index() {
         $reservations = Reservation::all();
         return view('reservations.index', ['reservations'=>$reservations]);
     }
 
-    /**
-     * Show the form for creating a new resource.
+    /*! \brief Fomulario de nueva Reserva (Reservation).
      *
-     * @return Response
+     * Muestra el formulario para ingresar una nueva reserva esta función se
+     * llama con el método GET.
+     *
+     * @return Vista con una Reserva (Reservation) vacía
      */
-    public function create()
-    {
+    public function create() {
         $reservation = new Reservation;
         return view('reservations.create', ['reservation'=>$reservation]);
     }
 
-    /**
-     * Store a newly created resource in storage.
+    /*! \brief Crea una Reserva (Reservation).
      *
-     * @return Response
+     * Realiza el proceso de crear una nueva reserva,
+     * esta función se llama con el método POST.
+     *
+     * @param ReservationRequest $request
+     * @return Vista "index" con el mensaje Flash pertinente
      */
-    public function store(ReservationRequest $request)
-    {
+    public function store(ReservationRequest $request) {
         $reservation = Reservation::create($request->all());
 
         $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
@@ -61,37 +63,41 @@ class ReservationsController extends Controller {
         return redirect('reservations');
     }
 
-    /**
-     * Display the specified resource.
+    /*! \brief Muestra una Reserva (Reservation) específica.
      *
-     * @param  int  $id
+     * Muestra específicamente una Reserva que es buscada por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
+    /*! \brief Fomulario de edición de una Reserva (Reservation).
      *
-     * @param  int  $id
+     * Muestra el formulario para editar una reserva que es buscada por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $reservation = Reservation::findOrFail($id);
         return view('reservations.edit', ['reservation' => $reservation]);
     }
 
-    /**
-     * Update the specified resource in storage.
+    /*! \brief Edita una Reserva (Reservation) específica.
      *
-     * @param  int  $id
+     * Realiza el proceso de editar una reserva que es buscada por su $id,
+     * esta función se llama con el método PUT/PATH.
+     *
+     * @param  int $id
+     * @param  ReservationRequest $request
      * @return Response
      */
-    public function update($id, ReservationRequest $request)
-    {
+    public function update($id, ReservationRequest $request) {
         $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
         $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
         $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
@@ -117,14 +123,15 @@ class ReservationsController extends Controller {
         return redirect('reservations');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /*! \brief Elimina una Reserva (Reservation) específica.
      *
-     * @param  int  $id
+     * Realiza el proceso de eliminar una reserva que es buscada por su $id,
+     * esta función se llama con el método DELETE.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $reservation = Reservation::findOrFail($id);
         $reservation->rooms()->detach();
         $reservation->services()->detach();

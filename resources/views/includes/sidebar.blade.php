@@ -98,6 +98,11 @@
                     <i class="fa fa-book"></i> Documentación
                 </a>
             </li>
+            <li>
+                <a target="_blank" href="{!! URL() !!}">
+                    <i class="fa fa-file-text-o"></i> Doxygen
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
