@@ -2,25 +2,22 @@
 
 use FerEmma\Http\Requests\Request;
 
+//! Solicitud (Request) para un Usuario (User)
 class UserRequest extends Request {
 
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
+    /// Determina si un Usuario (User) esta autorizada para realizar la Solicitud (Request).
+    /*!
+     * @return Booleano (Verdadero o Falso)
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
+    /// Determina las reglas para la Solicitud (Request) de un Usuario (User).
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
+     * @return Array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'username' => 'required|min:2|max:100',
             'name'     => 'required|min:2|max:150',
@@ -36,8 +33,11 @@ class UserRequest extends Request {
         ];
     }
 
-    public function messages()
-    {
+    /// Mensajes para cada reglas de la Solicitud (Request) de un Usuario (User).
+    /**
+     * @return Array
+     */
+    public function messages() {
         return [
             'username.required' => 'El Nombre de Usuario es requerido.',
             'username.min'      => 'El Nombre de Usuario debe tener como mínimo 2 caracteres.',

@@ -2,22 +2,20 @@
 
 use FerEmma\Http\Requests\Request;
 
+//! Solicitud (Request) para un Cargo (Role)
 class RoleRequest extends Request {
 
-    /**
-     * Determine if the role is authorized to make this request.
-     *
-     * @return bool
+    /// Determina si un Cargo (Role) esta autorizado para realizar la Solicitud (Request).
+    /*!
+     * @return Booleano (Verdadero o Falso)
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
+    /// Reglas para la Solicitud (Request) de un Cargo (Role).
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
+     * @return Array
      */
     public function rules()
     {
@@ -27,6 +25,10 @@ class RoleRequest extends Request {
         ];
     }
 
+    /// Mensajes para cada reglas de la Solicitud (Request) de un Cargo (Role).
+    /**
+     * @return Array
+     */
     public function messages()
     {
         return [

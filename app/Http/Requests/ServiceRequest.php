@@ -2,25 +2,22 @@
 
 use FerEmma\Http\Requests\Request;
 
+//! Solicitud (Request) para un Servicio (Service)
 class ServiceRequest extends Request {
 
-    /**
-     * Determine if the service is authorized to make this request.
-     *
-     * @return bool
+    /// Determina si un Servicio (Service) esta autorizada para realizar la Solicitud (Request).
+    /*!
+     * @return Booleano (Verdadero o Falso)
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
+    /// Determina las reglas para la Solicitud (Request) de un Servicio (Service).
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
+     * @return Array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'name'        => 'required|min:2|max:100',
             'description' => '',
@@ -28,8 +25,11 @@ class ServiceRequest extends Request {
         ];
     }
 
-    public function messages()
-    {
+    /// Mensajes para cada reglas de la Solicitud (Request) de un Servicio (Service).
+    /**
+     * @return Array
+     */
+    public function messages() {
         return [
             'name.required'  => 'El Nombre es requerido.',
             'name.min'       => 'El Nombre debe tener como mínimo 2 caracteres.',

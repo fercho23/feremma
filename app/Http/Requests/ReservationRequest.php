@@ -1,30 +1,23 @@
 <?php namespace FerEmma\Http\Requests;
 
-//use FerEmma\Http\Requests\Request;
-
-//use FerEmma\Rooms;
-
 use \Illuminate\Support\Facades\DB;
 
+//! Solicitud (Request) para una Reserva (Reservation)
 class ReservationRequest extends Request {
 
-    /**
-     * Determine if the reservation is authorized to make this request.
-     *
-     * @return bool
+    /// Determina si una Reserva (Reservation) esta autorizada para realizar la Solicitud (Request).
+    /*!
+     * @return Booleano (Verdadero o Falso)
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
+    /// Reglas para la Solicitud (Request) de una Reserva (Reservation).
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
+     * @return Array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'owner_id'    => 'required',
             'description' => '',
@@ -37,8 +30,11 @@ class ReservationRequest extends Request {
         ];
     }
 
-    public function messages()
-    {
+    /// Mensajes para cada reglas de la Solicitud (Request) de una Reserva (Reservation).
+    /**
+     * @return Array
+     */
+    public function messages() {
         return [
             'owner_id.required'     => 'El Propietario es requerido.',
 
