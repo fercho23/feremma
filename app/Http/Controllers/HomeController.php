@@ -15,7 +15,7 @@ class HomeController extends Controller {
     */
 
     /// Contructor de la clase.
-    /**
+    /*!
      * @return void
      */
     public function __construct() {
@@ -23,7 +23,7 @@ class HomeController extends Controller {
     }
 
     /// Muestra la Vista (View) al Usuario (User).
-    /**
+    /*!
      * @return Response
      */
     public function index() {

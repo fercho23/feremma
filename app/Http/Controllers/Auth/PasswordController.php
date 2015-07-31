@@ -5,6 +5,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
+//! Controlador de Password
 class PasswordController extends Controller {
 
     /*
@@ -20,15 +21,13 @@ class PasswordController extends Controller {
 
     use ResetsPasswords;
 
-    /**
-     * Create a new password controller instance.
-     *
+    /// Contructor de la clase Password.
+    /*!
      * @param  \Illuminate\Contracts\Auth\Guard  $auth
      * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
      * @return void
      */
-    public function __construct(Guard $auth, PasswordBroker $passwords)
-    {
+    public function __construct(Guard $auth, PasswordBroker $passwords) {
         $this->auth = $auth;
         $this->passwords = $passwords;
 

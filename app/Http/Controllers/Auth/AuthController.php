@@ -5,6 +5,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+//! Controlador de Autenticación (Auth)
 class AuthController extends Controller {
 
     /*
@@ -20,15 +21,13 @@ class AuthController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
-    /**
-     * Create a new authentication controller instance.
-     *
+    /// Contructor de la clase Autenticación.
+    /*!
      * @param  \Illuminate\Contracts\Auth\Guard  $auth
      * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
      * @return void
      */
-    public function __construct(Guard $auth, Registrar $registrar)
-    {
+    public function __construct(Guard $auth, Registrar $registrar) {
         $this->auth = $auth;
         $this->registrar = $registrar;
 

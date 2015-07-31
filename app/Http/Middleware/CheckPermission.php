@@ -7,8 +7,8 @@ use Illuminate\HttpResponse;
 
 class CheckPermission implements Middleware {
 
-    /*! \brief Maneja una petición.
-     *
+    /// Maneja una petición.
+    /*!
      * Maneja una petición.
      * @param Request $request
      * @param Closure $next
