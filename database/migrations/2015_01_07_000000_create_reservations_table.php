@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//! Migración para la tabla de Reservaciones (Reservation)
 class CreateReservationsTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
+    /// Corre la Migración para crear la Tabla Reservaciones (Reservation).
+    /*!
      * @return void
      */
     public function up()
@@ -27,9 +27,8 @@ class CreateReservationsTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
+    /// Reverse the migrations.
+    /*!
      * @return void
      */
     public function down()

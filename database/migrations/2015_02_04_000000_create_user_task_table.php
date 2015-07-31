@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//! Migración para la Tabla de Usuarios - Tareas (User - Task)
 class CreateUserTaskTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
+    /// Corre la Migración para crear la Tabla Usuarios - Tareas (User - Task).
+    /*!
      * @return void
      */
     public function up()
@@ -23,9 +23,8 @@ class CreateUserTaskTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
+    /// Reverse the migrations.
+    /*!
      * @return void
      */
     public function down()

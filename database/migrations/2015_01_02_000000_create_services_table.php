@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//! Migración para la Tabla de Servicios (Service)
 class CreateServicesTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
+    /// Corre la Migración para crear la Tabla Servicios (Service).
+    /*!
      * @return void
      */
     public function up()
@@ -22,9 +22,8 @@ class CreateServicesTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
+    /// Reverse the migrations.
+    /*!
      * @return void
      */
     public function down()

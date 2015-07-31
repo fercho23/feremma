@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//! Migración para la Tabla de Habitaciones - Reservas (Room - Reservation)
 class CreateRoomReservationTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
+    /// Corre la Migración para crear la Tabla Habitaciones - Reservas (Room - Reservation).
+    /*!
      * @return void
      */
     public function up()
@@ -23,9 +23,8 @@ class CreateRoomReservationTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
+    /// Reverse the migrations.
+    /*!
      * @return void
      */
     public function down()

@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//! Migración para la Tabla de Permisos -  Cargos (Permission - Role)
 class CreatePermissionRoleTable extends Migration {
 
-/**
-     * Run the migrations.
-     *
+    /// Corre la Migración para crear la Tabla Permisos -  Cargos (Permission - Role).
+    /*!
      * @return void
      */
     public function up()
@@ -20,9 +20,8 @@ class CreatePermissionRoleTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
+    /// Reverse the migrations.
+    /*!
      * @return void
      */
     public function down()

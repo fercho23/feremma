@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+//! Migración para la Tabla de Permisos (Permission)
 class CreatePermissionsTable extends Migration {
 
-/**
-     * Run the migrations.
-     *
+    /// Corre la Migración para crear la Tabla Permisos (Permission).
+    /*!
      * @return void
      */
     public function up()
@@ -21,9 +21,8 @@ class CreatePermissionsTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
+    /// Reverse the migrations.
+    /*!
      * @return void
      */
     public function down()
