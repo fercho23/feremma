@@ -14,8 +14,8 @@ class Service extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (Service - Reservation).
-     *
+    /// Relación de pertenencia "Muchos a Muchos" (Service - Reservation).
+    /*!
      * Relación de pertenencia, muchos Servicios (Service) poseen muchas Reservas (Reservation).
      * @return Consulta de Base de Datos
      */

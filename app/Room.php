@@ -15,8 +15,8 @@ class Room extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (Room - Reservation).
-     *
+    /// Relación de pertenencia "Muchos a Muchos" (Room - Reservation).
+    /*!
      * Relación de pertenencia, muchas Habitaciones (Room) poseen muchas Reservas (Reservation).
      * @return Consulta de Base de Datos
      */

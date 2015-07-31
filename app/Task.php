@@ -16,8 +16,8 @@ class Task extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
 
-    /*! \brief Relación de pertenencia "Muchos a Uno" (Task - Role).
-     *
+    /// Relación de pertenencia "Muchos a Uno" (Task - Role).
+    /*!
      * Relación de pertenencia, muchas Tareas (Task) pertenecen a un Cargo (Role).
      * @return Consulta de Base de Datos
      */
@@ -25,8 +25,8 @@ class Task extends Model {
         return $this->belongsTo('FerEmma\Role', 'role_id');
     }
 
-    /*! \brief Relación de pertenencia "Uno a Muchos" (User - Task).
-     *
+    /// Relación de pertenencia "Uno a Muchos" (User - Task).
+    /*!
      * Relación de pertenencia, un Usuario (User) posee (atiende) muchas Tareas (Task).
      * @return Consulta de Base de Datos
      */
@@ -36,8 +36,8 @@ class Task extends Model {
 
     public function delete() { }
 
-    /*! \brief Finaliza una Tarea.
-     *
+    /// Finaliza una Tarea.
+    /*!
      * Cambia el estado de la Tarea a "finalizada".
      */
     public function end() {
@@ -45,8 +45,8 @@ class Task extends Model {
         $this->update();
     }
 
-    /*! \brief Toma una Tarea.
-     *
+    /// Toma una Tarea.
+    /*!
      * Cambia el estado de la Tarea a "en proceso" y le asifna un Usario (User).
      */
     public function start() {
@@ -55,8 +55,8 @@ class Task extends Model {
         $this->update();
     }
 
-    /*! \brief Tareas de hoy.
-     *
+    /// Tareas de hoy.
+    /*!
      * Trae las Tareas que del dia de la fecha.
      * @return Consulta de Base de Datos
      */

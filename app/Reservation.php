@@ -15,8 +15,8 @@ class Reservation extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
 
-    /*! \brief Relación de pertenencia "Muchos a Uno" (Reservation - User).
-     *
+    /// Relación de pertenencia "Muchos a Uno" (Reservation - User).
+    /*!
      * Relación de pertenencia, muchas Reservas (Reservation) pertenecen a un Usuario (User).
      * @return Consulta de Base de Datos
      */
@@ -24,8 +24,8 @@ class Reservation extends Model {
         return $this->belongsTo('FerEmma\User', 'owner_id');
     }
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (Reservation - Room).
-     *
+    /// Relación de pertenencia "Muchos a Muchos" (Reservation - Room).
+    /*!
      * Relación de pertenencia, muchas Reservas (Reservation) poseen muchas Habitaciones (Room).
      * @return Consulta de Base de Datos
      */
@@ -35,8 +35,8 @@ class Reservation extends Model {
                     ->orderBy('room_reservation.check_in');
     }
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (Reservation - Service).
-     *
+    /// Relación de pertenencia "Muchos a Muchos" (Reservation - Service).
+    /*!
      * Relación de pertenencia, muchas Reservas (Reservation) poseen muchos Servicios (Service).
      * @return Consulta de Base de Datos
      */
@@ -46,8 +46,8 @@ class Reservation extends Model {
                     ->orderBy('service_reservation.name');
     }
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (Reservation - User).
-     *
+    /// Relación de pertenencia "Muchos a Muchos" (Reservation - User).
+    /*!
      * Relación de pertenencia, muchas Reservas (Reservation) poseen muchos Usuarios (User).
      * @return Consulta de Base de Datos
      */

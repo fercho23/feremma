@@ -14,8 +14,7 @@ class Permission extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = false;
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (Permission - Role).
-     *
+    /*!
      * Relación de pertenencia, muchos Permisos (Permission) poseen muchos Cargos (Role).
      * @return Consulta de Base de Datos
      */

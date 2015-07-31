@@ -22,8 +22,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $hidden = ['password', 'remember_token'];
 
-    /*! \brief Relación de pertenencia "Uno a Muchos" (User - Reservation).
-     *
+    /// Relación de pertenencia "Uno a Muchos" (User - Reservation).
+    /*!
      * Relación de pertenencia, un Usuario (User) posee a muchas Reservas (Reservation).
      * @return Consulta de Base de Datos
      */
@@ -31,8 +31,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('FerEmma\Reservation', 'owner_id');
     }
 
-    /*! \brief Relación de pertenencia "Muchos a Uno" (User - Role).
-     *
+    /// Relación de pertenencia "Muchos a Uno" (User - Role).
+    /*!
      * Relación de pertenencia, muchas Usuarios (User) perteneces a un Cargo (Role).
      * @return Consulta de Base de Datos
      */
@@ -40,8 +40,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo('FerEmma\Role', 'role_id');
     }
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (User - Reservation).
-     *
+    /// Relación de pertenencia "Muchos a Muchos" (User - Reservation).
+    /*!
      * Relación de pertenencia, muchos Usuarios (User) pertenecen a muchas Reservas (Reservation).
      * @return Consulta de Base de Datos
      */
@@ -49,8 +49,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('FerEmma\Reservation', 'reservation_user');
     }
 
-    /*! \brief Relación de pertenencia "Muchos a Uno"(Task - User).
-     *
+    /// Relación de pertenencia "Muchos a Uno"(Task - User).
+    /*!
      * Relación de pertenencia, muchas Tareas (Task) pertenecen (son atendidas) a un Usuario (User).
      * @return Consulta de Base de Datos
      */
@@ -58,16 +58,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('FerEmma\Task', 'attendant_id');
     }
 
-    /*! \brief Nombre completo.
-     *
+    /// Nombre completo.
+    /*!
      * @return Nombre completo de Usuario
      */
     public function fullname() {
         return $this->name.' '.$this->surname;
     }
 
-    /*! \brief Encripta el Password.
-     *
+    /// Encripta el Password.
+    /*!
      * Encripta el Password del Usuario cada vez que se ingresa una nuevo.
      * @param $value = cadena de caracteres
      * @return Nombre completo de Usuario
@@ -87,9 +87,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                    ->where('state', '=', $state)
                    ->get();
     }
-    /*! \brief Determina .
-     *
-     * Determina si este Usuario puede o no realizar un acción dada que es un Permiso (Permission).
+
+    /// Usuario (User) tiene Permiso (Permission).
+    /*!
+     * Determina si este Usuario puede o no realizar una acción dada.
      * @param $perm = cadena de caracteres
      * @return Booleano (Verdadero o Falso)
      */
@@ -99,6 +100,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return false;
     }
 
+    /// Usuario (User) tiene alguno de los Permisos (Permission) dados.
+    /*!
+     * Determina si este Usuario puede o no realizar alguna de las acciones dadas.
+     * @param $model = nombre del nodelo
+     * @param array $actions = Array de acciones
+     * @return Booleano (Verdadero o Falso)
+     */
     public function canAnyActionsByModel($model, array $actions) {
         foreach($actions as $action) {
             if($this->checkPermission($model.'/'.$action))
@@ -107,6 +115,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return false;
     }
 
+    /// Usuario (User) tiene todos los Permisos (Permission) dados.
+    /*!
+     * Determina si este Usuario puede o no realizar todas las acciones dadas.
+     * @param $model = nombre del nodelo
+     * @param array $actions = Array de acciones
+     * @return Booleano (Verdadero o Falso)
+     */
     public function canAllActionsByModel($model, array $actions) {
         foreach($actions as $action) {
             if(!$this->checkPermission($model.'/'.$action))

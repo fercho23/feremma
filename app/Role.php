@@ -14,8 +14,8 @@ class Role extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
 
-    /*! \brief Relación de pertenencia "Uno a Muchos" (Role - User).
-     *
+    /// Relación de pertenencia "Uno a Muchos" (Role - User).
+    /*!
      * Relación de pertenencia, un Cargo (Role) posee muchas Usuarios (User).
      * @return Consulta de Base de Datos
      */
@@ -23,8 +23,8 @@ class Role extends Model {
         return $this->hasMany('FerEmma\User', 'role_id');
     }
 
-    /*! \brief Relación de pertenencia "Muchos a Muchos" (Role - Permission).
-     *
+    /// Relación de pertenencia "Muchos a Muchos" (Role - Permission).
+    /*!
      * Relación de pertenencia, muchos Cargos (Role) poseen muchos Permisos (Permission).
      * @return Consulta de Base de Datos
      */
@@ -32,8 +32,8 @@ class Role extends Model {
         return $this->belongsToMany('FerEmma\Permission');
     }
 
-    /*! \brief Relación de pertenencia "Uno a Muchos" (Role - Task).
-     *
+    /// Relación de pertenencia "Uno a Muchos" (Role - Task).
+    /*!
      * Relación de pertenencia, un Cargo (Role) posee muchas Tareas (Task).
      * @return Consulta de Base de Datos
      */
