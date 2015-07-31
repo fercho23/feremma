@@ -7,38 +7,71 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Auth;
 
+//! Modelo Usuario
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
     use Authenticatable, CanResetPassword;
 
+    //! Contiene el nombre de la Tabla de la Bases de Datos que utiliza este modelos.
     protected $table = 'users';
 
+    //! Contiene los nombres de las columnas de la Tabla.
     protected $fillable = ['role_id', 'username', 'password', 'name',
                            'surname', 'email', 'dni', 'address',
                            'phone', 'cuil', 'birthday', 'sex'];
 
     protected $hidden = ['password', 'remember_token'];
 
+    /*! \brief Relación de pertenencia "Uno a Muchos" (User - Reservation).
+     *
+     * Relación de pertenencia, un Usuario (User) posee a muchas Reservas (Reservation).
+     * @return Consulta de Base de Datos
+     */
     public function reservations() {
         return $this->hasMany('FerEmma\Reservation', 'owner_id');
     }
 
+    /*! \brief Relación de pertenencia "Muchos a Uno" (User - Role).
+     *
+     * Relación de pertenencia, muchas Usuarios (User) perteneces a un Cargo (Role).
+     * @return Consulta de Base de Datos
+     */
     public function role() {
         return $this->belongsTo('FerEmma\Role', 'role_id');
     }
 
+    /*! \brief Relación de pertenencia "Muchos a Muchos" (User - Reservation).
+     *
+     * Relación de pertenencia, muchos Usuarios (User) pertenecen a muchas Reservas (Reservation).
+     * @return Consulta de Base de Datos
+     */
     public function booking() {
         return $this->belongsToMany('FerEmma\Reservation', 'reservation_user');
     }
 
+    /*! \brief Relación de pertenencia "Muchos a Uno"(Task - User).
+     *
+     * Relación de pertenencia, muchas Tareas (Task) pertenecen (son atendidas) a un Usuario (User).
+     * @return Consulta de Base de Datos
+     */
     public function tasks() {
         return $this->hasMany('FerEmma\Task', 'attendant_id');
     }
 
+    /*! \brief Nombre completo.
+     *
+     * @return Nombre completo de Usuario
+     */
     public function fullname() {
         return $this->name.' '.$this->surname;
     }
 
+    /*! \brief Encripta el Password.
+     *
+     * Encripta el Password del Usuario cada vez que se ingresa una nuevo.
+     * @param $value = cadena de caracteres
+     * @return Nombre completo de Usuario
+     */
     public function setPasswordAttribute($value) {
         if(!empty($value))
             $this->attributes['password'] = bcrypt($value);
@@ -54,7 +87,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                    ->where('state', '=', $state)
                    ->get();
     }
-
+    /*! \brief Determina .
+     *
+     * Determina si este Usuario puede o no realizar un acción dada que es un Permiso (Permission).
+     * @param $perm = cadena de caracteres
+     * @return Booleano (Verdadero o Falso)
+     */
     public function can($perm = null) {
         if($perm)
             return $this->checkPermission($perm);

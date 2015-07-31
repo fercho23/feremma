@@ -825,6 +825,7 @@ EXCLUDE_PATTERNS       = */bootstrap/* */config/* */database/seeds/*
 EXCLUDE_PATTERNS      += */public/* */resources/assets/* */resources/lang/*
 EXCLUDE_PATTERNS      += */storage/* */tests/* */vendor/*
 EXCLUDE_PATTERNS      += *server.php*
+EXCLUDE_PATTERNS      += */app/Commands/* */app/Console/* */app/Events/* */app/Exceptions/* */app/Handlers/*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the
