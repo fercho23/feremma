@@ -18,7 +18,7 @@ class ReservationsController extends Controller {
 
     /*! \brief Fomulario de nueva Reserva (Reservation).
      *
-     * Muestra el formulario para ingresar una nueva reserva esta función se
+     * Muestra el formulario para ingresar una nueva Reserva esta función se
      * llama con el método GET.
      *
      * @return Vista con una Reserva (Reservation) vacía
@@ -75,9 +75,9 @@ class ReservationsController extends Controller {
         //
     }
 
-    /*! \brief Fomulario de edición de una Reserva (Reservation).
+    /*! \brief Fomulario de edición de una Reserva (Reservation) específica.
      *
-     * Muestra el formulario para editar una reserva que es buscada por su $id,
+     * Muestra el formulario para editar una Reserva que es buscada por su $id,
      * esta función se llama con el método GET.
      *
      * @param  int $id
@@ -90,7 +90,7 @@ class ReservationsController extends Controller {
 
     /*! \brief Edita una Reserva (Reservation) específica.
      *
-     * Realiza el proceso de editar una reserva que es buscada por su $id,
+     * Realiza el proceso de editar una Reserva que es buscada por su $id,
      * esta función se llama con el método PUT/PATH.
      *
      * @param  int $id
@@ -125,7 +125,7 @@ class ReservationsController extends Controller {
 
     /*! \brief Elimina una Reserva (Reservation) específica.
      *
-     * Realiza el proceso de eliminar una reserva que es buscada por su $id,
+     * Realiza el proceso de eliminar una Reserva que es buscada por su $id,
      * esta función se llama con el método DELETE.
      *
      * @param  int $id
