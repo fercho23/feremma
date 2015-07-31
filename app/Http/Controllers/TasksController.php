@@ -9,44 +9,43 @@ use Auth;
 //! Controlador de Tareas (Task)
 class TasksController extends Controller {
 
-    /*! \brief Lista de Tareas (Task).
-     *
+    /// Lista de Tareas (Task).
+    /*!
      * @return Vista con Tareas (Task)
      */
-    public function index()
-    {
+    public function index() {
         $tasks = Task::all();
         return view('tasks.index', ['tasks'=>$tasks]);
     }
 
-    /**
-     * Starts one task.
-     *
+    /// Empieza una Tarea (Task) específica.
+    /*!
+     * Realiza el proceso de empezar una Tarea que es buscada por su $id,
+     * esta función se llama con el método GET.
+     * @param  int $id
      * @return Response
      */
-    public function start($id)
-    {
+    public function start($id) {
         Task::find($id)->start();
         return view('home');
     }
 
-    /**
-     * Ends one task.
-     *
+    /// Termina una Tarea (Task) específica.
+    /*!
+     * Realiza el proceso de terminar una Tarea que es buscada por su $id,
+     * esta función se llama con el método GET.
+     * @param  int $id
      * @return Response
      */
-    public function end($id)
-    {
+    public function end($id) {
         Task::find($id)->end();
         return view('home');
     }
 
-
-    /*! \brief Fomulario de nueva Tarea (Task).
-     *
+    /// Fomulario de nueva Tarea (Task).
+    /*!
      * Muestra el formulario para ingresar una nueva Tarea,
      * esta función se llama con el método GET.
-     *
      * @return Vista con una Tarea (Task) vacía
      */
     public function create() {
@@ -65,11 +64,10 @@ class TasksController extends Controller {
         return view('tasks.create-mine');
     }
 
-    /*! \brief Crea una Tarea (Task).
-     *
+    /// Crea una Tarea (Task).
+    /*!
      * Realiza el proceso de crear una nueva Tarea,
      * esta función se llama con el método POST.
-     *
      * @param TaskRequest $request
      * @return Vista "index" con el mensaje Flash pertinente
      */
@@ -79,11 +77,10 @@ class TasksController extends Controller {
         return redirect('home');
     }
 
-    /*! \brief Muestra una Tarea (Task) específica.
-     *
+    /// Muestra una Tarea (Task) específica.
+    /*!
      * Muestra específicamente una Tarea que es buscada por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -91,11 +88,10 @@ class TasksController extends Controller {
         //
     }
 
-    /*! \brief Fomulario de edición de una Tarea (Task) específica.
-     *
+    /// Fomulario de edición de una Tarea (Task) específica.
+    /*!
      * Muestra el formulario para editar una Tarea que es buscada por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -109,11 +105,10 @@ class TasksController extends Controller {
         return view('tasks.edit', compact('task', 'roles'));
     }
 
-    /*! \brief Edita una Tarea (Task) específica.
-     *
+    /// Edita una Tarea (Task) específica.
+    /*!
      * Realiza el proceso de editar una Tarea que es buscada por su $id,
      * esta función se llama con el método PUT/PATH.
-     *
      * @param  int $id
      * @param  TaskRequest $request
      * @return Response
@@ -125,11 +120,10 @@ class TasksController extends Controller {
         return redirect('tasks');
     }
 
-    /*! \brief Elimina una Tarea (Task) específica.
-     *
+    /// Elimina una Tarea (Task) específica.
+    /*!
      * Realiza el proceso de eliminar una Tarea que es buscada por su $id,
      * esta función se llama con el método DELETE.
-     *
      * @param  int $id
      * @return Response
      */

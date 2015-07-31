@@ -7,8 +7,8 @@ use FerEmma\Http\Requests\UserRequest;
 //! Controlador de Usuarios (User)
 class UsersController extends Controller {
 
-    /*! \brief Lista de Usuarios (User).
-     *
+    ///  Lista de Usuarios (User).
+    /*!
      * @return Vista con Usuarios (User)
      */
     public function index() {
@@ -16,11 +16,10 @@ class UsersController extends Controller {
         return view('users.index', ['users'=>$users]);
     }
 
-    /*! \brief Fomulario de nuevo Usuario (User).
-     *
+    /// Fomulario de nuevo Usuario (User).
+    /*!
      * Muestra el formulario para ingresar un nuevo Usuario esta función se
      * llama con el método GET.
-     *
      * @return Vista con un Usuario (User) vacío
      */
     public function create() {
@@ -34,11 +33,10 @@ class UsersController extends Controller {
         return view('users.create', ['roles'=>$roles]);
     }
 
-    /*! \brief Crea un Usuario (User).
-     *
+    /// Crea un Usuario (User).
+    /*!
      * Realiza el proceso de crear un nuevo Cargo,
      * esta función se llama con el método POST.
-     *
      * @param UserRequest $request
      * @return Vista "index" con el mensaje Flash pertinente
      */
@@ -48,11 +46,10 @@ class UsersController extends Controller {
         return redirect('users');
     }
 
-    /*! \brief Muestra un Usuario (User) específico.
-     *
+    /// Muestra un Usuario (User) específico.
+    /*!
      * Muestra específicamente un Usuario que es buscado por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -60,11 +57,10 @@ class UsersController extends Controller {
         //
     }
 
-    /*! \brief Fomulario de edición de un Usuario (User) específico.
-     *
+    /// Fomulario de edición de un Usuario (User) específico.
+    /*!
      * Muestra el formulario para editar un Usuario que es buscado por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -78,11 +74,10 @@ class UsersController extends Controller {
         return view('users.edit', compact('user', 'roles'));
     }
 
-    /*! \brief Edita un Usuario (User) específico.
-     *
+    /// Edita un Usuario (User) específico.
+    /*!
      * Realiza el proceso de editar un Usuario que es buscado por su $id,
      * esta función se llama con el método PUT/PATH.
-     *
      * @param  int $id
      * @param  UserRequest $request
      * @return Response
@@ -94,11 +89,10 @@ class UsersController extends Controller {
         return redirect('users');
     }
 
-    /*! \brief Elimina un Usuario (User) específico.
-     *
+    /// Elimina un Usuario (User) específico.
+    /*!
      * Realiza el proceso de eliminar un Usuario que es buscado por su $id,
      * esta función se llama con el método DELETE.
-     *
      * @param  int $id
      * @return Response
      */

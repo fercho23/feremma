@@ -6,8 +6,8 @@ use FerEmma\Http\Requests\RoleRequest;
 //! Controlador de Cargos (Role)
 class RolesController extends Controller {
 
-    /*! \brief Lista de Cargos (Role).
-     *
+    /// Lista de Cargos (Role).
+    /*!
      * @return Vista con Cargos (Role)
      */
     public function index() {
@@ -15,22 +15,20 @@ class RolesController extends Controller {
         return view('roles.index', ['roles'=>$roles]);
     }
 
-    /*! \brief Fomulario de nuevo Cargo (Role).
-     *
+    /// Fomulario de nuevo Cargo (Role).
+    /*!
      * Muestra el formulario para ingresar un nuevo Cargo,
      * esta función se llama con el método GET.
-     *
      * @return Vista con un Cargo (Role) vacío
      */
     public function create() {
         return view('roles.create');
     }
 
-    /*! \brief Crea un Cargo (Role).
-     *
+    /// Crea un Cargo (Role).
+    /*!
      * Realiza el proceso de crear un nuevo Cargo,
      * esta función se llama con el método POST.
-     *
      * @param RoleRequest $request
      * @return Vista "index" con el mensaje Flash pertinente
      */
@@ -40,11 +38,10 @@ class RolesController extends Controller {
         return redirect('roles');
     }
 
-    /*! \brief Muestra un Cargo (Role) específico.
-     *
+    /// Muestra un Cargo (Role) específico.
+    /*!
      * Muestra específicamente un Cargo que es buscado por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -52,11 +49,10 @@ class RolesController extends Controller {
         //
     }
 
-    /*! \brief Fomulario de edición de un Cargo (Role) específico.
-     *
+    /// Fomulario de edición de un Cargo (Role) específico.
+    /*!
      * Muestra el formulario para editar un Cargo que es buscado por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -65,11 +61,10 @@ class RolesController extends Controller {
         return view('roles.edit', compact('role'));
     }
 
-    /*! \brief Edita un Cargo (Role) específico.
-     *
+    /// Edita un Cargo (Role) específico.
+    /*!
      * Realiza el proceso de editar un Cargo que es buscado por su $id,
      * esta función se llama con el método PUT/PATH.
-     *
      * @param  int $id
      * @param  RoleRequest $request
      * @return Response
@@ -81,11 +76,10 @@ class RolesController extends Controller {
         return redirect('roles');
     }
 
-    /*! \brief Elimina un Cargo (Role) específico.
-     *
+    /// Elimina un Cargo (Role) específico.
+    /*!
      * Realiza el proceso de eliminar un Cargo que es buscado por su $id,
      * esta función se llama con el método DELETE.
-     *
      * @param  int $id
      * @return Response
      */

@@ -6,8 +6,8 @@ use FerEmma\Http\Requests\RoomRequest;
 //! Controlador de Habitaciones (Room)
 class RoomsController extends Controller {
 
-    /*! \brief Lista de Habitaciones (Room).
-     *
+    /// Lista de Habitaciones (Room).
+    /*!
      * @return Vista con Habitaciones (Room)
      */
     public function index() {
@@ -15,22 +15,20 @@ class RoomsController extends Controller {
         return view('rooms.index', ['rooms'=>$rooms]);
     }
 
-    /*! \brief Fomulario de nueva Habitación (Reservation).
-     *
+    /// Fomulario de nueva Habitación (Reservation).
+    /*!
      * Muestra el formulario para ingresar una nueva Habitación,
      * esta función se llama con el método GET.
-     *
      * @return Vista con una Reserva (Reservation) vacía
      */
     public function create() {
         return view('rooms.create');
     }
 
-    /*! \brief Crea una Habitación (Room).
-     *
+    /// Crea una Habitación (Room).
+    /*!
      * Realiza el proceso de crear una nueva Habitación,
      * esta función se llama con el método POST.
-     *
      * @param RoomRequest $request
      * @return Vista "index" con el mensaje Flash pertinente
      */
@@ -40,11 +38,10 @@ class RoomsController extends Controller {
         return redirect('rooms');
     }
 
-    /*! \brief Muestra una Habitación (Room) específica.
-     *
+    /// Muestra una Habitación (Room) específica.
+    /*!
      * Muestra específicamente una Habitación que es buscada por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -52,11 +49,10 @@ class RoomsController extends Controller {
         //
     }
 
-    /*! \brief Fomulario de edición de una Habitación (Room) específica.
-     *
+    /// Fomulario de edición de una Habitación (Room) específica.
+    /*!
      * Muestra el formulario para editar una Habitación que es buscada por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -65,11 +61,10 @@ class RoomsController extends Controller {
         return view('rooms.edit', compact('room'));
     }
 
-    /*! \brief Edita una Habitación (Room) específica.
-     *
+    /// Edita una Habitación (Room) específica.
+    /*!
      * Realiza el proceso de editar una Habitación que es buscada por su $id,
      * esta función se llama con el método PUT/PATH.
-     *
      * @param  int $id
      * @param  RoomRequest $request
      * @return Response
@@ -81,11 +76,10 @@ class RoomsController extends Controller {
         return redirect('rooms');
     }
 
-    /*! \brief Elimina una Habitación (Room) específica.
-     *
+    /// Elimina una Habitación (Room) específica.
+    /*!
      * Realiza el proceso de eliminar una Habitación que es buscada por su $id,
      * esta función se llama con el método DELETE.
-     *
      * @param  int $id
      * @return Response
      */

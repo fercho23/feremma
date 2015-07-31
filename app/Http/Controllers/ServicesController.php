@@ -6,8 +6,8 @@ use FerEmma\Http\Requests\ServiceRequest;
 //! Controlador de Servicios (Service)
 class ServicesController extends Controller {
 
-    /*! \brief Lista de Servicios (Service).
-     *
+    /// Lista de Servicios (Service).
+    /*!
      * @return Vista con Servicios (Service)
      */
     public function index() {
@@ -15,6 +15,7 @@ class ServicesController extends Controller {
         return view('services.index', ['services'=>$services]);
     }
 
+    ///
     /*! \brief Fomulario de nuevo Servicio (Service).
      *
      * Muestra el formulario para ingresar un nuevo Servicio,
@@ -26,11 +27,10 @@ class ServicesController extends Controller {
         return view('services.create');
     }
 
-    /*! \brief Crea un Servicio (Service).
-     *
+    /// Crea un Servicio (Service).
+    /*!
      * Realiza el proceso de crear un nuevo Servicio,
      * esta función se llama con el método POST.
-     *
      * @param ServiceRequest $request
      * @return Vista "index" con el mensaje Flash pertinente
      */
@@ -40,11 +40,10 @@ class ServicesController extends Controller {
         return redirect('services');
     }
 
-    /*! \brief Muestra un Servicio (Service) específico.
-     *
+    /// Muestra un Servicio (Service) específico.
+    /*!
      * Muestra específicamente un Servicio que es buscado por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -52,11 +51,10 @@ class ServicesController extends Controller {
         //
     }
 
-    /*! \brief Fomulario de edición de un Servicio (Service) específico.
-     *
+    /// Fomulario de edición de un Servicio (Service) específico.
+    /*!
      * Muestra el formulario para editar un Servicio que es buscado por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -65,11 +63,10 @@ class ServicesController extends Controller {
         return view('services.edit', compact('service'));
     }
 
-    /*! \brief Edita un Servicio (Service) específico.
-     *
+    /// Edita un Servicio (Service) específico.
+    /*!
      * Realiza el proceso de editar un Servicio que es buscado por su $id,
      * esta función se llama con el método PUT/PATH.
-     *
      * @param  int $id
      * @param  ServiceRequest $request
      * @return Response
@@ -81,11 +78,10 @@ class ServicesController extends Controller {
         return redirect('services');
     }
 
-    /*! \brief Elimina un Servicio (Service) específico.
-     *
+    /// Elimina un Servicio (Service) específico.
+    /*!
      * Realiza el proceso de eliminar un Servicio que es buscado por su $id,
      * esta función se llama con el método DELETE.
-     *
      * @param  int $id
      * @return Response
      */

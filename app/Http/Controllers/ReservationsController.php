@@ -7,8 +7,8 @@ use FerEmma\Http\Requests\ReservationRequest;
 //! Controlador de Reservas (Reservation)
 class ReservationsController extends Controller {
 
-    /*! \brief Lista de Reservas (Reservation).
-     *
+    /// Lista de Reservas (Reservation).
+    /*!
      * @return Vista con Reservas (Reservation)
      */
     public function index() {
@@ -16,11 +16,10 @@ class ReservationsController extends Controller {
         return view('reservations.index', ['reservations'=>$reservations]);
     }
 
-    /*! \brief Fomulario de nueva Reserva (Reservation).
-     *
+    /// Fomulario de nueva Reserva (Reservation).
+    /*!
      * Muestra el formulario para ingresar una nueva Reserva,
      * esta función se llama con el método GET.
-     *
      * @return Vista con una Reserva (Reservation) vacía
      */
     public function create() {
@@ -28,11 +27,10 @@ class ReservationsController extends Controller {
         return view('reservations.create', ['reservation'=>$reservation]);
     }
 
-    /*! \brief Crea una Reserva (Reservation).
-     *
+    /// Crea una Reserva (Reservation).
+    /*!
      * Realiza el proceso de crear una nueva Reserva,
      * esta función se llama con el método POST.
-     *
      * @param ReservationRequest $request
      * @return Vista "index" con el mensaje Flash pertinente
      */
@@ -63,11 +61,10 @@ class ReservationsController extends Controller {
         return redirect('reservations');
     }
 
-    /*! \brief Muestra una Reserva (Reservation) específica.
-     *
+    /// Muestra una Reserva (Reservation) específica.
+    /*!
      * Muestra específicamente una Reserva que es buscada por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -75,11 +72,10 @@ class ReservationsController extends Controller {
         //
     }
 
-    /*! \brief Fomulario de edición de una Reserva (Reservation) específica.
-     *
+    /// Fomulario de edición de una Reserva (Reservation) específica.
+    /*!
      * Muestra el formulario para editar una Reserva que es buscada por su $id,
      * esta función se llama con el método GET.
-     *
      * @param  int $id
      * @return Response
      */
@@ -88,11 +84,10 @@ class ReservationsController extends Controller {
         return view('reservations.edit', ['reservation' => $reservation]);
     }
 
-    /*! \brief Edita una Reserva (Reservation) específica.
-     *
+    /// Edita una Reserva (Reservation) específica.
+    /*!
      * Realiza el proceso de editar una Reserva que es buscada por su $id,
      * esta función se llama con el método PUT/PATH.
-     *
      * @param  int $id
      * @param  ReservationRequest $request
      * @return Response
@@ -123,11 +118,10 @@ class ReservationsController extends Controller {
         return redirect('reservations');
     }
 
-    /*! \brief Elimina una Reserva (Reservation) específica.
-     *
+    ///  Elimina una Reserva (Reservation) específica.
+    /*!
      * Realiza el proceso de eliminar una Reserva que es buscada por su $id,
      * esta función se llama con el método DELETE.
-     *
      * @param  int $id
      * @return Response
      */
