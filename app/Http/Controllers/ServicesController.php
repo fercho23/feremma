@@ -3,86 +3,93 @@
 use FerEmma\Service;
 use FerEmma\Http\Requests\ServiceRequest;
 
+//! Controlador de Servicios (Service)
 class ServicesController extends Controller {
 
-    /**
-     * Display a listing of the resource.
+    /*! \brief Lista de Servicios (Service).
      *
-     * @return Response
+     * @return Vista con Servicios (Service)
      */
-    public function index()
-    {
+    public function index() {
         $services = Service::all();
         return view('services.index', ['services'=>$services]);
     }
 
-    /**
-     * Show the form for creating a new resource.
+    /*! \brief Fomulario de nuevo Servicio (Service).
      *
-     * @return Response
+     * Muestra el formulario para ingresar un nuevo Servicio esta función se
+     * llama con el método GET.
+     *
+     * @return Vista con un Servicio (Service) vacío
      */
-    public function create()
-    {
+    public function create() {
         return view('services.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
+    /*! \brief Crea un Servicio (Service).
      *
-     * @return Response
+     * Realiza el proceso de crear un nuevo Servicio,
+     * esta función se llama con el método POST.
+     *
+     * @param ServiceRequest $request
+     * @return Vista "index" con el mensaje Flash pertinente
      */
-    public function store(ServiceRequest $request)
-    {
+    public function store(ServiceRequest $request) {
         Service::create($request->all());
         flash()->success('El Servicio fue ingresado con exito.');
         return redirect('services');
     }
 
-    /**
-     * Display the specified resource.
+    /*! \brief Muestra un Servicio (Service) específico.
      *
-     * @param  int  $id
+     * Muestra específicamente un Servicio que es buscado por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
+    /*! \brief Fomulario de edición de un Servicio (Service) específico.
      *
-     * @param  int  $id
+     * Muestra el formulario para editar un Servicio que es buscado por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $service = Service::findOrFail($id);
         return view('services.edit', compact('service'));
     }
 
-    /**
-     * Update the specified resource in storage.
+    /*! \brief Edita un Servicio (Service) específico.
      *
-     * @param  int  $id
+     * Realiza el proceso de editar un Servicio que es buscado por su $id,
+     * esta función se llama con el método PUT/PATH.
+     *
+     * @param  int $id
+     * @param  ServiceRequest $request
      * @return Response
      */
-    public function update($id, ServiceRequest $request)
-    {
+    public function update($id, ServiceRequest $request) {
         $service = Service::findOrFail($id);
         $service->update($request->all());
         flash()->success('El Servicio fue editado con exito.');
         return redirect('services');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /*! \brief Elimina un Servicio (Service) específico.
      *
-     * @param  int  $id
+     * Realiza el proceso de eliminar un Servicio que es buscado por su $id,
+     * esta función se llama con el método DELETE.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $service = Service::findOrFail($id);
         $service->delete();
         flash()->success('El Servicio fue borrado con exito.');

@@ -4,26 +4,26 @@ use FerEmma\User;
 use FerEmma\Role;
 use FerEmma\Http\Requests\UserRequest;
 
+//! Controlador de Usuarios (User)
 class UsersController extends Controller {
 
-    /**
-     * Display a listing of the resource.
+    /*! \brief Lista de Usuarios (User).
      *
-     * @return Response
+     * @return Vista con Usuarios (User)
      */
-    public function index()
-    {
+    public function index() {
         $users = User::all();
         return view('users.index', ['users'=>$users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
+    /*! \brief Fomulario de nuevo Usuario (User).
      *
-     * @return Response
+     * Muestra el formulario para ingresar un nuevo Usuario esta función se
+     * llama con el método GET.
+     *
+     * @return Vista con un Usuario (User) vacío
      */
-    public function create()
-    {
+    public function create() {
         $datas = Role::all();
         $roles = array();
 
@@ -34,37 +34,41 @@ class UsersController extends Controller {
         return view('users.create', ['roles'=>$roles]);
     }
 
-    /**
-     * Store a newly created resource in storage.
+    /*! \brief Crea un Usuario (User).
      *
-     * @return Response
+     * Realiza el proceso de crear un nuevo Cargo,
+     * esta función se llama con el método POST.
+     *
+     * @param UserRequest $request
+     * @return Vista "index" con el mensaje Flash pertinente
      */
-    public function store(UserRequest $request)
-    {
+    public function store(UserRequest $request) {
         User::create($request->all());
         flash()->success('El Usuario fue ingresado con exito.');
         return redirect('users');
     }
 
-    /**
-     * Display the specified resource.
+    /*! \brief Muestra un Usuario (User) específico.
      *
-     * @param  int  $id
+     * Muestra específicamente un Usuario que es buscado por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
+    /*! \brief Fomulario de edición de un Usuario (User) específico.
      *
-     * @param  int  $id
+     * Muestra el formulario para editar un Usuario que es buscado por su $id,
+     * esta función se llama con el método GET.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $datas = Role::all();
         $roles = array();
         foreach ($datas as $data) {
@@ -74,28 +78,31 @@ class UsersController extends Controller {
         return view('users.edit', compact('user', 'roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
+    /*! \brief Edita un Usuario (User) específico.
      *
-     * @param  int  $id
+     * Realiza el proceso de editar un Usuario que es buscado por su $id,
+     * esta función se llama con el método PUT/PATH.
+     *
+     * @param  int $id
+     * @param  UserRequest $request
      * @return Response
      */
-    public function update($id, UserRequest $request)
-    {
+    public function update($id, UserRequest $request) {
         $user = User::findOrFail($id);
         $user->update($request->all());
         flash()->success('El Usuario fue editado con exito.');
         return redirect('users');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /*! \brief Elimina un Usuario (User) específico.
      *
-     * @param  int  $id
+     * Realiza el proceso de eliminar un Usuario que es buscado por su $id,
+     * esta función se llama con el método DELETE.
+     *
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $user = User::findOrFail($id);
         $user->delete();
         flash()->success('El Usuario fue borrado con exito.');
