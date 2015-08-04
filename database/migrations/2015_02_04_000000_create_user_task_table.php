@@ -10,10 +10,8 @@ class CreateUserTaskTable extends Migration {
     /*!
      * @return void
      */
-    public function up()
-    {
-        Schema::create('user_task', function(Blueprint $table)
-        {
+    public function up() {
+        Schema::create('user_task', function(Blueprint $table) {
             $table->integer('user_id')->unsigned();
             //$table->foreign('user_id')->references('id')->on('users');
             $table->integer('task_id')->unsigned();
@@ -27,8 +25,7 @@ class CreateUserTaskTable extends Migration {
     /*!
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('user_task');
     }
 

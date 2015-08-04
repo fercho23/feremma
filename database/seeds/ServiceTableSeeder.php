@@ -5,8 +5,7 @@ use Illuminate\Database\Seeder;
 
 class ServiceTableSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('services')->truncate();
 
         Service::create(array(//1

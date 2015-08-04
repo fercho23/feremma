@@ -4,6 +4,6 @@
         <hr/>
         {!! Form::model($room, ['method'=>'PATCH','action'=>['RoomsController@update', $room->id]]) !!}
             @include('errors.list')
-            @include('rooms.form', ['submitButtontext'=>'Actualizar'])
+            @include('rooms.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
     @stop

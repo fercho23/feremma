@@ -5,8 +5,7 @@ use Illuminate\Database\Seeder;
 
 class ReservationTableSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('reservations')->truncate();
 
         $reservation = Reservation::create(array(
@@ -17,7 +16,11 @@ class ReservationTableSeeder extends Seeder {
             'check_in'    => '2015-02-01',
             'check_out'   => '2015-02-04',
             ));
-        $reservation->rooms()->sync([1]);
+
+        $reservation->rooms()->sync([ 1 => ['types_beds' => 'King Size',
+                                            'total_beds' => 2
+                                           ]
+                                    ]);
 
         $service = DB::table('services')->find(1);
 
@@ -34,7 +37,15 @@ class ReservationTableSeeder extends Seeder {
             'check_in'    => '2015-01-01',
             'check_out'   => '2015-01-03',
             ));
-        $reservation->rooms()->sync([1, 3]);
+
+        $reservation->rooms()->sync([ 1 => ['types_beds' => 'King Size',
+                                            'total_beds' => 2
+                                           ],
+                                      3 => ['types_beds' => 'King Size',
+                                            'total_beds' => 2
+                                           ]
+                                    ]);
+        // $reservation->rooms()->sync([1, 3]);
 
         $service1 = DB::table('services')->find(2);
         $service2 = DB::table('services')->find(4);

@@ -4,7 +4,7 @@
         <hr/>
         {!! Form::model($reservation, ['method'=>'PATCH','action'=>['ReservationsController@update', $reservation->id]]) !!}
             @include('errors.list')
-            @include('reservations.form', ['submitButtontext'=>'Actualizar'])
+            @include('reservations.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
     @stop
 

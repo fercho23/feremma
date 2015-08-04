@@ -10,10 +10,8 @@ class CreateUsersTable extends Migration {
     /*!
      * @return void
      */
-    public function up()
-    {
-        Schema::create('users', function(Blueprint $table)
-        {
+    public function up() {
+        Schema::create('users', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned();
             $table->string('username', 100);
@@ -36,8 +34,7 @@ class CreateUsersTable extends Migration {
     /*!
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('users');
     }
 

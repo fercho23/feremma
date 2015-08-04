@@ -4,6 +4,6 @@
         <hr/>
         {!! Form::model($role, ['method'=>'PATCH','action'=>['RolesController@update', $role->id]]) !!}
             @include('errors.list')
-            @include('roles.form', ['submitButtontext'=>'Actualizar'])
+            @include('roles.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
     @stop

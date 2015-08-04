@@ -10,10 +10,8 @@ class CreatePermissionsTable extends Migration {
     /*!
      * @return void
      */
-    public function up()
-    {
-        Schema::create('permissions', function(Blueprint $table)
-        {
+    public function up() {
+        Schema::create('permissions', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('slug');
@@ -25,8 +23,7 @@ class CreatePermissionsTable extends Migration {
     /*!
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('permissions');
     }
 

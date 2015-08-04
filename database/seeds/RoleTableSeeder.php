@@ -5,8 +5,7 @@ use Illuminate\Database\Seeder;
 
 class RoleTableSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('roles')->truncate();
 
         $role = Role::create(array(//1

@@ -4,6 +4,6 @@
         <hr/>
         {!! Form::model($user, ['method'=>'PATCH','action'=>['UsersController@update', $user->id]]) !!}
             @include('errors.list')
-            @include('users.form', ['submitButtontext'=>'Actualizar'])
+            @include('users.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
     @stop

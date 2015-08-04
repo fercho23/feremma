@@ -4,6 +4,6 @@
         <hr/>
         {!! Form::model($task, ['method'=>'PATCH','action'=>['TasksController@update', $task->id]]) !!}
             @include('errors.list')
-            @include('tasks.form', ['submitButtontext'=>'Actualizar'])
+            @include('tasks.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
     @stop

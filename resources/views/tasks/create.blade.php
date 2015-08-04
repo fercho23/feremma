@@ -4,6 +4,6 @@
         <hr/>
         {!! Form::open(['url'=>'tasks']) !!}
             @include('errors.list')
-            @include('tasks.form', ['submitButtontext'=>'Guardar'])
+            @include('tasks.partials.form', ['submitButtontext'=>'Guardar'])
         {!! Form::close() !!}
     @stop

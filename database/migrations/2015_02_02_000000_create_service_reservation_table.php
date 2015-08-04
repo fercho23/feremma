@@ -10,10 +10,8 @@ class CreateServiceReservationTable extends Migration {
     /*!
      * @return void
      */
-    public function up()
-    {
-        Schema::create('service_reservation', function(Blueprint $table)
-        {
+    public function up() {
+        Schema::create('service_reservation', function(Blueprint $table) {
             $table->integer('service_id')->unsigned();
             //$table->foreign('service_id')->references('id')->on('services');
             $table->integer('reservation_id')->unsigned();
@@ -29,8 +27,7 @@ class CreateServiceReservationTable extends Migration {
     /*!
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('service_reservation');
     }
 

@@ -4,6 +4,6 @@
         <hr/>
         {!! Form::open(['url'=>'rooms']) !!}
             @include('errors.list')
-            @include('rooms.form', ['submitButtontext'=>'Guardar'])
+            @include('rooms.partials.form', ['submitButtontext'=>'Guardar'])
         {!! Form::close() !!}
     @stop

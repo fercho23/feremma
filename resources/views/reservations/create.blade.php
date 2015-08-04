@@ -4,7 +4,7 @@
         <hr/>
         {!! Form::open(['url'=>'reservations']) !!}
             @include('errors.list')
-            @include('reservations.form', ['submitButtontext'=>'Guardar'])
+            @include('reservations.partials.form', ['submitButtontext'=>'Guardar'])
         {!! Form::close() !!}
     @stop
 

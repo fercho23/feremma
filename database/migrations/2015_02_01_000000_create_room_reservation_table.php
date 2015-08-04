@@ -10,14 +10,14 @@ class CreateRoomReservationTable extends Migration {
     /*!
      * @return void
      */
-    public function up()
-    {
-        Schema::create('room_reservation', function(Blueprint $table)
-        {
+    public function up() {
+        Schema::create('room_reservation', function(Blueprint $table) {
             $table->integer('room_id')->unsigned();
             //$table->foreign('room_id')->references('id')->on('rooms');
             $table->integer('reservation_id')->unsigned();
             //$table->foreign('reservation_id')->references('id')->on('reservations');
+            $table->string('types_beds', 100);
+            $table->tinyInteger('total_beds');
             $table->datetime('check_in');
             $table->datetime('check_out');
         });
@@ -27,8 +27,7 @@ class CreateRoomReservationTable extends Migration {
     /*!
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('room_reservation');
     }
 

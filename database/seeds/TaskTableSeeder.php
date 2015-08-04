@@ -5,8 +5,7 @@ use Illuminate\Database\Seeder;
 
 class TaskTableSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('tasks')->truncate();
 
         Task::create(array('description' => 'Hacer el sistema.',
