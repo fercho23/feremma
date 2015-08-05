@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('reservations','ReservationsController');
         Route::resource('rooms','RoomsController');
         Route::resource('beds','BedsController');
+        Route::resource('distributions','DistributionController');
         Route::resource('services','ServicesController');
         Route::resource('tasks','TasksController');
         Route::get('permissions', 'PermissionsController@index');

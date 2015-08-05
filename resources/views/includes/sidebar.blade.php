@@ -61,6 +61,12 @@
                                                        'actions'=>['index', 'create'],
                                                        'names'=>['Ver', 'Nuevo'],
                                                        'icons'=>['list-ol', 'plus']])
+               @include('includes.partials.section', ['model'=>'distributions',
+                                                       'title'=>'Distribuciones',
+                                                       'icon'=>'map-signs',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo'],
+                                                       'icons'=>['list-ol', 'plus']])
                @include('includes.partials.section', ['model'=>'beds',
                                                        'title'=>'Camas',
                                                        'icon'=>'bed',

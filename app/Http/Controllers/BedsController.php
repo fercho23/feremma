@@ -19,7 +19,7 @@ class BedsController extends Controller {
     /*!
      * Muestra el formulario para ingresar una nueva Cama,
      * esta función se llama con el método GET.
-     * @return Vista con un Cama (Bed) vacío
+     * @return Vista con una Cama (Bed) vacía
      */
     public function create() {
         return view('beds.create');

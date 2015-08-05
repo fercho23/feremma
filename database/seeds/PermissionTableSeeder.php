@@ -275,6 +275,33 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Lista de Camas.'
         ));
 
+
+        Permission::create(array(//51
+            'title'         =>'Crear Distribución',
+            'slug'          =>'distributions/create',
+            'description'   =>'Crea una distribución.'
+        ));
+        Permission::create(array(//52
+            'title'         =>'Detalle Distribución',
+            'slug'          =>'distributions/show',
+            'description'   =>'Detalle de distribución.'
+        ));
+        Permission::create(array(//53
+            'title'         =>'Editar Distribución',
+            'slug'          =>'distributions/edit',
+            'description'   =>'Edita una distribución.'
+        ));
+        Permission::create(array(//54
+            'title'         =>'Eliminar Distribución',
+            'slug'          =>'distributions/destroy',
+            'description'   =>'Elimina una distribución.'
+        ));
+        Permission::create(array(//55
+            'title'         =>'Listar Distribuciones',
+            'slug'          =>'distributions/index',
+            'description'   =>'Lista de distribuciones.'
+        ));
+
     }
 
 }
