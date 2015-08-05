@@ -13,7 +13,7 @@ class UsersController extends Controller {
      */
     public function index() {
         $users = User::all();
-        return view('users.index', ['users'=>$users]);
+        return view('users.index', compact('users'));
     }
 
     /// Fomulario de nuevo Usuario (User).
@@ -30,7 +30,7 @@ class UsersController extends Controller {
             $roles[$data->id] = $data->name;
         }
 
-        return view('users.create', ['roles'=>$roles]);
+        return view('users.create', compact('roles'));
     }
 
     /// Crea un Usuario (User).

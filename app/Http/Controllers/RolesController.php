@@ -12,7 +12,7 @@ class RolesController extends Controller {
      */
     public function index() {
         $roles = Role::all();
-        return view('roles.index', ['roles'=>$roles]);
+        return view('roles.index', compact('roles'));
     }
 
     /// Fomulario de nuevo Cargo (Role).

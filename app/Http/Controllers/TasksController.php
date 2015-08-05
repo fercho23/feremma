@@ -15,7 +15,7 @@ class TasksController extends Controller {
      */
     public function index() {
         $tasks = Task::all();
-        return view('tasks.index', ['tasks'=>$tasks]);
+        return view('tasks.index', compact('tasks'));
     }
 
     /// Empieza una Tarea (Task) específica.

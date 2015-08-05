@@ -13,7 +13,7 @@ class ReservationsController extends Controller {
      */
     public function index() {
         $reservations = Reservation::all();
-        return view('reservations.index', ['reservations'=>$reservations]);
+        return view('reservations.index', compact('reservations'));
     }
 
     /// Fomulario de nueva Reserva (Reservation).
@@ -24,7 +24,7 @@ class ReservationsController extends Controller {
      */
     public function create() {
         $reservation = new Reservation;
-        return view('reservations.create', ['reservation'=>$reservation]);
+        return view('reservations.create', compact('reservation'));
     }
 
     /// Crea una Reserva (Reservation).
@@ -81,7 +81,7 @@ class ReservationsController extends Controller {
      */
     public function edit($id) {
         $reservation = Reservation::findOrFail($id);
-        return view('reservations.edit', ['reservation' => $reservation]);
+        return view('reservations.edit', compact('reservation'));
     }
 
     /// Edita una Reserva (Reservation) específica.

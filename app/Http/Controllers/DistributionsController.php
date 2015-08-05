@@ -24,7 +24,6 @@ class DistributionsController extends Controller {
     public function create() {
         $distribution = new Distribution;
         return view('distributions.create', compact('distribution'));
-        // return view('distributions.create');
     }
 
     /// Crea una Distribución (Distribution).
