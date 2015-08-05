@@ -36,12 +36,18 @@ class Distribution extends Model {
 
 
     public function totalBeds() {
-        $total = '0';
+        $total = 0;
+        foreach($this->beds() as $bed) {
+            $total += ($bed->total_persons * $bed->pivot->amount);
+        }
         return $total;
     }
 
     public function price() {
-        $price = '0.00';
+        $price = 0;
+        foreach($this->beds() as $bed) {
+            $total += ($bed->price * $bed->pivot->amount);
+        }
         return $price;
     }
 

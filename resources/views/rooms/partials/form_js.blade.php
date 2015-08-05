@@ -9,6 +9,12 @@
         $('input#' + $name + '_id').attr('value', $e.sort(function(a, b){return a-b}));
     }
 
+    $(document).on('click', 'i[name="fa-kill"]', function() {
+        $e = $(this).parents('div.group-labels').attr('id').split('label-');
+        $(this).parents('div[id^='+$e[1]+'-]').remove();
+        countElement($e[1]);
+    });
+
     $('#distribution').autocomplete({
         source: function(request, response) {
             $.ajax({
@@ -16,7 +22,7 @@
                 dataType: 'json',
                 data: {
                     term: request.term,
-                    ids: $('#pdistributions_id').val()
+                    ids: $('#distributions_id').val()
                 },
                 success: function(data) {
                     response(data);

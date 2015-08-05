@@ -56,16 +56,15 @@ class SearchController extends Controller {
     public function getRemainingDistributionsByName() {
         $term = Request::input('term', '');
         $ids = Request::input('ids', '');
-        $rooms_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
+        $distributions_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
 
         $results = array();
         $queries = Distribution::where('name', 'LIKE', '%'.$term.'%')
-                       ->whereNotIn('id', $rooms_id)
+                       ->whereNotIn('id', $distributions_id)
                        ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
-                          'value' => $query->name];
-                          // 'value' => $query->name.' ['.$query->total_beds().'] [ $ '.$query->price().' ]'];
+                          'value' => $query->name.' ['.$query->totalBeds().'] [ $ '.$query->price().' ]'];
         return response()->json($results);
     }
 

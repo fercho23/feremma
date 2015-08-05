@@ -33,7 +33,11 @@ class RoomsController extends Controller {
      * @return Vista "index" con el mensaje Flash pertinente
      */
     public function store(RoomRequest $request) {
-        Room::create($request->all());
+        $room = Room::create($request->all());
+
+        $distributions_id = ($request->input('distributions_id') ? array_map('intval', explode(',', $request->input('distributions_id'))) : []);
+        $room->distributions()->sync($distributions_id);
+
         flash()->success('La Habitación fue ingresada con exito.');
         return redirect('rooms');
     }
@@ -72,6 +76,10 @@ class RoomsController extends Controller {
     public function update($id, RoomRequest $request) {
         $room = Room::findOrFail($id);
         $room->update($request->all());
+
+        $distributions_id = ($request->input('distributions_id') ? array_map('intval', explode(',', $request->input('distributions_id'))) : []);
+        $room->distributions()->sync($distributions_id);
+
         flash()->success('La Habitación fue editada con exito.');
         return redirect('rooms');
     }
