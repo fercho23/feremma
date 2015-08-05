@@ -11,8 +11,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Tipos de Camas</th>
-                                <th>Total Plazas</th>
                                 <th>Precio</th>
                                 <th>Ubicación</th>
                                 <th>Plano</th>
@@ -27,8 +25,6 @@
                             <tr>
                                 <td>{!! $room->id !!}</td>
                                 <td>{!! $room->name !!}</td>
-                                <td>{!! $room->types_beds !!}</td>
-                                <td>{!! $room->total_beds !!}</td>
                                 <td>{!! $room->price !!}</td>
                                 <td>{!! $room->location !!}</td>
                                 <td>{!! $room->plan !!}</td>

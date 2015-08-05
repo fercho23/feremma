@@ -15,8 +15,6 @@ class CreateRoomsTable extends Migration {
             $table->increments('id');
             $table->string('name', 100);
             $table->text('description')->nullable();
-            $table->string('types_beds', 100);
-            $table->tinyInteger('total_beds');
             $table->string('location', 150);
             $table->text('plan');
             $table->boolean('available');
