@@ -12,6 +12,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad de Personas</th>
                                 <th>Descripción</th>
                                 @if(Auth::user()->can('distributions/edit') || Auth::user()->can('distributions/destroy'))
                                     <th style="width: 36px;"></th>
@@ -23,6 +25,8 @@
                             <tr>
                                 <td>{!! $distribution->id !!}</td>
                                 <td>{!! $distribution->name !!}</td>
+                                <td>{!! $distribution->price() !!}</td>
+                                <td>{!! $distribution->totalPersons() !!}</td>
                                 <td>{!! $distribution->description !!}</td>
                                 @if(Auth::user()->can('distributions/edit'))
                                     <td>

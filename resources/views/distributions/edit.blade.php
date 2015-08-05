@@ -7,3 +7,7 @@
             @include('distributions.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
     @stop
+
+    @section('extra_js')
+        @include('distributions.partials.form_js')
+    @stop

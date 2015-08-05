@@ -22,7 +22,9 @@ class DistributionsController extends Controller {
      * @return Vista con un Distribución (Distribution) vacía
      */
     public function create() {
-        return view('distributions.create');
+        $distribution = new Distribution;
+        return view('distributions.create', compact('distribution'));
+        // return view('distributions.create');
     }
 
     /// Crea una Distribución (Distribution).
@@ -33,7 +35,19 @@ class DistributionsController extends Controller {
      * @return Vista "index" con el mensaje Flash pertinente
      */
     public function store(DistributionRequest $request) {
-        Distribution::create($request->all());
+        $distribution = Distribution::create($request->all());
+
+        $beds_id = ($request->input('beds_id') ? array_map('intval', explode(',', $request->input('beds_id'))) : []);
+
+        $beds = [];
+        foreach($beds_id as $id) {
+            $bed = [];
+            $bed["amount"] = $request->input('bed-amount-'.$id);
+            $beds[$id] = $bed;
+        }
+
+        $distribution->beds()->sync($beds);
+
         flash()->success('La Distribución fue ingresada con exito.');
         return redirect('distributions');
     }
@@ -58,7 +72,7 @@ class DistributionsController extends Controller {
      */
     public function edit($id) {
         $distribution = Distribution::findOrFail($id);
-        return view('distributions.edit', compact('role'));
+        return view('distributions.edit', compact('distribution'));
     }
 
     /// Edita una Distribución (Distribution) específica.
@@ -72,6 +86,18 @@ class DistributionsController extends Controller {
     public function update($id, DistributionRequest $request) {
         $distribution = Distribution::findOrFail($id);
         $distribution->update($request->all());
+
+        $beds_id = ($request->input('beds_id') ? array_map('intval', explode(',', $request->input('beds_id'))) : []);
+
+        $beds = [];
+        foreach($beds_id as $id) {
+            $bed = [];
+            $bed["amount"] = $request->input('bed-amount-'.$id);
+            $beds[$id] = $bed;
+        }
+
+        $distribution->beds()->sync($beds);
+
         flash()->success('La Distribución fue editada con exito.');
         return redirect('distributions');
     }

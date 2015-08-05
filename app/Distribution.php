@@ -35,10 +35,10 @@ class Distribution extends Model {
     }
 
     public function representation () {
-        return ($this->name.' ['.$this->totalBeds().'] [ $ '.$this->price().' ]');
+        return ($this->name.' ['.$this->totalPersons().'] [ $ '.$this->price().' ]');
     }
 
-    public function totalBeds() {
+    public function totalPersons() {
         $total = 0;
         foreach($this->beds as $bed) {
             $total += ($bed->total_persons * $bed->pivot->amount);
