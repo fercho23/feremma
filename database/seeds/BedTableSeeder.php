@@ -36,8 +36,6 @@ class BedTableSeeder extends Seeder {
             'price'         => '300',
         ));
 
-
-
     }
 
 }

@@ -9,11 +9,11 @@
 
 <div class="form-group">
     {!! Form::label('room', 'Habitaciones:') !!}
-    
-    <div class="group-labels" id="label-rooms" style="margin-bottom:5px;">
-        {{--
+
+    {{--
+    <div class="group-labels" id="label-rooms">
         <div class="row">
-            <div class="col-lg-5 col-xs-4">
+            <div class="col-lg-5 col-xs-5">
                 <div class="form-control" readonly="True">
                     <strong>Nombre de la Habitación</strong>
                 </div>
@@ -23,7 +23,7 @@
                     <strong>Tipo de Camas</strong>
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-2 no-gutter">
+            <div class="col-lg-3 col-xs-3 no-gutter">
                 <div class="form-control" readonly="True">
                     <strong>Cantidad de Camas</strong>
                 </div>
@@ -44,7 +44,7 @@
                     {!! Form::text('room-types_beds-'.$room->id, $room->pivot->types_beds, ['class'=>'form-control']) !!}
                 </div>
                 <div class="col-lg-3 col-xs-2 no-gutter">
-                    {!! Form::input('number', 'room-total_beds-'.$room->id, $room->pivot->total_beds, ['class'=>'form-control', 'readonly'=>'True']) !!}
+                    {!! Form::input('number', 'room-total_beds-'.$room->id, $room->pivot->total_beds, ['class'=>'form-control']) !!}
                 </div>
                 <div class="col-lg-1 col-xs-1">
                     <span class="btn btn-warning">
@@ -53,16 +53,17 @@
                 </div>
             </div>
         @endforeach
-        --}}
+    </div>
+    --}}
 
-
+    <div class="group-labels" id="label-rooms" style="margin-bottom:5px;">
         @foreach ($reservation->rooms as $room)
             <div id="rooms-{!! $room->id !!}" class="label label-info" style="margin:5px;">
                 {!! $room->name !!} [{!! $room->total_beds !!}] <i name="fa-kill" class="fa fa-times-circle"></i>
             </div>
         @endforeach
-
     </div>
+
     {!! Form::hidden('rooms_id', implode(",", $reservation->rooms()->getRelatedIds()), array('id' => 'rooms_id')) !!}
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-bed"></i></span>

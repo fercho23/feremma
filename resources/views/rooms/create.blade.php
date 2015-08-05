@@ -9,5 +9,5 @@
     @stop
 
     @section('extra_js')
-        @include('reservations.partials.form_js')
+        @include('rooms.partials.form_js')
     @stop

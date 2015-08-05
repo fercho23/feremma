@@ -24,4 +24,14 @@ class Bed extends Model {
                     ->withPivot('check_in', 'check_out');
     }
 
+    /// Relación de pertenencia "Muchos a Muchos" (Bed - Distribution).
+    /*!
+     * Relación de pertenencia, muchas Camas (Bed) poseen muchas Distribuciones (Distribution).
+     * @return Consulta de Base de Datos
+     */
+    public function distributions() {
+        return $this->belongsToMany('FerEmma\Distribution', 'distribution_bed')
+                    ->withPivot('amount');
+    }
+
 }

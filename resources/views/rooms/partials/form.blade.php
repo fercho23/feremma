@@ -4,6 +4,21 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('distribution','Distribuciones de Camas:') !!}
+
+    <div class="group-labels" id="label-distributions" style="margin-bottom:5px;">
+        @foreach ($room->distributions as $distribution)
+            <div id="distributions-{!! $distribution->id !!}" class="label label-info" style="margin:5px;">
+                {!! $distribution->name !!} [{!! $distribution->total_beds() !!}] [ $ {!! $distribution->price() !!}]<i name="fa-kill" class="fa fa-times-circle"></i>
+            </div>
+        @endforeach
+    </div>
+    {!! Form::hidden('distributions_id', implode(",", $room->distributions()->getRelatedIds()), array('id' => 'distributions_id')) !!}
+
+    {!! Form::text('distribution', '', ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group">
     {!! Form::label('price','Precio:')!!}
     <div class="input-group">
         <span class="input-group-addon">

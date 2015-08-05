@@ -1,6 +1,7 @@
 <?php namespace FerEmma\Http\Controllers;
 
 use FerEmma\User;
+use FerEmma\Distribution;
 use FerEmma\Room;
 use FerEmma\Service;
 
@@ -45,6 +46,29 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /// Obtiene Distribuciones (Distribution) restantes.
+    /*!
+     * Por medio de Request obtiene los $ids de las Distribuciones que no debe retornar,
+     * los caracteres que usa para buscar la Distribución por nombre
+     * y devuelve las primeras 10 coincidencias.
+     * @return Respose Json
+     */
+    public function getRemainingDistributionsByName() {
+        $term = Request::input('term', '');
+        $ids = Request::input('ids', '');
+        $rooms_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
+
+        $results = array();
+        $queries = Distribution::where('name', 'LIKE', '%'.$term.'%')
+                       ->whereNotIn('id', $rooms_id)
+                       ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->name];
+                          // 'value' => $query->name.' ['.$query->total_beds().'] [ $ '.$query->price().' ]'];
+        return response()->json($results);
+    }
+
     /// Obtiene Usuarios (User) restantes.
     /*!
      * Por medio de Request obtiene los $ids de los Usuarios que no debe retornar,
@@ -75,7 +99,7 @@ class SearchController extends Controller {
     /// Obtiene Habitaciones (Room) restantes.
     /*!
      * Por medio de Request obtiene los $ids de las Habitaciones que no debe retornar,
-     * los caracteres que usa para buscar el Habitación por nombre
+     * los caracteres que usa para buscar la Habitación por nombre
      * y devuelve las primeras 10 coincidencias.
      * @return Respose Json
      */

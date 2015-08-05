@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('ServiceTableSeeder');
         $this->call('ReservationTableSeeder');
         $this->call('BedTableSeeder');
+        $this->call('DistributionTableSeeder');
     }
 
 }

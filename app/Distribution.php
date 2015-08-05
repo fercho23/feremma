@@ -14,21 +14,35 @@ class Distribution extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
 
-    /// Relación de pertenencia "Muchos a Muchos" (Distribution - Rooms).
+    /// Relación de pertenencia "Muchos a Muchos" (Distribution - Room).
     /*!
-     * Relación de pertenencia, muchas Distribuciones (Distribution) poseen muchas Habitaciones (Rooms).
+     * Relación de pertenencia, muchas Distribuciones (Distribution) poseen muchas Habitaciones (Room).
      * @return Consulta de Base de Datos
      */
     public function rooms() {
-        return $this->belongsToMany('FerEmma\Rooms', 'room_rooms')
+        return $this->belongsToMany('FerEmma\Room', 'room_distribution')
+                    ->withPivot('available', 'order');
+    }
+
+    /// Relación de pertenencia "Muchos a Muchos" (Distribution - Bed).
+    /*!
+     * Relación de pertenencia, muchas Distribuciones (Distribution) poseen muchas Camas (Bed).
+     * @return Consulta de Base de Datos
+     */
+    public function beds() {
+        return $this->belongsToMany('FerEmma\Bed', 'distribution_bed')
                     ->withPivot('amount');
     }
 
 
-    // public function totalBeds() {
-    // }
+    public function totalBeds() {
+        $total = '0';
+        return $total;
+    }
 
-    // public function price() {
-    // }
+    public function price() {
+        $price = '0.00';
+        return $price;
+    }
 
 }

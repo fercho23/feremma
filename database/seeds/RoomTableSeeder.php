@@ -19,7 +19,7 @@ class RoomTableSeeder extends Seeder {
 
         Room::create(array(//2
             'description' => 'El espacio para el huésped es reducido hasta un bloque modular de plástico o de fibra de vidrio de apenas 2 metros de longitud, 1 metro de alto y 1,25 metros de ancho, siendo este suficiente espacio como para dormir. Las instalaciones incluyen una televisión, una consola y conexión inalámbrica a internet. El equipaje se almacena en unas taquillas, que se encuentran fuera del hotel. La privacidad se ve asegurada mediante el uso de una cortina o una puerta de fibra de vidrio en el extremo abierto de la cápsula. Los cuartos de baño son comunes.',
-            'name'        => 'Cápsula',,
+            'name'        => 'Cápsula',
             'location'    => 'Primer Subsuelo Hab. 4',
             'plan'        => 'No Disponible',
             'available'   => '1',
