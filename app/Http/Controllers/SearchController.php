@@ -64,7 +64,7 @@ class SearchController extends Controller {
                        ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
-                          'value' => $query->name.' ['.$query->totalBeds().'] [ $ '.$query->price().' ]'];
+                          'value' => $query->representation()];
         return response()->json($results);
     }
 

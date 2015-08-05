@@ -9,7 +9,7 @@
     <div class="group-labels" id="label-distributions" style="margin-bottom:5px;">
         @foreach ($room->distributions as $distribution)
             <div id="distributions-{!! $distribution->id !!}" class="label label-info" style="margin:5px;">
-                {!! $distribution->name !!} [{!! $distribution->totalBeds() !!}] [ $ {!! $distribution->price() !!}]<i name="fa-kill" class="fa fa-times-circle"></i>
+                {!! $distribution->representation() !!} <i name="fa-kill" class="fa fa-times-circle"></i>
             </div>
         @endforeach
     </div>

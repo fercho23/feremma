@@ -34,10 +34,13 @@ class Distribution extends Model {
                     ->withPivot('amount');
     }
 
+    public function representation () {
+        return ($this->name.' ['.$this->totalBeds().'] [ $ '.$this->price().' ]');
+    }
 
     public function totalBeds() {
         $total = 0;
-        foreach($this->beds() as $bed) {
+        foreach($this->beds as $bed) {
             $total += ($bed->total_persons * $bed->pivot->amount);
         }
         return $total;
@@ -45,8 +48,8 @@ class Distribution extends Model {
 
     public function price() {
         $price = 0;
-        foreach($this->beds() as $bed) {
-            $total += ($bed->price * $bed->pivot->amount);
+        foreach($this->beds as $bed) {
+            $price += ($bed->price * $bed->pivot->amount);
         }
         return $price;
     }
