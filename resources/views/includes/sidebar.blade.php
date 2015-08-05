@@ -57,6 +57,12 @@
                                                        'icons'=>['list-ol', 'plus']])
                 @include('includes.partials.section', ['model'=>'rooms',
                                                        'title'=>'Habitaciones',
+                                                       'icon'=>'h-square',
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo'],
+                                                       'icons'=>['list-ol', 'plus']])
+               @include('includes.partials.section', ['model'=>'beds',
+                                                       'title'=>'Camas',
                                                        'icon'=>'bed',
                                                        'actions'=>['index', 'create'],
                                                        'names'=>['Ver', 'Nuevo'],

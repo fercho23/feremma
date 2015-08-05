@@ -199,6 +199,7 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Asigna servicio a reserva.'
         ));
 
+
         Permission::create(array(//37
             'title'         =>'Crear Tarea',
             'slug'          =>'tasks/create',
@@ -240,11 +241,40 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Crear mis tareas.'
         ));
 
+
         Permission::create(array(//45
             'title'         =>'Ver Permisos',
             'slug'          =>'permissions/index',
             'description'   =>'Ver Permisos de todos los roles'
         ));
+
+
+        Permission::create(array(//46
+            'title'         =>'Crear Cama',
+            'slug'          =>'beds/create',
+            'description'   =>'Crea una cama.'
+        ));
+        Permission::create(array(//47
+            'title'         =>'Detalle Cama',
+            'slug'          =>'beds/show',
+            'description'   =>'Detalle de cama.'
+        ));
+        Permission::create(array(//48
+            'title'         =>'Editar Cama',
+            'slug'          =>'beds/edit',
+            'description'   =>'Edita una cama.'
+        ));
+        Permission::create(array(//49
+            'title'         =>'Eliminar Cama',
+            'slug'          =>'beds/destroy',
+            'description'   =>'Elimina una cama.'
+        ));
+        Permission::create(array(//50
+            'title'         =>'Listar Camas',
+            'slug'          =>'beds/index',
+            'description'   =>'Lista de Camas.'
+        ));
+
     }
 
 }
