@@ -8,33 +8,49 @@
             $price = parseFloat($('input[name=service-price-'+$n+']').val());
             $total += ($quantity * $price);
         });
-        return $total
+        return $total;
+    }
+
+    function getRoomsPrice() {
+        $total = 0;
+        $('div#label-rooms select[name^=rooms-]').each(function(k, v) {
+            $n = parseInt($(v).attr('id').match(/[0-9]+/g));
+            $total += parseFloat($('input[room-final_price-'+$n+']').val());
+        });
+
+        return $total;
     }
 
     function suggestedPrice() {
+        console.log( getServicesPrice(), getRoomsPrice() );
+        $suggested_price = getServicesPrice();
+        $suggested_price += getRoomsPrice();
 
+        $percentage_sign = parseFloat($('input[name=percentage_sign]').val().replace(',', '.'));
+        $suggested_sign = (($percentage_sign * $suggested_price) / 100).toFixed(2).replace('.', ',');
+        $suggested_price = ($suggested_price).toFixed(2).replace('.', ',');
+
+        $('input[name=suggested_price]').attr('value', $suggested_price);
+        $('input[name=suggested_sign]').attr('value', $suggested_sign);
+    }
+
+    function refreshSelectDataByRoomId($id) {
+        $e = parseInt($('select[name^=room-'+$id+']').val());
         $.ajax({
-            url: '{!! URL::route("search-room-price-by-ids") !!}',
+            url: '{!! route("get-distribution-by-id") !!}',
             type: 'GET',
             dataType: 'json',
             data: {
-                ids: $('input#rooms_id').attr('value')
+                id: $e
             },
         }).done(
             function(data) {
-                $suggested_price = getServicesPrice();
-                $.each(data, function(index, value) {
-                    $suggested_price += parseFloat(value.value);
-                });
-
-                $percentage_sign = parseFloat($('input[name=percentage_sign]').val().replace(',', '.'));
-                $suggested_sign = (($percentage_sign * $suggested_price) / 100).toFixed(2).replace('.', ',');
-                $suggested_price = ($suggested_price).toFixed(2).replace('.', ',');
-
-                $('input[name=suggested_price]').attr('value', $suggested_price);
-                $('input[name=suggested_sign]').attr('value', $suggested_sign);
+                $price = parseFloat($('input[name=room-price-'+$id+']').val());
+                $('input[name=room-total_persons-'+$id+']').attr('value', data.totalPersons);
+                $('input[name=room-final_price-'+$id+']').attr('value', $price + data.price);
             }
         );
+        suggestedPrice();
     }
 
     function countElement($name){
@@ -55,6 +71,10 @@
     });
     $(document).on('change', 'input[name^=service-price-]', function() {
         suggestedPrice();
+    });
+    $(document).on('change', 'select[name^=room-]', function() {
+        $id = parseInt($(this).attr('name').match(/[0-9]+/g));
+        refreshSelectDataByRoomId($id);
     });
 
     suggestedPrice();

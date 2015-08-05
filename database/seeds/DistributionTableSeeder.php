@@ -38,6 +38,13 @@ class DistributionTableSeeder extends Seeder {
         ));
         $dis->beds()->sync([ 1 => ['amount' => 2] ]);
 
+        $dis = Distribution::create(array(//6
+            'name'          => 'Reyes',
+            'description'   => 'Posee 2 Camas una King para él y una Queen para ella.',
+        ));
+        $dis->beds()->sync([ 4 => ['amount' => 1],
+                             3 => ['amount' => 1]]);
+
     }
 
 }

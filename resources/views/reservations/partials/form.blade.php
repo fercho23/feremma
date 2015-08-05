@@ -10,22 +10,29 @@
 <div class="form-group">
     {!! Form::label('room', 'Habitaciones:') !!}
 
-    {{--
     <div class="group-labels" id="label-rooms">
         <div class="row">
-            <div class="col-lg-5 col-xs-5">
+            <div class="col-lg-4 col-xs-4 no-gutter-right">
                 <div class="form-control" readonly="True">
                     <strong>Nombre de la Habitación</strong>
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-3 no-gutter">
+            <div class="col-lg-4 col-xs-4 no-gutter">
                 <div class="form-control" readonly="True">
-                    <strong>Tipo de Camas</strong>
+                    <strong>Distribución</strong>
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-3 no-gutter">
+            <div class="col-lg-1 col-xs-1 no-gutter">
                 <div class="form-control" readonly="True">
-                    <strong>Cantidad de Camas</strong>
+                    <i class="fa fa-male" title="Cantidad de Personas"></i>
+                    <i class="fa fa-female" title="Cantidad de Personas"></i>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-2 no-gutter">
+                <div class="form-control" readonly="True">
+                    <i class="fa fa-arrow-right" title="Precio Final"></i>
+                    <i class="fa fa-usd" title="Precio Final"></i>
+                    <i class="fa fa-usd" title="Precio Final"></i>
                 </div>
             </div>
             <div class="col-lg-1 col-xs-1">
@@ -36,15 +43,28 @@
         </div>
 
         @foreach ($reservation->rooms as $room)
-            <div class="row" id="services-{!! $room->id !!}">
-                <div class="col-lg-5 col-xs-4">
+            <div class="row" id="rooms-{!! $room->id !!}">
+                <div class="col-lg-4 col-xs-4 no-gutter-right">
                     {!! Form::text('room-name-'.$room->id, $room->name, ['class'=>'form-control', 'readonly'=>'True']) !!}
+                    {!! Form::hidden('room-price-'.$room->id, $room->price) !!}
                 </div>
-                <div class="col-lg-3 col-xs-3 no-gutter">
-                    {!! Form::text('room-types_beds-'.$room->id, $room->pivot->types_beds, ['class'=>'form-control']) !!}
+                <div class="col-lg-4 col-xs-4 no-gutter">
+                    <select class="form-control" name="room-{!! $room->id !!}-distributions">
+                        @foreach($room->distributions as $distribution)
+                            <option value="{!! $distribution->id !!}">
+                                {!! $distribution->name !!}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="col-lg-3 col-xs-2 no-gutter">
-                    {!! Form::input('number', 'room-total_beds-'.$room->id, $room->pivot->total_beds, ['class'=>'form-control']) !!}
+                <div class="col-lg-1 col-xs-1 no-gutter">
+                    {!! Form::text('room-total_persons-'.$room->id, "", ['class'=>'form-control', 'readonly'=>'True']) !!}
+                </div>
+                <div class="col-lg-2 col-xs-2 no-gutter">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-arrow-right"></i></span>
+                        {!! Form::text('room-final_price-'.$room->id, "", ['class'=>'form-control', 'readonly'=>'True']) !!}
+                    </div>
                 </div>
                 <div class="col-lg-1 col-xs-1">
                     <span class="btn btn-warning">
@@ -54,8 +74,9 @@
             </div>
         @endforeach
     </div>
-    --}}
+    
 
+    {{--
     <div class="group-labels" id="label-rooms" style="margin-bottom:5px;">
         @foreach ($reservation->rooms as $room)
             <div id="rooms-{!! $room->id !!}" class="label label-info" style="margin:5px;">
@@ -63,6 +84,7 @@
             </div>
         @endforeach
     </div>
+    --}}
 
     {!! Form::hidden('rooms_id', implode(",", $reservation->rooms()->getRelatedIds()), array('id' => 'rooms_id')) !!}
     <div class="input-group">

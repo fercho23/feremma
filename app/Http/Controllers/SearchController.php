@@ -11,6 +11,21 @@ use Request;
 //! Controlador de Busquedas
 class SearchController extends Controller {
 
+    /// Obtiene una Distribución (Distribution) por su $id.
+    /*!
+     * @return Respose Json
+     */
+    public function getDistributionById() {
+        $id = Request::input('id', '');
+
+        $results = array();
+        $query = Distribution::find($id);
+        $results['price'] = $query->price();
+        $results['totalPersons'] = $query->totalPersons();
+
+        return response()->json($results);
+    }
+
     /// Obtiene Camas (Bed) restantes.
     /*!
      * Por medio de Request obtiene los $ids de las Camas que no debe retornar,
@@ -75,7 +90,7 @@ class SearchController extends Controller {
                        ->take(10)->get();
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
-                          'value' => $query->name.' ['.$query->total_beds.']'];
+                          'value' => $query->name];
         return response()->json($results);
     }
 
@@ -126,21 +141,6 @@ class SearchController extends Controller {
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
                           'value' => $query->fullname().' ['.$query->dni.']'];
-        return response()->json($results);
-    }
-
-    /// Obtiene Habitaciones (Room).
-    /*!
-     * Por medio de Request obtiene las $ids de las Habitaciones que posteriormente busca.
-     * @return Respose Json
-     */
-    public function getRoomPriceByIds() {
-        $ids = Request::input('ids', '');
-        $ids = ($ids ? array_map('intval', explode(',', $ids)) : []);
-        $results = array();
-        $queries = Room::whereIn('id', $ids)->get();
-        foreach ($queries as $query)
-            $results[] = ['value' => $query->price];
         return response()->json($results);
     }
 
