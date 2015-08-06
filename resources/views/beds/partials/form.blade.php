@@ -7,8 +7,8 @@
     {!! Form::label('total_persons','Total Personas:')!!}
     <div class="input-group">
         <span class="input-group-addon">
-            <i class="fa fa-bed"></i>
-            <i class="fa fa-asterisk"></i>
+            <i class="fa fa-male"></i>
+            <i class="fa fa-female"></i>
         </span>
     {!! Form::input('number', 'total_persons', null, ['class'=>'form-control',
                                                    	  'max'=>'10',

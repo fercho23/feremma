@@ -19,7 +19,7 @@ class DistributionsController extends Controller {
     /*!
      * Muestra el formulario para ingresar una nueva Distribución,
      * esta función se llama con el método GET.
-     * @return Vista con un Distribución (Distribution) vacía
+     * @return Vista con una Distribución (Distribution) vacía
      */
     public function create() {
         $distribution = new Distribution;
@@ -62,7 +62,7 @@ class DistributionsController extends Controller {
         //
     }
 
-    /// Fomulario de edición de una Distribución (Distribution) específico.
+    /// Fomulario de edición de una Distribución (Distribution) específica.
     /*!
      * Muestra el formulario para editar una Distribución que es buscada por su $id,
      * esta función se llama con el método GET.

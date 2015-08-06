@@ -17,7 +17,7 @@ class CreateRoomsTable extends Migration {
             $table->text('description')->nullable();
             $table->string('location', 150);
             $table->text('plan');
-            $table->boolean('available');
+            $table->boolean('available')->default(1);
             $table->decimal('price', 10, 2);
             $table->timestamps();
         });

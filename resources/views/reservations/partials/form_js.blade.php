@@ -103,9 +103,62 @@
         minLength: 2,
         select: function(event, ui){
             if(!$('div#rooms-'+ui.item.id).length>0) {
-                $('#label-rooms').append("<div id='rooms-" + ui.item.id + "' class='label label-info'" +
-                                         " style='margin:5px;'>" + ui.item.value +
-                                         " <i name='fa-kill' class='fa fa-times-circle'></i></div>");
+
+                $.ajax({
+                    url: '{!! route("get-distribution-by-room-id") !!}',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        id: ui.item.id
+                    },
+                }).done(
+                    function(data) {
+                        console.log(data);
+                        // $.each(data, function(index, value) {
+                        //     $suggested_price += parseFloat(value.value);
+                        // });
+                        // $('input[name=suggested_price]').attr('value', $suggested_price);
+                    }
+                );
+                $select = "<span class='form-control'>lalala</span>";
+
+
+                // $select = "<select class='form-control' name='room-" + ui.item.id + "-distributions'>"+;
+                // $('div#label-rooms select[name^=rooms-]').each(function(k, v) {
+                //     $n = parseInt($(v).attr('id').match(/[0-9]+/g));
+                //     $total += parseFloat($('input[room-final_price-'+$n+']').val());
+                // });
+                // foreach
+                        // "<option value='3'>"
+                        //     Queen
+                        // "</option>"
+                        // "<option value='4'>"
+                        //     King
+                        // "</option>"
+                // $select +="</select>";
+
+
+                $('#label-rooms').append("<div class='row' id='rooms-" + ui.item.id + "'>"+
+                                             "<div class='col-lg-4 col-xs-4 no-gutter-right'>"+
+                                                "<input class='form-control' readonly='True' name='room-name-" + ui.item.id + "' type='text' value='" + ui.item.value + "'>"+
+                                                "<input name='room-price-" + ui.item.id + "' type='hidden' value='" + ui.item.price + "'>"+
+                                            "</div>"+
+                                            "<div class='col-lg-4 col-xs-4 no-gutter'>"+
+                                                $select+
+                                            "</div>"+
+                                            "<div class='col-lg-1 col-xs-1 no-gutter'>"+
+                                                "<input class='form-control' readonly='True' name='room-total_persons-" + ui.item.id + "' type='text' value=''>"+
+                                            "</div>"+
+                                            "<div class='col-lg-2 col-xs-2 no-gutter'>"+
+                                                "<div class='input-group'>"+
+                                                    "<span class='input-group-addon'><i class='fa fa-arrow-right'></i></span>"+
+                                                    "<input class='form-control' readonly='True' name='room-final_price-" + ui.item.id + "' type='text' value=''>"+
+                                                "</div>"+
+                                            "</div>"+
+                                            "<div class='col-lg-1 col-xs-1'>"+
+                                                "<span class='btn btn-warning'><i name='fa-kill' class='fa fa-times-circle'></i></span>"+
+                                            "</div>"+
+                                        "</div>");
                 countElement('rooms');
             }
             $(this).val('');

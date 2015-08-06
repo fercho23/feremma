@@ -49,7 +49,7 @@ class BedsController extends Controller {
         //
     }
 
-    /// Fomulario de edición de una Cama (Bed) específico.
+    /// Fomulario de edición de una Cama (Bed) específica.
     /*!
      * Muestra el formulario para editar una Cama que es buscada por su $id,
      * esta función se llama con el método GET.
@@ -58,7 +58,7 @@ class BedsController extends Controller {
      */
     public function edit($id) {
         $bed = Bed::findOrFail($id);
-        return view('beds.edit', compact('role'));
+        return view('beds.edit', compact('bed'));
     }
 
     /// Edita una Cama (Bed) específica.

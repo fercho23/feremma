@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('beds', array('as' => 'search-remaining-beds', 'uses' => 'SearchController@getRemainingBedsByName'));
         Route::get('distributions', array('as' => 'search-remaining-distributions', 'uses' => 'SearchController@getRemainingDistributionsByName'));
         Route::get('distribution', array('as' => 'get-distribution-by-id', 'uses' => 'SearchController@getDistributionById'));
+        Route::get('distribution-by-room-id', array('as' => 'get-distribution-by-room-id', 'uses' => 'SearchController@getDistributionsByRoomId'));
         Route::get('rooms', array('as' => 'search-remaining-rooms', 'uses' => 'SearchController@getRemainingRoomsByName'));
         Route::get('services', array('as' => 'search-remaining-services', 'uses' => 'SearchController@getRemainingServicesByName'));
         Route::get('user', array('as' => 'search-user', 'uses' => 'SearchController@getUserByName'));

@@ -18,7 +18,7 @@ class CreateRoomDistributionTable extends Migration {
             $table->integer('distribution_id')->unsigned();
             //$table->foreign('distribution_id')->references('id')->on('distributions');
             $table->integer('order')->unsigned();
-            $table->boolean('available');
+            $table->boolean('available')->default(1);
             $table->timestamps();
         });
     }

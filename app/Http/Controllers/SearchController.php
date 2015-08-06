@@ -144,6 +144,28 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /// Obtiene Distribuciones (Distribution) por $id de Habitación (Room).
+    /*!
+     * Por medio de Request obtiene el $id de la Habitación con la cual
+     * buscaa las Distribuciones que puede tener, devuelve todas las que están 
+     * disponibles y en el orden correcto.
+     * @return Respose Json
+     */
+    public function getDistributionsByRoomId() {
+        $id = Request::input('id', '');
+
+        $results = array();
+        $queries = Room::find($id)->distributions();
+
+        foreach ($queries as $query) 
+            $results[] = ['id' => $query->id,
+                          'value' => $query->name(),
+                          'price' => $query->price(),
+                          'totalPersons' => $query->totalPersons()];
+
+        return response()->json($results);
+    }
+
     /// Obtiene Usuarios (User).
     /*!
      * Por medio de Request obtiene los caracteres que usa para buscar al Usuario
