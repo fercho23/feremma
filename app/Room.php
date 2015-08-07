@@ -35,4 +35,52 @@ class Room extends Model {
                     ->withPivot('check_in', 'check_out', 'distribution_id', 'price');
     }
 
+    /// Obtiene las Distribuciones (Distribution) disponibles y la actual seteada de esta Habitación (Room).
+    /*!
+     * Obtiene en el orden correcto las Distribuciones disponibles para esta Habitación, 
+     * con la distinución seteada como primera en la lista.
+     * @param $reservation_id = $id de Reserva (Reservation)
+     * @return Consulta de Base de Datos
+     */
+    public function getAvailableDistribuionsAndMyDistributionByReservationId($reservation_id) {
+        $distribution = $this->getMyDistributionByReservationId($reservation_id);
+        $ids = $this->distributions()->where('room_distribution.available' ,'=', '1')
+                                     ->where('distribution_id', '!=', $distribution)
+                                     ->orderBy('room_distribution.order')
+                                     ->lists('distribution_id');
+        array_unshift($ids, $distribution);
+        $ids_ordered = implode(',', $ids);
+        $distributions = Distribution::whereIn('id', $ids)
+                                     ->orderByRaw(\DB::raw("FIELD(id, $ids_ordered)"))
+                                     ->get();
+
+        return $distributions;
+    }
+
+    /// Obtiene las Distribuciones (Distribution) disponibles para esta Habitación (Room).
+    /*!
+     * Obtiene en el orden correcto las Distribuciones disponibles para esta Habitación.
+     * @return Consulta de Base de Datos
+     */
+    public function getMyAvailableDistribuions() {
+        $ids = $this->distributions()->where('room_distribution.available' ,'=', '1')
+                                     ->lists('distribution_id');
+        $ids_ordered = implode(',', $ids);
+        $distributions = Distribution::whereIn('id', $ids)
+                                     ->orderByRaw(\DB::raw("FIELD(id, $ids_ordered)"))
+                                     ->get();
+        return $distributions;
+    }
+
+    /// Obtiene la Distribución (Distribution) de esta Habitación (Room) en una determinada Reserva (Reservation).
+    /*!
+     * @param $reservation_id = $id de Reserva (Reservation)
+     * @return $id de Distribución (Distribution)
+     */
+    public function getMyDistributionByReservationId($reservation_id) {
+        return \DB::table('room_reservation')->where('room_id' , '=', $this->id)
+                                             ->where('reservation_id' , '=', $reservation_id)
+                                             ->first()->distribution_id;
+    }
+
 }

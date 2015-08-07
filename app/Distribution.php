@@ -38,6 +38,12 @@ class Distribution extends Model {
         return ($this->name.' ['.$this->totalPersons().'] [ $ '.$this->price().' ]');
     }
 
+    /// Cantidad de personas en la Distribución (Distribution) teniendo en cuenta todas las Camas (Bed).
+    /*!
+     * Cantidad de personas en la Distribución teniendo en cuenta todas las Camas multiplicado
+     * por el número de veces que se repite esa Cama en la Distribución.
+     * @return Número
+     */
     public function totalPersons() {
         $total = 0;
         foreach($this->beds as $bed) {
@@ -46,6 +52,12 @@ class Distribution extends Model {
         return $total;
     }
 
+    /// Precio de la Distribución (Distribution) teniendo en cuenta todas las Camas (Bed).
+    /*!
+     * Precio de la Distribución teniendo en cuenta todas las Camas multiplicado
+     * por el número de veces que se repite esa Cama en la Distribución.
+     * @return Número
+     */
     public function price() {
         $price = 0;
         foreach($this->beds as $bed) {

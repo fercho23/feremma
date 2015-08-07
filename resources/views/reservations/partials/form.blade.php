@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-lg-4 col-xs-4 no-gutter">
                     <select class="form-control" name="room-{!! $room->id !!}-distributions">
-                        @foreach($room->distributions as $distribution)
+                        @foreach($room->getAvailableDistribuionsAndMyDistributionByReservationId($reservation->id) as $distribution)
                             <option data-persons="{!! $distribution->totalPersons() !!}" data-price="{!! $distribution->price() !!}" value="{!! $distribution->id !!}">
                                 {!! $distribution->name !!}
                             </option>
@@ -58,12 +58,12 @@
                     </select>
                 </div>
                 <div class="col-lg-1 col-xs-1 no-gutter">
-                    {!! Form::text('room-total_persons-'.$room->id, $room->distributions->first()->totalPersons(), ['class'=>'form-control', 'readonly'=>'True']) !!}
+                    {!! Form::text('room-total_persons-'.$room->id, $room->getAvailableDistribuionsAndMyDistributionByReservationId($reservation->id)->first()->totalPersons(), ['class'=>'form-control', 'readonly'=>'True']) !!}
                 </div>
                 <div class="col-lg-2 col-xs-2 no-gutter">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-arrow-right"></i></span>
-                        {!! Form::text('room-final_price-'.$room->id, $room->price + $room->distributions->first()->price(), ['class'=>'form-control', 'readonly'=>'True']) !!}
+                        {!! Form::text('room-final_price-'.$room->id, $room->price + $room->getAvailableDistribuionsAndMyDistributionByReservationId($reservation->id)->first()->price(), ['class'=>'form-control', 'readonly'=>'True']) !!}
                     </div>
                 </div>
                 <div class="col-lg-1 col-xs-1">

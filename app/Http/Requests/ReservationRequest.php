@@ -68,18 +68,18 @@ class ReservationRequest extends Request {
             if($validator->getData()['check_out'] < $validator->getData()['check_in'])
                 $validator->errors()->add('sign', 'La Fecha de Salida debe ser posterior a la de entrada.');
 
-            $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
-            $persons_id = ($validator->getData()['persons_id'] ? array_map('intval', explode(',', $validator->getData()['persons_id'])) : []);
-            $owner_id = $validator->getData()['owner_id'];
+            // $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
+            // $persons_id = ($validator->getData()['persons_id'] ? array_map('intval', explode(',', $validator->getData()['persons_id'])) : []);
+            // $owner_id = $validator->getData()['owner_id'];
 
-            $rooms = DB::table('rooms')->whereIn('id', $rooms_id)->get();
-            $total_beds = 0;
-            $total_persons = ($owner_id ? 1 : 0) + count($persons_id);
+            // $rooms = DB::table('rooms')->whereIn('id', $rooms_id)->get();
+            // $total_beds = 0;
+            // $total_persons = ($owner_id ? 1 : 0) + count($persons_id);
 
-            foreach($rooms as $room)
-                $total_beds += $room->total_beds;
-            if($total_beds < $total_persons)
-                $validator->errors()->add('persons_id', 'Hay demasiada cantidad de Personas ('.$total_persons.') en relación a la cantidad de Plazas ('.$total_beds.').');
+            // foreach($rooms as $room)
+            //     $total_beds += $room->total_beds;
+            // if($total_beds < $total_persons)
+            //     $validator->errors()->add('persons_id', 'Hay demasiada cantidad de Personas ('.$total_persons.') en relación a la cantidad de Plazas ('.$total_beds.').');
 
         });
 

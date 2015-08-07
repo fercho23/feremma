@@ -13,7 +13,7 @@
 
     function getRoomsPrice() {
         $total = 0;
-        $('div#label-rooms select[name^=room-]').each(function(k, v) {
+        $('div#label-rooms div.row select[name^=room-]').each(function(k, v) {
             $n = parseInt($(v).attr('name').match(/[0-9]+/g));
             $total += parseFloat($('input[name^=room-final_price-'+$n+']').val());
         });
@@ -110,6 +110,7 @@
                         $select += "<option data-persons='"+value.totalPersons+"' data-price='"+value.price+"' value='" + value.id + "'>"+value.name+"</option>";
                     });
                     $select +="</select>";
+                    final_price = parseFloat(data[0].price) + parseFloat(ui.item.price);
                     $('#label-rooms').append("<div class='row' id='rooms-" + ui.item.id + "'>"+
                                                  "<div class='col-lg-4 col-xs-4 no-gutter-right'>"+
                                                     "<input class='form-control' readonly='True' name='room-name-" + ui.item.id + "' type='text' value='" + ui.item.value + "'>"+
@@ -122,16 +123,16 @@
                                                 "<div class='col-lg-2 col-xs-2 no-gutter'>"+
                                                     "<div class='input-group'>"+
                                                         "<span class='input-group-addon'><i class='fa fa-arrow-right'></i></span>"+
-                                                        "<input class='form-control' readonly='True' name='room-final_price-" + ui.item.id + "' type='text' value='" + data[0].price + "'>"+
+                                                        "<input class='form-control' readonly='True' name='room-final_price-" + ui.item.id + "' type='text' value='" + final_price + "'>"+
                                                     "</div>"+
                                                 "</div>"+
                                                 "<div class='col-lg-1 col-xs-1'>"+
                                                     "<span class='btn btn-warning'><i name='fa-kill' class='fa fa-times-circle'></i></span>"+
                                                 "</div>"+
                                             "</div>");
+                    countElement('rooms');
                 });
 
-                countElement('rooms');
             }
             $(this).val('');
             return false;

@@ -52,7 +52,16 @@ class ReservationsController extends Controller {
             $services[$id] = $service;
         }
 
-        $reservation->rooms()->sync($rooms_id);
+        $rooms = [];
+        foreach($rooms_id as $id) {
+            $room = [];
+            $room["reservation_id"] = $reservation->id;
+            $room["distribution_id"] = $request->input('room-'.$id.'-distributions');
+            $room["price"] = $request->input('room-final_price-'.$id);
+            $rooms[$id] = $room;
+        }
+
+        $reservation->rooms()->sync($rooms);
         $reservation->services()->sync($services);
         $reservation->booking()->sync($persons_id);
 
@@ -109,7 +118,16 @@ class ReservationsController extends Controller {
             $services[$id] = $service;
         }
 
-        $reservation->rooms()->sync($rooms_id);
+        $rooms = [];
+        foreach($rooms_id as $id) {
+            $room = [];
+            $room["reservation_id"] = $reservation->id;
+            $room["distribution_id"] = $request->input('room-'.$id.'-distributions');
+            $room["price"] = $request->input('room-final_price-'.$id);
+            $rooms[$id] = $room;
+        }
+
+        $reservation->rooms()->sync($rooms);
         $reservation->services()->sync($services);
         $reservation->booking()->sync($persons_id);
 

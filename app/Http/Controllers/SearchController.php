@@ -158,13 +158,11 @@ class SearchController extends Controller {
         $id = Request::input('id', '');
 
         $results = array();
-        foreach (Room::find($id)->distributions as $distribution) {
-            if($distribution->pivot->available)
+        foreach (Room::find($id)->getMyAvailableDistribuions() as $distribution)
                 $results[] = ['id' => $distribution->id,
                               'name' => $distribution->name,
                               'price' => $distribution->price(),
                               'totalPersons' => $distribution->totalPersons()];
-            }
         return response()->json($results);
     }
 
