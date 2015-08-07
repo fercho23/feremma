@@ -88,9 +88,11 @@ class SearchController extends Controller {
         $queries = Room::where('name', 'LIKE', '%'.$term.'%')
                        ->whereNotIn('id', $rooms_id)
                        ->take(10)->get();
-        foreach ($queries as $query)
-            $results[] = ['id' => $query->id,
-                          'value' => $query->name];
+        foreach ($queries as $query) {
+            if (count($query->distributions))
+                $results[] = ['id' => $query->id,
+                              'value' => $query->name];
+            }
         return response()->json($results);
     }
 
@@ -155,14 +157,13 @@ class SearchController extends Controller {
         $id = Request::input('id', '');
 
         $results = array();
-        $queries = Room::find($id)->distributions();
-
-        foreach ($queries as $query) 
-            $results[] = ['id' => $query->id,
-                          'value' => $query->name(),
-                          'price' => $query->price(),
-                          'totalPersons' => $query->totalPersons()];
-
+        foreach (Room::find($id)->distributions as $distribution) {
+            if($distribution->pivot->available)
+                $results[] = ['id' => $distribution->id,
+                              'name' => $distribution->name,
+                              'price' => $distribution->price(),
+                              'totalPersons' => $distribution->totalPersons()];
+            }
         return response()->json($results);
     }
 

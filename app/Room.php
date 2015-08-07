@@ -35,19 +35,4 @@ class Room extends Model {
                     ->withPivot('check_in', 'check_out');
     }
 
-
-    /// Obtiene las Distribuciones (Distribution) que están disponibles y por orden.
-    /*!
-     * @return Consulta de Base de Datos
-     */
-    public function distributionsAvailable() {
-        // return \DB::table('room_distribution')->where('room_id', '=', $this->id)->get();
-        // return \DB::table('room_distribution')->where('room_id', '=', $this->id)
-        //                                      ->where('available', '=', 1)
-        //                                      ->orderBy('order')
-        //                                      ->get();
-        return $this->distributions();
-        // return $this->distributions()->where('available', '=', 1)->get();
-    } 
-
 }
