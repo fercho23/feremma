@@ -91,7 +91,8 @@ class SearchController extends Controller {
         foreach ($queries as $query) {
             if (count($query->distributions))
                 $results[] = ['id' => $query->id,
-                              'value' => $query->name];
+                              'value' => $query->name,
+                              'price' => $query->price];
             }
         return response()->json($results);
     }

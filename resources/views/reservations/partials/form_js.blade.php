@@ -13,16 +13,14 @@
 
     function getRoomsPrice() {
         $total = 0;
-        $('div#label-rooms select[name^=rooms-]').each(function(k, v) {
-            $n = parseInt($(v).attr('id').match(/[0-9]+/g));
-            $total += parseFloat($('input[room-final_price-'+$n+']').val());
+        $('div#label-rooms select[name^=room-]').each(function(k, v) {
+            $n = parseInt($(v).attr('name').match(/[0-9]+/g));
+            $total += parseFloat($('input[name^=room-final_price-'+$n+']').val());
         });
-
         return $total;
     }
 
     function suggestedPrice() {
-        console.log( getServicesPrice(), getRoomsPrice() );
         $suggested_price = getServicesPrice();
         $suggested_price += getRoomsPrice();
 
@@ -35,21 +33,15 @@
     }
 
     function refreshSelectDataByRoomId($id) {
-        $e = parseInt($('select[name^=room-'+$id+']').val());
-        $.ajax({
-            url: '{!! route("get-distribution-by-id") !!}',
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                id: $e
-            },
-        }).done(
-            function(data) {
-                $price = parseFloat($('input[name=room-price-'+$id+']').val());
-                $('input[name=room-total_persons-'+$id+']').attr('value', data.totalPersons);
-                $('input[name=room-final_price-'+$id+']').attr('value', $price + data.price);
-            }
-        );
+        select = 'select[name=room-'+$id+'-distributions]';
+        option = parseInt($(select).val());
+        option = $(select+' option[value='+option+']');
+
+        price = parseFloat($('input[name=room-price-'+$id+']').val());
+        price = price + parseFloat(option.data('price'));
+
+        $('input[name=room-total_persons-'+$id+']').attr('value', parseInt(option.data('persons')))
+        $('input[name=room-final_price-'+$id+']').attr('value', price);
         suggestedPrice();
     }
 
@@ -72,7 +64,7 @@
     $(document).on('change', 'input[name^=service-price-]', function() {
         suggestedPrice();
     });
-    $(document).on('change', 'select[name^=room-]', function() {
+    $(document).on('change', 'div#label-rooms select[name^=room-]', function() {
         $id = parseInt($(this).attr('name').match(/[0-9]+/g));
         refreshSelectDataByRoomId($id);
     });
@@ -115,7 +107,7 @@
                 }).done(function(data) {
                     $select = "<select class='form-control' name='room-" + ui.item.id + "-distributions'>";
                     $.each(data, function(index, value) {
-                        $select += "<option value='" + value.id + "'>"+value.name+"</option>";
+                        $select += "<option data-persons='"+value.totalPersons+"' data-price='"+value.price+"' value='" + value.id + "'>"+value.name+"</option>";
                     });
                     $select +="</select>";
                     $('#label-rooms').append("<div class='row' id='rooms-" + ui.item.id + "'>"+
@@ -125,12 +117,12 @@
                                                 "</div>"+
                                                 "<div class='col-lg-4 col-xs-4 no-gutter'>"+$select+"</div>"+
                                                 "<div class='col-lg-1 col-xs-1 no-gutter'>"+
-                                                    "<input class='form-control' readonly='True' name='room-total_persons-" + ui.item.id + "' type='text' value=''>"+
+                                                    "<input class='form-control' readonly='True' name='room-total_persons-" + ui.item.id + "' type='text' value='" + data[0].totalPersons + "'>"+
                                                 "</div>"+
                                                 "<div class='col-lg-2 col-xs-2 no-gutter'>"+
                                                     "<div class='input-group'>"+
                                                         "<span class='input-group-addon'><i class='fa fa-arrow-right'></i></span>"+
-                                                        "<input class='form-control' readonly='True' name='room-final_price-" + ui.item.id + "' type='text' value=''>"+
+                                                        "<input class='form-control' readonly='True' name='room-final_price-" + ui.item.id + "' type='text' value='" + data[0].price + "'>"+
                                                     "</div>"+
                                                 "</div>"+
                                                 "<div class='col-lg-1 col-xs-1'>"+

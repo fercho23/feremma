@@ -10,15 +10,15 @@ class ReservationTableSeeder extends Seeder {
 
         $reservation = Reservation::create(array(
             'owner_id'    => '1',
-            'total_price' => '500',
-            'sign'        => '400',
-            'due'         => '100',
+            'total_price' => '6550',
+            'sign'        => '4550',
+            'due'         => '2000',
             'check_in'    => '2015-02-01',
             'check_out'   => '2015-02-04',
             ));
 
-        $reservation->rooms()->sync([ 1 => ['types_beds' => 'King Size',
-                                            'total_beds' => 2
+        $reservation->rooms()->sync([ 3 => ['distribution_id' => 6,
+                                            'price' => '5550'
                                            ]
                                     ]);
 
@@ -38,11 +38,11 @@ class ReservationTableSeeder extends Seeder {
             'check_out'   => '2015-01-03',
             ));
 
-        $reservation->rooms()->sync([ 1 => ['types_beds' => 'King Size',
-                                            'total_beds' => 2
+        $reservation->rooms()->sync([ 1 => ['distribution_id' => 4,
+                                            'price' => '800'
                                            ],
-                                      3 => ['types_beds' => 'King Size',
-                                            'total_beds' => 2
+                                      2 => ['distribution_id' => 2,
+                                            'price' => '400'
                                            ]
                                     ]);
         // $reservation->rooms()->sync([1, 3]);

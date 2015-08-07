@@ -32,7 +32,7 @@ class Room extends Model {
      */
     public function reservations() {
         return $this->belongsToMany('FerEmma\Reservation', 'room_reservation')
-                    ->withPivot('check_in', 'check_out');
+                    ->withPivot('check_in', 'check_out', 'distribution_id', 'price');
     }
 
 }
