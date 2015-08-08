@@ -132,7 +132,6 @@
                                             "</div>");
                     countElement('rooms');
                 });
-
             }
             $(this).val('');
             return false;

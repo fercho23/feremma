@@ -84,29 +84,29 @@
 
 <div class="form-group">
     {!! Form::label('service', 'Servicios:') !!}
-    <div class="group-labels" id="label-services">
-        <div class="row">
-            <div class="col-lg-5 col-xs-5">
-                <div class="form-control" readonly="True">
-                    <strong>Nombre del Servicio</strong>
-                </div>
-            </div>
-            <div class="col-lg-3 col-xs-3 no-gutter">
-                <div class="form-control" readonly="True">
-                    <strong>Cantidad</strong>
-                </div>
-            </div>
-            <div class="col-lg-3 col-xs-3 no-gutter">
-                <div class="form-control" readonly="True">
-                    <strong>Precio</strong>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xs-1">
-                <span class="btn btn-default">
-                    <i class="fa fa-times-circle"></i>
-                </span>
+    <div class="row">
+        <div class="col-lg-5 col-xs-5">
+            <div class="form-control" readonly="True">
+                <strong>Nombre del Servicio</strong>
             </div>
         </div>
+        <div class="col-lg-3 col-xs-3 no-gutter">
+            <div class="form-control" readonly="True">
+                <strong>Cantidad</strong>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-3 no-gutter">
+            <div class="form-control" readonly="True">
+                <strong>Precio</strong>
+            </div>
+        </div>
+        <div class="col-lg-1 col-xs-1">
+            <span class="btn btn-default">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+    </div>
+    <div class="group-labels" id="label-services">
         @foreach ($reservation->services as $service)
             <div class="row" id="services-{!! $service->id !!}">
                 <div class="col-lg-5 col-xs-5">

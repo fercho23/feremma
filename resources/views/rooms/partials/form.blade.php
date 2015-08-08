@@ -6,15 +6,56 @@
 <div class="form-group">
     {!! Form::label('distribution','Distribuciones de Camas:') !!}
 
-    <div class="group-labels" id="label-distributions" style="margin-bottom:5px;">
+    <div class="row">
+        <div class="col-lg-10 col-xs-10 no-gutter-right">
+            <div class="form-control" readonly="True">
+                <strong>Distribución</strong>
+                [ <i class="fa fa-male" title="Cantidad de Personas"></i><i class="fa fa-female" title="Cantidad de Personas"></i> ]
+                [ <i class="fa fa-usd" title="Precio"></i> ]
+            </div>
+        </div>
+        <div class="col-lg-1 col-xs-1 no-gutter">
+            <div class="form-control" readonly="True">
+                <i class="fa fa-thumbs-o-up" title="Disponible"></i>
+            </div>
+        </div>
+        <div class="col-lg-1 col-xs-1">
+            <span class="btn btn-default">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+    </div>
+    <div class="group-labels" id="label-distributions">
+        @foreach ($room->distributions as $distribution)
+            <div class="row" id="distributions-{!! $distribution->id !!}">
+                <div class="col-lg-10 col-xs-10 no-gutter-right">
+                    <div class="form-control" readonly="True">
+                        {!! $distribution->representation() !!}
+                    </div>
+                </div>
+                <div class="col-lg-1 col-xs-1 no-gutter">
+                    <div class="form-control">
+                        {!! Form::checkbox('distribution-checkbox-'.$distribution->id, null, ($distribution->pivot->available ? true : false), ['class' => 'checkbox']) !!}
+                    </div>
+                </div>
+                <div class="col-lg-1 col-xs-1">
+                    <span class="btn btn-warning">
+                        <i name="fa-kill" class="fa fa-times-circle"></i>
+                    </span>
+                </div>
+            </div>
+        @endforeach
+
+{{--
         @foreach ($room->distributions as $distribution)
             <div id="distributions-{!! $distribution->id !!}" class="label label-info" style="margin:5px;">
                 {!! $distribution->representation() !!} <i name="fa-kill" class="fa fa-times-circle"></i>
             </div>
         @endforeach
+--}}
+
     </div>
     {!! Form::hidden('distributions_id', implode(",", $room->distributions()->getRelatedIds()), array('id' => 'distributions_id')) !!}
-
     {!! Form::text('distribution', '', ['class'=>'form-control']) !!}
 </div>
 

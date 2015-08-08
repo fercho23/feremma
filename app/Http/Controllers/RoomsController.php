@@ -36,7 +36,15 @@ class RoomsController extends Controller {
         $room = Room::create($request->all());
 
         $distributions_id = ($request->input('distributions_id') ? array_map('intval', explode(',', $request->input('distributions_id'))) : []);
-        $room->distributions()->sync($distributions_id);
+
+        $distributions = [];
+        foreach($distributions_id as $index => $id) {
+            $distribution = [];
+            $distribution["available"] = ($request->input('distribution-checkbox-'.$id) ? True : False);
+            $distribution["order"] = $index + 1;
+            $distributions[$id] = $distribution;
+        }
+        $room->distributions()->sync($distributions);
 
         flash()->success('La Habitación fue ingresada con exito.');
         return redirect('rooms');
@@ -74,11 +82,19 @@ class RoomsController extends Controller {
      * @return Response
      */
     public function update($id, RoomRequest $request) {
+        $distributions_id = ($request->input('distributions_id') ? array_map('intval', explode(',', $request->input('distributions_id'))) : []);
+
         $room = Room::findOrFail($id);
         $room->update($request->all());
 
-        $distributions_id = ($request->input('distributions_id') ? array_map('intval', explode(',', $request->input('distributions_id'))) : []);
-        $room->distributions()->sync($distributions_id);
+        $distributions = [];
+        foreach($distributions_id as $index => $id) {
+            $distribution = [];
+            $distribution["available"] = ($request->input('distribution-checkbox-'.$id) ? True : False);
+            $distribution["order"] = $index + 1;
+            $distributions[$id] = $distribution;
+        }
+        $room->distributions()->sync($distributions);
 
         flash()->success('La Habitación fue editada con exito.');
         return redirect('rooms');

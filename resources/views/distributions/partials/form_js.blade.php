@@ -15,7 +15,6 @@
         });
 
         $total_price = ($total_price).toFixed(2).replace('.', ',');
-        // $total_persons = ($total_persons).toFixed(2).replace('.', ',');
 
         $('input[name=price]').attr('value', $total_price);
         $('input[name=total_persons]').attr('value', $total_persons);
