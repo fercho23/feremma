@@ -6,7 +6,7 @@
 
         @if (sizeof($users)>0)
             <div class="row">
-                <div class="col-sm-6 col-md-12">
+                <div class="col-lg-12">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -21,10 +21,10 @@
                                 <th>Telefono</th>
                                 <th>Email</th>
                                 @if(Auth::user()->can('users/edit'))
-                                    <th style="width: 36px;"></th>
+                                    <th></th>
                                 @endif
                                 @if(Auth::user()->can('users/destroy'))
-                                    <th style="width: 36px;"></th>
+                                    <th></th>
                                 @endif
                             </tr>
                         </thead>

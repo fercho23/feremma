@@ -5,7 +5,7 @@
 
         @if (sizeof($tasks)>0)
             <div class="row">
-                <div class="col-sm-6 col-md-12">
+                <div class="col-lg-12">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -16,10 +16,10 @@
                                 <th>Estado</th>
                                 <th>Descripción</th>
                                 @if(Auth::user()->can('tasks/edit'))
-                                    <th style="width: 36px;"></th>
+                                    <th></th>
                                 @endif
                                 @if(Auth::user()->can('tasks/destroy'))
-                                    <th style="width: 36px;"></th>
+                                    <th></th>
                                 @endif
                             </tr>
                         </thead>
