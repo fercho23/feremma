@@ -19,7 +19,10 @@
                                 <th>Fecha entrada</th>
                                 <th>Fecha salida</th>
                                 <th>Descripción</th>
-                                @if(Auth::user()->can('reservations/edit') || Auth::user()->can('reservations/destroy'))
+                                @if(Auth::user()->can('reservations/edit'))
+                                    <th style="width: 36px;"></th>
+                                @endif
+                                @if(Auth::user()->can('reservations/destroy'))
                                     <th style="width: 36px;"></th>
                                 @endif
                             </tr>
@@ -45,7 +48,7 @@
                                 @if(Auth::user()->can('reservations/edit'))
                                     <td>
                                         <a href="{!! URL::to('reservations/'.$reservation->id.'/edit') !!}">
-                                            <i class="glyphicon glyphicon-pencil"></i>
+                                            <i class="fa fa-pencil"></i>
                                         </a>
                                     </td>
                                 @endif
@@ -53,7 +56,7 @@
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'action' => ['ReservationsController@destroy', $reservation->id]]) !!}
                                             <button class="btn-link" type="submit">
-                                                <i class="glyphicon glyphicon-trash"></i>
+                                                <i class="fa fa-trash"></i>
                                              </button>
                                         {!! Form::close() !!}
                                     </td>

@@ -20,7 +20,10 @@
                                 <th>Dirección</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
-                                @if(Auth::user()->can('users/edit') || Auth::user()->can('users/destroy'))
+                                @if(Auth::user()->can('users/edit'))
+                                    <th style="width: 36px;"></th>
+                                @endif
+                                @if(Auth::user()->can('users/destroy'))
                                     <th style="width: 36px;"></th>
                                 @endif
                             </tr>
@@ -45,7 +48,7 @@
                                 @if(Auth::user()->can('users/edit'))
                                     <td>
                                         <a href="{!! URL::to('users/'.$user->id.'/edit') !!}">
-                                            <i class="glyphicon glyphicon-pencil"></i>
+                                            <i class="fa fa-pencil"></i>
                                         </a>
                                     </td>
                                 @endif
@@ -53,7 +56,7 @@
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user->id]]) !!}
                                             <button class="btn-link" type="submit">
-                                                <i class="glyphicon glyphicon-trash"></i>
+                                                <i class="fa fa-trash"></i>
                                              </button>
                                         {!! Form::close() !!}
                                     </td>

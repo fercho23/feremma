@@ -15,7 +15,10 @@
                                 <th>Cantidad de usuarios</th>
                                 <th>Cantidad de permisos</th>
                                 <th>Descripción</th>
-                                @if(Auth::user()->can('roles/edit') || Auth::user()->can('roles/destroy'))
+                                @if(Auth::user()->can('roles/edit'))
+                                    <th style="width: 36px;"></th>
+                                @endif
+                                @if(Auth::user()->can('roles/destroy'))
                                     <th style="width: 36px;"></th>
                                 @endif
                             </tr>
@@ -31,7 +34,7 @@
                                 @if(Auth::user()->can('roles/edit'))
                                     <td>
                                         <a href="{!! URL::to('roles/'.$role->id.'/edit') !!}">
-                                            <i class="glyphicon glyphicon-pencil"></i>
+                                            <i class="fa fa-pencil"></i>
                                         </a>
                                     </td>
                                 @endif
@@ -39,7 +42,7 @@
                                     <td>
                                         {!! Form::open(['method' => 'DELETE', 'action' => ['RolesController@destroy', $role->id]]) !!}
                                             <button class="btn-link" type="submit">
-                                                <i class="glyphicon glyphicon-trash"></i>
+                                                <i class="fa fa-trash"></i>
                                             </button>
                                         {!! Form::close() !!}
                                     </td>
