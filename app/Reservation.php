@@ -31,7 +31,7 @@ class Reservation extends Model {
      */
     public function rooms() {
         return $this->belongsToMany('FerEmma\Room', 'room_reservation')
-                    ->withPivot('check_in', 'check_out')
+                    ->withPivot('check_in', 'check_out', 'distribution_id', 'price')
                     ->orderBy('room_reservation.check_in');
     }
 
@@ -62,5 +62,31 @@ class Reservation extends Model {
     static function todaysChekOuts() {
         return count(Reservation::where('check_out', '=', date("Y-m-d", strtotime("today")))->get());
     }
+
+    /// Cantidad de personas en la que pueden entrar en Reserva (Reservation) teniendo en cuenta todas las Habitaciones (Room).
+    /*!
+     * Cantidad de personas en la Reserva teniendo en cuenta todas las Habitaciones y
+     * su respectiva Distribución.
+     * @return Número
+     */
+    public function totalPosiblePersons() {
+        $total = 0;
+        foreach($this->rooms as $room) {
+            $distribution_id = $room->getMyDistributionByReservationId($this->id);
+            $distribution = Distribution::find($distribution_id);
+            $total += $distribution->totalPersons();
+        }
+        return $total;
+    }
+
+    /// Cantidad de personas en la  Reserva (Reservation).
+    /*!
+     * Cantidad de personas en la Reserva.
+     * @return Número
+     */
+    public function totalPersons() {
+        return $this->booking()->count() + 1;
+    }
+
 
 }

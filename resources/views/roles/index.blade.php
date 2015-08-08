@@ -12,6 +12,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Cantidad de usuarios</th>
+                                <th>Cantidad de permisos</th>
                                 <th>Descripción</th>
                                 @if(Auth::user()->can('roles/edit') || Auth::user()->can('roles/destroy'))
                                     <th style="width: 36px;"></th>
@@ -23,6 +25,8 @@
                             <tr>
                                 <td>{!! $role->id !!}</td>
                                 <td>{!! $role->name !!}</td>
+                                <td>{!! $role->users()->count() !!}</td>
+                                <td>{!! $role->permissions()->count() !!}</td>
                                 <td>{!! $role->description !!}</td>
                                 @if(Auth::user()->can('roles/edit'))
                                     <td>

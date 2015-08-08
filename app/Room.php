@@ -32,7 +32,8 @@ class Room extends Model {
      */
     public function reservations() {
         return $this->belongsToMany('FerEmma\Reservation', 'room_reservation')
-                    ->withPivot('check_in', 'check_out', 'distribution_id', 'price');
+                    ->withPivot('check_in', 'check_out', 'distribution_id', 'price')
+                    ->orderBy('room_reservation.check_in');
     }
 
     /// Obtiene las Distribuciones (Distribution) disponibles y la actual seteada de esta Habitación (Room).
@@ -62,7 +63,7 @@ class Room extends Model {
      * Obtiene en el orden correcto las Distribuciones disponibles para esta Habitación.
      * @return Consulta de Base de Datos
      */
-    public function getMyAvailableDistribuions() {
+    public function getMyAvailableDistributions() {
         $ids = $this->distributions()->where('room_distribution.available' ,'=', '1')
                                      ->lists('distribution_id');
         $ids_ordered = implode(',', $ids);

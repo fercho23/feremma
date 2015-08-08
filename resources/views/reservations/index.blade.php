@@ -12,6 +12,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Titular</th>
+                                <th>Cantidad de Personas</th>
                                 <th>Precio Total</th>
                                 <th>Seña</th>
                                 <th>Deuda</th>
@@ -31,6 +32,9 @@
                                     @if (sizeof($reservation->owner)>0)
                                         {!! $reservation->owner->name !!} {!! $reservation->owner->surname !!}
                                     @endif
+                                </td>
+                                <td>
+                                    {!! $reservation->totalPersons() !!} de {!! $reservation->totalPosiblePersons() !!}
                                 </td>
                                 <td>{!! $reservation->total_price !!}</td>
                                 <td>{!! $reservation->sign !!}</td>

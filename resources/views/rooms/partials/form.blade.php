@@ -5,7 +5,6 @@
 
 <div class="form-group">
     {!! Form::label('distribution','Distribuciones de Camas:') !!}
-
     <div class="row">
         <div class="col-lg-10 col-xs-10 no-gutter-right">
             <div class="form-control" readonly="True">
@@ -45,15 +44,6 @@
                 </div>
             </div>
         @endforeach
-
-{{--
-        @foreach ($room->distributions as $distribution)
-            <div id="distributions-{!! $distribution->id !!}" class="label label-info" style="margin:5px;">
-                {!! $distribution->representation() !!} <i name="fa-kill" class="fa fa-times-circle"></i>
-            </div>
-        @endforeach
---}}
-
     </div>
     {!! Form::hidden('distributions_id', implode(",", $room->distributions()->getRelatedIds()), array('id' => 'distributions_id')) !!}
     {!! Form::text('distribution', '', ['class'=>'form-control']) !!}

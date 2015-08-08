@@ -158,7 +158,7 @@ class SearchController extends Controller {
         $id = Request::input('id', '');
 
         $results = array();
-        foreach (Room::find($id)->getMyAvailableDistribuions() as $distribution)
+        foreach (Room::find($id)->getMyAvailableDistributions() as $distribution)
                 $results[] = ['id' => $distribution->id,
                               'name' => $distribution->name,
                               'price' => $distribution->price(),

@@ -12,7 +12,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Total Personas</th>
+                                <th>Cantidad de Personas</th>
                                 <th>Precio</th>
                                 <th>Descripción</th>
                                 @if(Auth::user()->can('beds/edit') || Auth::user()->can('beds/destroy'))

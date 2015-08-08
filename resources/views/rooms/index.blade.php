@@ -11,7 +11,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Precio</th>
+                                <th>Precio Base</th>
+                                <th>Distribuciones</th>
                                 <th>Ubicación</th>
                                 <th>Plano</th>
                                 <th>Descripción</th>
@@ -26,6 +27,11 @@
                                 <td>{!! $room->id !!}</td>
                                 <td>{!! $room->name !!}</td>
                                 <td>{!! $room->price !!}</td>
+                                <td>
+                                    @foreach($room->getMyAvailableDistributions() as $distribution)
+                                        {!! $distribution->name !!} - {!! $distribution->totalPersons() !!} <br>
+                                    @endforeach
+                                </td>
                                 <td>{!! $room->location !!}</td>
                                 <td>{!! $room->plan !!}</td>
                                 <td>{!! $room->description !!}</td>
