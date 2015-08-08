@@ -1,6 +1,6 @@
 <div class="box box-primary">
     <div class="box-header">
-        <i class="ion ion-clipboard"></i>
+        <i class="fa fa-clipboard"></i>
         <h3 class="box-title">{!!$title!!}</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
@@ -25,7 +25,7 @@
                         {!! "Prioridad:"." ".$task->priority !!}
                     </small>
                     <small class="label label-danger">
-                        <i class="glyphicon glyphicon-exclamation-sign"></i>
+                        <i class="fa fa-exclamation"></i>
                     </small>
                 @endif
 

@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('login', 'AuthController@login');
     Route::get('logout', 'AuthController@logout');
+
     Route::get('tasks/start/{id}', 'TasksController@start');
     Route::get('tasks/end/{id}', 'TasksController@end');
 
@@ -27,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('permissions', 'PermissionsController@index');
 
         Route::resource('beds','BedsController');
+
         Route::resource('distributions','DistributionsController');
         Route::resource('reservations','ReservationsController');
         Route::resource('roles','RolesController');
@@ -34,6 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('services','ServicesController');
         Route::resource('tasks','TasksController');
         Route::resource('users','UsersController');
+
+        // Route::group(array('prefix' => 'reports'), function() {
+        //     Route::get('/', 'ReportsController@index');
+        // });
 
     });
 

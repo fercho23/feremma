@@ -22,7 +22,7 @@
                         <p>Usuarios Registrados</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="fa fa-user-plus"></i>
                     </div>
                     <a href="{{ URL('users/create') }}" class="small-box-footer">Nuevo Usuario <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
