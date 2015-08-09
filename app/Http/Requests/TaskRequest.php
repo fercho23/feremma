@@ -20,6 +20,7 @@ class TaskRequest extends Request {
     public function rules() {
         return [
             'name'        => 'required|min:2|max:100',
+            'role_id'     => 'required|exists:roles,id|not_in:1',
             'description' => '',
             'priority'    => 'required|integer|min:1|max:10',
             'state'       => 'required|min:1|max:20',
@@ -36,15 +37,18 @@ class TaskRequest extends Request {
             'name.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
             'name.max'         => 'El Nombre debe tener como máximo 100 caracteres.',
 
+            'role_id.required' => 'El Cargo es requerido.',
+            'role_id.exists'   => 'El Cargo debe ser Válido.',
+            'role_id.not_in'   => 'El Cargo debe ser Válido.',
+
             'priority.required' => 'La Prioridad es requerida.',
             'priority.integer'  => 'La Prioridad debe ser un número entero.',
             'priority.min'      => 'La Prioridad debe ser como mínimo 1.',
-            'priority.max'      => 'La Prioridad debe ser como máximo 256 caracteres.',
+            'priority.max'      => 'La Prioridad debe ser como máximo 10.',
 
             'state.required'    => 'El Nombre es requerido.',
             'state.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
             'state.max'         => 'El Nombre debe tener como máximo 2 caracteres.',
-
         ];
     }
 

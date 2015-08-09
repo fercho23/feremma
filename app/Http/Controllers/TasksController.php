@@ -49,18 +49,20 @@ class TasksController extends Controller {
      * @return Vista con una Tarea (Task) vacía
      */
     public function create() {
-        $datas = Role::all();
+        $datas = Role::where('id','!=', 1)->get();
         $roles = array();
-
-        foreach ($datas as $data) {
+        foreach ($datas as $data)
             $roles[$data->id] = $data->name;
-        }
-
-        return view('tasks.create', ['roles'=>$roles]);
+        return view('tasks.create', compact($roles));
     }
 
-    public function createMine()
-    {
+    /// Fomulario de nueva Tarea (Task) para su Cargo (Role).
+    /*!
+     * Muestra el formulario para ingresar una nueva Tarea para su Cargo (Role),
+     * esta función se llama con el método GET.
+     * @return Vista con una Tarea (Task) vacía
+     */
+    public function createMine() {
         return view('tasks.create-mine');
     }
 
@@ -96,11 +98,10 @@ class TasksController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $datas = Role::all();
+        $datas = Role::where('id','!=', 1)->get();
         $roles = array();
-        foreach ($datas as $data) {
+        foreach ($datas as $data)
             $roles[$data->id] = $data->name;
-        }
         $task = Task::findOrFail($id);
         return view('tasks.edit', compact('task', 'roles'));
     }

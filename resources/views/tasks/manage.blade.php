@@ -10,7 +10,7 @@
                                 <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
                                 <ul class="dropdown-menu pull-right" role="menu">
                                     <li><a href="{{URL('tasks/create')}}">Nueva...</a></li>
-                                    <li><a href="{{URL('tasks')}}">Listado completo</a></li>                                    
+                                    <li><a href="{{URL('tasks')}}">Listado completo</a></li>
                                 </ul>
                             </div>
                             <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -31,23 +31,23 @@
                             ?>
                             @if (sizeof($tasks)>0)
                                 <div class="col-sm-6">
-                                    <!-- Progress bars -->                                    
+                                    <!-- Progress bars -->
                                         @foreach ($tasks as $task)
                                             <?php $x++; ?>
-                                            @if(($x % 2)!=0)                                                
-                                                @include('tasks.manage.task')                                                
+                                            @if(($x % 2)!=0)
+                                                @include('tasks.manage.task')
                                             @endif
                                         @endforeach
                                 </div><!-- /.col -->
                                 <div class="col-sm-6">
-                                    <!-- Progress bars -->                                    
+                                    <!-- Progress bars -->
                                         @foreach ($tasks as $task)
                                             <?php $y++; ?>
-                                            @if(($y % 2)==0)                                                
+                                            @if(($y % 2)==0)
                                                 @include('tasks.manage.task')
                                             @endif
                                         @endforeach
-                                </div><!-- /.col -->                            
+                                </div><!-- /.col -->
                             @else
                                 <div class="alert alert-success">
                                     <p>No hay tareas.</p>

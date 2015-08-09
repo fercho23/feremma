@@ -1,2 +1,2 @@
-@include('tasks.select-role')
-@include('tasks.fields')
+@include('tasks.partials.select-role')
+@include('tasks.partials.fields')

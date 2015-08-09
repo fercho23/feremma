@@ -5,6 +5,6 @@
         {!! Form::open(['url'=>'tasks']) !!}
             @include('errors.list')
             <input class="form-control" name="role_id" type="hidden" id="role_id" value="{!! Auth::user()->role_id !!}">
-            @include('tasks.fields', ['submitButtontext'=>'Guardar'])
+            @include('tasks.partials.fields', ['submitButtontext'=>'Guardar'])
         {!! Form::close() !!}
 @stop
