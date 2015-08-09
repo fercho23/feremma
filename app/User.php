@@ -100,6 +100,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return false;
     }
 
+    /// Revisa si los Usuarios (User) dados existen.
+    /*!
+     * Determina si cada $id es de un Usuario real.
+     * @param array $ids = Array de ids
+     * @return Booleano (Verdadero o Falso)
+     */
+    static function checkValidUsers(array $ids) {
+        foreach($ids as $id) {
+            if(!User::find($id))
+                return false;
+        }
+        return true;
+    }
+
     /// Usuario (User) tiene alguno de los Permisos (Permission) dados.
     /*!
      * Determina si este Usuario puede o no realizar alguna de las acciones dadas.

@@ -64,7 +64,7 @@ class Room extends Model {
      * @return Consulta de Base de Datos
      */
     public function getMyAvailableDistributions() {
-        $ids = $this->distributions()->where('room_distribution.available' ,'=', '1')
+        $ids = $this->distributions()->where('room_distribution.available', '=', '1')
                                      ->lists('distribution_id');
         $ids_ordered = implode(',', $ids);
         $distributions = Distribution::whereIn('id', $ids)
@@ -79,8 +79,8 @@ class Room extends Model {
      * @return $id de Distribución (Distribution)
      */
     public function getMyDistributionByReservationId($reservation_id) {
-        return \DB::table('room_reservation')->where('room_id' , '=', $this->id)
-                                             ->where('reservation_id' , '=', $reservation_id)
+        return \DB::table('room_reservation')->where('room_id', '=', $this->id)
+                                             ->where('reservation_id', '=', $reservation_id)
                                              ->first()->distribution_id;
     }
 
@@ -93,6 +93,21 @@ class Room extends Model {
         return \DB::table('room_reservation')->where('room_id' , '=', $this->id)
                                              ->where('reservation_id' , '=', $reservation_id)
                                              ->first()->price;
+    }
+
+    /// Verifica si el $id es de una Distribución (Distribution) correcta de esta Habitación (Room).
+    /*!
+     * @param $distribution_id = $id de Distribución (Distribution)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function hasThisDistributionId($distribution_id) {
+        if(Distribution::find($distribution_id)) {
+            if($this->distributions()->where('room_distribution.distribution_id', $distribution_id)
+                                     ->where('room_distribution.room_id', $this->id)
+                                     ->first()->pivot->available)
+                return true;
+        }
+        return false;
     }
 
 }

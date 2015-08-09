@@ -77,36 +77,32 @@ class ReservationRequest extends Request {
             $owner_id = $validator->getData()['owner_id'];
 
             $persons_id = ($validator->getData()['persons_id'] ? array_map('intval', explode(',', $validator->getData()['persons_id'])) : []);
-            foreach ($persons_id as $id) {
-                if(!User::find($id))
-                    $validator->errors()->add('persons_id', 'Los Pasajeros deben ser Usuarios Válidos.');
-            }
-
-            $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
-            foreach ($rooms_id as $id) {
-                if(!Room::find($id))
-                    $validator->errors()->add('rooms_id', 'Las Habitaciones deben ser Válidas.');
-            }
+            if(!User::checkValidUsers($persons_id))
+                $validator->errors()->add('persons_id', 'Los Pasajeros deben ser Usuarios Válidos.');
 
             $total_persons = ($owner_id ? 1 : 0) + count($persons_id);
             $total_beds = 0;
-
             $distributions_id = [];
             $distributions = [];
 
-            try {
-                foreach ($rooms_id as $id)
-                    $distributions_id[] = $validator->getData()['room-'.$id.'-distributions'];
-                $distributions = Distribution::whereIn('id', $distributions_id)->get();
-                $distributions_id = array_count_values($distributions_id);
-            } catch (Exception $e) {
-                
-                $validator->errors()->add('rooms_id', 'Las Habitaciones deben tener Distribuciones Válidas.');
+            $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
+            foreach ($rooms_id as $id) {
+                if(!$room = Room::find($id))
+                    $validator->errors()->add('rooms_id', 'Las Habitaciones deben ser Válidas.');
+                else {
+                    $distribution_id = $validator->getData()['room-'.$id.'-distributions'];
+                    $distributions_id[] = $distribution_id;
+                    if(!$room->hasThisDistributionId($distribution_id)) {
+                        $validator->errors()->add('rooms_id', 'Las Habitaciones deben tener Distribuciones Válidas para dicha Habitación.');
+                    }
+                }
             }
+
+            $distributions = Distribution::whereIn('id', $distributions_id)->get();
+            $distributions_id = array_count_values($distributions_id);
 
             foreach ($distributions as $distribution)
                 $total_beds += $distribution->totalPersons() * $distributions_id[$distribution->id];
-
 
             if($total_beds < $total_persons)
                 $validator->errors()->add('persons_id', 'Hay demasiada cantidad de Personas ('.$total_persons.') en relación a la cantidad de Plazas ('.$total_beds.').');
