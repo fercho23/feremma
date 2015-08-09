@@ -1,6 +1,7 @@
 <?php namespace FerEmma\Http\Requests;
 
 use FerEmma\Http\Requests\Request;
+use FerEmma\Bed;
 
 //! Solicitud (Request) para una Distribución (Distribution)
 class DistributionRequest extends Request {
@@ -21,6 +22,7 @@ class DistributionRequest extends Request {
         return [
             'name'          => 'required|min:2|max:100',
             'description'   => '',
+            'beds_id'       => 'required',
         ];
     }
 
@@ -30,10 +32,24 @@ class DistributionRequest extends Request {
      */
     public function messages() {
         return [
-            'name.required'          => 'El Nombre es requerido.',
-            'name.min'               => 'El Nombre debe tener como mínimo 2 caracteres.',
-            'name.max'               => 'El Nombre debe tener como máximo 100 caracteres.',
+            'name.required'    => 'El Nombre es requerido.',
+            'name.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
+            'name.max'         => 'El Nombre debe tener como máximo 100 caracteres.',
+
+            'beds_id.required' => 'Es necesario ingresar al menos 1 Cama.',
         ];
+    }
+
+    public function getValidatorInstance() {
+        $validator = parent::getValidatorInstance();
+
+        $validator->after(function() use ($validator) {
+            $beds_id = ($validator->getData()['beds_id'] ? array_map('intval', explode(',', $validator->getData()['beds_id'])) : []);
+            if(!Bed::checkValidBeds($beds_id))
+                $validator->errors()->add('beds_id', 'Las Camas deben ser Válidas.');
+        });
+
+        return $validator;
     }
 
 }

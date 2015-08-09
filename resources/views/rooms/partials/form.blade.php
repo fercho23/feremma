@@ -72,14 +72,6 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('plan','Plano:')!!}
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
-        {!! Form::text('plan', null, ['class'=>'form-control']) !!}
-    </div>
-</div>
-
-<div class="form-group">
     {!! Form::label('description','Descripción:')!!}
     {!! Form::text('description', null, ['class'=>'form-control']) !!}
 </div>

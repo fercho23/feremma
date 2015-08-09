@@ -1,6 +1,7 @@
 <?php namespace FerEmma\Http\Requests;
 
 use FerEmma\Http\Requests\Request;
+use FerEmma\Distribution;
 
 //! Solicitud (Request) para una Habitación (Room)
 class RoomRequest extends Request {
@@ -19,11 +20,12 @@ class RoomRequest extends Request {
      */
     public function rules() {
         return [
-            'name'        => 'required|min:2|max:100',
-            'description' => '',
-            'price'       => 'required|between:0,9999999999.99',
-            'location'    => 'required|min:2|max:150',
-            'plan'        => '',
+            'name'             => 'required|min:2|max:100',
+            'description'      => '',
+            'location'         => 'required|min:2|max:150',
+            'available'        => '',
+            'price'            => 'required|between:0,9999999999.99',
+            'distributions_id' => 'required',
         ];
     }
 
@@ -33,17 +35,31 @@ class RoomRequest extends Request {
      */
     public function messages() {
         return [
-            'name.required'       => 'El Nombre es requerido.',
-            'name.min'            => 'El Nombre debe tener como mínimo 2 caracteres.',
-            'name.max'            => 'El Nombre debe tener como máximo 100 caracteres.',
+            'name.required'             => 'El Nombre es requerido.',
+            'name.min'                  => 'El Nombre debe tener como mínimo 2 caracteres.',
+            'name.max'                  => 'El Nombre debe tener como máximo 100 caracteres.',
 
-            'price.required'      => 'El Precio es requerido.',
-            'price.between'       => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
+            'location.required'         => 'La Ubicación es requerida.',
+            'location.min'              => 'La Ubicación debe tener como mínimo 2 caracteres.',
+            'location.max'              => 'La Ubicación debe tener como máximo 150 caracteres.',
 
-            'location.required'   => 'La Ubicación es requerida.',
-            'location.min'        => 'La Ubicación debe tener como mínimo 2 caracteres.',
-            'location.max'        => 'La Ubicación debe tener como máximo 150 caracteres.',
+            'price.required'            => 'El Precio es requerido.',
+            'price.between'             => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
+
+            'distributions_id.required' => 'Es necesario ingresar al menos 1 Distribución.',
         ];
+    }
+
+    public function getValidatorInstance() {
+        $validator = parent::getValidatorInstance();
+
+        $validator->after(function() use ($validator) {
+            $distributions_id = ($validator->getData()['distributions_id'] ? array_map('intval', explode(',', $validator->getData()['distributions_id'])) : []);
+            if(!Distribution::checkValidDistributions($distributions_id))
+                $validator->errors()->add('distributions_id', 'Las Distribuciones deben ser Válidas.');
+        });
+
+        return $validator;
     }
 
 }

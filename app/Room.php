@@ -9,7 +9,7 @@ class Room extends Model {
     protected $table = 'rooms';
 
     //! Contiene los nombres de las columnas de la Tabla.
-    protected $fillable = ['name', 'description', 'location', 'plan', 'available', 'price'];
+    protected $fillable = ['name', 'description', 'location', 'available', 'price'];
 
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;

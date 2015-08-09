@@ -66,4 +66,18 @@ class Distribution extends Model {
         return $price;
     }
 
+    /// Revisa si las Distributciones (Distribution) dadas existen.
+    /*!
+     * Determina si cada $id es de una Distribución real.
+     * @param array $ids = Array de ids
+     * @return Booleano (Verdadero o Falso)
+     */
+    static function checkValidDistributions(array $ids) {
+        foreach($ids as $id) {
+            if(!Distribution::find($id))
+                return false;
+        }
+        return true;
+    }
+
 }

@@ -24,4 +24,19 @@ class Bed extends Model {
                     ->withPivot('amount');
     }
 
+    /// Revisa si las Camas (Bed) dadas existen.
+    /*!
+     * Determina si cada $id es de una Cama real.
+     * @param array $ids = Array de ids
+     * @return Booleano (Verdadero o Falso)
+     */
+    static function checkValidBeds(array $ids) {
+        foreach($ids as $id) {
+            if(!Bed::find($id))
+                return false;
+        }
+        return true;
+    }
+
+
 }
