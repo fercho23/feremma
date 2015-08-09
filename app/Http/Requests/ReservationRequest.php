@@ -1,6 +1,8 @@
 <?php namespace FerEmma\Http\Requests;
 
-use \Illuminate\Support\Facades\DB;
+use FerEmma\Distribution;
+use FerEmma\Room;
+use FerEmma\User;
 
 //! Solicitud (Request) para una Reserva (Reservation)
 class ReservationRequest extends Request {
@@ -19,7 +21,8 @@ class ReservationRequest extends Request {
      */
     public function rules() {
         return [
-            'owner_id'    => 'required',
+            'owner'       => 'required',
+            'owner_id'    => 'required|numeric|min:1',
             'description' => '',
             'total_price' => 'required|between:0,9999999999.99',
             'sign'        => 'required|between:0,9999999999.99',
@@ -36,7 +39,11 @@ class ReservationRequest extends Request {
      */
     public function messages() {
         return [
+            'owner.required'        => 'El Propietario es requerido.',
+
             'owner_id.required'     => 'El Propietario es requerido.',
+            'owner_id.numeric'      => 'El Propietario debe ser un Usuario Válido.',
+            'owner_id.min'          => 'El Propietario debe ser un Usuario Válido.',
 
             'total_price.required'  => 'El Precio es requerido.',
             'total_price.between'   => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
@@ -50,7 +57,8 @@ class ReservationRequest extends Request {
             'check_out.required'    => 'La Fecha de Salida es requerida.',
             'check_out.date'        => 'El campo Fecha de Salida debe ser una fecha válida.',
 
-            'rooms_id.required'     => 'El Propietario es requerido.',
+            'rooms_id.required'     => 'No hay Habitaciones ingresadas.',
+            
         ];
     }
 
@@ -68,18 +76,45 @@ class ReservationRequest extends Request {
             if($validator->getData()['check_out'] < $validator->getData()['check_in'])
                 $validator->errors()->add('sign', 'La Fecha de Salida debe ser posterior a la de entrada.');
 
-            // $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
-            // $persons_id = ($validator->getData()['persons_id'] ? array_map('intval', explode(',', $validator->getData()['persons_id'])) : []);
-            // $owner_id = $validator->getData()['owner_id'];
+            $owner_id = $validator->getData()['owner_id'];
+            if(!User::find($owner_id))
+                $validator->errors()->add('owner_id', 'El Propietario debe ser un Usuario Válido.');
 
-            // $rooms = DB::table('rooms')->whereIn('id', $rooms_id)->get();
-            // $total_beds = 0;
-            // $total_persons = ($owner_id ? 1 : 0) + count($persons_id);
+            $persons_id = ($validator->getData()['persons_id'] ? array_map('intval', explode(',', $validator->getData()['persons_id'])) : []);
+            foreach ($persons_id as $id) {
+                if(!User::find($id))
+                    $validator->errors()->add('persons_id', 'Los Pasajeros deben ser un Usuarios Válidos.');
+            }
 
-            // foreach($rooms as $room)
-            //     $total_beds += $room->total_beds;
-            // if($total_beds < $total_persons)
-            //     $validator->errors()->add('persons_id', 'Hay demasiada cantidad de Personas ('.$total_persons.') en relación a la cantidad de Plazas ('.$total_beds.').');
+            $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
+            foreach ($rooms_id as $id) {
+                if(!Room::find($id))
+                    $validator->errors()->add('rooms_id', 'Las Habitaciones deben ser Válidas.');
+            }
+
+            $total_persons = ($owner_id ? 1 : 0) + count($persons_id);
+            $total_beds = 0;
+
+            $distributions_id = [];
+            foreach ($rooms_id as $id)
+                $distributions_id[] = $validator->getData()['room-'.$id.'-distributions'];
+
+            try {
+                $distributions = Distribution::whereIn('id', $distributions_id)->get();
+            } catch (Exception $e) {
+                $distributions = [];
+                $validator->errors()->add('rooms_id', 'Las Habitaciones deben tener Distribuciones Válidas.');
+            }
+            
+
+            $distributions_id = array_count_values($distributions_id);
+
+            foreach ($distributions as $distribution)
+                $total_beds += $distribution->totalPersons() * $distributions_id[$distribution->id];
+
+
+            if($total_beds < $total_persons)
+                $validator->errors()->add('persons_id', 'Hay demasiada cantidad de Personas ('.$total_persons.') en relación a la cantidad de Plazas ('.$total_beds.').');
 
         });
 

@@ -84,4 +84,15 @@ class Room extends Model {
                                              ->first()->distribution_id;
     }
 
+    /// Obtiene la el precio de la Distribución (Distribution) de esta Habitación (Room) en una determinada Reserva (Reservation).
+    /*!
+     * @param $reservation_id = $id de Reserva (Reservation)
+     * @return $id de Distribución (Distribution)
+     */
+    public function getMyDistributionPriceByReservationId($reservation_id) {
+        return \DB::table('room_reservation')->where('room_id' , '=', $this->id)
+                                             ->where('reservation_id' , '=', $reservation_id)
+                                             ->first()->price;
+    }
+
 }

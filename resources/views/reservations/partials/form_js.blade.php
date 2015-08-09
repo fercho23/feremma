@@ -95,8 +95,6 @@
         minLength: 2,
         select: function(event, ui){
             if(!$('div#rooms-'+ui.item.id).length>0) {
-                
-
                 $.ajax({
                     url: '{!! route("get-distribution-by-room-id") !!}',
                     type: 'GET',

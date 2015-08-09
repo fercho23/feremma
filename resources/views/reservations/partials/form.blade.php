@@ -63,7 +63,7 @@
                 <div class="col-lg-2 col-xs-2 no-gutter">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-arrow-right"></i></span>
-                        {!! Form::text('room-final_price-'.$room->id, $room->price + $room->getAvailableDistribuionsAndMyDistributionByReservationId($reservation->id)->first()->price(), ['class'=>'form-control', 'readonly'=>'True']) !!}
+                        {!! Form::text('room-final_price-'.$room->id, $room->getMyDistributionPriceByReservationId($reservation->id), ['class'=>'form-control', 'readonly'=>'True']) !!}
                     </div>
                 </div>
                 <div class="col-lg-1 col-xs-1">
@@ -75,7 +75,7 @@
         @endforeach
     </div>
 
-    {!! Form::hidden('rooms_id', implode(",", $reservation->rooms()->getRelatedIds()), array('id' => 'rooms_id')) !!}
+    {!! Form::hidden('rooms_id', (old('rooms_id') ? old('rooms_id') : implode(",", $reservation->rooms()->getRelatedIds())), array('id' => 'rooms_id')) !!}
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-bed"></i></span>
         {!! Form::text('room', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de una Habitación . . .']) !!}
