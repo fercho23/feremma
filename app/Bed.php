@@ -14,16 +14,6 @@ class Bed extends Model {
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
 
-    /// Relación de pertenencia "Muchos a Muchos" (Room - Reservation).
-    /*!
-     * Relación de pertenencia, muchas Habitaciones (Room) poseen muchas Reservas (Reservation).
-     * @return Consulta de Base de Datos
-     */
-    public function rooms() {
-        return $this->belongsToMany('FerEmma\Reservation', 'room_reservation')
-                    ->withPivot('check_in', 'check_out');
-    }
-
     /// Relación de pertenencia "Muchos a Muchos" (Bed - Distribution).
     /*!
      * Relación de pertenencia, muchas Camas (Bed) poseen muchas Distribuciones (Distribution).

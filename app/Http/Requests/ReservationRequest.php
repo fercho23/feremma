@@ -22,7 +22,7 @@ class ReservationRequest extends Request {
     public function rules() {
         return [
             'owner'       => 'required',
-            'owner_id'    => 'required|numeric|min:1',
+            'owner_id'    => 'required|exists:users,id',
             'description' => '',
             'total_price' => 'required|between:0,9999999999.99',
             'sign'        => 'required|between:0,9999999999.99',
@@ -42,8 +42,7 @@ class ReservationRequest extends Request {
             'owner.required'        => 'El Propietario es requerido.',
 
             'owner_id.required'     => 'El Propietario es requerido.',
-            'owner_id.numeric'      => 'El Propietario debe ser un Usuario Válido.',
-            'owner_id.min'          => 'El Propietario debe ser un Usuario Válido.',
+            'owner_id.exists'       => 'El Propietario debe ser un Usuario Válido.',
 
             'total_price.required'  => 'El Precio es requerido.',
             'total_price.between'   => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
@@ -58,7 +57,6 @@ class ReservationRequest extends Request {
             'check_out.date'        => 'El campo Fecha de Salida debe ser una fecha válida.',
 
             'rooms_id.required'     => 'No hay Habitaciones ingresadas.',
-            
         ];
     }
 
@@ -77,13 +75,11 @@ class ReservationRequest extends Request {
                 $validator->errors()->add('sign', 'La Fecha de Salida debe ser posterior a la de entrada.');
 
             $owner_id = $validator->getData()['owner_id'];
-            if(!User::find($owner_id))
-                $validator->errors()->add('owner_id', 'El Propietario debe ser un Usuario Válido.');
 
             $persons_id = ($validator->getData()['persons_id'] ? array_map('intval', explode(',', $validator->getData()['persons_id'])) : []);
             foreach ($persons_id as $id) {
                 if(!User::find($id))
-                    $validator->errors()->add('persons_id', 'Los Pasajeros deben ser un Usuarios Válidos.');
+                    $validator->errors()->add('persons_id', 'Los Pasajeros deben ser Usuarios Válidos.');
             }
 
             $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
@@ -96,18 +92,17 @@ class ReservationRequest extends Request {
             $total_beds = 0;
 
             $distributions_id = [];
-            foreach ($rooms_id as $id)
-                $distributions_id[] = $validator->getData()['room-'.$id.'-distributions'];
+            $distributions = [];
 
             try {
+                foreach ($rooms_id as $id)
+                    $distributions_id[] = $validator->getData()['room-'.$id.'-distributions'];
                 $distributions = Distribution::whereIn('id', $distributions_id)->get();
+                $distributions_id = array_count_values($distributions_id);
             } catch (Exception $e) {
-                $distributions = [];
+                
                 $validator->errors()->add('rooms_id', 'Las Habitaciones deben tener Distribuciones Válidas.');
             }
-            
-
-            $distributions_id = array_count_values($distributions_id);
 
             foreach ($distributions as $distribution)
                 $total_beds += $distribution->totalPersons() * $distributions_id[$distribution->id];
