@@ -42,6 +42,18 @@ class TasksController extends Controller {
         return view('home');
     }
 
+    /// Cancela una Tarea (Task) específica.
+    /*!
+     * Realiza el proceso de cancelar una Tarea que es buscada por su $id,
+     * esta función se llama con el método GET.
+     * @param  int $id
+     * @return Response
+     */
+    public function cancel($id) {
+        Task::find($id)->cancel();
+        return view('home');
+    }
+
     /// Fomulario de nueva Tarea (Task).
     /*!
      * Muestra el formulario para ingresar una nueva Tarea,
@@ -130,8 +142,7 @@ class TasksController extends Controller {
      */
     public function destroy($id) {
         $task = Task::findOrFail($id);
-        $task->delete();
-        flash()->success('La Tarea fue borrada con exito.');
+        $task->delete();        
         return redirect('tasks');
     }
 

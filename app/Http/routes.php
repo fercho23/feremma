@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('tasks/start/{id}', 'TasksController@start');
     Route::get('tasks/end/{id}', 'TasksController@end');
+    Route::get('tasks/cancel/{id}', 'TasksController@cancel');
 
     Route::group(['middleware' => 'acl'], function () {
 

@@ -99,7 +99,6 @@ class UsersController extends Controller {
     public function destroy($id) {
         $user = User::findOrFail($id);
         $user->delete();
-        flash()->success('El Usuario fue borrado con exito.');
         return redirect('users');
     }
 }

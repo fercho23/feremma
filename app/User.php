@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Auth;
+use FerEmma\Reservation;
+use Illuminate\Support\Facades\DB;
 
 //! Modelo Usuario
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
@@ -157,7 +159,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $and = true;
         $competent = false;
 
-        if (count($conditions['or'])>0) {
+        if (isset($conditions['or'])) {            
             foreach ($conditions['or'] as $condition => $value) {
                 if(Auth::user()->can($value)) {
                     $or = true;
@@ -168,7 +170,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $or = true;
         }
 
-        if (count($conditions['and'])>0) {
+        if (isset($conditions['and'])) {
             foreach ($conditions['and'] as $condition => $value) {
                 if(!Auth::user()->can($value)) {
                     $and=false;
@@ -179,7 +181,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $and = true;
         }
 
-        if(count($conditions['rol'])>0) {
+        if(isset($conditions['rol'])) {
             foreach ($conditions['rol'] as $condition => $value) {
                 if(Auth::user()->role->name==$value) {
                     $competent = true;
@@ -192,5 +194,29 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         if(($and and $or) and $competent)
             return true;
+    }
+
+    /// Borrar usuario.
+    /*!
+     * Borra usuario
+     * @return Booleano
+     */
+    public function delete() {
+        if (count ((new Reservation)->where('owner_id','=',$this->id)->get())>0) {
+            flash()->error('No se pueden borrar usuarios que sean titulares de una reserva');
+            return false;
+        }
+        if (count(DB::table('reservation_user')->where('user_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar usuarios que sean pasajeros de una reserva');
+            return false;
+        }        
+        if (parent::delete()) {
+            flash()->success('Usuario borrado con exito');
+            return true;
+        }
+        else
+        {
+            flash()->error('Error al intentar borrar usuario');
+        }
     }
 }

@@ -33,9 +33,7 @@ class Task extends Model {
     public function user() {
         return $this->belongsTo('FerEmma\User', 'attendant_id');
     }
-
-    public function delete() { }
-
+    
     /// Finaliza una Tarea.
     /*!
      * Cambia el estado de la Tarea a "finalizada".
@@ -55,6 +53,16 @@ class Task extends Model {
         $this->update();
     }
 
+    /// Cancela una Tarea que habia tomado para su realización.
+    /*!
+     * Cambia el estado de la Tarea de "en proceso" a "pendiente" y le borra el Usario responsable.
+     */
+    public function cancel() {
+        $this->state = 'pendiente';
+        $this->attendant_id = null;
+        $this->update();
+    }
+
     /// Tareas de hoy.
     /*!
      * Trae las Tareas que del dia de la fecha.
@@ -63,5 +71,25 @@ class Task extends Model {
     public function forToday() {
         $d = strtotime("today");
         return Task::where('created_at', '>=', date("Y-m-d H:i:s", $d))->get();
+    }
+        
+    /// Borrar tarea.
+    /*!
+     * Borra la tarea
+     * @return Booleano
+     */
+    public function delete() {
+        if ($this->state=='finalizada') {
+            flash()->error('Error: Las tareas finalizadas no pueden ser borradas.');
+            return false;
+        }
+        if (isset($this->attendant_id)) {
+            flash()->error('Error: Las tareas con responsable asignado deben ser canceladas antes de ser borradas.');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Tarea borrada con exito');
+            return true;
+        }        
     }
 }
