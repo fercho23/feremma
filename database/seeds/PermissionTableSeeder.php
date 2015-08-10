@@ -312,6 +312,12 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Editar una distribución sin sus camas.'
         ));
 
-    }
 
+        Permission::create(array(//58
+            'title'         =>'Ver Perfil',
+            'slug'          =>'users/profile',
+            'description'   =>'Datos de mi perfil.'
+        ));
+
+    }
 }

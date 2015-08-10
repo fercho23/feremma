@@ -26,12 +26,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'acl'], function () {
 
         Route::get('tasks/create_mine', 'TasksController@createMine');
+        Route::get('users/profile', 'UsersController@profile');
         Route::get('permissions', 'PermissionsController@index');
 
         Route::post('beds/{id}/basic', ['as'=>'beds-update-basic', 'uses'=>'BedsController@updateBasic']);
 
         Route::post('distributions/{id}/basic', ['as'=>'distributions-update-basic', 'uses'=>'DistributionsController@updateBasic']);
-
 
         Route::resource('beds', 'BedsController', [
                                                     'names' => ['index' => 'beds-index',
