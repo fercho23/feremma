@@ -301,7 +301,12 @@ class PermissionTableSeeder extends Seeder {
             'slug'          =>'distributions/index',
             'description'   =>'Lista de distribuciones.'
         ));
-
+        Permission::create(array(//56
+            'title'         =>'Ver Perfil',
+            'slug'          =>'users/profile',
+            'description'   =>'Datos de mi perfil.'
+        ));
+        
     }
 
 }

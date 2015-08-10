@@ -22,7 +22,7 @@ class RoleTableSeeder extends Seeder {
                                     37, 38, 39, 40, 41, 42, 43, 44,
                                     45,
                                     46, 47, 48, 49, 50,
-                                    51, 52, 53, 54, 55,
+                                    51, 52, 53, 54, 55, 56
                                     ]);
 
         $role = Role::create(array(//2
@@ -39,7 +39,7 @@ class RoleTableSeeder extends Seeder {
                                     37, 38, 39, 40, 41, 42, 43, 44,
                                     45,
                                     46, 47, 48, 49, 50,
-                                    51, 52, 53, 54, 55,
+                                    51, 52, 53, 54, 55, 56
                                     ]);
 
 
@@ -56,7 +56,7 @@ class RoleTableSeeder extends Seeder {
                                     37, 38, 39, 40, 41, 42, 43, 44,
                                     45,
                                     47, 50,
-                                    52, 55,
+                                    52, 55, 56
                                     ]);
 
         $role = Role::create(array(//4
@@ -66,7 +66,7 @@ class RoleTableSeeder extends Seeder {
                     ));
         $role->permissions()->sync([12, 15,
                                     37, 38, 39, 40, 41, 42, 43, 44,
-                                    45,
+                                    45, 56
                                     ]);
 
         $role = Role::create(array(//5
@@ -76,7 +76,7 @@ class RoleTableSeeder extends Seeder {
                     ));
         $role->permissions()->sync([12, 15,
                                     37, 38, 39, 40, 41, 42, 43, 44,
-                                    45
+                                    45, 56
                                     ]);
 
         $role = Role::create(array(//6
@@ -86,7 +86,7 @@ class RoleTableSeeder extends Seeder {
                     ));
         $role->permissions()->sync([12, 15,
                                     18, 21,
-                                    27, 28, 33, 34, 35, 36
+                                    27, 28, 33, 34, 35, 36, 56
                                     ]);
 
 

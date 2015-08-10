@@ -90,6 +90,6 @@ class Task extends Model {
         if (parent::delete()) {
             flash()->success('Tarea borrada con exito');
             return true;
-        }        
+        }
     }
 }

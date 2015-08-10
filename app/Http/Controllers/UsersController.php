@@ -16,6 +16,14 @@ class UsersController extends Controller {
         return view('users.index', compact('users'));
     }
 
+    ///  Ver perfil de usuario.
+    /*!
+     * @return Datos del usuario autenticado. 
+     */
+    public function profile() {
+        return view('users.profile');
+    }
+
     /// Fomulario de nuevo Usuario (User).
     /*!
      * Muestra el formulario para ingresar un nuevo Usuario esta función se

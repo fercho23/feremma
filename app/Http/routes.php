@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'acl'], function () {
 
         Route::get('tasks/create_mine', 'TasksController@createMine');
+        Route::get('users/profile', 'UsersController@profile');
         Route::get('permissions', 'PermissionsController@index');
 
         Route::resource('beds','BedsController');
