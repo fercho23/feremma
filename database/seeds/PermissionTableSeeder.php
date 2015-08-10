@@ -302,11 +302,16 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Lista de distribuciones.'
         ));
         Permission::create(array(//56
+
             'title'         =>'Ver Perfil',
             'slug'          =>'users/profile',
             'description'   =>'Datos de mi perfil.'
         ));
-        
-    }
+        Permission::create(array(//57
 
+            'title'         =>'Editar Distribuciones Sin Camas',
+            'slug'          =>'distributions/updateWithoutBeds',
+            'description'   =>'Editar una distribución sin sus camas.'
+        ));
+    }
 }

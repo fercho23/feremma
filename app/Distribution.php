@@ -39,6 +39,33 @@ class Distribution extends Model {
         return ($this->name.' ['.$this->totalPersons().'] [ $ '.$this->price().' ]');
     }
 
+    /// Verifica si la Distribución (Distribution) puede ser modificada.
+    /*!
+     * Determina si esta Distribución puede ser modificada, eso es posible siempre y cuando
+     * esta Distribución no tenga relación con ninguna Reserva (Reservation)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeModified() {
+        if(!\DB::table('room_reservation')->where('distribution_id', $this->id)
+                                          ->get())
+            return true;
+        return false;
+    }
+
+    /// Verifica si las Distribuciones (Distribution) dadas existen.
+    /*!
+     * Determina si cada $id es de una Distribución real.
+     * @param array $ids = Array de ids
+     * @return Booleano (Verdadero o Falso)
+     */
+    static function checkValidDistributions(array $ids) {
+        foreach($ids as $id) {
+            if(!Distribution::find($id))
+                return false;
+        }
+        return true;
+    }
+
     /// Cantidad de personas en la Distribución (Distribution) teniendo en cuenta todas las Camas (Bed).
     /*!
      * Cantidad de personas en la Distribución teniendo en cuenta todas las Camas multiplicado
@@ -67,19 +94,6 @@ class Distribution extends Model {
         return $price;
     }
 
-    /// Revisa si las Distributciones (Distribution) dadas existen.
-    /*!
-     * Determina si cada $id es de una Distribución real.
-     * @param array $ids = Array de ids
-     * @return Booleano (Verdadero o Falso)
-     */
-    static function checkValidDistributions(array $ids) {
-        foreach($ids as $id) {
-            if(!Distribution::find($id))
-                return false;
-        }
-        return true;
-    }
 
     /// Borrar distribución.
     /*!
