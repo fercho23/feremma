@@ -86,8 +86,6 @@ class BedsController extends Controller {
     public function destroy($id) {
         $bed = Bed::findOrFail($id);
         $bed->delete();
-        //$bed->permissions()->detach();
-        flash()->success('La Cama fue borrada con exito.');
         return redirect('beds');
     }
 

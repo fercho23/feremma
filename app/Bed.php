@@ -1,6 +1,7 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 //! Modelo Cama
 class Bed extends Model {
@@ -38,5 +39,24 @@ class Bed extends Model {
         return true;
     }
 
+    /// Borrar cama.
+    /*!
+     * Borra cama
+     * @return Booleano
+     */
+    public function delete() {
+        if (count(DB::table('distribution_bed')->where('bed_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar camas que se usen en una o más distribuciones');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Cama borrada con exito');
+            return true;
+        }
+        else
+        {
+            flash()->error('Error desconocido al intentar borrar cama');
+        }
+    }
 
 }

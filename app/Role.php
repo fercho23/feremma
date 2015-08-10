@@ -1,6 +1,7 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 //! Modelo Cargo
 class Role extends Model {
@@ -41,4 +42,23 @@ class Role extends Model {
         return $this->hasMany('FerEmma\Task', 'role_id');
     }
 
+    /// Borrar cargo.
+    /*!
+     * Borra cargo
+     * @return Booleano
+     */
+    public function delete() {
+        if (count(DB::table('permission_role')->where('role_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar cargos que tengan permisos asignados');
+            return false;
+        }        
+        if (parent::delete()) {
+            flash()->success('Cargo borrado con exito');
+            return true;
+        }
+        else
+        {
+            flash()->error('Error desconocido al intentar borrar cargo');
+        }
+    }
 }

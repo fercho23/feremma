@@ -1,6 +1,7 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 //! Modelo Distribución
 class Distribution extends Model {
@@ -80,4 +81,23 @@ class Distribution extends Model {
         return true;
     }
 
+    /// Borrar distribución.
+    /*!
+     * Borra distribución
+     * @return Booleano
+     */
+    public function delete() {
+        if (count(DB::table('room_distribution')->where('distribution_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar distribuciones que se usen en una o más habitaciónes');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Distribución borrada con exito');
+            return true;
+        }
+        else
+        {
+            flash()->error('Error desconocido al intentar borrar distribución');
+        }
+    }
 }

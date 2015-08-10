@@ -111,9 +111,6 @@ class DistributionsController extends Controller {
     public function destroy($id) {
         $distribution = Distribution::findOrFail($id);
         $distribution->delete();
-        //$distribution->permissions()->detach();
-        flash()->success('La Distribución fue borrada con exito.');
         return redirect('distributions');
     }
-
 }
