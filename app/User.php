@@ -68,6 +68,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->name.' '.$this->surname;
     }
 
+    /// Verifica si el Usuario (User) puede ser eliminada.
+    /*!
+     * Determina si esta Usuario puede ser eliminada, eso es posible siempre y cuando
+     * esta Usuario no tenga relación con ninguna Reserva (Reservation)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminated() {
+        if(count($this->reservations))
+            return false;
+        return true;
+    }
+
+
     /// Encripta el Password.
     /*!
      * Encripta el Password del Usuario cada vez que se ingresa una nuevo.
