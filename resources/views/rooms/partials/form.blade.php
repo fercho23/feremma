@@ -38,8 +38,8 @@
                     </div>
                 </div>
                 <div class="col-lg-1 col-xs-1">
-                    <span class="btn btn-warning">
-                        <i name="fa-kill" class="fa fa-times-circle"></i>
+                    <span class="btn btn-{!! ($distribution->canBeModified() ? 'warning' : 'default')!!}">
+                        <i {!! ($distribution->canBeModified() ? 'name="fa-kill"' : '')!!}  class="fa fa-times-circle"></i>
                     </span>
                 </div>
             </div>

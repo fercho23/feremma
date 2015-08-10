@@ -30,7 +30,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('permissions', 'PermissionsController@index');
 
         Route::post('beds/{id}/basic', ['as'=>'beds-update-basic', 'uses'=>'BedsController@updateBasic']);
-
         Route::post('distributions/{id}/basic', ['as'=>'distributions-update-basic', 'uses'=>'DistributionsController@updateBasic']);
 
         Route::resource('beds', 'BedsController', [
@@ -53,9 +52,18 @@ Route::group(['middleware' => 'auth'], function () {
                                                                                 'destroy' => 'distributions-destroy']
                                                                     ]);
 
+        Route::resource('rooms', 'RoomsController', [
+                                                    'names' => ['index' => 'rooms-index',
+                                                                'show' => 'rooms-show',
+                                                                'edit' => 'rooms-edit',
+                                                                'update' => 'rooms-update',
+                                                                'create' => 'rooms-create',
+                                                                'store' => 'rooms-store',
+                                                                'destroy' => 'rooms-destroy']
+                                                    ]);
+
         Route::resource('reservations', 'ReservationsController');
         Route::resource('roles', 'RolesController');
-        Route::resource('rooms', 'RoomsController');
         Route::resource('services', 'ServicesController');
         Route::resource('tasks', 'TasksController');
         Route::resource('users', 'UsersController');

@@ -37,6 +37,47 @@ class Room extends Model {
                     ->orderBy('room_reservation.check_in');
     }
 
+    /// Verifica si la Cama (Bed) puede ser modificada.
+    /*!
+     * Determina si esta Cama puede ser modificada, eso es posible siempre y cuando
+     * esta Cama no tenga relación con ninguna Reserva (Reservation)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeModified() {
+        if(count($this->reservations))
+            return false;
+        return true;
+    }
+
+    /// Obtiene las Distribuciones (Distribution) de esta Habitación (Room) que no pueden ser eliminadas.
+    /*!
+     * Obtiene los $ids de las Distribuciones que puede tener esta Habitación, que no pueden ser
+     * eliminadas 
+     * @return Array de $ids de Distribuciones de esta Habitación
+     */
+    public function getMyCanNotBeEliminatedDistributionsId() {
+        $ids = [];
+        foreach ($this->reservations as $reservation){
+            $ids[] = $reservation->pivot->distribution_id;
+        }
+        return array_unique($ids);
+    }
+
+    /// Verifica si se pueden borrar las Distribuciones (Distribution) que no estan en las $ids pasadas.
+    /*!
+     * Obtiene las $ids de las Distribuciones que no puede ser borradas y las compara
+     * con el Array de $ids de las Distribuciones que van a ser guardadas, si alguna de
+     * las que no pueden ser borradas no está devuelve Falso.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function allDistributionsIdCanBeEliminated(array $distributions_id) {
+        foreach ($this->getMyCanNotBeEliminatedDistributionsId() as $id) {
+            if(!in_array($id, $distributions_id))
+                return false;
+        }
+        return true;
+    }
+
     /// Obtiene las Distribuciones (Distribution) disponibles y la actual seteada de esta Habitación (Room).
     /*!
      * Obtiene en el orden correcto las Distribuciones disponibles para esta Habitación, 

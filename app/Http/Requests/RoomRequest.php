@@ -1,6 +1,7 @@
 <?php namespace FerEmma\Http\Requests;
 
 use FerEmma\Http\Requests\Request;
+use FerEmma\Room;
 use FerEmma\Distribution;
 
 //! Solicitud (Request) para una Habitación (Room)
@@ -57,6 +58,9 @@ class RoomRequest extends Request {
             $distributions_id = ($validator->getData()['distributions_id'] ? array_map('intval', explode(',', $validator->getData()['distributions_id'])) : []);
             if(!Distribution::checkValidDistributions($distributions_id))
                 $validator->errors()->add('distributions_id', 'Las Distribuciones deben ser Válidas.');
+            $room = Room::find($this->rooms);
+            if(!$room->allDistributionsIdCanBeEliminated($distributions_id))
+                $validator->errors()->add('distributions_id', 'Las Distribuciones que intenta borrar no pueden ser eliminadas.');
         });
 
         return $validator;

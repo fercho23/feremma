@@ -160,7 +160,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $and = true;
         $competent = false;
 
-        if (isset($conditions['or'])) {            
+        if (isset($conditions['or'])) {
             foreach ($conditions['or'] as $condition => $value) {
                 if(Auth::user()->can($value)) {
                     $or = true;
