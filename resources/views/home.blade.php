@@ -14,7 +14,7 @@
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
             <section class="col-lg-5 connectedSortable">
                 @include('includes.if-authorized', ['conditions'=> array('rol'=>array('Super Usuario','Director')),'include'=>'tasks.manage', 'parameters'=>['title'=>'Estado de tareas globales']])
-                @include('includes.if-authorized', ['conditions'=> array('rol'=>array('Super Usuario','Director','Recepcion y Conserjeria','Pisos','Mantenimiento, servicios técnicos y seguridad:')),'include'=>'mail.write', 'parameters'=>['title'=>'Envío de Emails']])
+                {{--@include('includes.if-authorized', ['conditions'=> array('rol'=>array('Super Usuario','Director','Recepcion y Conserjeria','Pisos','Mantenimiento, servicios técnicos y seguridad:')),'include'=>'mail.write', 'parameters'=>['title'=>'Envío de Emails']])--}}
             </section><!-- right col -->
         </div><!-- /.row (main row) -->
     @endsection
