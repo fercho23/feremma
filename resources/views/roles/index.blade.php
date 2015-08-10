@@ -40,11 +40,13 @@
                                 @endif
                                 @if(Auth::user()->can('roles/destroy'))
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'action' => ['RolesController@destroy', $role->id]]) !!}
-                                            <button class="btn-link" type="submit">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        {!! Form::close() !!}
+                                        @if($role->canBeEliminated())
+                                            {!! Form::open(['method' => 'DELETE', 'action' => ['RolesController@destroy', $role->id]]) !!}
+                                                <button class="btn-link" type="submit">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 @endif
                             </tr>

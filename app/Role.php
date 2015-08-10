@@ -61,4 +61,18 @@ class Role extends Model {
             flash()->error('Error desconocido al intentar borrar cargo');
         }
     }
+
+    /// Verifica si el Cargo (Role) puede ser eliminado.
+    /*!
+     * Determina si este Cargo puede ser eliminado, eso es posible siempre y cuando
+     * este Cargo no tenga relación con ningún Usuario (User)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminated() {
+        if(count($this->users))
+            return false;
+        return true;
+    }
+
+
 }

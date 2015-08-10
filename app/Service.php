@@ -45,4 +45,16 @@ class Service extends Model {
         }
     }
 
+    /// Verifica si el Servicio (Service) puede ser eliminado.
+    /*!
+     * Determina si este Servicio puede ser eliminado, eso es posible siempre y cuando
+     * este Servicio no tenga relación con ninguna Reserva (Reservation)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminated() {
+        if(count($this->reservations))
+            return false;
+        return true;
+    }
+
 }
