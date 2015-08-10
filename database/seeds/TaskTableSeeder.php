@@ -14,14 +14,14 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '10',
                 'state'       => 'pendiente',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Hacer la documentación del sistema.',
                 'name'        => 'Documentación',
                 'priority'    => '10',
                 'state'       => 'pendiente',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 1',
@@ -29,7 +29,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'finalizada',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 2',
@@ -37,7 +37,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'finalizada',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 3',
@@ -45,7 +45,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'finalizada',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 4',
@@ -53,7 +53,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'finalizada',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 5',
@@ -61,7 +61,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'finalizada',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 6',
@@ -69,7 +69,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'pendiente',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 7',
@@ -77,7 +77,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'finalizada',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 8',
@@ -85,7 +85,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'en proceso',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 9',
@@ -93,7 +93,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'en proceso',
                 'role_id'     => '1',
-                'created_at'  => date("Ymd")
+                'created_at'  => date('Y-m-d', strtotime('-8 day')),
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 10',
@@ -101,7 +101,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'pendiente',
                 'role_id'     => '4',
-                'created_at'  => date("Ymd")
+                'created_at'  => date("Y-m-d")
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 11',
@@ -109,7 +109,7 @@ class TaskTableSeeder extends Seeder {
                 'priority'    => '',
                 'state'       => 'pendiente',
                 'role_id'     => '4',
-                'created_at'  => date("Ymd")
+                'created_at'  => date('Y-m-d', strtotime('-8 day'))
                 ));
     }
 }

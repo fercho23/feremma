@@ -13,9 +13,9 @@ class ReservationTableSeeder extends Seeder {
             'total_price' => '6550',
             'sign'        => '4550',
             'due'         => '2000',
-            'check_in'    => '2015-02-01',
-            'check_out'   => '2015-02-04',
-            'created_at'  => date("Ymd")
+            'check_in'    => date('Y-m-d', strtotime('-2 day')),
+            'check_out'   => date("Y-m-d"),
+            'created_at'  => date('Y-m-d', strtotime('-4 day')),
             ));
 
         $reservation->rooms()->sync([ 3 => ['distribution_id' => 6,
@@ -35,9 +35,9 @@ class ReservationTableSeeder extends Seeder {
             'total_price' => '1500',
             'sign'        => '500',
             'due'         => '1000',
-            'check_in'    => '2015-01-01',
-            'check_out'   => '2015-01-03',
-            'created_at'  => mktime(0, 0, 0, date("m")-1, date("d"),   date("Y"))
+            'check_in'    => date("Y-m-d"),
+            'check_out'   => date('Y-m-d', strtotime('+1 day')),
+            'created_at'  => date('Y-m-d', strtotime('-2 day'))
             ));
 
         $reservation->rooms()->sync([ 1 => ['distribution_id' => 4,

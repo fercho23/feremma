@@ -8,7 +8,7 @@
     </div>
 @else
 	<div class="clearfix">
-        <small class="pull-left ">Tarea Pendiente...</small>
+        <small class="pull-left ">{!! $task->role['name'] !!}: No asignado</small>
     </div>
 @endif
 @if($task->state=='pendiente')

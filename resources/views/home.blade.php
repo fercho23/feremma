@@ -1,7 +1,7 @@
 @extends('app')
     @section('content')
         @include('flash::message')
-        @include('includes.if-authorized', ['conditions'=> array('or'=>array(), 'and'=>array(), 'rol'=>array('Super Usuario','Director','Recepcion y Conserjeria','Pisos','Mantenimiento, servicios técnicos y seguridad:')),'include'=>'includes.stats', 'parameters'=>[]])
+        @include('includes.if-authorized', ['conditions'=> array('rol'=>array('Super Usuario','Director','Recepcion y Conserjeria')),'include'=>'includes.stats', 'parameters'=>[]])
         <!-- Main row -->
         <div class="row">
             <!-- Left col -->
@@ -14,6 +14,7 @@
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
             <section class="col-lg-5 connectedSortable">
                 @include('includes.if-authorized', ['conditions'=> array('rol'=>array('Super Usuario','Director')),'include'=>'tasks.manage', 'parameters'=>['title'=>'Estado de tareas globales']])
+                @include('includes.if-authorized', ['conditions'=> array('rol'=>array('Super Usuario','Director','Recepcion y Conserjeria','Pisos','Mantenimiento, servicios técnicos y seguridad:')),'include'=>'rooms.state', 'parameters'=>['title'=>'Estado de Habitaciones']])
                 {{--@include('includes.if-authorized', ['conditions'=> array('rol'=>array('Super Usuario','Director','Recepcion y Conserjeria','Pisos','Mantenimiento, servicios técnicos y seguridad:')),'include'=>'mail.write', 'parameters'=>['title'=>'Envío de Emails']])--}}
             </section><!-- right col -->
         </div><!-- /.row (main row) -->
