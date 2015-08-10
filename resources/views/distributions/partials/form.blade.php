@@ -46,23 +46,29 @@
                     {!! Form::text('bed-price-'.$bed->id, $bed->price, ['class'=>'form-control', 'readonly'=>'True']) !!}
                 </div>
                 <div class="col-lg-3 col-xs-3 no-gutter">
-                    {!! Form::input('number', 'bed-amount-'.$bed->id, $bed->pivot->amount, ['class'=>'form-control',
-                                                                                            'min'=>'1',
-                                                                                            'max'=>'20']) !!}
+                    @if($distribution->canBeModified())
+                        {!! Form::input('number', 'bed-amount-'.$bed->id, $bed->pivot->amount, ['class'=>'form-control',
+                                                                                                'min'=>'1',
+                                                                                                'max'=>'20']) !!}
+                    @else
+                        {!! Form::text('bed-amount-'.$bed->id, $bed->pivot->amount, ['class'=>'form-control', 'readonly'=>'True']) !!}
+                    @endif
                 </div>
                 <div class="col-lg-1 col-xs-1">
-                    <span class="btn btn-warning">
-                        <i name="fa-kill" class="fa fa-times-circle"></i>
+                    <span class="btn btn-{!! ($distribution->canBeModified() ? 'warning' : 'default')!!}">
+                        <i {!! ($distribution->canBeModified() ? 'name="fa-kill"' : '')!!}  class="fa fa-times-circle"></i>
                     </span>
                 </div>
             </div>
         @endforeach
     </div>
-    {!! Form::hidden('beds_id', implode(",", $distribution->beds()->getRelatedIds()), array('id' => 'beds_id')) !!}
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
-        {!! Form::text('bed', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Servicio . . .']) !!}
-    </div>
+    @if($distribution->canBeModified())
+        {!! Form::hidden('beds_id', implode(",", $distribution->beds()->getRelatedIds()), array('id' => 'beds_id')) !!}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+            {!! Form::text('bed', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Servicio . . .']) !!}
+        </div>
+    @endif
 </div>
 
 <div class="form-group">

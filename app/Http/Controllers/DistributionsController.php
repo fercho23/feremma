@@ -2,6 +2,7 @@
 
 use FerEmma\Distribution;
 use FerEmma\Http\Requests\DistributionRequest;
+// use FerEmma\Http\Requests\DistributionWithoutBedsRequest;
 
 //! Controlador de Distribuciones (Distribution)
 class DistributionsController extends Controller {
@@ -12,7 +13,7 @@ class DistributionsController extends Controller {
      */
     public function index() {
         $distributions = Distribution::all();
-        return view('distributions.index', ['distributions'=>$distributions]);
+        return view('distributions.index', compact('distributions'));
     }
 
     /// Fomulario de nueva Distribución (Distribution).
@@ -70,8 +71,10 @@ class DistributionsController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $distribution = Distribution::findOrFail($id);
-        return view('distributions.edit', compact('distribution'));
+        if($distribution = Distribution::find($id))
+            return view('distributions.edit', compact('distribution'));
+        flash()->error('Error!!! La Distribución que intenta editada no existe.');
+        return redirect('distributions');
     }
 
     /// Edita una Distribución (Distribution) específica.
@@ -83,23 +86,42 @@ class DistributionsController extends Controller {
      * @return Response
      */
     public function update($id, DistributionRequest $request) {
-        $distribution = Distribution::findOrFail($id);
-        $distribution->update($request->all());
+        if($distribution = Distribution::find($id)) {
+            $distribution->update($request->all());
 
-        $beds_id = ($request->input('beds_id') ? array_map('intval', explode(',', $request->input('beds_id'))) : []);
+            $beds_id = ($request->input('beds_id') ? array_map('intval', explode(',', $request->input('beds_id'))) : []);
 
-        $beds = [];
-        foreach($beds_id as $id) {
-            $bed = [];
-            $bed["amount"] = $request->input('bed-amount-'.$id);
-            $beds[$id] = $bed;
-        }
+            $beds = [];
+            foreach($beds_id as $id) {
+                $bed = [];
+                $bed["amount"] = $request->input('bed-amount-'.$id);
+                $beds[$id] = $bed;
+            }
 
-        $distribution->beds()->sync($beds);
+            $distribution->beds()->sync($beds);
 
-        flash()->success('La Distribución fue editada con exito.');
+            flash()->success('La Distribución fue editada con exito.');
+        } else
+            flash()->error('Error!!! La Distribución que intenta editada no existe.');
         return redirect('distributions');
     }
+
+    /// Edita una Distribución (Distribution) específica sin las Camas (Bed).
+    /*!
+     * Realiza el proceso de editar una Distribución que es buscada por su $id,
+     * pero en la cual no se pueden modificar las Camas que participan en ella,
+     * esta función se llama con el método PUT/PATH.
+     * @param  int $id
+     * @param  DistributionWithoutBedsRequest $request
+     * @return Response
+     */
+    // public function updateWithoutBeds($id, DistributionWithoutBedsRequest $request) {
+        // dd("hola, updateWithoutBeds", $id);
+        // $distribution = Distribution::findOrFail($id);
+        // $distribution->update($request->all());
+        // flash()->success('La Distribución fue editada con exito.');
+        // return redirect('distributions');
+    // }
 
     /// Elimina una Distribución (Distribution) específica.
     /*!
