@@ -39,6 +39,19 @@ class Distribution extends Model {
         return ($this->name.' ['.$this->totalPersons().'] [ $ '.$this->price().' ]');
     }
 
+    /// Verifica si la Distribución (Distribution) puede ser eliminada.
+    /*!
+     * Determina si esta Distribución puede ser eliminada, eso es posible siempre y cuando
+     * esta Distribución no tenga relación con ninguna Reserva (Reservation)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminated() {
+        if(!\DB::table('room_reservation')->where('distribution_id', $this->id)
+                                          ->get())
+            return true;
+        return false;
+    }
+
     /// Verifica si la Distribución (Distribution) puede ser modificada.
     /*!
      * Determina si esta Distribución puede ser modificada, eso es posible siempre y cuando

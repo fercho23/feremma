@@ -37,10 +37,22 @@ class Room extends Model {
                     ->orderBy('room_reservation.check_in');
     }
 
-    /// Verifica si la Cama (Bed) puede ser modificada.
+    /// Verifica si la Habitación (Room) puede ser eliminada.
     /*!
-     * Determina si esta Cama puede ser modificada, eso es posible siempre y cuando
-     * esta Cama no tenga relación con ninguna Reserva (Reservation)
+     * Determina si esta Habitación puede ser eliminada, eso es posible siempre y cuando
+     * esta Habitación no tenga relación con ninguna Reserva (Reservation)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminated() {
+        if(count($this->reservations))
+            return false;
+        return true;
+    }
+
+    /// Verifica si la Habitación (Room) puede ser modificada.
+    /*!
+     * Determina si esta Habitación puede ser modificada, eso es posible siempre y cuando
+     * esta Habitación no tenga relación con ninguna Reserva (Reservation)
      * @return Booleano (Verdadero o Falso)
      */
     public function canBeModified() {

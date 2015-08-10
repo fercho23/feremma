@@ -47,11 +47,13 @@
                                 @endif
                                 @if(Auth::user()->can('rooms/destroy'))
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'action' => ['RoomsController@destroy', $room->id]]) !!}
-                                            <button class="btn-link" type="submit">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        {!! Form::close() !!}
+                                        @if($room->canBeEliminated())
+                                            {!! Form::open(['method' => 'DELETE', 'action' => ['RoomsController@destroy', $room->id]]) !!}
+                                                <button class="btn-link" type="submit">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 @endif
                             </tr>

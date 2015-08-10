@@ -40,11 +40,13 @@
                                 @endif
                                 @if(Auth::user()->can('distributions/destroy'))
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'action' => ['DistributionsController@destroy', $distribution->id]]) !!}
-                                            <button class="btn-link" type="submit">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        {!! Form::close() !!}
+                                        @if($distribution->canBeEliminated())
+                                            {!! Form::open(['method' => 'DELETE', 'action' => ['DistributionsController@destroy', $distribution->id]]) !!}
+                                                <button class="btn-link" type="submit">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 @endif
                             </tr>
