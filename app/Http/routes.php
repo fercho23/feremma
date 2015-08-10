@@ -28,9 +28,20 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('tasks/create_mine', 'TasksController@createMine');
         Route::get('permissions', 'PermissionsController@index');
 
-        Route::post('distributions/{id}/wihout_beds', ['as'=>'distributions-update-without-beds', 'uses'=>'DistributionsController@updateWithoutBeds']);
+        Route::post('beds/{id}/basic', ['as'=>'beds-update-basic', 'uses'=>'BedsController@updateBasic']);
 
-        Route::resource('beds', 'BedsController');
+        Route::post('distributions/{id}/basic', ['as'=>'distributions-update-basic', 'uses'=>'DistributionsController@updateBasic']);
+
+
+        Route::resource('beds', 'BedsController', [
+                                                    'names' => ['index' => 'beds-index',
+                                                                'show' => 'beds-show',
+                                                                'edit' => 'beds-edit',
+                                                                'update' => 'beds-update',
+                                                                'create' => 'beds-create',
+                                                                'store' => 'beds-store',
+                                                                'destroy' => 'beds-destroy']
+                                                    ]);
 
         Route::resource('distributions', 'DistributionsController', [
                                                                     'names' => ['index' => 'distributions-index',

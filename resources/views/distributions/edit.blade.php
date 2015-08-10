@@ -3,7 +3,7 @@
         <h1>Editar Distribución {!! $distribution->id !!}</h1>
         <hr/>
         {!! Form::model($distribution, ['method' => ''.($distribution->canBeModified() ? 'PATCH' : 'POST'),
-                                        'route' => ['distributions-update'.($distribution->canBeModified() ? '' : '-without-beds'), $distribution->id]]) !!}
+                                        'route' => ['distributions-update'.($distribution->canBeModified() ? '' : '-basic'), $distribution->id]]) !!}
             @include('errors.list')
             @include('distributions.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}

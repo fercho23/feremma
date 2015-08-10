@@ -2,7 +2,7 @@
 
 use FerEmma\Distribution;
 use FerEmma\Http\Requests\DistributionRequest;
-use FerEmma\Http\Requests\DistributionWithoutBedsRequest;
+use FerEmma\Http\Requests\BasicRequest;
 
 //! Controlador de Distribuciones (Distribution)
 class DistributionsController extends Controller {
@@ -110,13 +110,12 @@ class DistributionsController extends Controller {
     /*!
      * Realiza el proceso de editar una Distribución que es buscada por su $id,
      * pero en la cual no se pueden modificar las Camas que participan en ella,
-     * esta función se llama con el método PUT/PATH.
+     * esta función se llama con el método POST.
      * @param  int $id
-     * @param  DistributionWithoutBedsRequest $request
+     * @param  BasicRequest $request
      * @return Response
      */
-    // public function updateWithoutBeds($id) {
-    public function updateWithoutBeds($id, DistributionWithoutBedsRequest $request) {
+    public function updateBasic($id, BasicRequest $request) {
         if($distribution = Distribution::find($id)) {
             $distribution->update($request->all());
             flash()->success('La Distribución fue editada con exito.');

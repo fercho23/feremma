@@ -25,6 +25,20 @@ class Bed extends Model {
                     ->withPivot('amount');
     }
 
+    /// Verifica si la Cama (Bed) puede ser modificada.
+    /*!
+     * Determina si esta Cama puede ser modificada, eso es posible siempre y cuando
+     * esta Cama no tenga relación con ninguna Distribución (Distribution) que esté en alguna Reserva (Reservation)
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeModified() {
+        foreach ($this->distributions as $distribution) {
+            if(!$distribution->canBeModified())
+                return false;
+        }
+        return true;
+    }
+
     /// Revisa si las Camas (Bed) dadas existen.
     /*!
      * Determina si cada $id es de una Cama real.

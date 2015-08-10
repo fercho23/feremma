@@ -274,36 +274,41 @@ class PermissionTableSeeder extends Seeder {
             'slug'          =>'beds/index',
             'description'   =>'Lista de Camas.'
         ));
-
-
         Permission::create(array(//51
+            'title'         =>'Editar Camas Sin Cantidad de Personas',
+            'slug'          =>'beds/updateBasic',
+            'description'   =>'Editar una cam sin cantidad de personas.'
+        ));
+
+
+        Permission::create(array(//52
             'title'         =>'Crear Distribución',
             'slug'          =>'distributions/create',
             'description'   =>'Crea una distribución.'
         ));
-        Permission::create(array(//52
+        Permission::create(array(//53
             'title'         =>'Detalle Distribución',
             'slug'          =>'distributions/show',
             'description'   =>'Detalle de distribución.'
         ));
-        Permission::create(array(//53
+        Permission::create(array(//54
             'title'         =>'Editar Distribución',
             'slug'          =>'distributions/edit',
             'description'   =>'Edita una distribución.'
         ));
-        Permission::create(array(//54
+        Permission::create(array(//55
             'title'         =>'Eliminar Distribución',
             'slug'          =>'distributions/destroy',
             'description'   =>'Elimina una distribución.'
         ));
-        Permission::create(array(//55
+        Permission::create(array(//56
             'title'         =>'Listar Distribuciones',
             'slug'          =>'distributions/index',
             'description'   =>'Lista de distribuciones.'
         ));
-        Permission::create(array(//56
+        Permission::create(array(//57
             'title'         =>'Editar Distribuciones Sin Camas',
-            'slug'          =>'distributions/updateWithoutBeds',
+            'slug'          =>'distributions/updateBasic',
             'description'   =>'Editar una distribución sin sus camas.'
         ));
 

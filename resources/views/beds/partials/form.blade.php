@@ -10,9 +10,16 @@
             <i class="fa fa-male"></i>
             <i class="fa fa-female"></i>
         </span>
-    {!! Form::input('number', 'total_persons', null, ['class'=>'form-control',
-                                                   	  'max'=>'10',
-                                                   	  'min'=>'1']) !!}
+        @if($bed->canBeModified())
+            {!! Form::input('number', 'total_persons', null, ['class'=>'form-control',
+                                                              'max'=>'10',
+                                                              'min'=>'1']) !!}
+        @else
+            <div class="form-control" readonly="True">
+                {!! $bed->total_persons !!}
+            </div>
+        @endif
+
     </div>
 </div>
 

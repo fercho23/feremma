@@ -2,6 +2,7 @@
 
 use FerEmma\Bed;
 use FerEmma\Http\Requests\BedRequest;
+use FerEmma\Http\Requests\BedBasicRequest;
 
 //! Controlador de Camas (Bed)
 class BedsController extends Controller {
@@ -57,8 +58,10 @@ class BedsController extends Controller {
      * @return Response
      */
     public function edit($id) {
-        $bed = Bed::findOrFail($id);
-        return view('beds.edit', compact('bed'));
+        if($bed = Bed::find($id))
+            return view('beds.edit', compact('bed'));
+        flash()->error('Error!!! La Cama que intenta editada no existe.');
+        return redirect('beds');
     }
 
     /// Edita una Cama (Bed) específica.
@@ -70,9 +73,29 @@ class BedsController extends Controller {
      * @return Response
      */
     public function update($id, BedRequest $request) {
-        $bed = Bed::findOrFail($id);
-        $bed->update($request->all());
-        flash()->success('La Cama fue editada con exito.');
+        if($bed = Bed::find($id)) {
+            $bed->update($request->all());
+            flash()->success('La Cama fue editada con exito.');
+        } else
+            flash()->error('Error!!! La Cama que intenta editada no existe.');
+        return redirect('beds');
+    }
+
+    /// Edita una Cama (Bed) específica sin las Camas (Bed).
+    /*!
+     * Realiza el proceso de editar una Cama que es buscada por su $id,
+     * pero en la cual no se pueden modificar el total de personas,
+     * esta función se llama con el método POST.
+     * @param  int $id
+     * @param  BedBasicRequest $request
+     * @return Response
+     */
+    public function updateBasic($id, BedBasicRequest $request) {
+        if($bed = Bed::find($id)) {
+            $bed->update($request->all());
+            flash()->success('La Cama fue editada con exito.');
+        } else
+            flash()->error('Error!!! La Cama que intenta editada no existe.');
         return redirect('beds');
     }
 
