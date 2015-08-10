@@ -110,7 +110,6 @@ class RoomsController extends Controller {
     public function destroy($id) {
         $room = Room::findOrFail($id);
         $room->delete();
-        flash()->success('La Habitación fue borrada con exito.');
         return redirect('rooms');
     }
 

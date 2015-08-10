@@ -88,7 +88,6 @@ class ServicesController extends Controller {
     public function destroy($id) {
         $service = Service::findOrFail($id);
         $service->delete();
-        flash()->success('El Servicio fue borrado con exito.');
         return redirect('services');
     }
 

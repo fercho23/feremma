@@ -202,6 +202,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @return Booleano
      */
     public function delete() {
+
         if (count ((new Reservation)->where('owner_id','=',$this->id)->get())>0) {
             flash()->error('No se pueden borrar usuarios que sean titulares de una reserva');
             return false;
@@ -210,13 +211,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             flash()->error('No se pueden borrar usuarios que sean pasajeros de una reserva');
             return false;
         }        
+        if (count ((new Task)->where('attendant_id','=',$this->id)->get())>0) {
+            flash()->error('No se pueden borrar usuarios que participen o hayan participado de tareas');
+            return false;
+        }
         if (parent::delete()) {
             flash()->success('Usuario borrado con exito');
             return true;
         }
         else
         {
-            flash()->error('Error al intentar borrar usuario');
+            flash()->error('Error desconocido al intentar borrar usuario');
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB;
 //! Modelo Habitación
 class Room extends Model {
 
@@ -108,6 +108,26 @@ class Room extends Model {
                 return true;
         }
         return false;
+    }
+
+    /// Borrar habitacion.
+    /*!
+     * Borra habitacion
+     * @return Booleano
+     */
+    public function delete() {
+        if (count(DB::table('room_reservation')->where('room_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar habitaciones que hayan sido añadidas a una reserva');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Habitacion borrada con exito');
+            return true;
+        }
+        else
+        {
+            flash()->error('Error desconocido al intentar borrar habitacion');
+        }
     }
 
 }

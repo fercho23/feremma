@@ -1,5 +1,6 @@
 <?php namespace FerEmma;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 //! Modelo Servicio
@@ -22,6 +23,26 @@ class Service extends Model {
     public function reservations() {
         return $this->belongsToMany('FerEmma\Reservation', 'service_reservation')
                     ->withPivot('moment', 'price', 'name');
+    }
+
+    /// Borrar servicio.
+    /*!
+     * Borra servicio
+     * @return Booleano
+     */
+    public function delete() {
+        if (count(DB::table('service_reservation')->where('service_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar servicios que hayan sido añadidos a una reserva');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Servicio borrado con exito');
+            return true;
+        }
+        else
+        {
+            flash()->error('Error desconocido al intentar borrar servicio');
+        }
     }
 
 }
