@@ -2,8 +2,8 @@
     @section('content')
         <h1>Editar Distribución {!! $distribution->id !!}</h1>
         <hr/>
-        {!! Form::model($distribution, ['method' => 'PATCH',
-                                        'route' => ['distributions-update', $distribution->id]]) !!}
+        {!! Form::model($distribution, ['method' => ''.($distribution->canBeModified() ? 'PATCH' : 'POST'),
+                                        'route' => ['distributions-update'.($distribution->canBeModified() ? '' : '-without-beds'), $distribution->id]]) !!}
             @include('errors.list')
             @include('distributions.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}

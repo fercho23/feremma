@@ -2,7 +2,7 @@
 
 use FerEmma\Distribution;
 use FerEmma\Http\Requests\DistributionRequest;
-// use FerEmma\Http\Requests\DistributionWithoutBedsRequest;
+use FerEmma\Http\Requests\DistributionWithoutBedsRequest;
 
 //! Controlador de Distribuciones (Distribution)
 class DistributionsController extends Controller {
@@ -115,13 +115,15 @@ class DistributionsController extends Controller {
      * @param  DistributionWithoutBedsRequest $request
      * @return Response
      */
-    // public function updateWithoutBeds($id, DistributionWithoutBedsRequest $request) {
-        // dd("hola, updateWithoutBeds", $id);
-        // $distribution = Distribution::findOrFail($id);
-        // $distribution->update($request->all());
-        // flash()->success('La Distribución fue editada con exito.');
-        // return redirect('distributions');
-    // }
+    // public function updateWithoutBeds($id) {
+    public function updateWithoutBeds($id, DistributionWithoutBedsRequest $request) {
+        if($distribution = Distribution::find($id)) {
+            $distribution->update($request->all());
+            flash()->success('La Distribución fue editada con exito.');
+        } else
+            flash()->error('Error!!! La Distribución que intenta editada no existe.');
+        return redirect('distributions');
+    }
 
     /// Elimina una Distribución (Distribution) específica.
     /*!

@@ -23,15 +23,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('tasks/end/{id}', 'TasksController@end');
     Route::get('tasks/cancel/{id}', 'TasksController@cancel');
 
-
     Route::group(['middleware' => 'acl'], function () {
 
         Route::get('tasks/create_mine', 'TasksController@createMine');
         Route::get('permissions', 'PermissionsController@index');
 
-        // Route::post('distributions/{$id}/wihout-beds', ['as' => 'distributions-update-without-beds', 'uses' =>'DistributionsController@updateWithoutBeds']);
+        Route::post('distributions/{id}/wihout_beds', ['as'=>'distributions-update-without-beds', 'uses'=>'DistributionsController@updateWithoutBeds']);
 
-        Route::resource('beds','BedsController');
+        Route::resource('beds', 'BedsController');
 
         Route::resource('distributions', 'DistributionsController', [
                                                                     'names' => ['index' => 'distributions-index',

@@ -97,6 +97,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @return Booleano (Verdadero o Falso)
      */
     public function can($perm = null) {
+        // dd("can", $perm);
         if($perm)
             return $this->checkPermission($perm);
         return false;
