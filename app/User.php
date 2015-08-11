@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Auth;
 use FerEmma\Reservation;
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 //! Modelo Usuario
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
@@ -119,7 +119,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $this->attributes['password'] = bcrypt($value);
     }
 
-    public function myTasks($state, $last=null) {
+    public function myTasks($state, $today=null) {
         $field='role_id';
         $value=$this->role->id;
         if($state!='pendiente')
@@ -127,12 +127,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $field='attendant_id';
             $value=$this->id;
         }
-        $tasks=Task::where($field, '=', $value)
-                       ->where('state', '=', $state)
-                       ->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')));
-        if ($last == '24h')
-            return $tasks->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')))
-                       ->get();
+        $tasks=Task::where($field, '=', $value)->where('state', '=', $state);
+        if ($today)
+            return $tasks->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')))->get();
         return $tasks->get();
     }
 
@@ -241,6 +238,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         if(($and and $or) and $competent)
             return true;
+    }
+
+            /// Obtiene las tareas atrasadas.
+    /*!
+     * Obtiene las tareas pendientes para un rol y en proceso para un  usuario, con mas de unsa semana desde su ultima modificación.
+     * @param $state = cadena de caracteres
+     * @param $today = booleano
+     */
+    public function delayTasks() {
+        $waitingTasks=DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', 'pendiente')->where('updated_at', '<=', date('Y-m-d H:m:s', strtotime('-7 days')));
+        $startedTasks=DB::table('tasks')->where('attendant_id', '=', $this->id)->where('state', '=', 'en proceso')->where('updated_at', '<=', date('Y-m-d H:m:s', strtotime('-7 days')));
+        //return $waitingTasks->get();
+        return $waitingTasks->union($startedTasks)->get();
     }
 
 }

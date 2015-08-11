@@ -95,6 +95,7 @@ class TaskTableSeeder extends Seeder {
                 'state'       => 'pendiente',
                 'role_id'     => '1',
                 'created_at'  => date('Y-m-d', strtotime('-8 day')),
+                'updated_at'  => date('Y-m-d', strtotime('-8 day'))
                 ));
         Task::create(array('description' => 'Sin descripción',
                 'name'        => 'Tarea 10',

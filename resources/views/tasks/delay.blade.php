@@ -4,7 +4,7 @@
         <h3 class="box-title">{!!$title!!}</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
-        <?php $tasks=Auth::user()->myTasks($state, $today); ?>
+        <?php $tasks=Auth::user()->delayTasks(); ?>
         @if (sizeof($tasks)>0)
         <ul class="todo-list">
             @foreach ($tasks as $task)
@@ -20,7 +20,7 @@
                 <span class="text">{!! $task->name !!}</span>
                 <!-- Emphasis label -->
 
-                @if($state == 'pendiente')
+                @if($task->state == 'pendiente')
                     <small class="label label-primary">
                         {!! "Prioridad:"." ".$task->priority !!}
                     </small>
@@ -29,7 +29,7 @@
                     </small>
                 @endif
 
-                @if($state == 'en proceso')
+                @if($task->state == 'en proceso')
                     <small class="label label-primary">
                         {!! "Prioridad:"." ".$task->priority !!}
                     </small>
@@ -37,18 +37,13 @@
                         <i class="fa fa-spinner"></i>
                     </small>
                 @endif
-                @if($state == 'finalizada')
-                    <small class="label label-success">
-                        <i class="fa fa-check "></i>
-                    </small>
-                @endif
 
                 <!-- General tools such as edit or delete-->
                 <div class="tools">
-                    @if($state == 'pendiente')
+                    @if($task->state == 'pendiente')
                         <a href="{{ URL('tasks/start/'.$task->id) }}" data-toggle="tooltip" data-placement="left" title="Comenzar Tarea"><i class="fa fa-play"></i></a>
                     @endif
-                    @if($state == 'en proceso')
+                    @if($task->state == 'en proceso')
                         <a href="{{ URL('tasks/end/'.$task->id) }}" data-toggle="tooltip" data-placement="top" title="Finalizar Tarea"><i class="fa fa-check-square-o"></i></a>
                         <a href="{{ URL('tasks/cancel/'.$task->id) }}" data-toggle="tooltip" data-placement="top" title="Cancelar Tarea"><i class="fa fa-stop"></i></a>
                     @endif
@@ -58,18 +53,8 @@
         </ul>
         @else
             <div class="alert alert-success">
-                <p>No hay tareas con estado '{!!$state!!}'.</p>
+                <p>No hay tareas con atrasadas!</p>
             </div>
         @endif
     </div><!-- /.box-body -->
-
-    @if($state == 'pendiente')
-        @if(Auth::user()->can('tasks/createMine'))
-            <div class="box-footer clearfix no-border">
-                <a href="{{ URL('tasks/create_mine') }}" class="btn btn-default pull-right">
-                    <i class="fa fa-plus"></i> Agregar tarea para mi sector
-                </a>
-            </div>
-        @endif
-    @endif
 </div><!-- /.box -->
