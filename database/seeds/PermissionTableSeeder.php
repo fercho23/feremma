@@ -325,5 +325,11 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Habilita/Desabilita Habitacion.'
         ));
 
+        Permission::create(array(//60
+            'title'         =>'Gestiona informes',
+            'slug'          =>'reports/index',
+            'description'   =>'Crea informes estadisticos'
+        ));
+
     }
 }

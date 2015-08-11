@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('tasks/create_mine', 'TasksController@createMine');
         Route::get('users/profile', 'UsersController@profile');
         Route::get('permissions', 'PermissionsController@index');
+        //Route::get('reports/index', 'ReportsController@index');
         Route::get('rooms/toggle/{id}', 'RoomsController@toggle');
 
         Route::post('beds/{id}/basic', ['as'=>'beds-update-basic', 'uses'=>'BedsController@updateBasic']);
@@ -78,9 +79,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('tasks', 'TasksController');
         Route::resource('users', 'UsersController');
 
-        // Route::group(array('prefix' => 'reports'), function() {
-        //     Route::get('/', 'ReportsController@index');
-        // });
+        Route::group(array('prefix' => 'reports'), function() {
+            Route::get('/', 'ReportsController@index');
+        });
 
     });
 

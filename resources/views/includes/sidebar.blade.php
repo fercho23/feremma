@@ -91,6 +91,12 @@
                                                        'actions'=>['index'],
                                                        'names'=>['Ver'],
                                                        'icons'=>['list-ol']])
+                @include('includes.partials.section', ['model'=>'reports',
+                                                       'title'=>'Reportes',
+                                                       'icon'=>'fa fa-file-text',
+                                                       'actions'=>['index'],
+                                                       'names'=>['Ver'],
+                                                       'icons'=>['fa fa-file-text-o']])
             @endif
 
             <li class="header">SOPORTE</li>

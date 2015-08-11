@@ -2,14 +2,14 @@
 
 
 //! Controlador de Reportes
-class RolesController extends Controller {
+class ReportsController extends Controller {
 
     /// Lista de Reportes.
     /*!
      * @return Vista con Reportes
      */
     public function index() {
-        return view('');
+        return view('reports.index');
     }
 
 
