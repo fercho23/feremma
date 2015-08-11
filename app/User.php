@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Auth;
 use FerEmma\Reservation;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 //! Modelo Usuario
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
@@ -62,8 +62,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     /// Borrar Usuario (User).
     /*!
-     * Se determina si un Usuario puede ser borrado, en caso de que si
-     * el mismo es borrado.
+     * Se determina si un Usuario puede ser borrado, en caso de que si el mismo es borrado.
+     * @see canBeEliminated
      * @return Booleano (Verdadero o Falso)
      */
     public function delete() {
@@ -90,7 +90,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     /// Nombre completo.
     /*!
-     * @return Nombre completo de Usuario
+     * @return String = Nombre completo de Usuario
      */
     public function fullname() {
         return $this->name.' '.$this->surname;
@@ -113,7 +113,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     /*!
      * Encripta el Password del Usuario cada vez que se ingresa una nuevo.
      * @param $value = cadena de caracteres
-     * @return Nombre completo de Usuario
      */
     public function setPasswordAttribute($value) {
         if(!empty($value))

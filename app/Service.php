@@ -1,6 +1,6 @@
 <?php namespace FerEmma;
 
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 //! Modelo Servicio
@@ -27,8 +27,8 @@ class Service extends Model {
 
     /// Borrar Servicio (Service).
     /*!
-     * Se determina si un Servicio puede ser borrado, en caso de que si
-     * el mismo es borrado.
+     * Se determina si un Servicio puede ser borrado, en caso de que si el mismo es borrado.
+     * @see canBeEliminated
      * @return Booleano (Verdadero o Falso)
      */
     public function delete() {

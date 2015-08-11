@@ -33,7 +33,44 @@ class Task extends Model {
     public function user() {
         return $this->belongsTo('FerEmma\User', 'attendant_id');
     }
-    
+
+    /// Borrar Tarea (User).
+    /*!
+     * Se determina si una Tarea puede ser borrada, en caso de que si la misma es borrada.
+     * @see canBeEliminated
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function delete() {
+        if ($this->state == 'finalizada') {
+            flash()->error('Error: Las tareas finalizadas no pueden ser borradas.');
+            return false;
+        }
+        if ($this->canBeEliminated())) {
+        // if (isset($this->attendant_id)) {
+            flash()->error('Error: Las tareas con responsable asignado deben ser canceladas antes de ser borradas.');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Tarea borrada con exito.');
+            return true;
+        }
+        flash()->error('Error desconocido al intentar borrar Tarea.');
+    }
+
+    /// Verifica si la Tarea (Task) puede ser eliminada.
+    /*!
+     * Determina si esta Tarea puede ser eliminada, eso es posible siempre y cuando
+     * esta Tarea no tenga relación con ningún Usuario (User).
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminated() {
+        if(count($this->user))
+            return false;
+        // if(count($this->role))
+            // return false;
+        return true;
+    }
+
     /// Finaliza una Tarea.
     /*!
      * Cambia el estado de la Tarea a "finalizada".
@@ -72,24 +109,6 @@ class Task extends Model {
         $d = strtotime("today");
         return Task::where('created_at', '>=', date("Y-m-d H:i:s", $d))->get();
     }
-        
-    /// Borrar tarea.
-    /*!
-     * Borra la tarea
-     * @return Booleano
-     */
-    public function delete() {
-        if ($this->state=='finalizada') {
-            flash()->error('Error: Las tareas finalizadas no pueden ser borradas.');
-            return false;
-        }
-        if (isset($this->attendant_id)) {
-            flash()->error('Error: Las tareas con responsable asignado deben ser canceladas antes de ser borradas.');
-            return false;
-        }
-        if (parent::delete()) {
-            flash()->success('Tarea borrada con exito');
-            return true;
-        }
-    }
+
+
 }

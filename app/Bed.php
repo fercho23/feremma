@@ -1,9 +1,9 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
-//! Modelo Cama
+ //! Modelo Cama
 class Bed extends Model {
 
     //! Contiene el nombre de la Tabla de la Bases de Datos que utiliza este modelos.
@@ -27,8 +27,8 @@ class Bed extends Model {
 
     /// Borrar Cama (Bed).
     /*!
-     * Se determina si una Cama puede ser borrada, en caso de que si
-     * la misma es borrada.
+     * Se determina si una Cama puede ser borrada, en caso de que si la misma es borrada.
+     * @see canBeEliminated
      * @return Booleano (Verdadero o Falso)
      */
     public function delete() {

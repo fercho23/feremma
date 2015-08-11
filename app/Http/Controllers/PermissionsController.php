@@ -1,17 +1,17 @@
 <?php namespace FerEmma\Http\Controllers;
 
-use FerEmma\Permission;
+// use FerEmma\Permission;
 use FerEmma\Role;
-use FerEmma\Http\Requests;
+// use FerEmma\Http\Requests;
 use FerEmma\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
+//! Controlador de Permisos (Permissions)
 class PermissionsController extends Controller {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+    /// Lista de Permisos (Permissions).
+    /*!
+     * @return Vista con Permisos (Reservation)
      */
     public function index()
     {

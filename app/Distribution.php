@@ -1,7 +1,7 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 //! Modelo Distribución
 class Distribution extends Model {
@@ -41,8 +41,8 @@ class Distribution extends Model {
 
     /// Borrar Distribución (Distribution).
     /*!
-     * Se determina si una Distribución puede ser borrada, en caso de que si
-     * la misma es borrada.
+     * Se determina si una Distribución puede ser borrada, en caso de que si la misma es borrada.
+     * @see canBeEliminated
      * @return Booleano (Verdadero o Falso)
      */
     public function delete() {

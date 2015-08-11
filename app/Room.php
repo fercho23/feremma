@@ -41,6 +41,7 @@ class Room extends Model {
     /*!
      * Se determina si una Habitación puede ser borrada, en caso de que si
      * la misma es borrada.
+     * @see canBeEliminated
      * @return Booleano (Verdadero o Falso)
      */
     public function delete() {

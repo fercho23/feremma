@@ -1,7 +1,7 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 //! Modelo Cargo
 class Role extends Model {
@@ -44,8 +44,8 @@ class Role extends Model {
 
     /// Borrar Cargo (Role).
     /*!
-     * Se determina si un Cargo puede ser borrado, en caso de que si
-     * el mismo es borrado.
+     * Se determina si un Cargo puede ser borrado, en caso de que si el mismo es borrado.
+     * @see canBeEliminated
      * @return Booleano (Verdadero o Falso)
      */
     public function delete() {

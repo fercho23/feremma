@@ -111,7 +111,7 @@
                 </a>
             </li>
             <li>
-                <a target="_blank" href="{!! URL() !!}">
+                <a target="_blank" href="http://localhost/feremma/doxy/html/">
                     <i class="fa fa-file-text-o"></i> Doxygen
                 </a>
             </li>
