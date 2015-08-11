@@ -113,4 +113,16 @@ class RoomsController extends Controller {
         return redirect('rooms');
     }
 
+    /// Cambia el estado de una Habitación (Room) específica.
+    /*!
+     * Realiza el proceso de cambiar el estado de una Habitación que es buscada por su $id,
+     * @param  int $id
+     * @return Response
+     */
+    public function toggle($id) {
+        $room = Room::findOrFail($id);
+        $room->toggle();
+        return redirect('home');
+    }
+
 }

@@ -34,6 +34,14 @@
                         <i class="fa fa-exclamation"></i>
                     </small>
                 @endif
+                <!-- General tools such as edit or delete-->
+                <div class="tools">
+                    @if($room->available == 0)
+                        <a href="{{ URL('rooms/toggle/'.$room->id) }}" data-toggle="tooltip" data-placement="left" title="Habilitar habitación"><i class="fa fa-lock"></i></a>
+                    @else
+                        <a href="{{ URL('rooms/toggle/'.$room->id) }}" data-toggle="tooltip" data-placement="top" title="Deshabilitar habitación"><i class="fa fa-unlock"></i></a>
+                    @endif
+                </div>
             </li>
             @endforeach
         </ul>

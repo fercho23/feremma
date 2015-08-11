@@ -92,6 +92,5 @@ class TaskTableSeeder extends Seeder {
             'created_at'  => date('Y-m-d')
         ));
 
-
     }
 }
