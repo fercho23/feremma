@@ -18,6 +18,7 @@ class TaskTableSeeder extends Seeder {
                 ));
         Task::create(array('description' => 'Hacer la documentación del sistema.',
                 'name'        => 'Documentación',
+                'attendant_id'=> null,
                 'priority'    => '10',
                 'state'       => 'pendiente',
                 'role_id'     => '1',

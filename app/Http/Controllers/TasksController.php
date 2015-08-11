@@ -65,7 +65,7 @@ class TasksController extends Controller {
         $roles = array();
         foreach ($datas as $data)
             $roles[$data->id] = $data->name;
-        return view('tasks.create', compact($roles));
+        return view('tasks.create', ['roles'=>$roles]);
     }
 
     /// Fomulario de nueva Tarea (Task) para su Cargo (Role).
