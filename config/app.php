@@ -198,6 +198,7 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'HTML'      => 'Illuminate\Html\HtmlFacade',
         'Flash'     => 'Laracasts\Flash\Flash',
+        'Carbon'    => 'Carbon\Carbon',
     ],
 
 ];

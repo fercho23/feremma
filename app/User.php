@@ -120,14 +120,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     public function myRoleTasks($state, $last=null) {
-        if ($last == '24h')
-            return Task::where('role_id', '=', $this->role->id)
+        $field='role_id';
+        $value=$this->role->id;
+        if($state!='pendiente')
+        {
+            $field='attendant_id';
+            $value=$this->id;
+        }
+        $tasks=Task::where($field, '=', $value)
                        ->where('state', '=', $state)
-                       ->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')))
+                       ->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')));
+        if ($last == '24h')
+            return $tasks->where('updated_at', '>', date('Y-m-d H:m:s', strtotime('-24 hours')))
                        ->get();
-        return Task::where('role_id', '=', $this->role->id)
-                   ->where('state', '=', $state)
-                   ->get();
+        return $tasks->get();
     }
 
     /// Usuario (User) tiene Permiso (Permission).
