@@ -319,5 +319,11 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Datos de mi perfil.'
         ));
 
+        Permission::create(array(//59
+            'title'         =>'Habilita/Desabilita Habitacion',
+            'slug'          =>'rooms/toggle',
+            'description'   =>'Habilita/Desabilita Habitacion.'
+        ));
+
     }
 }

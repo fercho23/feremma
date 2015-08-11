@@ -119,7 +119,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $this->attributes['password'] = bcrypt($value);
     }
 
-    public function myRoleTasks($state, $last=null) {
+    public function myTasks($state, $last=null) {
         $field='role_id';
         $value=$this->role->id;
         if($state!='pendiente')

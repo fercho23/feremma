@@ -190,4 +190,16 @@ class Room extends Model {
         return false;
     }
 
+    /// Deshabilita o Habilita una Habitación.
+    /*!
+     * Cambia el estado de la habitación a "deshabilitada" o "habilitada".
+     */
+    public function toggle() {
+        if ($this->available == 0) 
+            $this->available = 1;
+        else
+            $this->available = 0;        
+        $this->update();
+    }
+
 }

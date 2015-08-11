@@ -4,7 +4,7 @@
         <h3 class="box-title">{!!$title!!}</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
-        <?php $tasks=Auth::user()->myRoleTasks($state, $last); ?>
+        <?php $tasks=Auth::user()->myTasks($state, $last); ?>
         @if (sizeof($tasks)>0)
         <ul class="todo-list">
             @foreach ($tasks as $task)
