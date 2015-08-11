@@ -25,6 +25,25 @@ class Bed extends Model {
                     ->withPivot('amount');
     }
 
+    /// Borrar Cama (Bed).
+    /*!
+     * Se determina si una Cama puede ser borrada, en caso de que si
+     * la misma es borrada.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function delete() {
+        if ($this->canBeEliminated()) {
+        // if (count(DB::table('distribution_bed')->where('bed_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar camas que se usen en una o más distribuciones');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Cama borrada con exito');
+            return true;
+        }
+        flash()->error('Error desconocido al intentar borrar cama');
+    }
+
     /// Verifica si la Cama (Bed) puede ser eliminada.
     /*!
      * Determina si esta Cama puede ser eliminada, eso es posible siempre y cuando
@@ -65,26 +84,6 @@ class Bed extends Model {
                 return false;
         }
         return true;
-    }
-
-    /// Borrar cama.
-    /*!
-     * Borra cama
-     * @return Booleano
-     */
-    public function delete() {
-        if (count(DB::table('distribution_bed')->where('bed_id', $this->id)->get())>0) {
-            flash()->error('No se pueden borrar camas que se usen en una o más distribuciones');
-            return false;
-        }
-        if (parent::delete()) {
-            flash()->success('Cama borrada con exito');
-            return true;
-        }
-        else
-        {
-            flash()->error('Error desconocido al intentar borrar cama');
-        }
     }
 
 }

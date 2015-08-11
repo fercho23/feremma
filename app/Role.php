@@ -42,24 +42,23 @@ class Role extends Model {
         return $this->hasMany('FerEmma\Task', 'role_id');
     }
 
-    /// Borrar cargo.
+    /// Borrar Cargo (Role).
     /*!
-     * Borra cargo
-     * @return Booleano
+     * Se determina si un Cargo puede ser borrado, en caso de que si
+     * el mismo es borrado.
+     * @return Booleano (Verdadero o Falso)
      */
     public function delete() {
-        if (count(DB::table('permission_role')->where('role_id', $this->id)->get())>0) {
-            flash()->error('No se pueden borrar cargos que tengan permisos asignados');
+        if ($this->canBeEliminated()) {
+        // if (count(DB::table('permission_role')->where('role_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar cargos que tengan permisos asignados.');
             return false;
         }        
         if (parent::delete()) {
-            flash()->success('Cargo borrado con exito');
+            flash()->success('Cargo borrado con exito.');
             return true;
         }
-        else
-        {
-            flash()->error('Error desconocido al intentar borrar cargo');
-        }
+        flash()->error('Error desconocido al intentar borrar Cargo.');
     }
 
     /// Verifica si el Cargo (Role) puede ser eliminado.

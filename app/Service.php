@@ -25,24 +25,24 @@ class Service extends Model {
                     ->withPivot('moment', 'price', 'name');
     }
 
-    /// Borrar servicio.
+    /// Borrar Servicio (Service).
     /*!
-     * Borra servicio
-     * @return Booleano
+     * Se determina si un Servicio puede ser borrado, en caso de que si
+     * el mismo es borrado.
+     * @return Booleano (Verdadero o Falso)
      */
     public function delete() {
-        if (count(DB::table('service_reservation')->where('service_id', $this->id)->get())>0) {
-            flash()->error('No se pueden borrar servicios que hayan sido añadidos a una reserva');
+        if ($this->canBeEliminated()) {
+        // if (count(DB::table('service_reservation')->where('service_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar Servicios que hayan sido añadidos a una Reserva.');
             return false;
         }
         if (parent::delete()) {
-            flash()->success('Servicio borrado con exito');
+            flash()->success('Servicio borrado con exito.');
             return true;
         }
-        else
-        {
-            flash()->error('Error desconocido al intentar borrar servicio');
-        }
+        flash()->error('Error desconocido al intentar borrar Servicio.');
+
     }
 
     /// Verifica si el Servicio (Service) puede ser eliminado.

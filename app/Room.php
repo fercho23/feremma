@@ -37,6 +37,25 @@ class Room extends Model {
                     ->orderBy('room_reservation.check_in');
     }
 
+    /// Borrar Habitación (Room).
+    /*!
+     * Se determina si una Habitación puede ser borrada, en caso de que si
+     * la misma es borrada.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function delete() {
+        if ($this->canBeEliminated()) {
+        // if (count(DB::table('room_reservation')->where('room_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar Habitaciones que hayan sido añadidas a una Reserva.');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Habitación borrada con exito.');
+            return true;
+        }
+        flash()->error('Error desconocido al intentar borrar Habitación.');
+    }
+
     /// Verifica si la Habitación (Room) puede ser eliminada.
     /*!
      * Determina si esta Habitación puede ser eliminada, eso es posible siempre y cuando
@@ -162,26 +181,6 @@ class Room extends Model {
                 return true;
         }
         return false;
-    }
-
-    /// Borrar habitacion.
-    /*!
-     * Borra habitacion
-     * @return Booleano
-     */
-    public function delete() {
-        if (count(DB::table('room_reservation')->where('room_id', $this->id)->get())>0) {
-            flash()->error('No se pueden borrar habitaciones que hayan sido añadidas a una reserva');
-            return false;
-        }
-        if (parent::delete()) {
-            flash()->success('Habitacion borrada con exito');
-            return true;
-        }
-        else
-        {
-            flash()->error('Error desconocido al intentar borrar habitacion');
-        }
     }
 
 }

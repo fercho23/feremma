@@ -39,6 +39,25 @@ class Distribution extends Model {
         return ($this->name.' ['.$this->totalPersons().'] [ $ '.$this->price().' ]');
     }
 
+    /// Borrar Distribución (Distribution).
+    /*!
+     * Se determina si una Distribución puede ser borrada, en caso de que si
+     * la misma es borrada.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function delete() {
+        if ($this->canBeEliminated()) {
+        // if (count(DB::table('room_distribution')->where('distribution_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar Distribuciones que se usen en una o más habitaciónes.');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Distribución borrada con exito.');
+            return true;
+        }
+        flash()->error('Error desconocido al intentar borrar Distribución.');
+    }
+
     /// Verifica si la Distribución (Distribution) puede ser eliminada.
     /*!
      * Determina si esta Distribución puede ser eliminada, eso es posible siempre y cuando
@@ -107,24 +126,4 @@ class Distribution extends Model {
         return $price;
     }
 
-
-    /// Borrar distribución.
-    /*!
-     * Borra distribución
-     * @return Booleano
-     */
-    public function delete() {
-        if (count(DB::table('room_distribution')->where('distribution_id', $this->id)->get())>0) {
-            flash()->error('No se pueden borrar distribuciones que se usen en una o más habitaciónes');
-            return false;
-        }
-        if (parent::delete()) {
-            flash()->success('Distribución borrada con exito');
-            return true;
-        }
-        else
-        {
-            flash()->error('Error desconocido al intentar borrar distribución');
-        }
-    }
 }

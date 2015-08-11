@@ -60,6 +60,34 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('FerEmma\Task', 'attendant_id');
     }
 
+    /// Borrar Usuario (User).
+    /*!
+     * Se determina si un Usuario puede ser borrado, en caso de que si
+     * el mismo es borrado.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function delete() {
+
+        if (count ((new Reservation)->where('owner_id','=',$this->id)->get())>0) {
+            flash()->error('No se pueden borrar usuarios que sean Titulares de una Reserva.');
+            return false;
+        }
+        if ($this->canBeEliminated()) {
+        // if (count(DB::table('reservation_user')->where('user_id', $this->id)->get())>0) {
+            flash()->error('No se pueden borrar usuarios que sean pasajeros de una Reserva.');
+            return false;
+        }        
+        if (count ((new Task)->where('attendant_id','=',$this->id)->get())>0) {
+            flash()->error('No se pueden borrar usuarios que participen o hayan participado de tareas.');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Usuario borrado con exito');
+            return true;
+        }
+        flash()->error('Error desconocido al intentar borrar usuario');
+    }
+
     /// Nombre completo.
     /*!
      * @return Nombre completo de Usuario
@@ -210,32 +238,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             return true;
     }
 
-    /// Borrar usuario.
-    /*!
-     * Borra usuario
-     * @return Booleano
-     */
-    public function delete() {
-
-        if (count ((new Reservation)->where('owner_id','=',$this->id)->get())>0) {
-            flash()->error('No se pueden borrar usuarios que sean titulares de una reserva');
-            return false;
-        }
-        if (count(DB::table('reservation_user')->where('user_id', $this->id)->get())>0) {
-            flash()->error('No se pueden borrar usuarios que sean pasajeros de una reserva');
-            return false;
-        }        
-        if (count ((new Task)->where('attendant_id','=',$this->id)->get())>0) {
-            flash()->error('No se pueden borrar usuarios que participen o hayan participado de tareas');
-            return false;
-        }
-        if (parent::delete()) {
-            flash()->success('Usuario borrado con exito');
-            return true;
-        }
-        else
-        {
-            flash()->error('Error desconocido al intentar borrar usuario');
-        }
-    }
 }
