@@ -1,0 +1,16 @@
+/*!
+@mainpage Documentación del Sistema de Gestión para el Hotel Riaza
+
+@author Fernando Ariel Mateos
+@author Gustavo Emmanuel Sanchez Figueroa
+@date Agosto 2015
+
+<hr>
+
+Estos documentos muestran las diferentes partes del sistema, cada uno con su funcionalidad bien definida.\n\n
+
+Más adelante se irá explicando a que se dedica cara área en particular, ya sea los Modelos, Controladores, Middlewares, Requests, etc.\n
+
+
+
+*/

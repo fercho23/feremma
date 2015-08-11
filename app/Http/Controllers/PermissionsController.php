@@ -6,12 +6,12 @@ use FerEmma\Role;
 use FerEmma\Http\Controllers\Controller;
 // use Illuminate\Http\Request;
 
-//! Controlador de Permisos (Permissions)
+//! Controlador de Permisos (Permission)
 class PermissionsController extends Controller {
 
-    /// Lista de Permisos (Permissions).
+    /// Lista de Permisos (Permission).
     /*!
-     * @return Vista con Permisos (Reservation)
+     * @return Vista con Permisos (Permission)
      */
     public function index()
     {
