@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-
+        <h1>Cargos</h1>
         @include('flash::message')
 
         @if (sizeof($roles)>0)

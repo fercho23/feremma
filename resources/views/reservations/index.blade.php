@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-
+        <h1>Reservas</h1>
         @include('flash::message')
 
         @if (sizeof($reservations)>0)

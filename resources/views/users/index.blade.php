@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-
+        <h1>Usuarios</h1>
         @include('flash::message')
 
         @if (sizeof($users)>0)

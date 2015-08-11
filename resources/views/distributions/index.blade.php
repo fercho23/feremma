@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-
+        <h1>Distribuciones</h1>
         @include('flash::message')
 
         @if (sizeof($distributions)>0)

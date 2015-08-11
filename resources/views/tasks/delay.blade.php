@@ -53,7 +53,7 @@
         </ul>
         @else
             <div class="alert alert-success">
-                <p>No hay tareas con atrasadas!</p>
+                <p>No hay tareas atrasadas!</p>
             </div>
         @endif
     </div><!-- /.box-body -->

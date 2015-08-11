@@ -1,6 +1,6 @@
 @extends('app')
     @section('content')
-
+        <h1>Servicios</h1>
         @include('flash::message')
 
         @if (sizeof($services)>0)

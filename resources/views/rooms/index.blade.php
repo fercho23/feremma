@@ -1,6 +1,6 @@
 @extends('app')
     @section('content')
-
+        <h1>Habitaciones</h1>
         @include('flash::message')
 
         @if (sizeof($rooms)>0)

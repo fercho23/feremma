@@ -1,6 +1,6 @@
 @extends('app')
     @section('content')
-
+        <h1>Tareas</h1>
         @include('flash::message')
 
         @if (sizeof($tasks)>0)

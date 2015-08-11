@@ -1,6 +1,6 @@
 @extends('app')
     @section('content')
-
+        <h1>Permisos por Rol</h1>
         @include('flash::message')
 
         @if (sizeof($roles)>0)
