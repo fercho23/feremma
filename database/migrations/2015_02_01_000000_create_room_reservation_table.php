@@ -18,8 +18,6 @@ class CreateRoomReservationTable extends Migration {
             //$table->foreign('reservation_id')->references('id')->on('reservations');
             $table->integer('distribution_id')->unsigned();
             $table->decimal('price', 10, 2);
-            $table->datetime('check_in');
-            $table->datetime('check_out');
         });
     }
 

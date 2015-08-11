@@ -21,27 +21,27 @@ class ServiceTableSeeder extends Seeder {
             ));
 
         Service::create(array(//3
-            'description'  => 'Servicio tipo 1 que consta de . . .',
-            'name'         => 'Servicio tipo 1',
+            'description'  => 'Media pensión.',
+            'name'         => 'Media pensión',
             'price'        => '50.00'
             ));
 
         Service::create(array(//4
-            'description'  => 'Servicio tipo 2 que consta de. . .',
-            'name'         => 'Servicio tipo 2',
-            'price'        => '75.00'
+            'description'  => 'Merienda para 1 persona.',
+            'name'         => 'Merienda',
+            'price'        => '40.00'
             ));
 
         Service::create(array(//5
-            'description'  => 'Servicio tipo 3 que consta de . . .',
-            'name'         => 'Servicio tipo 3',
-            'price'        => '20500'
+            'description'  => 'Cena para 1 persona.',
+            'name'         => 'Cena',
+            'price'        => '80.00'
             ));
 
         Service::create(array(//6
-            'description'  => 'Servicio tipo 4 que consta de. . .',
-            'name'         => 'Servicio tipo 4',
-            'price'        => '100.00'
+            'description'  => 'Acceso a la sala de juegos.',
+            'name'         => 'Sala de juegos',
+            'price'        => '25.00'
             ));
 
     }

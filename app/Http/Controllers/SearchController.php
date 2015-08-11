@@ -84,8 +84,14 @@ class SearchController extends Controller {
         $ids = Request::input('ids', '');
         $rooms_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
 
+        $check_in = Request::input('check_in', '');
+        $check_out = Request::input('check_out', '');
+
+        $posible_rooms_id = Room::getFreeRoomsIdsByDates($check_in, $check_out);
+
         $results = array();
         $queries = Room::where('name', 'LIKE', '%'.$term.'%')
+                       ->whereIn('id', $posible_rooms_id)
                        ->whereNotIn('id', $rooms_id)
                        ->take(10)->get();
         foreach ($queries as $query) {

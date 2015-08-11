@@ -1,47 +1,68 @@
 <div class="form-group">
+    {!! Form::label('check_in', 'Fecha entrada:') !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        {!! Form::input('date','check_in', null, ['class'=>'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::label('check_out', 'Fecha salida:') !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        {!! Form::input('date','check_out', null, ['class'=>'form-control']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('owner', 'Titular:') !!}
     {!! Form::hidden('owner_id', ($reservation->owner ? $reservation->owner->id : ''), array('id' => 'owner_id')) !!}
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
         {!! Form::text('owner', ($reservation->owner ? $reservation->owner->fullname().' ['.$reservation->owner->dni.']' : ''), ['class'=>'form-control']) !!}
-</div>
+    </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('room', 'Habitaciones:') !!}
+    <div class="row">
+        <div class="col-lg-12 col-xs-12 no-gutter-right">
 
-    <div class="group-labels" id="label-rooms">
-        <div class="row">
-            <div class="col-lg-4 col-xs-4 no-gutter-right">
-                <div class="form-control" readonly="True">
-                    <strong>Nombre de la Habitación</strong>
-                </div>
-            </div>
-            <div class="col-lg-4 col-xs-4 no-gutter">
-                <div class="form-control" readonly="True">
-                    <strong>Distribución</strong>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xs-1 no-gutter">
-                <div class="form-control" readonly="True">
-                    <i class="fa fa-male" title="Cantidad de Personas"></i>
-                    <i class="fa fa-female" title="Cantidad de Personas"></i>
-                </div>
-            </div>
-            <div class="col-lg-2 col-xs-2 no-gutter">
-                <div class="form-control" readonly="True">
-                    <i class="fa fa-arrow-right" title="Precio Final"></i>
-                    <i class="fa fa-usd" title="Precio Final"></i>
-                    <i class="fa fa-usd" title="Precio Final"></i>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xs-1">
-                <span class="btn btn-default">
-                    <i class="fa fa-times-circle"></i>
-                </span>
+            {!! implode(",", FerEmma\Room::getFreeRoomsIdsByDates('2015-08-12', '2015-08-14')) !!}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-xs-4 no-gutter-right">
+            <div class="form-control" readonly="True">
+                <strong>Nombre de la Habitación</strong>
             </div>
         </div>
-
+        <div class="col-lg-4 col-xs-4 no-gutter">
+            <div class="form-control" readonly="True">
+                <strong>Distribución</strong>
+            </div>
+        </div>
+        <div class="col-lg-1 col-xs-1 no-gutter">
+            <div class="form-control" readonly="True">
+                <i class="fa fa-male" title="Cantidad de Personas"></i>
+                <i class="fa fa-female" title="Cantidad de Personas"></i>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xs-2 no-gutter">
+            <div class="form-control" readonly="True">
+                <i class="fa fa-arrow-right" title="Precio Final"></i>
+                <i class="fa fa-usd" title="Precio Final"></i>
+                <i class="fa fa-usd" title="Precio Final"></i>
+            </div>
+        </div>
+        <div class="col-lg-1 col-xs-1">
+            <span class="btn btn-default">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+    </div>
+    <div class="group-labels" id="label-rooms">
         @foreach ($reservation->rooms as $room)
             <div class="row" id="rooms-{!! $room->id !!}">
                 <div class="col-lg-4 col-xs-4 no-gutter-right">
@@ -241,22 +262,6 @@
                                                 'max'=>'9999999999',
                                                 'min'=>'0',
                                                 'step'=>'0.01']) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    {!! Form::label('check_in', 'Fecha entrada:') !!}
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-        {!! Form::input('date','check_in', null, ['class'=>'form-control']) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    {!! Form::label('check_out', 'Fecha salida:') !!}
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-        {!! Form::input('date','check_out', null, ['class'=>'form-control']) !!}
     </div>
 </div>
 

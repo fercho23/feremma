@@ -16,9 +16,9 @@ class CreateTasksTable extends Migration {
             $table->string('name', 100);
             $table->text('description')->nullable();
             $table->tinyInteger('priority');
-            $table->string('state', 20);
+            $table->enum('state', ['finalizada', 'en proceso', 'pendiente']);
             $table->integer('role_id')->unsigned();
-            $table->integer('attendant_id')->unsigned()->nullable();
+            $table->integer('attendant_id')->unsigned()->nullable()->default(null);
             $table->timestamps();
         });
     }

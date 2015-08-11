@@ -82,9 +82,9 @@
                 @include('includes.partials.section', ['model'=>'tasks',
                                                        'title'=>'Tareas',
                                                        'icon'=>'tags',
-                                                       'actions'=>['index', 'create'],
-                                                       'names'=>['Ver', 'Nuevo'],
-                                                       'icons'=>['list-ol', 'plus']])
+                                                       'actions'=>['index', 'create', 'create_mine'],
+                                                       'names'=>['Ver', 'Nueva', 'Nueva Tarea Para mi Sector'],
+                                                       'icons'=>['list-ol', 'plus', 'plus-circle']])
                 @include('includes.partials.section', ['model'=>'permissions',
                                                        'title'=>'Permisos',
                                                        'icon'=>'hand-paper-o',

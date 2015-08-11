@@ -31,10 +31,7 @@
                         @else
                             <i class="fa fa-edit"></i>
                         @endif
-                            {{--
-                            <i class="fa fa-{!! (isset($icons[$k]) && $icons[$k]? $icons[$k] : 'circle-o') !!}"></i>
-                            --}}
-                            {!! $names[$k] !!}
+                        {!! $names[$k] !!}
                         </a>
                     </li>
                 @endif

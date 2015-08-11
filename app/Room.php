@@ -97,8 +97,37 @@ class Room extends Model {
     }
 
 
-    public function getFreeRoomsByDates($check_in, $check_out) {
-        return '';
+    static function getFreeRoomsIdsByDates($check_in, $check_out) {
+
+        $reservations = Reservation::where('check_out', '>=', $check_in)
+                                   ->where('check_in', '<=', $check_in)
+                                   ->lists('id');
+
+        $query = Reservation::where('check_in', '<=', $check_out)
+                            ->where('check_out', '>=', $check_out)
+                            ->whereNotIn('id', $reservations)
+                            ->lists('id');
+        $reservations = array_merge($reservations, $query);
+
+        $query = Reservation::where('check_in', '>=', $check_in)
+                            ->where('check_out', '<=', $check_out)
+                            ->whereNotIn('id', $reservations)
+                            ->lists('id');
+        $reservations = array_merge($reservations, $query);
+
+        $query = Reservation::where('check_in', '<=', $check_in)
+                            ->where('check_out', '>=', $check_out)
+                            ->whereNotIn('id', $reservations)
+                            ->lists('id');
+        $reservations = array_merge($reservations, $query);
+
+        $rooms_id = \DB::table('room_reservation')
+                       ->whereIn('room_id', $reservations)
+                       ->lists('room_id');
+
+        return Room::whereNotIn('id', $rooms_id)
+                   ->where('available', 1)
+                   ->lists('id');
     }
 
 

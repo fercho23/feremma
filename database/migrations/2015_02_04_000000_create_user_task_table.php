@@ -16,8 +16,6 @@ class CreateUserTaskTable extends Migration {
             //$table->foreign('user_id')->references('id')->on('users');
             $table->integer('task_id')->unsigned();
             //$table->foreign('task_id')->references('id')->on('tasks');
-            $table->datetime('check_in');
-            $table->datetime('check_out');
         });
     }
 

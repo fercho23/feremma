@@ -33,36 +33,45 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('distributions/{id}/basic', ['as'=>'distributions-update-basic', 'uses'=>'DistributionsController@updateBasic']);
 
         Route::resource('beds', 'BedsController', [
-                                                    'names' => ['index' => 'beds-index',
-                                                                'show' => 'beds-show',
-                                                                'edit' => 'beds-edit',
-                                                                'update' => 'beds-update',
-                                                                'create' => 'beds-create',
-                                                                'store' => 'beds-store',
+                                                    'names' => ['index'   => 'beds-index',
+                                                                'show'    => 'beds-show',
+                                                                'edit'    => 'beds-edit',
+                                                                'update'  => 'beds-update',
+                                                                'create'  => 'beds-create',
+                                                                'store'   => 'beds-store',
                                                                 'destroy' => 'beds-destroy']
                                                     ]);
 
         Route::resource('distributions', 'DistributionsController', [
-                                                                    'names' => ['index' => 'distributions-index',
-                                                                                'show' => 'distributions-show',
-                                                                                'edit' => 'distributions-edit',
-                                                                                'update' => 'distributions-update',
-                                                                                'create' => 'distributions-create',
-                                                                                'store' => 'distributions-store',
+                                                                    'names' => ['index'   => 'distributions-index',
+                                                                                'show'    => 'distributions-show',
+                                                                                'edit'    => 'distributions-edit',
+                                                                                'update'  => 'distributions-update',
+                                                                                'create'  => 'distributions-create',
+                                                                                'store'   => 'distributions-store',
                                                                                 'destroy' => 'distributions-destroy']
                                                                     ]);
 
         Route::resource('rooms', 'RoomsController', [
-                                                    'names' => ['index' => 'rooms-index',
-                                                                'show' => 'rooms-show',
-                                                                'edit' => 'rooms-edit',
-                                                                'update' => 'rooms-update',
-                                                                'create' => 'rooms-create',
-                                                                'store' => 'rooms-store',
+                                                    'names' => ['index'   => 'rooms-index',
+                                                                'show'    => 'rooms-show',
+                                                                'edit'    => 'rooms-edit',
+                                                                'update'  => 'rooms-update',
+                                                                'create'  => 'rooms-create',
+                                                                'store'   => 'rooms-store',
                                                                 'destroy' => 'rooms-destroy']
                                                     ]);
 
-        Route::resource('reservations', 'ReservationsController');
+        Route::resource('reservations', 'ReservationsController', [
+                                                                    'names' => ['index'   => 'reservations-index',
+                                                                                'show'    => 'reservations-show',
+                                                                                'edit'    => 'reservations-edit',
+                                                                                'update'  => 'reservations-update',
+                                                                                'create'  => 'reservations-create',
+                                                                                'store'   => 'reservations-store',
+                                                                                'destroy' => 'reservations-destroy']
+                                                                    ]);
+
         Route::resource('roles', 'RolesController');
         Route::resource('services', 'ServicesController');
         Route::resource('tasks', 'TasksController');

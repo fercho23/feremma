@@ -13,7 +13,7 @@ class CreateDistributionsTable extends Migration {
     public function up() {
         Schema::create('distributions', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
+            $table->string('name', 100)->unique();
             $table->text('description')->nullable();
             $table->timestamps();
         });

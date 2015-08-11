@@ -9,30 +9,30 @@ class UserTableSeeder extends Seeder {
         DB::table('users')->truncate();
 
         User::create(array(//1
-            'email'    => 'foo@bar.com',
-            'name'     => 'Emmanuel',
-            'surname'  => 'Sanchez',
-            'cuil'     => '003239552000',
-            'dni'      => '32395520',
-            'address'  => 'Sarmiento 2345',
-            'username' => 'emmanuelsf',
-            'phone'    => '2235398647',
-            'role_id'  => '1',//Super Usuario
-            'birthday' => '1933/07/30',
+            'email'    => 'user1@user.com',
+            'name'     => 'User1',
+            'surname'  => 'de Recepción',
+            'cuil'     => '00100000100',
+            'dni'      => '1000001',
+            'address'  => 'Casa del usuario13',
+            'username' => 'user1',
+            'phone'    => '12345678910',
+            'role_id'  => '1',//Recepcion y Conserjeria
+            'birthday' => '1990/01/01',
             'sex'      => 'f',
             'password' => '1234'
         ));
         User::create(array(//2
-            'email'    => 'hola@bar.com',
-            'name'     => 'Fernando',
-            'surname'  => 'Mateos',
-            'cuil'     => '003701191100',
-            'dni'      => '37011911',
-            'address'  => 'Cabeza De Termo 1234',
-            'username' => 'fernandom',
-            'phone'    => '00000000000',
-            'role_id'  => '1',//Super Usuario
-            'birthday' => '1991/10/11',
+            'email'    => 'user2@user.com',
+            'name'     => 'User2',
+            'surname'  => 'de Recepción',
+            'cuil'     => '00200000200',
+            'dni'      => '2000002',
+            'address'  => 'Casa del usuario 2',
+            'username' => 'user2',
+            'phone'    => '12345678910',
+            'role_id'  => '2',//Recepcion y Conserjeria
+            'birthday' => '1990/01/01',
             'sex'      => 'm',
             'password' => '1234'
          ));
