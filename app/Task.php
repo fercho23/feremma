@@ -42,12 +42,12 @@ class Task extends Model {
      */
     public function delete() {
         if ($this->state == 'finalizada') {
-            flash()->error('Error: Las tareas finalizadas no pueden ser borradas.');
+            flash()->error('Error: Las Tareas finalizadas no pueden ser borradas.');
             return false;
         }
         if ($this->canBeEliminated()) {
         // if (isset($this->attendant_id)) {
-            flash()->error('Error: Las tareas con responsable asignado deben ser canceladas antes de ser borradas.');
+            flash()->error('Error: Las Tareas con responsable asignado deben ser canceladas antes de ser borradas.');
             return false;
         }
         if (parent::delete()) {

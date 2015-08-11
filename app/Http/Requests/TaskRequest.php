@@ -1,30 +1,21 @@
 <?php namespace FerEmma\Http\Requests;
 
-use FerEmma\Http\Requests\Request;
+use FerEmma\Http\Requests\BasicRequest;
 
 //! Solicitud (Request) para una Tarea (Task)
-class TaskRequest extends Request {
-
-    /// Determina si una Tarea (Task) esta autorizada para realizar la Solicitud (Request).
-    /*!
-     * @return Booleano (Verdadero o Falso)
-     */
-    public function authorize() {
-        return true;
-    }
+class TaskRequest extends BasicRequest {
 
     /// Determina las reglas para la Solicitud (Request) de una Tarea (Task).
     /*!
      * @return Array
      */
     public function rules() {
-        return [
-            'name'        => 'required|min:2|max:100',
+        $rules = [
             'role_id'     => 'required|exists:roles,id|not_in:1',
-            'description' => '',
             'priority'    => 'required|integer|min:1|max:10',
             'state'       => 'required|min:1|max:20',
         ];
+        return array_merge(parent::rules(), $rules);
     }
 
     /// Mensajes para cada regla de la Solicitud (Request) de una Tarea (Task).
@@ -32,14 +23,10 @@ class TaskRequest extends Request {
      * @return Array
      */
     public function messages() {
-        return [
-            'name.required'    => 'El Nombre es requerido.',
-            'name.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
-            'name.max'         => 'El Nombre debe tener como máximo 100 caracteres.',
-
-            'role_id.required' => 'El Cargo es requerido.',
-            'role_id.exists'   => 'El Cargo debe ser Válido.',
-            'role_id.not_in'   => 'El Cargo debe ser Válido.',
+        $messages = [
+            'role_id.required'  => 'El Cargo es requerido.',
+            'role_id.exists'    => 'El Cargo debe ser Válido.',
+            'role_id.not_in'    => 'El Cargo debe ser Válido.',
 
             'priority.required' => 'La Prioridad es requerida.',
             'priority.integer'  => 'La Prioridad debe ser un número entero.',
@@ -50,6 +37,7 @@ class TaskRequest extends Request {
             'state.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
             'state.max'         => 'El Nombre debe tener como máximo 2 caracteres.',
         ];
+        return array_merge(parent::messages() , $messages);
     }
 
 }

@@ -1,29 +1,22 @@
 <?php namespace FerEmma\Http\Requests;
 
-use FerEmma\Http\Requests\Request;
+use FerEmma\Http\Requests\BasicRequest;
 use FerEmma\Bed;
 
 //! Solicitud (Request) para una Distribución (Distribution)
-class DistributionRequest extends Request {
+class DistributionRequest extends BasicRequest {
 
-    /// Determina si una Distributcion (Distribution) esta autorizada para realizar la Solicitud (Request).
-    /*!
-     * @return Booleano (Verdadero o Falso)
-     */
-    public function authorize() {
-        return true;
-    }
 
     /// Reglas para la Solicitud (Request) de una Distribución (Distribution).
     /*!
      * @return Array
      */
     public function rules() {
-        return [
-            'name'          => 'required|min:2|max:100',
-            'description'   => '',
-            'beds_id'       => 'required',
+        // $rules = parent::rules();
+        $rules = [
+            'beds_id' => 'required',
         ];
+        return array_merge(parent::rules(), $rules);
     }
 
     /// Mensajes para cada regla de la Solicitud (Request) de una Distribución (Distribution).
@@ -31,13 +24,11 @@ class DistributionRequest extends Request {
      * @return Array
      */
     public function messages() {
-        return [
-            'name.required'    => 'El Nombre es requerido.',
-            'name.min'         => 'El Nombre debe tener como mínimo 2 caracteres.',
-            'name.max'         => 'El Nombre debe tener como máximo 100 caracteres.',
-
-            'beds_id.required' => 'Es necesario ingresar al menos 1 Cama.',
+        // $messages = parent::messages();
+        $messages = [
+            'beds_id.required' => 'Es necesario ingresar al menos 1 Cama.'
         ];
+        return array_merge(parent::messages() , $messages);
     }
 
     public function getValidatorInstance() {

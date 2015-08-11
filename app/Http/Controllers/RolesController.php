@@ -1,7 +1,7 @@
 <?php namespace FerEmma\Http\Controllers;
 
 use FerEmma\Role;
-use FerEmma\Http\Requests\RoleRequest;
+use FerEmma\Http\Requests\BasicRequest;
 
 //! Controlador de Cargos (Role)
 class RolesController extends Controller {
@@ -29,10 +29,10 @@ class RolesController extends Controller {
     /*!
      * Realiza el proceso de crear un nuevo Cargo,
      * esta función se llama con el método POST.
-     * @param RoleRequest $request
+     * @param BasicRequest $request
      * @return Vista "index" con el mensaje Flash pertinente
      */
-    public function store(RoleRequest $request) {
+    public function store(BasicRequest $request) {
         Role::create($request->all());
         flash()->success('El Cargo fue ingresado con exito.');
         return redirect('roles');
@@ -66,10 +66,10 @@ class RolesController extends Controller {
      * Realiza el proceso de editar un Cargo que es buscado por su $id,
      * esta función se llama con el método PUT/PATH.
      * @param  int $id
-     * @param  RoleRequest $request
+     * @param  BasicRequest $request
      * @return Response
      */
-    public function update($id, RoleRequest $request) {
+    public function update($id, BasicRequest $request) {
         $role = Role::findOrFail($id);
         $role->update($request->all());
         flash()->success('El Cargo fue editado con exito.');

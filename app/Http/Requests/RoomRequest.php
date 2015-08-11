@@ -1,33 +1,23 @@
 <?php namespace FerEmma\Http\Requests;
 
-use FerEmma\Http\Requests\Request;
+use FerEmma\Http\Requests\BasicRequest;
 use FerEmma\Room;
 use FerEmma\Distribution;
 
 //! Solicitud (Request) para una Habitación (Room)
-class RoomRequest extends Request {
-
-    /// Determina si una Habitación (Room) esta autorizada para realizar la Solicitud (Request).
-    /*!
-     * @return Booleano (Verdadero o Falso)
-     */
-    public function authorize() {
-        return true;
-    }
+class RoomRequest extends BasicRequest {
 
     /// Reglas para la Solicitud (Request) de una Habitación (Room).
     /*!
      * @return Array
      */
     public function rules() {
-        return [
-            'name'             => 'required|min:2|max:100',
-            'description'      => '',
+        $rules = [
             'location'         => 'required|min:2|max:150',
             'available'        => '',
-            'price'            => 'required|between:0,9999999999.99',
             'distributions_id' => 'required',
         ];
+        return array_merge(parent::rules(), $rules);
     }
 
     /// Mensajes para cada regla de la Solicitud (Request) de una Habitación (Room).
@@ -35,20 +25,14 @@ class RoomRequest extends Request {
      * @return Array
      */
     public function messages() {
-        return [
-            'name.required'             => 'El Nombre es requerido.',
-            'name.min'                  => 'El Nombre debe tener como mínimo 2 caracteres.',
-            'name.max'                  => 'El Nombre debe tener como máximo 100 caracteres.',
-
+        $messages = [
             'location.required'         => 'La Ubicación es requerida.',
             'location.min'              => 'La Ubicación debe tener como mínimo 2 caracteres.',
             'location.max'              => 'La Ubicación debe tener como máximo 150 caracteres.',
 
-            'price.required'            => 'El Precio es requerido.',
-            'price.between'             => 'El Precio debe ser mayor a 0 y menor a 9999999999.',
-
             'distributions_id.required' => 'Es necesario ingresar al menos 1 Distribución.',
         ];
+        return array_merge(parent::messages() , $messages);
     }
 
     public function getValidatorInstance() {

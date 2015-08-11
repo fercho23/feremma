@@ -57,6 +57,21 @@ class Room extends Model {
         flash()->error('Error desconocido al intentar borrar Habitación.');
     }
 
+    /// Verifica si se pueden borrar las Distribuciones (Distribution) que no estan en las $ids pasadas.
+    /*!
+     * Obtiene las $ids de las Distribuciones que no puede ser borradas y las compara
+     * con el Array de $ids de las Distribuciones que van a ser guardadas, si alguna de
+     * las que no pueden ser borradas no está devuelve Falso.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function allDistributionsIdCanBeEliminated(array $distributions_id) {
+        foreach ($this->getMyCanNotBeEliminatedDistributionsId() as $id) {
+            if(!in_array($id, $distributions_id))
+                return false;
+        }
+        return true;
+    }
+
     /// Verifica si la Habitación (Room) puede ser eliminada.
     /*!
      * Determina si esta Habitación puede ser eliminada, eso es posible siempre y cuando
@@ -81,33 +96,25 @@ class Room extends Model {
         return true;
     }
 
-    /// Obtiene las Distribuciones (Distribution) de esta Habitación (Room) que no pueden ser eliminadas.
-    /*!
-     * Obtiene los $ids de las Distribuciones que puede tener esta Habitación, que no pueden ser
-     * eliminadas 
-     * @return Array de $ids de Distribuciones de esta Habitación
-     */
-    public function getMyCanNotBeEliminatedDistributionsId() {
-        $ids = [];
-        foreach ($this->reservations as $reservation){
-            $ids[] = $reservation->pivot->distribution_id;
-        }
-        return array_unique($ids);
+
+    public function getFreeRoomsByDates($check_in, $check_out) {
+        return '';
     }
 
-    /// Verifica si se pueden borrar las Distribuciones (Distribution) que no estan en las $ids pasadas.
+
+    /// Obtiene las Distribuciones (Distribution) disponibles para esta Habitación (Room).
     /*!
-     * Obtiene las $ids de las Distribuciones que no puede ser borradas y las compara
-     * con el Array de $ids de las Distribuciones que van a ser guardadas, si alguna de
-     * las que no pueden ser borradas no está devuelve Falso.
-     * @return Booleano (Verdadero o Falso)
+     * Obtiene en el orden correcto las Distribuciones disponibles para esta Habitación.
+     * @return Consulta de Base de Datos
      */
-    public function allDistributionsIdCanBeEliminated(array $distributions_id) {
-        foreach ($this->getMyCanNotBeEliminatedDistributionsId() as $id) {
-            if(!in_array($id, $distributions_id))
-                return false;
-        }
-        return true;
+    public function getMyAvailableDistributions() {
+        $ids = $this->distributions()->where('room_distribution.available', '=', '1')
+                                     ->lists('distribution_id');
+        $ids_ordered = implode(',', $ids);
+        $distributions = Distribution::whereIn('id', $ids)
+                                     ->orderByRaw(\DB::raw("FIELD(id, $ids_ordered)"))
+                                     ->get();
+        return $distributions;
     }
 
     /// Obtiene las Distribuciones (Distribution) disponibles y la actual seteada de esta Habitación (Room).
@@ -132,21 +139,6 @@ class Room extends Model {
         return $distributions;
     }
 
-    /// Obtiene las Distribuciones (Distribution) disponibles para esta Habitación (Room).
-    /*!
-     * Obtiene en el orden correcto las Distribuciones disponibles para esta Habitación.
-     * @return Consulta de Base de Datos
-     */
-    public function getMyAvailableDistributions() {
-        $ids = $this->distributions()->where('room_distribution.available', '=', '1')
-                                     ->lists('distribution_id');
-        $ids_ordered = implode(',', $ids);
-        $distributions = Distribution::whereIn('id', $ids)
-                                     ->orderByRaw(\DB::raw("FIELD(id, $ids_ordered)"))
-                                     ->get();
-        return $distributions;
-    }
-
     /// Obtiene la Distribución (Distribution) de esta Habitación (Room) en una determinada Reserva (Reservation).
     /*!
      * @param $reservation_id = $id de Reserva (Reservation)
@@ -167,6 +159,20 @@ class Room extends Model {
         return \DB::table('room_reservation')->where('room_id' , '=', $this->id)
                                              ->where('reservation_id' , '=', $reservation_id)
                                              ->first()->price;
+    }
+
+    /// Obtiene las Distribuciones (Distribution) de esta Habitación (Room) que no pueden ser eliminadas.
+    /*!
+     * Obtiene los $ids de las Distribuciones que puede tener esta Habitación, que no pueden ser
+     * eliminadas 
+     * @return Array de $ids de Distribuciones de esta Habitación
+     */
+    public function getMyCanNotBeEliminatedDistributionsId() {
+        $ids = [];
+        foreach ($this->reservations as $reservation){
+            $ids[] = $reservation->pivot->distribution_id;
+        }
+        return array_unique($ids);
     }
 
     /// Verifica si el $id es de una Distribución (Distribution) correcta de esta Habitación (Room).
