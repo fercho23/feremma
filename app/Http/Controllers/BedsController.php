@@ -23,7 +23,8 @@ class BedsController extends Controller {
      * @return Vista con una Cama (Bed) vacía
      */
     public function create() {
-        return view('beds.create');
+        $bed=new Bed;
+        return view('beds.create',compact('bed'));
     }
 
     /// Crea una Cama (Bed).
