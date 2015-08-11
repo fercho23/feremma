@@ -83,24 +83,25 @@ class SearchController extends Controller {
         $term = Request::input('term', '');
         $ids = Request::input('ids', '');
         $rooms_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
-
         $check_in = Request::input('check_in', '');
         $check_out = Request::input('check_out', '');
 
-        $posible_rooms_id = Room::getFreeRoomsIdsByDates($check_in, $check_out);
+        if($check_in && $check_out && (strtotime($check_in) < strtotime($check_out))) {
+            $posible_rooms_id = Room::getFreeRoomsIdsByDates($check_in, $check_out);
 
-        $results = array();
-        $queries = Room::where('name', 'LIKE', '%'.$term.'%')
-                       ->whereIn('id', $posible_rooms_id)
-                       ->whereNotIn('id', $rooms_id)
-                       ->take(10)->get();
-        foreach ($queries as $query) {
-            if (count($query->distributions))
-                $results[] = ['id' => $query->id,
-                              'value' => $query->name,
-                              'price' => $query->price];
-            }
-        return response()->json($results);
+            $results = array();
+            $queries = Room::where('name', 'LIKE', '%'.$term.'%')
+                           ->whereIn('id', $posible_rooms_id)
+                           ->whereNotIn('id', $rooms_id)
+                           ->take(10)->get();
+            foreach ($queries as $query) {
+                if (count($query->distributions))
+                    $results[] = ['id' => $query->id,
+                                  'value' => $query->name,
+                                  'price' => $query->price];
+                }
+            return response()->json($results);
+        }
     }
 
     /// Obtiene Servicios (Service) restantes.
@@ -193,5 +194,26 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /// Obtiene las Habitaciones (Room) libres y habilitadas.
+    /*!
+     * Por medio de Request las fechas (de entrada y de salida) entre las cuales debe buscar las Habitaciones libres.
+     * @return Respose Json
+     */
+    public function getFreeRoomsByCheckInAndCheckOut() {
+        $check_in = Request::input('check_in', '');
+        $check_out = Request::input('check_out', '');
+
+        if($check_in && $check_out && (strtotime($check_in) < strtotime($check_out))) {
+            $posible_rooms_id = Room::getFreeRoomsIdsByDates($check_in, $check_out);
+            $results = array();
+            $queries = Room::whereIn('id', $posible_rooms_id)->get();
+            foreach ($queries as $query) {
+                if (count($query->distributions))
+                    $results[] = ['id' => $query->id,
+                                  'value' => $query->name];
+                }
+            return response()->json($results);
+        }
+    }
 
 }

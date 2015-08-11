@@ -11,7 +11,7 @@ class Reservation extends Model {
 
     //! Contiene los nombres de las columnas de la Tabla.
     protected $fillable = ['owner_id', 'description', 'total_price', 'sign',
-                           'due', 'check_in', 'check_out'];
+                           'due', 'check_in', 'check_out', 'real_check_in', 'real_check_out'];
 
     //! Indica que se guardan valores (tipo Fecha y Hora) relacionados a la creación y última modificación del objeto.
     public $timestamps = true;
@@ -32,8 +32,7 @@ class Reservation extends Model {
      */
     public function rooms() {
         return $this->belongsToMany('FerEmma\Room', 'room_reservation')
-                    ->withPivot('check_in', 'check_out', 'distribution_id', 'price')
-                    ->orderBy('room_reservation.check_in');
+                    ->withPivot('distribution_id', 'price');
     }
 
     /// Relación de pertenencia "Muchos a Muchos" (Reservation - Service).

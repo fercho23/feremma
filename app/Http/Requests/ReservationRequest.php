@@ -85,8 +85,10 @@ class ReservationRequest extends Request {
             $distributions_id = [];
             $distributions = [];
 
+            $posible_rooms_id = Room::getFreeRoomsIdsByDates($check_in, $check_out)
             $rooms_id = ($validator->getData()['rooms_id'] ? array_map('intval', explode(',', $validator->getData()['rooms_id'])) : []);
             foreach ($rooms_id as $id) {
+                    //$validator->errors()->add('rooms_id', 'Las Habitaciones deben ser Válidas.');
                 if(!$room = Room::find($id))
                     $validator->errors()->add('rooms_id', 'Las Habitaciones deben ser Válidas.');
                 else {

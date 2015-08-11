@@ -1,5 +1,26 @@
 <script type="text/javascript">
 
+    function refreshPosibleRooms() {
+        $('div#posible-rooms').empty();
+        $.ajax({
+            url: '{!! route("search-free-rooms") !!}',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                check_in: $('#check_in').val(),
+                check_out: $('#check_out').val()
+            },
+        }).done(function(data) {
+            $('div#posible-rooms').append('<div>');
+            $('div#posible-rooms').append('Posibles habitaciones ('+data.length+'):');
+            $.each(data, function(index, value) {
+                $('div#posible-rooms').append('<div>&nbsp;&nbsp;&nbsp;&nbsp - '+value.value+'</div>');
+            });
+            $('div#posible-rooms').append('</div>');
+        });
+
+    }
+
     function getServicesPrice() {
         $total = 0;
         $('div#label-services div[id^=services-]').each(function(k, v) {
@@ -64,11 +85,20 @@
     $(document).on('change', 'input[name^=service-price-]', function() {
         suggestedPrice();
     });
+
+    $(document).on('change', 'input[name=check_in]', function() {
+        refreshPosibleRooms();
+    });
+    $(document).on('change', 'input[name=check_out]', function() {
+        refreshPosibleRooms();
+    });
+
     $(document).on('change', 'div#label-rooms select[name^=room-]', function() {
         $id = parseInt($(this).attr('name').match(/[0-9]+/g));
         refreshSelectDataByRoomId($id);
     });
 
+    refreshPosibleRooms();
     suggestedPrice();
 
     $(document).on('click', 'i[name="fa-kill"]', function() {
@@ -85,7 +115,9 @@
                 dataType: 'json',
                 data: {
                     term: request.term,
-                    ids: $('#rooms_id').val()
+                    ids: $('#rooms_id').val(),
+                    check_in: $('#check_in').val(),
+                    check_out: $('#check_out').val()
                 },
                 success: function(data) {
                     response(data);

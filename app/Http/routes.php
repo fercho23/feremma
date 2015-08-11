@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('distributions', ['as' => 'search-remaining-distributions', 'uses' => 'SearchController@getRemainingDistributionsByName']);
         Route::get('distribution-by-room-id', ['as' => 'get-distribution-by-room-id', 'uses' => 'SearchController@getDistributionsByRoomId']);
         Route::get('rooms', ['as' => 'search-remaining-rooms', 'uses' => 'SearchController@getRemainingRoomsByName']);
+        Route::get('rooms-free', ['as' => 'search-free-rooms', 'uses' => 'SearchController@getFreeRoomsByCheckInAndCheckOut']);
         Route::get('services', ['as' => 'search-remaining-services', 'uses' => 'SearchController@getRemainingServicesByName']);
         Route::get('user', ['as' => 'search-user', 'uses' => 'SearchController@getUserByName']);
         Route::get('users', ['as' => 'search-remaining-users', 'uses' => 'SearchController@getRemainingUsersByName']);

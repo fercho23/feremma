@@ -26,11 +26,7 @@
 <div class="form-group">
     {!! Form::label('room', 'Habitaciones:') !!}
     <div class="row">
-        <div class="col-lg-12 col-xs-12 no-gutter-right">
-
-            {!! implode(",", FerEmma\Room::getFreeRoomsIdsByDates('2015-08-12', '2015-08-14')) !!}
-
-        </div>
+        <div class="col-lg-12 col-xs-12" id="posible-rooms"></div>
     </div>
     <div class="row">
         <div class="col-lg-4 col-xs-4 no-gutter-right">

@@ -33,8 +33,7 @@ class Room extends Model {
      */
     public function reservations() {
         return $this->belongsToMany('FerEmma\Reservation', 'room_reservation')
-                    ->withPivot('check_in', 'check_out', 'distribution_id', 'price')
-                    ->orderBy('room_reservation.check_in');
+                    ->withPivot('distribution_id', 'price');
     }
 
     /// Borrar Habitación (Room).
