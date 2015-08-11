@@ -155,7 +155,7 @@ class PermissionTableSeeder extends Seeder {
         ));
         Permission::create(array(//28
             'title'         =>'Detalle Reserva',
-            'slug'          =>'roles/show',
+            'slug'          =>'reservations/show',
             'description'   =>'Detalle de reserva.'
         ));
         Permission::create(array(//29
