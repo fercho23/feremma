@@ -22,7 +22,8 @@ class RoomsController extends Controller {
      * @return Vista con una Reserva (Reservation) vacía
      */
     public function create() {
-        return view('rooms.create');
+        $room=new Room;
+        return view('rooms.create',compact('room'));
     }
 
     /// Crea una Habitación (Room).
