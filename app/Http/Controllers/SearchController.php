@@ -134,7 +134,7 @@ class SearchController extends Controller {
      * y devuelve las primeras 10 coincidencias.
      * @return Respose Json
      */
-    public function getRemainingUsersByName() {
+    public function getRemainingUsersByNameOrSurnameOrDni() {
         $term = Request::input('term', '');
         $ids = Request::input('ids', '');
         $users_id = ($ids ? array_map('intval', explode(',', $ids)) : []);
@@ -179,7 +179,7 @@ class SearchController extends Controller {
      * por el nombre, apellido o dni y devuelve las primeras 10 coincidencias.
      * @return Respose Json
      */
-    public function getUserByName() {
+    public function getUserByNameOrSurnameOrDni() {
         $term = Request::input('term', '');
         $results = array();
         $queries = User::where(function($query) use ($term){

@@ -37,11 +37,15 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::post('distributions/{id}/basic', ['as'=>'distributions-update-basic', 'uses'=>'DistributionsController@updateBasic']);
 
-        Route::post('reservations/{id}/reduce_debt', ['as'=>'reservations-reduce-debt', 'uses'=>'ReservationsController@reduceDebt']);
-        Route::get('reservations/check_in', ['as'=>'reservations-index-check-in', 'uses'=>'ReservationsController@indexCheckIn']);
-        Route::get('reservations/check_out', ['as'=>'reservations-index-check-out', 'uses'=>'ReservationsController@indexCheckOut']);
-        Route::post('reservations/{id}/check_in', ['as'=>'reservations-check-in', 'uses'=>'ReservationsController@checkIn']);
-        Route::post('reservations/{id}/check_out', ['as'=>'reservations-check-out', 'uses'=>'ReservationsController@checkOut']);
+        Route::group(array('prefix' => 'reservations'), function() {
+
+            Route::post('{id}/reduce_debt', ['as'=>'reservations-reduce-debt', 'uses'=>'ReservationsController@reduceDebt']);
+            Route::get('check_in', ['as'=>'reservations-index-check-in', 'uses'=>'ReservationsController@indexCheckIn']);
+            Route::get('check_out', ['as'=>'reservations-index-check-out', 'uses'=>'ReservationsController@indexCheckOut']);
+            Route::post('{id}/check_in', ['as'=>'reservations-check-in', 'uses'=>'ReservationsController@checkIn']);
+            Route::post('{id}/check_out', ['as'=>'reservations-check-out', 'uses'=>'ReservationsController@checkOut']);
+
+        });
 
         Route::post('reports/generate', ['as'=>'reports-generate', 'uses'=>'ReportsController@generate']);
 
@@ -145,8 +149,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('rooms', ['as' => 'search-remaining-rooms', 'uses' => 'SearchController@getRemainingRoomsByName']);
         Route::get('rooms-free', ['as' => 'search-free-rooms', 'uses' => 'SearchController@getFreeRoomsByCheckInAndCheckOut']);
         Route::get('services', ['as' => 'search-remaining-services', 'uses' => 'SearchController@getRemainingServicesByName']);
-        Route::get('user', ['as' => 'search-user', 'uses' => 'SearchController@getUserByName']);
-        Route::get('users', ['as' => 'search-remaining-users', 'uses' => 'SearchController@getRemainingUsersByName']);
+        Route::get('user', ['as' => 'search-user', 'uses' => 'SearchController@getUserByNameOrSurnameOrDni']);
+        Route::get('users', ['as' => 'search-remaining-users', 'uses' => 'SearchController@getRemainingUsersByNameOrSurnameOrDni']);
 
     });
 });

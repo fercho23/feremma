@@ -19,7 +19,8 @@
     {!! Form::hidden('owner_id', ($reservation->owner ? $reservation->owner->id : ''), array('id' => 'owner_id')) !!}
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
-        {!! Form::text('owner', ($reservation->owner ? $reservation->owner->fullname().' ['.$reservation->owner->dni.']' : ''), ['class'=>'form-control']) !!}
+        {!! Form::text('owner', ($reservation->owner ? $reservation->owner->fullname().' ['.$reservation->owner->dni.']' : ''), ['class'=>'form-control',
+                                                                                                                                 'placeholder'=>'Ingresar nombre de Usuario . . .']) !!}
     </div>
 </div>
 
