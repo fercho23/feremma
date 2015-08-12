@@ -41,10 +41,13 @@ class ReservationsController extends Controller {
      */
     public function checkIn($id) {
         if($reservation = Reservation::find($id)) {
-            if($reservation->checkIn())
-                flash()->success('El Check In de la Reserva fue un exito.');
-            else
-                flash()->error('Error inesperado!!! Al intentar hacer Check In de la Reserva.');
+            if(in_array($reservation->id, Reservation::getReservationsForCheckIn()->lists('id'))) {
+                if($reservation->checkIn())
+                    flash()->success('El Check In de la Reserva fue un exito.');
+                else
+                    flash()->error('Error inesperado!!! Al intentar hacer Check In de la Reserva.');
+            } else
+                flash()->error('Error !!! No se puede hacer Check In de está Reserva.');
         } else
             flash()->error('Error!!! La Reserva que intenta hacer Check In no existe.');
         return redirect('reservations');
@@ -57,10 +60,13 @@ class ReservationsController extends Controller {
      */
     public function checkOut($id) {
         if($reservation = Reservation::find($id)) {
-            if($reservation->checkOut())
-                flash()->success('El Check Out de la Reserva fue un exito.');
-            else
-                flash()->error('Error inesperado!!! Al intentar hacer Check Out de la Reserva.');
+            if(in_array($reservation->id, Reservation::getReservationsForCheckOut()->lists('id'))) {
+                if($reservation->checkOut())
+                    flash()->success('El Check Out de la Reserva fue un exito.');
+                else
+                    flash()->error('Error inesperado!!! Al intentar hacer Check Out de la Reserva.');
+            } else
+                flash()->error('Error !!! No se puede hacer Check Out de está Reserva.');
         } else
             flash()->error('Error!!! La Reserva que intenta hacer Check Out no existe.');
         return redirect('reservations');
@@ -216,12 +222,10 @@ class ReservationsController extends Controller {
      * @return Response
      */
     public function destroy($id) {
-        $reservation = Reservation::findOrFail($id);
-        $reservation->rooms()->detach();
-        $reservation->services()->detach();
-        $reservation->booking()->detach();
-        $reservation->delete();
-        flash()->success('La Reserva fue borrada con exito.');
+        if($reservation = Reservation::find($id))
+            $reservation->delete();
+        else
+            flash()->error('Error!!! La Reserva que intenta eliminar no existe.');
         return redirect('reservations');
     }
 

@@ -132,8 +132,10 @@ class DistributionsController extends Controller {
      * @return Response
      */
     public function destroy($id) {
-        $distribution = Distribution::findOrFail($id);
-        $distribution->delete();
+        if($distribution = Distribution::find($id))
+            $distribution->delete();
+        else
+            flash()->error('Error!!! La Distribución que intenta eliminar no existe.');
         return redirect('distributions');
     }
 }

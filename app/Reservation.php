@@ -55,6 +55,24 @@ class Reservation extends Model {
         return $this->belongsToMany('FerEmma\User', 'reservation_user');
     }
 
+    /// Borrar Reserva (Reservation).
+    /*!
+     * Se determina si una Reserva puede ser borrada, en caso de que si la misma es borrada.
+     * @see canBeEliminated
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function delete() {
+        if ($this->canBeEliminated()) {
+            flash()->error('No se pueden borrar Reservas que tengan Check In.');
+            return false;
+        }
+        if (parent::delete()) {
+            flash()->success('Reserva borrada con exito.');
+            return true;
+        }
+        flash()->error('Error desconocido al intentar borrar Reserva.');
+    }
+
     /// Realiza el Check In de la Reserva (Reservation).
     /*!
      * Actualiza al tiempo y hora de este momento el campo real_check_in.
@@ -77,6 +95,18 @@ class Reservation extends Model {
         if(!$this->save())
             return false;
         return true;
+    }
+
+    /// Verifica si la Reserva (Reservation) puede ser eliminada.
+    /*!
+     * Determina si esta Reserva puede ser eliminada, eso es posible siempre y cuando
+     * esta no tenga el campo real_check_in.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminated() {
+        if($this->real_check_in !== null)
+            return true;
+        return false;
     }
 
     /// Verifica si la Reserva (Reservation) puede ser modificada.

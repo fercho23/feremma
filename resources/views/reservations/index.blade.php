@@ -70,11 +70,13 @@
                                 @endif
                                 @if(Auth::user()->can('reservations/destroy'))
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'action' => ['ReservationsController@destroy', $reservation->id]]) !!}
-                                            <button class="btn-link" type="submit" title="Borrar Reserva">
-                                                <i class="fa fa-trash"></i>
-                                             </button>
-                                        {!! Form::close() !!}
+                                        @if($reservation->canBeEliminated())
+                                            {!! Form::open(['method' => 'DELETE', 'action' => ['ReservationsController@destroy', $reservation->id]]) !!}
+                                                <button class="btn-link" type="submit" title="Borrar Reserva">
+                                                    <i class="fa fa-trash"></i>
+                                                 </button>
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 @endif
                             </tr>
