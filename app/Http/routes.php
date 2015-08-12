@@ -16,8 +16,8 @@ Route::get('home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('login', 'AuthController@login');
-    Route::get('logout', 'AuthController@logout');
+    Route::get('login', 'Auth\AuthController@login');
+    Route::get('logout', 'Auth\AuthController@logout');
 
     Route::get('tasks/start/{id}', 'TasksController@start');
     Route::get('tasks/end/{id}', 'TasksController@end');
@@ -28,11 +28,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('tasks/create_mine', 'TasksController@createMine');
         Route::get('users/profile', 'UsersController@profile');
         Route::get('permissions', 'PermissionsController@index');
-        //Route::get('reports/index', 'ReportsController@index');
         Route::get('rooms/toggle/{id}', 'RoomsController@toggle');
 
         Route::post('beds/{id}/basic', ['as'=>'beds-update-basic', 'uses'=>'BedsController@updateBasic']);
         Route::post('distributions/{id}/basic', ['as'=>'distributions-update-basic', 'uses'=>'DistributionsController@updateBasic']);
+
+        Route::post('reports/generate', ['uses'=>'ReportsController@generate']);
+
 
         Route::resource('beds', 'BedsController', [
                                                     'names' => ['index'   => 'beds-index',
@@ -73,15 +75,24 @@ Route::group(['middleware' => 'auth'], function () {
                                                                                 'store'   => 'reservations-store',
                                                                                 'destroy' => 'reservations-destroy']
                                                                     ]);
+        Route::resource('reports', 'ReportsController', [
+                                                                    'names' => ['index'   => 'reports-index',
+                                                                                'show'    => 'reports-show',
+                                                                                'edit'    => 'reports-edit',
+                                                                                'update'  => 'reports-update',
+                                                                                'create'  => 'reports-create',
+                                                                                'store'   => 'reports-store',
+                                                                                'destroy' => 'reports-destroy']
+                                                                    ]);
 
         Route::resource('roles', 'RolesController');
         Route::resource('services', 'ServicesController');
         Route::resource('tasks', 'TasksController');
         Route::resource('users', 'UsersController');
 
-        Route::group(array('prefix' => 'reports'), function() {
-            Route::get('/', 'ReportsController@index');
-        });
+        // Route::group(array('prefix' => 'reports'), function() {
+        //     Route::get('/', 'ReportsController@index');
+        // });
 
     });
 

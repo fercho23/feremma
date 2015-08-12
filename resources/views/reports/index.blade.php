@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-        <h1>Gestón de Reportes</h1>
+        <h1>Gestión de Reportes</h1>
         @include('flash::message')
         <div class="row">
             <!-- Left col -->
@@ -78,7 +78,36 @@
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->                  
                 </div><!-- /.col -->
-              </div><!-- /.row -->              
+              </div><!-- /.row -->
+              <!-- Widget Fechas -->
+              <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Ingrese Fechas</h3>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    {!! Form::open(['url'=>'reports/generate']) !!}
+                    @include('errors.list')
+                    <input type="hidden" value="checkins">
+                    <div class="col-xs-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            {!! Form::input('date','firstDate', null, ['class'=>'form-control']) !!}
+                        </div>                        
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            {!! Form::input('date','secondDate', null, ['class'=>'form-control']) !!}
+                        </div>                        
+                    </div>
+                    <div class="col-xs-4">
+                      <input type="submit" value="Generar" class="btn btn-block btn-primary">
+                    </div>
+                    {!! Form::close() !!}
+                  </div>
+                </div><!-- /.box-body -->
+              </div>              
             </div><!-- /.col -->
 
             <div class="col-md-4">

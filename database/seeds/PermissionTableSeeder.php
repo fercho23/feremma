@@ -331,5 +331,11 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Crea informes estadisticos'
         ));
 
+        Permission::create(array(//61
+            'title'         =>'Genera informe',
+            'slug'          =>'reports/generate',
+            'description'   =>'Crea un informe'
+        ));
+
     }
 }
