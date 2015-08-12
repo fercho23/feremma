@@ -331,5 +331,11 @@ class PermissionTableSeeder extends Seeder {
             'description'   =>'Crea informes estadisticos'
         ));
 
+        Permission::create(array(//61
+            'title'         =>'Reducir Deuda Reserva',
+            'slug'          =>'reservations/reduceDebt',
+            'description'   =>'Reducir la deuda de una reserva'
+        ));
+
     }
 }
