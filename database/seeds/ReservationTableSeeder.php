@@ -41,11 +41,14 @@ class ReservationTableSeeder extends Seeder {
             'created_at'    => date('Y-m-d', strtotime('-2 day'))
             ));
 
-        $reservation->rooms()->sync([ 1 => ['distribution_id' => 4,
+        $reservation->rooms()->sync([ 1 => ['distribution_id' => 1,
                                             'price' => '800'
                                            ],
                                       2 => ['distribution_id' => 2,
                                             'price' => '400'
+                                           ],
+                                      5 => ['distribution_id' => 1,
+                                            'price' => '700'
                                            ]
                                     ]);
         // $reservation->rooms()->sync([1, 3]);
@@ -82,11 +85,14 @@ class ReservationTableSeeder extends Seeder {
             'created_at'     => date('Y-m-d', strtotime('-10 day'))
             ));
 
-        $reservation->rooms()->sync([ 1 => ['distribution_id' => 4,
+        $reservation->rooms()->sync([ 1 => ['distribution_id' => 1,
                                             'price' => '800'
                                            ],
                                       2 => ['distribution_id' => 2,
                                             'price' => '400'
+                                           ],
+                                      8 => ['distribution_id' => 1,
+                                            'price' => '700'
                                            ]
                                     ]);
         // $reservation->rooms()->sync([1, 3]);

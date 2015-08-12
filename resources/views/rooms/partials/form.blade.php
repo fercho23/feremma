@@ -38,15 +38,18 @@
                     </div>
                 </div>
                 <div class="col-lg-1 col-xs-1">
-                    <span class="btn btn-{!! ($distribution->canBeModified() ? 'warning' : 'default')!!}">
-                        <i {!! ($distribution->canBeModified() ? 'name="fa-kill"' : '')!!}  class="fa fa-times-circle"></i>
+                    <span class="btn btn-{!! ($distribution->canBeEliminatedFromRoomId($room->id) ? 'warning' : 'default')!!}">
+                        <i {!! ($distribution->canBeEliminatedFromRoomId($room->id) ? 'name="fa-kill"' : '')!!}  class="fa fa-times-circle"></i>
                     </span>
                 </div>
             </div>
         @endforeach
     </div>
     {!! Form::hidden('distributions_id', implode(",", $room->distributions()->getRelatedIds()), array('id' => 'distributions_id')) !!}
-    {!! Form::text('distribution', '', ['class'=>'form-control']) !!}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+        {!! Form::text('distribution', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de una Distribución . . .']) !!}
+    </div>
 </div>
 
 <div class="form-group">

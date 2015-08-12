@@ -71,6 +71,21 @@ class Distribution extends Model {
         return false;
     }
 
+    /// Verifica si la Distribución (Distribution) puede ser eliminada de está Habitación (Room).
+    /*!
+     * Determina si esta Distribución puede ser eliminada, eso es posible siempre y cuando
+     * esta Distribución son la respectiva Cama no tenga relación con ninguna Reserva (Reservation)
+     * @param $room_id = $Id de Habitación
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeEliminatedFromRoomId($room_id) {
+        if(!\DB::table('room_reservation')->where('distribution_id', $this->id)
+                                          ->where('room_id', $room_id)
+                                          ->get())
+            return true;
+        return false;
+    }
+
     /// Verifica si la Distribución (Distribution) puede ser modificada.
     /*!
      * Determina si esta Distribución puede ser modificada, eso es posible siempre y cuando

@@ -81,7 +81,7 @@
 
                 @include('includes.partials.section', ['model'=>'services',
                                                        'title'=>'Servicios',
-                                                       'icon'=>'rocket',
+                                                       'icon'=>'glass',
                                                        'actions'=>['index', 'create'],
                                                        'names'=>['Ver', 'Nuevo'],
                                                        'icons'=>['list-ol', 'plus']])

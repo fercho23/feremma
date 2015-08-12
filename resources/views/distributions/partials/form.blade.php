@@ -65,8 +65,8 @@
     @if($distribution->canBeModified())
         {!! Form::hidden('beds_id', implode(",", $distribution->beds()->getRelatedIds()), array('id' => 'beds_id')) !!}
         <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
-            {!! Form::text('bed', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Servicio . . .']) !!}
+            <span class="input-group-addon"><i class="fa fa-bed"></i></span>
+            {!! Form::text('bed', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de una Cama . . .']) !!}
         </div>
     @endif
 </div>

@@ -148,7 +148,7 @@
     </div>
     {!! Form::hidden('services_id', implode(",", $reservation->services()->getRelatedIds()), array('id' => 'services_id')) !!}
     <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+        <span class="input-group-addon"><i class="fa fa-glass"></i></span>
         {!! Form::text('service', '', ['class'=>'form-control', 'autocomplete'=>'off', 'placeholder'=>'Ingresar nombre de un Servicio . . .']) !!}
     </div>
 </div>

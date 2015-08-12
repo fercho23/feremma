@@ -1,6 +1,7 @@
 <?php namespace FerEmma\Http\Requests;
 
 use FerEmma\Distribution;
+use FerEmma\Reservation;
 use FerEmma\Room;
 use FerEmma\User;
 
@@ -88,6 +89,7 @@ class ReservationRequest extends Request {
                 $distributions_id = [];
 
                 $posible_rooms_id = Room::getFreeRoomsIdsByDates($check_in, $check_out);
+                $previous_posible_rooms_id = Reservation::find($this->reservations)->rooms()->getRelatedIds();
 
                 if($validator->getData()['sign'] > $validator->getData()['total_price'])
                     $validator->errors()->add('sign', 'La Seña debe ser menor al precio total.');
@@ -100,8 +102,11 @@ class ReservationRequest extends Request {
 
                 foreach ($rooms_id as $id) {
                     $room = Room::find($id);
-                    if(!$room || !in_array($id, $posible_rooms_id))
-                        $validator->errors()->add('rooms_id', 'Las Habitaciones deben ser Válidas.');
+                    // dd( (!$room || !in_array($id, $previous_posible_rooms_id)) && !in_array($id, $posible_rooms_id),
+                    //     (!$room || !in_array($id, $previous_posible_rooms_id)), 
+                    //      !$room, !in_array($id, $previous_posible_rooms_id), !in_array($id, $posible_rooms_id) );
+                    if((!$room || !in_array($id, $previous_posible_rooms_id)) && !in_array($id, $posible_rooms_id))
+                        $validator->errors()->add('rooms_id', 'Las Habitaciones deben ser Válidas.'.$id);
                     else {
                         $distribution_id = $validator->getData()['room-'.$id.'-distributions'];
                         $distributions_id[] = $distribution_id;
@@ -111,6 +116,7 @@ class ReservationRequest extends Request {
                 }
 
                 if($distributions_id) {
+                    // dd($distributions_id);
                     $distributions = Distribution::whereIn('id', $distributions_id)->get();
                     $distributions_id = array_count_values($distributions_id);
                     foreach ($distributions as $distribution)
