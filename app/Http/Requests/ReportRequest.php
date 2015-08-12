@@ -20,8 +20,9 @@ class ReportRequest extends Request {
     public function rules() {
         $rules = [
             'firstDate' => 'required',
-            'reportName' => 'required',
-            'secondDate' => 'required'
+            'reporttype' => 'required',
+            'secondDate' => 'required',
+            'comparefield'=> 'required'
         ];
         return $rules;
     }
@@ -34,7 +35,7 @@ class ReportRequest extends Request {
         $messages = [
             'firstDate.required' => 'La primer fecha es requerida.',
             'secondDate.required'  => 'La segunda fecha es requerida.',
-            'reportName.required'  => 'La El nombre del reporte es requerido.',
+            'reporttype.required'  => 'La El nombre del reporte es requerido.',
 
         ];
         return $messages;
