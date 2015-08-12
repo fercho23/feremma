@@ -38,7 +38,7 @@ class RoleTableSeeder extends Seeder {
                                     37, 38, 39, 40, 41, 42, 43, 44,
                                     45,
                                     47, 50,
-                                    53, 56, 58, 59
+                                    53, 56, 58, 59, 61
                                     ]);
 
         $role = Role::create(array(//4

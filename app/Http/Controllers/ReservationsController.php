@@ -175,4 +175,34 @@ class ReservationsController extends Controller {
         return redirect('reservations');
     }
 
+    ///  Reduce la deuda de una Reserva (Reservation) específica.
+    /*!
+     * Realiza el proceso de reducir una deuda de una Reserva que es buscada por su $id,
+     * esta función se llama con el método POST.
+     * @param  int $id
+     * @return Response
+     */
+    public function reduceDebt($id) {
+        if($reservation = Reservation::find($id)) {
+
+            $request = \Request::all();
+            $validator = \Validator::make($request, [
+                'number' => 'required|between:0,9999999999.99'
+            ]);
+
+            if ($validator->fails())
+                flash()->error('Error!!! En el ingreso de los datos al intentar reducir la deuda de la Reserva.');
+            else {
+                $reservation->due -= $request['number'];
+                if($reservation->update())
+                    flash()->success('La deuda de la Reserva fue reducida con exito.');
+                else
+                    flash()->error('Error inesperado!!! Al intentar reducir la deuda de la Reserva.');
+            }
+        } else
+            flash()->error('Error!!! La Reserva que intenta reducir su deuda no existe.');
+
+        return redirect('reservations');
+    }
+
 }
