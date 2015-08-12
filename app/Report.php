@@ -8,9 +8,10 @@ class Report extends Model {
 
 	public function generateReport($fields)
 	{	
-		try {
-			if ($fields['reportName']=='checkInsBetweenDates') {
-				return $this->checkInsBetweenDates($fields['firstDate'], $fields['secondDate'], $fields['field'] );
+		try {		
+			if ($fields['reporttype']=='betweenDates') {
+
+				return $this->betweenDates($fields['firstDate'], $fields['secondDate'], $fields['comparefield'] );
 			}			
 		} 
 		catch (Exception $e) {
@@ -18,8 +19,8 @@ class Report extends Model {
 		}		
 	}
 
-	public function checkInsBetweenDates($firstDate, $secondDate, $field){
-		return Reservation::where($field, '>=', \Carbon::createFromFormat('Y-m-d', $firstDate))->where('check_in', '<=', \Carbon::createFromFormat('Y-m-d', $secondDate))->get();
+	public function betweenDates($firstDate, $secondDate, $field){
+		return Reservation::where($field, '>=', \Carbon::createFromFormat('Y-m-d', $firstDate))->where($field, '<=', \Carbon::createFromFormat('Y-m-d', $secondDate))->get();
 	}
 
 }
