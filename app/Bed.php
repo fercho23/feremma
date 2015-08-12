@@ -86,4 +86,8 @@ class Bed extends Model {
         return true;
     }
 
+    public function representation () {
+        return ($this->name.' ['.$this->total_persons.'] [ $ '.$this->price.' ]');
+    }
+
 }

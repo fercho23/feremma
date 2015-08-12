@@ -1,5 +1,9 @@
 @extends('app')
     @section('content')
+
+        @include('includes.partials.search', ['id'=> 'room',
+                                              'placeholder' => 'Ingresar Nombre de una Habitación . . .'])
+
         <h1>Habitaciones</h1>
         @include('flash::message')
 
@@ -67,4 +71,8 @@
                 <p>Aún no hay elementos registrados en el sistema.</p>
             </div>
         @endif
+    @endsection
+
+    @section('extra_js')
+        @include('rooms.partials.search-js')
     @endsection

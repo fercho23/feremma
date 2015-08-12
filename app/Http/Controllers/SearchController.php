@@ -3,6 +3,7 @@
 use FerEmma\Bed;
 use FerEmma\Distribution;
 use FerEmma\Room;
+use FerEmma\Role;
 use FerEmma\Service;
 use FerEmma\User;
 
@@ -10,6 +11,22 @@ use Request;
 
 //! Controlador de Busquedas
 class SearchController extends Controller {
+
+    /// Obtiene una Cama (Bed) por su nombre.
+    /*!
+     * @return Respose Json
+     */
+    public function getBedByName() {
+        $term = Request::input('term', '');
+
+        $results = array();
+        $queries = Bed::where('name', 'LIKE', '%'.$term.'%')
+                       ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->representation()];
+        return response()->json($results);
+    }
 
     /// Obtiene una Distribución (Distribution) por su $id.
     /*!
@@ -25,6 +42,73 @@ class SearchController extends Controller {
 
         return response()->json($results);
     }
+
+    /// Obtiene una Distribución (Distribution) por su nombre.
+    /*!
+     * @return Respose Json
+     */
+    public function getDistributionByName() {
+        $term = Request::input('term', '');
+
+        $results = array();
+        $queries = Distribution::where('name', 'LIKE', '%'.$term.'%')
+                               ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->representation()];
+        return response()->json($results);
+    }
+
+    /// Obtiene un Cargo (Role) por su nombre.
+    /*!
+     * @return Respose Json
+     */
+    public function getRoleByName() {
+        $term = Request::input('term', '');
+
+        $results = array();
+        $queries = Role::where('name', 'LIKE', '%'.$term.'%')
+                       ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->name];
+        return response()->json($results);
+    }
+
+    /// Obtiene una Habitacióm (Room) por su nombre.
+    /*!
+     * @return Respose Json
+     */
+    public function getRoomByName() {
+        $term = Request::input('term', '');
+
+        $results = array();
+        $queries = Room::where('name', 'LIKE', '%'.$term.'%')
+                       ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->name];
+        return response()->json($results);
+    }
+
+
+    /// Obtiene un Servicio (Service) por su nombre.
+    /*!
+     * @return Respose Json
+     */
+    public function getServiceByName() {
+        $term = Request::input('term', '');
+
+        $results = array();
+        $queries = Service::where('name', 'LIKE', '%'.$term.'%')
+                          ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->name];
+        return response()->json($results);
+    }
+
+
 
     /// Obtiene Camas (Bed) restantes.
     /*!
@@ -172,6 +256,33 @@ class SearchController extends Controller {
                               'totalPersons' => $distribution->totalPersons()];
         return response()->json($results);
     }
+
+    /// Obtiene Usuarios (User).
+    /*!
+     * Por medio de Request obtiene los caracteres que usa para buscar al Usuario
+     * por el nombre, apellido o dni y devuelve las primeras 10 coincidencias.
+     * @return Respose Json
+    //  */
+    // public function getOwnerReservationByNameOrSurnameOrDni() {
+    //     $term = Request::input('term', '');
+    //     $results = array();
+
+
+    //     $queries = User::join('reservations', function($join){
+    //                     $join->on('users.id', '=', 'reservations.owner_id')
+    //                         ->where(function($query) use ($term){
+    //                             $query->where('name', 'LIKE', '%'.$term.'%');
+    //                             $query->orWhere('surname', 'LIKE', '%'.$term.'%');
+    //                             $query->orWhere('dni', 'LIKE', '%'.$term.'%');
+    //                         })
+    //                         })
+    //                     })
+    //                    ->take(10)->get();
+    //     foreach ($queries as $query)
+    //         $results[] = ['id' => $query->id,
+    //                       'value' => $query->fullname().' ['.$query->dni.']'];
+    //     return response()->json($results);
+    // }
 
     /// Obtiene Usuarios (User).
     /*!

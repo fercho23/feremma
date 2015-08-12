@@ -225,10 +225,10 @@ class Room extends Model {
      * Cambia el estado de la habitación a "deshabilitada" o "habilitada".
      */
     public function toggle() {
-        if ($this->available == 0) 
+        if ($this->available == 0)
             $this->available = 1;
         else
-            $this->available = 0;        
+            $this->available = 0;
         $this->update();
     }
 

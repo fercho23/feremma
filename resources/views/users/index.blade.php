@@ -2,7 +2,8 @@
 
     @section('content')
 
-        @include('users.partials.search')
+        @include('includes.partials.search', ['id'=> 'person',
+                                              'placeholder' => 'Ingresar Nombre, Apellido o DNI de un Usuario . . .'])
 
         <h1>Usuarios</h1>
         @include('flash::message')
@@ -80,14 +81,5 @@
     @endsection
 
     @section('extra_js')
-        <script type="text/javascript">
-            $('#person').autocomplete({
-                source: '{!! URL::route("search-user") !!}',
-                minLength: 2,
-                select: function(event, ui){
-                    var url = '{!! route("users-edit") !!}';
-                    window.location.href = url.replace('%7Busers%7D', ui.item.id);
-                }
-            });
-        </script>
+        @include('users.partials.search-js')
     @endsection

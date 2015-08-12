@@ -1,6 +1,10 @@
 @extends('app')
 
     @section('content')
+
+        @include('includes.partials.search', ['id'=> 'distribution',
+                                              'placeholder' => 'Ingresar Nombre de una Distribución . . .'])
+
         <h1>Distribuciones</h1>
         @include('flash::message')
 
@@ -60,4 +64,8 @@
                 <p>Aún no hay elementos registrados en el sistema.</p>
             </div>
         @endif
+    @endsection
+
+    @section('extra_js')
+        @include('distributions.partials.search-js')
     @endsection

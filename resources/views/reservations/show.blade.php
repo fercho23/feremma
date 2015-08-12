@@ -68,48 +68,52 @@
         @endforeach
         </br>
 
-        {!! Form::label('service', 'Servicios:') !!}
-        <div class="row">
-            <div class="col-lg-6 col-xs-6 no-gutter-right">
-                <div class="form-control" readonly="True">
-                    <strong>Nombre del Servicio</strong>
-                </div>
-            </div>
-            <div class="col-lg-3 col-xs-3 no-gutter">
-                <div class="form-control" readonly="True">
-                    <strong>Cantidad</strong>
-                </div>
-            </div>
-            <div class="col-lg-3 col-xs-3 no-gutter-left">
-                <div class="form-control" readonly="True">
-                    <strong>Precio</strong>
-                </div>
-            </div>
-        </div>
-        @foreach ($reservation->services as $service)
+        @if(count($reservation->services))
+            {!! Form::label('service', 'Servicios:') !!}
             <div class="row">
                 <div class="col-lg-6 col-xs-6 no-gutter-right">
-                    <div class="form-control" readonly="true">{!! $service->pivot->name !!}</div>
+                    <div class="form-control" readonly="True">
+                        <strong>Nombre del Servicio</strong>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-xs-3 no-gutter">
-                    <div class="form-control" readonly="true">{!! $service->pivot->quantity !!}</div>
+                    <div class="form-control" readonly="True">
+                        <strong>Cantidad</strong>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-xs-3 no-gutter-left">
-                    <div class="form-control" readonly="true">{!! $service->pivot->price !!}</div>
+                    <div class="form-control" readonly="True">
+                        <strong>Precio</strong>
+                    </div>
                 </div>
             </div>
-        @endforeach
-        </br>
-
-        {!! Form::label('person', 'Pasajeros:') !!}
-        <div class="group-labels" id="label-persons" style="margin-bottom:5px;">
-            @foreach ($reservation->booking as $person)
-                <div id="persons-{!! $person->id !!}" class="label label-info" style="margin:5px;">
-                    {!! $person->fullname() !!} [{!! $person->dni !!}]
+            @foreach ($reservation->services as $service)
+                <div class="row">
+                    <div class="col-lg-6 col-xs-6 no-gutter-right">
+                        <div class="form-control" readonly="true">{!! $service->pivot->name !!}</div>
+                    </div>
+                    <div class="col-lg-3 col-xs-3 no-gutter">
+                        <div class="form-control" readonly="true">{!! $service->pivot->quantity !!}</div>
+                    </div>
+                    <div class="col-lg-3 col-xs-3 no-gutter-left">
+                        <div class="form-control" readonly="true">{!! $service->pivot->price !!}</div>
+                    </div>
                 </div>
             @endforeach
-        </div>
-        </br>
+            </br>
+        @endif
+
+        @if(count($reservation->booking))
+            {!! Form::label('person', 'Pasajeros:') !!}
+            <div class="group-labels" id="label-persons" style="margin-bottom:5px;">
+                @foreach ($reservation->booking as $person)
+                    <div id="persons-{!! $person->id !!}" class="label label-info" style="margin:5px;">
+                        {!! $person->fullname() !!} [{!! $person->dni !!}]
+                    </div>
+                @endforeach
+            </div>
+            </br>
+        @endif
 
         {!! Form::label('total_price','Precio Total:') !!}
         <div class="input-group">
@@ -137,9 +141,11 @@
         </div>
         </br>
 
-        {!! Form::label('description', 'Descripción:') !!}
-        <div class="form-control">
-            {!! $reservation->description !!}
-        </div>
+        @if($reservation->description)
+            {!! Form::label('description', 'Descripción:') !!}
+            <div class="form-control">
+                {!! $reservation->description !!}
+            </div>
+        @endif
 
     @endsection

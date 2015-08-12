@@ -143,11 +143,24 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(array('prefix' => 'search'), function() {
 
+        Route::get('bed', ['as' => 'search-bed', 'uses' => 'SearchController@getBedByName']);
         Route::get('beds', ['as' => 'search-remaining-beds', 'uses' => 'SearchController@getRemainingBedsByName']);
+
+        Route::group(array('prefix' => 'distribution'), function() {
+            Route::get('/', ['as' => 'search-distribution', 'uses' => 'SearchController@getDistributionByName']);
+            Route::get('/by-room-id', ['as' => 'get-distribution-by-room-id', 'uses' => 'SearchController@getDistributionsByRoomId']);
+        });
         Route::get('distributions', ['as' => 'search-remaining-distributions', 'uses' => 'SearchController@getRemainingDistributionsByName']);
-        Route::get('distribution-by-room-id', ['as' => 'get-distribution-by-room-id', 'uses' => 'SearchController@getDistributionsByRoomId']);
-        Route::get('rooms', ['as' => 'search-remaining-rooms', 'uses' => 'SearchController@getRemainingRoomsByName']);
-        Route::get('rooms-free', ['as' => 'search-free-rooms', 'uses' => 'SearchController@getFreeRoomsByCheckInAndCheckOut']);
+
+        Route::get('role', ['as' => 'search-role', 'uses' => 'SearchController@getRoleByName']);
+
+        Route::get('room', ['as' => 'search-room', 'uses' => 'SearchController@getRoomByName']);
+        Route::group(array('prefix' => 'rooms'), function() {
+            Route::get('/', ['as' => 'search-remaining-rooms', 'uses' => 'SearchController@getRemainingRoomsByName']);
+            Route::get('free', ['as' => 'search-free-rooms', 'uses' => 'SearchController@getFreeRoomsByCheckInAndCheckOut']);
+        });
+
+        Route::get('service', ['as' => 'search-service', 'uses' => 'SearchController@getServiceByName']);
         Route::get('services', ['as' => 'search-remaining-services', 'uses' => 'SearchController@getRemainingServicesByName']);
         Route::get('user', ['as' => 'search-user', 'uses' => 'SearchController@getUserByNameOrSurnameOrDni']);
         Route::get('users', ['as' => 'search-remaining-users', 'uses' => 'SearchController@getRemainingUsersByNameOrSurnameOrDni']);
