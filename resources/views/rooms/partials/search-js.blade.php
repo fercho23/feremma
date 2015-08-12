@@ -3,7 +3,11 @@
         source: '{!! URL::route("search-room") !!}',
         minLength: 2,
         select: function(event, ui){
-            var url = '{!! route("rooms-edit") !!}';
+            @if(Auth::user()->can('rooms/edit'))
+                var url = '{!! route("rooms-edit") !!}';
+            @else
+                var url = '{!! route("rooms-show") !!}';
+            @endif
             window.location.href = url.replace('%7Brooms%7D', ui.item.id);
         }
     });

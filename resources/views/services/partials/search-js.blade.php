@@ -3,7 +3,11 @@
         source: '{!! URL::route("search-service") !!}',
         minLength: 2,
         select: function(event, ui){
-            var url = '{!! route("services-edit") !!}';
+            @if(Auth::user()->can('services/edit'))
+                var url = '{!! route("services-edit") !!}';
+            @else
+                var url = '{!! route("services-show") !!}';
+            @endif
             window.location.href = url.replace('%7Bservices%7D', ui.item.id);
         }
     });

@@ -62,7 +62,10 @@ class UsersController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        if($user = User::find($id))
+            return view('users.show', compact('user'));
+        flash()->error('Error!!! El Usuario que intenta ver no existe.');
+        return redirect('users');
     }
 
     /// Fomulario de edición de un Usuario (User) específico.

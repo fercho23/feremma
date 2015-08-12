@@ -59,7 +59,10 @@ class RoomsController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        if($room = Room::find($id))
+            return view('rooms.show', compact('room'));
+        flash()->error('Error!!! La Habitación que intenta ver no existe.');
+        return redirect('rooms');
     }
 
     /// Fomulario de edición de una Habitación (Room) específica.

@@ -2,8 +2,10 @@
 
     @section('content')
 
-        @include('includes.partials.search', ['id'=> 'role',
-                                              'placeholder' => 'Ingresar Nombre de un Cargo . . .'])
+        @if(Auth::user()->canAnyActionsByModel('roles', ['edit', 'show']))
+            @include('includes.partials.search', ['id'=> 'role',
+                                                  'placeholder' => 'Ingresar Nombre de un Cargo . . .'])
+        @endif
 
         <h1>Cargos</h1>
         @include('flash::message')
@@ -19,7 +21,7 @@
                                 <th>Cantidad de usuarios</th>
                                 <th>Cantidad de permisos</th>
                                 <th>Descripción</th>
-                                @if(Auth::user()->can('roles/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('roles', ['edit', 'show']))
                                     <th></th>
                                 @endif
                                 @if(Auth::user()->can('roles/destroy'))
@@ -35,17 +37,25 @@
                                 <td>{!! $role->users()->count() !!}</td>
                                 <td>{!! $role->permissions()->count() !!}</td>
                                 <td>{!! $role->description !!}</td>
-                                @if(Auth::user()->can('roles/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('roles', ['edit', 'show']))
                                     <td>
-                                        <a href="{!! URL::to('roles/'.$role->id.'/edit') !!}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                        @if(Auth::user()->can('roles/edit'))
+                                            <a href="{!! URL::route('roles-edit', $role->id) !!}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @else
+                                            @if(Auth::user()->can('roles/show'))
+                                                <a href="{!! URL::route('roles-show', $role->id) !!}">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            @endif
+                                        @endif
                                     </td>
                                 @endif
                                 @if(Auth::user()->can('roles/destroy'))
                                     <td>
                                         @if($role->canBeEliminated())
-                                            {!! Form::open(['method' => 'DELETE', 'action' => ['RolesController@destroy', $role->id]]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['roles-destroy', $role->id]]) !!}
                                                 <button class="btn-link" type="submit">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
@@ -66,6 +76,8 @@
         @endif
     @endsection
 
-    @section('extra_js')
-        @include('roles.partials.search-js')
-    @endsection
+    @if(Auth::user()->canAnyActionsByModel('roles', ['edit', 'show']))
+        @section('extra_js')
+            @include('roles.partials.search-js')
+        @endsection
+    @endif

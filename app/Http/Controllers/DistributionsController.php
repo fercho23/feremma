@@ -60,7 +60,10 @@ class DistributionsController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        if($distribution = Distribution::find($id))
+            return view('distributions.show', compact('distribution'));
+        flash()->error('Error!!! La Distribución que intenta ver no existe.');
+        return redirect('distributions');
     }
 
     /// Fomulario de edición de una Distribución (Distribution) específica.

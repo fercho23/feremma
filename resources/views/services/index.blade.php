@@ -1,8 +1,10 @@
 @extends('app')
     @section('content')
 
-        @include('includes.partials.search', ['id'=> 'service',
-                                              'placeholder' => 'Ingresar Nombre de un Servicio . . .'])
+        @if(Auth::user()->canAnyActionsByModel('services', ['edit', 'show']))
+            @include('includes.partials.search', ['id'=> 'service',
+                                                  'placeholder' => 'Ingresar Nombre de un Servicio . . .'])
+        @endif
 
         <h1>Servicios</h1>
         @include('flash::message')
@@ -17,7 +19,7 @@
                                 <th>Nombre</th>
                                 <th>Precio</th>
                                 <th>Descripción</th>
-                                @if(Auth::user()->can('services/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('services', ['edit', 'show']))
                                     <th></th>
                                 @endif
                                 @if(Auth::user()->can('services/destroy'))
@@ -32,17 +34,25 @@
                                 <td>{!! $service->name !!}</td>
                                 <td>{!! $service->price !!}</td>
                                 <td>{!! $service->description !!}</td>
-                                @if(Auth::user()->can('services/edit'))
-                                <td>
-                                    <a href="{!! URL::to('services/'.$service->id.'/edit') !!}">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                </td>
+                                @if(Auth::user()->canAnyActionsByModel('services', ['edit', 'show']))
+                                    <td>
+                                        @if(Auth::user()->can('services/edit'))
+                                            <a href="{!! URL::route('services-edit', $service->id) !!}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @else
+                                            @if(Auth::user()->can('services/show'))
+                                                <a href="{!! URL::route('services-show', $service->id) !!}">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            @endif
+                                        @endif
+                                    </td>
                                 @endif
                                 @if(Auth::user()->can('services/destroy'))
                                     <td>
                                         @if($service->canBeEliminated())
-                                            {!! Form::open(['method' => 'DELETE', 'action' => ['ServicesController@destroy', $service->id]]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['services-destroy', $service->id]]) !!}
                                                 <button class="btn-link" type="submit">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
@@ -63,6 +73,8 @@
         @endif
     @endsection
 
-    @section('extra_js')
-        @include('services.partials.search-js')
-    @endsection
+    @if(Auth::user()->canAnyActionsByModel('services', ['edit', 'show']))
+        @section('extra_js')
+            @include('services.partials.search-js')
+        @endsection
+    @endif

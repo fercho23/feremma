@@ -136,11 +136,10 @@ class ReservationsController extends Controller {
      * @return Response
      */
     public function show($id) {
-        if(!$reservation = Reservation::find($id)) {
-            flash()->error('Error!!! La Reserva que intenta ver no existe.');
-            return redirect('reservations');
-        }
-        return view('reservations.show', compact('reservation'));
+        if($reservation = Reservation::find($id))
+            return view('reservations.show', compact('reservation'));
+        flash()->error('Error!!! La Reserva que intenta ver no existe.');
+        return redirect('reservations');
     }
 
     /// Fomulario de edición de una Reserva (Reservation) específica.

@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder {
             'address'  => 'Casa del usuario13',
             'username' => 'user1',
             'phone'    => '12345678910',
-            'role_id'  => '1',//Recepcion y Conserjeria
+            'role_id'  => '1',//Super Usuario
             'birthday' => '1990/01/01',
             'sex'      => 'f',
             'password' => '1234'
@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder {
             'address'  => 'Casa del usuario 2',
             'username' => 'user2',
             'phone'    => '12345678910',
-            'role_id'  => '2',//Recepcion y Conserjeria
+            'role_id'  => '2',//Director
             'birthday' => '1990/01/01',
             'sex'      => 'm',
             'password' => '1234'

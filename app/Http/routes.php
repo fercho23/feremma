@@ -162,6 +162,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('service', ['as' => 'search-service', 'uses' => 'SearchController@getServiceByName']);
         Route::get('services', ['as' => 'search-remaining-services', 'uses' => 'SearchController@getRemainingServicesByName']);
+
         Route::get('user', ['as' => 'search-user', 'uses' => 'SearchController@getUserByNameOrSurnameOrDni']);
         Route::get('users', ['as' => 'search-remaining-users', 'uses' => 'SearchController@getRemainingUsersByNameOrSurnameOrDni']);
 

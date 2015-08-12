@@ -46,7 +46,10 @@ class RolesController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        if($role = Role::find($id))
+            return view('roles.show', compact('role'));
+        flash()->error('Error!!! El Cargo que intenta ver no existe.');
+        return redirect('roles');
     }
 
     /// Fomulario de edición de un Cargo (Role) específico.

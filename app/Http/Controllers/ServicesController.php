@@ -48,7 +48,10 @@ class ServicesController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        if($service = Service::find($id))
+            return view('services.show', compact('service'));
+        flash()->error('Error!!! El Servicio que intenta ver no existe.');
+        return redirect('services');
     }
 
     /// Fomulario de edición de un Servicio (Service) específico.

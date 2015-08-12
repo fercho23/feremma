@@ -1,8 +1,10 @@
 @extends('app')
     @section('content')
 
-        @include('includes.partials.search', ['id'=> 'room',
-                                              'placeholder' => 'Ingresar Nombre de una Habitación . . .'])
+        @if(Auth::user()->canAnyActionsByModel('rooms', ['edit', 'show']))
+            @include('includes.partials.search', ['id'=> 'room',
+                                                  'placeholder' => 'Ingresar Nombre de una Habitación . . .'])
+        @endif
 
         <h1>Habitaciones</h1>
         @include('flash::message')
@@ -20,7 +22,7 @@
                                 <th>Ubicación</th>
                                 <th>Habilitada</th>
                                 <th>Descripción</th>
-                                @if(Auth::user()->can('rooms/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('rooms', ['edit', 'show']))
                                     <th></th>
                                 @endif
                                 @if(Auth::user()->can('rooms/destroy'))
@@ -42,17 +44,25 @@
                                 <td>{!! $room->location !!}</td>
                                 <td>{!! ($room->available ? 'Si' : 'No') !!}</td>
                                 <td>{!! $room->description !!}</td>
-                                @if(Auth::user()->can('rooms/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('rooms', ['edit', 'show']))
                                     <td>
-                                        <a href="{!! URL::to('rooms/'.$room->id.'/edit') !!}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                        @if(Auth::user()->can('rooms/edit'))
+                                            <a href="{!! URL::route('rooms-edit', $room->id) !!}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @else
+                                            @if(Auth::user()->can('rooms/show'))
+                                                <a href="{!! URL::route('rooms-show', $room->id) !!}">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            @endif
+                                        @endif
                                     </td>
                                 @endif
                                 @if(Auth::user()->can('rooms/destroy'))
                                     <td>
                                         @if($room->canBeEliminated())
-                                            {!! Form::open(['method' => 'DELETE', 'action' => ['RoomsController@destroy', $room->id]]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['rooms-destroy', $room->id]]) !!}
                                                 <button class="btn-link" type="submit">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
@@ -73,6 +83,8 @@
         @endif
     @endsection
 
-    @section('extra_js')
-        @include('rooms.partials.search-js')
-    @endsection
+    @if(Auth::user()->canAnyActionsByModel('rooms', ['edit', 'show']))
+        @section('extra_js')
+            @include('rooms.partials.search-js')
+        @endsection
+    @endif

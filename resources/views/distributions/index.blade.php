@@ -2,8 +2,10 @@
 
     @section('content')
 
-        @include('includes.partials.search', ['id'=> 'distribution',
-                                              'placeholder' => 'Ingresar Nombre de una Distribución . . .'])
+        @if(Auth::user()->canAnyActionsByModel('distributions', ['edit', 'show']))
+            @include('includes.partials.search', ['id'=> 'distribution',
+                                                  'placeholder' => 'Ingresar Nombre de una Distribución . . .'])
+        @endif
 
         <h1>Distribuciones</h1>
         @include('flash::message')
@@ -19,7 +21,7 @@
                                 <th>Precio</th>
                                 <th>Cantidad de Personas</th>
                                 <th>Descripción</th>
-                                @if(Auth::user()->can('distributions/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('distributions', ['edit', 'show']))
                                     <th></th>
                                 @endif
                                 @if(Auth::user()->can('distributions/destroy'))
@@ -35,17 +37,25 @@
                                 <td>{!! $distribution->price() !!}</td>
                                 <td>{!! $distribution->totalPersons() !!}</td>
                                 <td>{!! $distribution->description !!}</td>
-                                @if(Auth::user()->can('distributions/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('distributions', ['edit', 'show']))
                                     <td>
-                                        <a href="{!! URL::to('distributions/'.$distribution->id.'/edit') !!}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                        @if(Auth::user()->can('distributions/edit'))
+                                            <a href="{!! URL::route('distributions-edit', $distribution->id) !!}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @else
+                                            @if(Auth::user()->can('distributions/show'))
+                                                <a href="{!! URL::route('distributions-show', $distribution->id) !!}">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            @endif
+                                        @endif
                                     </td>
                                 @endif
                                 @if(Auth::user()->can('distributions/destroy'))
                                     <td>
                                         @if($distribution->canBeEliminated())
-                                            {!! Form::open(['method' => 'DELETE', 'action' => ['DistributionsController@destroy', $distribution->id]]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['distributions-destroy', $distribution->id]]) !!}
                                                 <button class="btn-link" type="submit">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
@@ -66,6 +76,8 @@
         @endif
     @endsection
 
-    @section('extra_js')
-        @include('distributions.partials.search-js')
-    @endsection
+    @if(Auth::user()->canAnyActionsByModel('distributions', ['edit', 'show']))
+        @section('extra_js')
+            @include('distributions.partials.search-js')
+        @endsection
+    @endif

@@ -48,7 +48,10 @@ class BedsController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        if($bed = Bed::find($id))
+            return view('beds.show', compact('bed'));
+        flash()->error('Error!!! La Cama que intenta ver no existe.');
+        return redirect('beds');
     }
 
     /// Fomulario de edición de una Cama (Bed) específica.

@@ -2,8 +2,10 @@
 
     @section('content')
 
-        @include('includes.partials.search', ['id'=> 'person',
-                                              'placeholder' => 'Ingresar Nombre, Apellido o DNI de un Usuario . . .'])
+        @if(Auth::user()->canAnyActionsByModel('users', ['edit', 'show']))
+            @include('includes.partials.search', ['id'=> 'person',
+                                                  'placeholder' => 'Ingresar Nombre, Apellido o DNI de un Usuario . . .'])
+        @endif
 
         <h1>Usuarios</h1>
         @include('flash::message')
@@ -24,7 +26,7 @@
                                 <th>Dirección</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
-                                @if(Auth::user()->can('users/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('users', ['edit', 'show']))
                                     <th></th>
                                 @endif
                                 @if(Auth::user()->can('users/destroy'))
@@ -49,20 +51,28 @@
                                 <td>{!! $user->address !!}</td>
                                 <td>{!! $user->phone !!}</td>
                                 <td>{!! $user->email !!}</td>
-                                @if(Auth::user()->can('users/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('users', ['edit', 'show']))
                                     <td>
-                                        <a href="{!! URL::to('users/'.$user->id.'/edit') !!}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                        @if(Auth::user()->can('users/edit'))
+                                            <a href="{!! URL::route('users-edit', $user->id) !!}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @else
+                                            @if(Auth::user()->can('users/show'))
+                                                <a href="{!! URL::route('users-show', $user->id) !!}">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            @endif
+                                        @endif
                                     </td>
                                 @endif
                                 @if(Auth::user()->can('users/destroy'))
                                     <td>
                                         @if($user->canBeEliminated())
-                                            {!! Form::open(['method' => 'DELETE', 'action' => ['UsersController@destroy', $user->id]]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['users-destroy', $user->id]]) !!}
                                                 <button class="btn-link" type="submit">
                                                     <i class="fa fa-trash"></i>
-                                                 </button>
+                                                </button>
                                             {!! Form::close() !!}
                                         @endif
                                     </td>
@@ -80,6 +90,8 @@
         @endif
     @endsection
 
-    @section('extra_js')
-        @include('users.partials.search-js')
-    @endsection
+    @if(Auth::user()->canAnyActionsByModel('users', ['edit', 'show']))
+        @section('extra_js')
+            @include('users.partials.search-js')
+        @endsection
+    @endif
