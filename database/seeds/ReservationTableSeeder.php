@@ -74,7 +74,7 @@ class ReservationTableSeeder extends Seeder {
         $reservation->booking()->sync([4, 5, 6]);
 
         $reservation = Reservation::create(array(
-            'owner_id'      => '4',
+            'owner_id'      => '7',
             'total_price'    => '1500',
             'sign'           => '500',
             'due'            => '0',
