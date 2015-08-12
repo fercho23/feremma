@@ -328,19 +328,43 @@ class PermissionTableSeeder extends Seeder {
         Permission::create(array(//60
             'title'         =>'Gestiona informes',
             'slug'          =>'reports/index',
-            'description'   =>'Crea informes estadisticos'
+            'description'   =>'Crea informes estadisticos.'
         ));
 
         Permission::create(array(//61
             'title'         =>'Genera informe',
             'slug'          =>'reports/generate',
-            'description'   =>'Crea un informe'
+            'description'   =>'Crea un informe.'
         ));
-        
+
         Permission::create(array(//62
             'title'         =>'Reducir Deuda Reserva',
             'slug'          =>'reservations/reduceDebt',
-            'description'   =>'Reducir la deuda de una reserva'
+            'description'   =>'Reducir la deuda de una reserva.'
+        ));
+
+        Permission::create(array(//63
+            'title'         =>'Listar Reservas Check In',
+            'slug'          =>'reservations/indexCheckIn',
+            'description'   =>'Lista de reservas para check in.'
+        ));
+
+        Permission::create(array(//64
+            'title'         =>'Listar Reservas Check Out',
+            'slug'          =>'reservations/indexCheckOut',
+            'description'   =>'Lista de reservas para check out.'
+        ));
+
+        Permission::create(array(//65
+            'title'         =>'Reserva Check In',
+            'slug'          =>'reservations/checkIn',
+            'description'   =>'Check in de una reserva.'
+        ));
+
+        Permission::create(array(//66
+            'title'         =>'Reserva Check Out',
+            'slug'          =>'reservations/checkOut',
+            'description'   =>'Check out de una reserva.'
         ));
 
     }

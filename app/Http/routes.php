@@ -26,14 +26,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'acl'], function () {
 
         Route::get('tasks/create_mine', ['as'=>'tasks-create-mine', 'uses'=>'TasksController@createMine']);
+
         Route::get('users/profile', ['as'=>'profile', 'UsersController@profile']);
 
         Route::get('permissions', ['as'=>'permissions-index', 'uses'=>'PermissionsController@index']);
+
         Route::get('rooms/toggle/{id}', 'RoomsController@toggle');
 
         Route::post('beds/{id}/basic', ['as'=>'beds-update-basic', 'uses'=>'BedsController@updateBasic']);
+
         Route::post('distributions/{id}/basic', ['as'=>'distributions-update-basic', 'uses'=>'DistributionsController@updateBasic']);
+
         Route::post('reservations/{id}/reduce_debt', ['as'=>'reservations-reduce-debt', 'uses'=>'ReservationsController@reduceDebt']);
+        Route::get('reservations/check_in', ['as'=>'reservations-index-check-in', 'uses'=>'ReservationsController@indexCheckIn']);
+        Route::get('reservations/check_out', ['as'=>'reservations-index-check-out', 'uses'=>'ReservationsController@indexCheckOut']);
+        Route::post('reservations/{id}/check_in', ['as'=>'reservations-check-in', 'uses'=>'ReservationsController@checkIn']);
+        Route::post('reservations/{id}/check_out', ['as'=>'reservations-check-out', 'uses'=>'ReservationsController@checkOut']);
 
         Route::post('reports/generate', ['as'=>'reports-generate', 'uses'=>'ReportsController@generate']);
 

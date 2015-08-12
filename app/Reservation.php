@@ -55,10 +55,34 @@ class Reservation extends Model {
         return $this->belongsToMany('FerEmma\User', 'reservation_user');
     }
 
+    /// Realiza el Check In de la Reserva (Reservation).
+    /*!
+     * Actualiza al tiempo y hora de este momento el campo real_check_in.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function checkIn() {
+        $this->real_check_in = date('Y-m-d H:i:s');
+        if(!$this->save())
+            return false;
+        return true;
+    }
+
+    /// Realiza el Check Out de la Reserva (Reservation).
+    /*!
+     * Actualiza al tiempo y hora de este momento el campo real_check_out.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function checkOut() {
+        $this->real_check_out = date('Y-m-d H:i:s');
+        if(!$this->save())
+            return false;
+        return true;
+    }
+
     /// Verifica si la Reserva (Reservation) puede ser modificada.
     /*!
      * Determina si esta Reserva puede ser modificada, eso es posible siempre y cuando
-     * esta no tenga el campo real_chek_in.
+     * esta no tenga el campo real_check_in.
      * @return Booleano (Verdadero o Falso)
      */
     public function canBeModified() {
@@ -67,6 +91,42 @@ class Reservation extends Model {
         return false;
     }
 
+    /// Obtiene las Reservas (Reservation) que se puede hacer Chek In.
+    /*!
+     * Obtiene totas las Reservas que se puede hacer Check In, que es siempre y cuando el 
+     * campo real_check_in sea NULL
+     * @return Consulta de Base de Datos
+     */
+    static function getReservationsForCheckIn() {
+        return Reservation::where("real_check_in", null)->get();
+    }
+
+    /// Obtiene las Reservas (Reservation) que se puede hacer Chek Out.
+    /*!
+     * Obtiene totas las Reservas que se puede hacer Check Out, que es siempre y cuando el 
+     * campo real_check_in no sea NULL y el campo real_check_out sea NULL.
+     * @return Consulta de Base de Datos
+     */
+    static function getReservationsForCheckOut() {
+        return Reservation::whereNotNull("real_check_in")
+                          ->where("real_check_out", null)->get();
+    }
+
+    /// Devuelve el estado de la Reservas (Reservation).
+    /*!
+     * Si la Reserva no posee real_check_in está para Check In, si no posee real_check_out, está para Check Out,
+     * y si la reserva os posee a los 2 entonces es Histótica
+     * @return String = [Para Check In, Para Check Out, Histórica]
+     */
+    public function state() {
+        if($this->real_check_in) {
+            if($this->real_check_out)
+                return "Histórica";
+            else
+                return "Para Check Out";
+        }
+        return "Para Check In";
+    }
 
     static function todaysChekIns() {
         return count(Reservation::where('check_in', '=', date("Y-m-d", strtotime("today")))->get());

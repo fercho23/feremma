@@ -18,6 +18,7 @@
                                 <th>Deuda</th>
                                 <th>Fecha entrada</th>
                                 <th>Fecha salida</th>
+                                <th>Estado</th>
                                 <th>Descripción</th>
                                 @if(Auth::user()->can('reservations/edit'))
                                     <th></th>
@@ -34,7 +35,7 @@
                                 <td>{!! $reservation->id !!}</td>
                                 <td>
                                     @if (sizeof($reservation->owner)>0)
-                                        {!! $reservation->owner->name !!} {!! $reservation->owner->surname !!}
+                                        {!! $reservation->owner->fullname() !!}
                                     @endif
                                 </td>
                                 <td>
@@ -45,6 +46,7 @@
                                 <td>{!! $reservation->due !!}</td>
                                 <td>{!! date("d/m/Y", strtotime($reservation->check_in)) !!}</td>
                                 <td>{!! date("d/m/Y", strtotime($reservation->check_out)) !!}</td>
+                                <td>{!! $reservation->state() !!}</td>
                                 <td>{!! $reservation->description !!}</td>
                                 @if(Auth::user()->can('reservations/edit'))
                                     <td>
@@ -86,11 +88,8 @@
                 <p>Aún no hay elementos registrados en el sistema.</p>
             </div>
         @endif
-
         @include('reservations.partials.modal')
-
     @endsection
-
 
     @section('extra_js')
         <script type="text/javascript">
@@ -103,40 +102,5 @@
                 $('#reservation-modal form').attr('action', "{!! url() !!}"+"/reservations/" + $id + "/reduce_debt");
                 $('input#number').attr('max', $due);
             });
-
-        // $('#reservation-modal form').submit(e) {
-        //     var $form = $(this);
-        //     e.preventDefault(); //keeps the form from behaving like a normal (non-ajax) html form
-        //     var url = $form.attr('action');
-        //     var formData = {};
-        //     //submit a POST request with the form data
-        //     $form.find('input, 'select').each(function()
-        //     {
-        //         formData[ $(this).attr('name') ] = $(this).val();
-        //     });
-        //     //submits an array of key-value pairs to the form's action URL
-        //     $.post(url, formData, function(response)
-        //     {
-        //         //handle successful validation
-        //     }).fail(function(response)
-        //     {
-        //         //handle failed validation
-        //         associate_errors(response['errors'], $form);
-        //     });
-        // }
-
-        // function associate_errors(errors, $form) {
-        //     //remove existing error classes and error messages from form groups
-        //     $form.find('.form-group').removeClass('has-errors').find('.help-text').text('');
-        //     errors.foreach(function(value, index)
-        //     {
-        //        //find each form group, which is given a unique id based on the form field's name
-        //         var $group = $form.find('#' + index + '-group');
-
-        //         //add the error class and set the error text
-        //         $group.addClass('has-errors').find('.help-text').text(value);
-        //     }
-        // }
-
         </script>
     @endsection

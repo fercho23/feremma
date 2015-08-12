@@ -16,6 +16,56 @@ class ReservationsController extends Controller {
         return view('reservations.index', compact('reservations'));
     }
 
+    /// Lista de Reservas (Reservation) para realizar el Check In.
+    /*!
+     * @return Vista con Reservas (Reservation)
+     */
+    public function indexCheckIn() {
+        $reservations = Reservation::getReservationsForCheckIn();
+        return view('reservations.index-check-in', compact('reservations'));
+    }
+
+    /// Lista de Reservas (Reservation) para realizar el Check Out.
+    /*!
+     * @return Vista con Reservas (Reservation)
+     */
+    public function indexCheckOut() {
+        $reservations = Reservation::getReservationsForCheckOut();
+        return view('reservations.index-check-out', compact('reservations'));
+    }
+
+    /// Realiza el Check In de una Reserva (Reservation).
+    /*!
+     * Verifica si esta Reserva puede realizar el Check In y en caso de que si lo hace.
+     * @return Vista de Reservas (Reservation)
+     */
+    public function checkIn($id) {
+        if($reservation = Reservation::find($id)) {
+            if($reservation->checkIn())
+                flash()->success('El Check In de la Reserva fue un exito.');
+            else
+                flash()->error('Error inesperado!!! Al intentar hacer Check In de la Reserva.');
+        } else
+            flash()->error('Error!!! La Reserva que intenta hacer Check In no existe.');
+        return redirect('reservations');
+    }
+
+    /// Realiza el Check Out de una Reserva (Reservation).
+    /*!
+     * Verifica si esta Reserva puede realizar el Check Out y en caso de que si lo hace.
+     * @return Vista de Reservas (Reservation)
+     */
+    public function checkOut($id) {
+        if($reservation = Reservation::find($id)) {
+            if($reservation->checkOut())
+                flash()->success('El Check Out de la Reserva fue un exito.');
+            else
+                flash()->error('Error inesperado!!! Al intentar hacer Check Out de la Reserva.');
+        } else
+            flash()->error('Error!!! La Reserva que intenta hacer Check Out no existe.');
+        return redirect('reservations');
+    }
+
     /// Fomulario de nueva Reserva (Reservation).
     /*!
      * Muestra el formulario para ingresar una nueva Reserva,
@@ -189,7 +239,6 @@ class ReservationsController extends Controller {
             $validator = \Validator::make($request, [
                 'number' => 'required|between:0,9999999999.99'
             ]);
-
             if ($validator->fails())
                 flash()->error('Error!!! En el ingreso de los datos al intentar reducir la deuda de la Reserva.');
             else {
@@ -201,7 +250,6 @@ class ReservationsController extends Controller {
             }
         } else
             flash()->error('Error!!! La Reserva que intenta reducir su deuda no existe.');
-
         return redirect('reservations');
     }
 

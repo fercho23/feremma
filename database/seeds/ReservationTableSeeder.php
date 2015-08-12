@@ -9,13 +9,14 @@ class ReservationTableSeeder extends Seeder {
         DB::table('reservations')->truncate();
 
         $reservation = Reservation::create(array(
-            'owner_id'    => '1',
-            'total_price' => '6550',
-            'sign'        => '4550',
-            'due'         => '2000',
-            'check_in'    => date('Y-m-d', strtotime('-2 day')),
-            'check_out'   => date("Y-m-d"),
-            'created_at'  => date('Y-m-d', strtotime('-4 day')),
+            'owner_id'      => '1',
+            'total_price'   => '6550',
+            'sign'          => '4550',
+            'due'           => '2000',
+            'real_check_in' => date('Y-m-d', strtotime('-2 day')),
+            'check_in'      => date('Y-m-d', strtotime('-2 day')),
+            'check_out'     => date("Y-m-d"),
+            'created_at'    => date('Y-m-d', strtotime('-4 day')),
             ));
 
         $reservation->rooms()->sync([ 3 => ['distribution_id' => 1,
@@ -31,13 +32,13 @@ class ReservationTableSeeder extends Seeder {
                                        ]);
 
         $reservation = Reservation::create(array(
-            'owner_id'    => '3',
-            'total_price' => '1500',
-            'sign'        => '500',
-            'due'         => '1000',
-            'check_in'    => date("Y-m-d"),
-            'check_out'   => date('Y-m-d', strtotime('+1 day')),
-            'created_at'  => date('Y-m-d', strtotime('-2 day'))
+            'owner_id'      => '3',
+            'total_price'   => '1500',
+            'sign'          => '500',
+            'due'           => '1000',
+            'check_in'      => date("Y-m-d"),
+            'check_out'     => date('Y-m-d', strtotime('+1 day')),
+            'created_at'    => date('Y-m-d', strtotime('-2 day'))
             ));
 
         $reservation->rooms()->sync([ 1 => ['distribution_id' => 4,
