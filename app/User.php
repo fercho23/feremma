@@ -140,7 +140,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @return Booleano (Verdadero o Falso)
      */
     public function can($perm = null) {
-        // dd("can", $perm);
+        // dd($perm);
+        if(strpos($perm, '-') !== false) {
+            // dd($perm, strpos($perm, '-'));
+            $array = explode('-', $perm);
+            $perm = '';
+            foreach ($array as $key => $value) {
+                if($key == 0)
+                    $perm .= $value;
+                else
+                    $perm .= ucfirst($value);
+            }
+        }
+
         if($perm)
             return $this->checkPermission($perm);
         return false;

@@ -82,7 +82,7 @@
                 @include('includes.partials.section', ['model'=>'tasks',
                                                        'title'=>'Tareas',
                                                        'icon'=>'tags',
-                                                       'actions'=>['index', 'create', 'create_mine'],
+                                                       'actions'=>['index', 'create', 'create-mine'],
                                                        'names'=>['Ver', 'Nueva', 'Nueva Tarea Para mi Sector'],
                                                        'icons'=>['list-ol', 'plus', 'plus-circle']])
                 @include('includes.partials.section', ['model'=>'permissions',

@@ -27,8 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('tasks/create_mine', ['as'=>'tasks-create-mine', 'uses'=>'TasksController@createMine']);
         Route::get('users/profile', ['as'=>'profile', 'UsersController@profile']);
-        Route::get('permissions', 'PermissionsController@index');
-        //Route::get('reports/index', 'ReportsController@index');
+        Route::get('permissions', ['as'=>'permissions-index', 'uses'=>'PermissionsController@index']);
+        Route::get('reports/index', ['as'=>'reports-index', 'ReportsController@index']);
         Route::get('rooms/toggle/{id}', 'RoomsController@toggle');
 
         Route::post('beds/{id}/basic', ['as'=>'beds-update-basic', 'uses'=>'BedsController@updateBasic']);
@@ -75,10 +75,45 @@ Route::group(['middleware' => 'auth'], function () {
                                                                                 'destroy' => 'reservations-destroy']
                                                                     ]);
 
-        Route::resource('roles', 'RolesController');
-        Route::resource('services', 'ServicesController');
-        Route::resource('tasks', 'TasksController');
-        Route::resource('users', 'UsersController');
+        Route::resource('roles', 'RolesController', [
+                                                    'names' => ['index'   => 'roles-index',
+                                                                'show'    => 'roles-show',
+                                                                'edit'    => 'roles-edit',
+                                                                'update'  => 'roles-update',
+                                                                'create'  => 'roles-create',
+                                                                'store'   => 'roles-store',
+                                                                'destroy' => 'roles-destroy']
+                                                    ]);
+
+        Route::resource('services', 'ServicesController', [
+                                                            'names' => ['index'   => 'services-index',
+                                                                        'show'    => 'services-show',
+                                                                        'edit'    => 'services-edit',
+                                                                        'update'  => 'services-update',
+                                                                        'create'  => 'services-create',
+                                                                        'store'   => 'services-store',
+                                                                        'destroy' => 'services-destroy']
+                                                            ]);
+
+        Route::resource('tasks', 'TasksController', [
+                                                    'names' => ['index'   => 'tasks-index',
+                                                                'show'    => 'tasks-show',
+                                                                'edit'    => 'tasks-edit',
+                                                                'update'  => 'tasks-update',
+                                                                'create'  => 'tasks-create',
+                                                                'store'   => 'tasks-store',
+                                                                'destroy' => 'tasks-destroy']
+                                                    ]);
+
+        Route::resource('users', 'UsersController', [
+                                                    'names' => ['index'   => 'users-index',
+                                                                'show'    => 'users-show',
+                                                                'edit'    => 'users-edit',
+                                                                'update'  => 'users-update',
+                                                                'create'  => 'users-create',
+                                                                'store'   => 'users-store',
+                                                                'destroy' => 'users-destroy']
+                                                    ]);
 
         Route::group(array('prefix' => 'reports'), function() {
             Route::get('/', 'ReportsController@index');

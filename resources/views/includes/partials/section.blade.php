@@ -19,7 +19,7 @@
             @foreach ($actions as $k => $v)
                 @if(Auth::user()->can($model.'/'.$v))
                     <li>
-                        <a href="{!! URL::to($v != 'index' ? '/'.$model.'/'.$v : '/'.$model) !!}">
+                        <a href="{!! URL::route($model.'-'.$v) !!}">
                         @if(isset($icons[$k]) && $icons[$k])
                             @if(is_array($icons[$k]))
                                 @foreach ($icons[$k] as $i)
