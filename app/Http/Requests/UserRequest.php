@@ -29,7 +29,7 @@ class UserRequest extends Request {
             'cuil'     => 'required',
             'birthday' => 'required|date',
             'password' => 'required',
-            'sex'      => 'required',
+            'sex'      => 'required|in:s, m',
         ];
     }
 
@@ -65,6 +65,7 @@ class UserRequest extends Request {
             'password.required' => 'El Password es requerido.',
 
             'sex.required'      => 'El Sexo es requerido.',
+            'sex.in'            => 'El Sexo solo puede ser Maculino o Femenino.',
         ];
     }
 

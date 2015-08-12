@@ -44,7 +44,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('sex','Sexo:') !!}
-    {!! Form::text('sex', null, ['class'=>'form-control']) !!}
+    {!! Form::select('sex', ['m'=>'Masculino', 'f'=>'Femenino'], null, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group">
