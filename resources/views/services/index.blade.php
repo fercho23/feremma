@@ -64,6 +64,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $services->render()) !!}
                 </div>
             </div>
         @else

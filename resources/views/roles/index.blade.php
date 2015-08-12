@@ -67,6 +67,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $roles->render()) !!}
                 </div>
             </div>
         @else

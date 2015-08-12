@@ -14,7 +14,7 @@ class TasksController extends Controller {
      * @return Vista con Tareas (Task)
      */
     public function index() {
-        $tasks = Task::all();
+        $tasks = Task::paginate(15);
         return view('tasks.index', compact('tasks'));
     }
 

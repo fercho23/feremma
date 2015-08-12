@@ -12,7 +12,7 @@ class BedsController extends Controller {
      * @return Vista con Camas (Bed)
      */
     public function index() {
-        $beds = Bed::all();
+        $beds = Bed::paginate(15);
         return view('beds.index', ['beds'=>$beds]);
     }
 

@@ -11,7 +11,7 @@ class RolesController extends Controller {
      * @return Vista con Cargos (Role)
      */
     public function index() {
-        $roles = Role::all();
+        $roles = Role::paginate(15);
         return view('roles.index', compact('roles'));
     }
 

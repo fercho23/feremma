@@ -11,7 +11,7 @@ class RoomsController extends Controller {
      * @return Vista con Habitaciones (Room)
      */
     public function index() {
-        $rooms = Room::all();
+        $rooms = Room::paginate(15);
         return view('rooms.index', compact('rooms'));
     }
 

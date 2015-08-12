@@ -81,8 +81,10 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $users->render()) !!}
                 </div>
             </div>
+
         @else
             <div class="alert alert-danger">
                 <p>Aún no hay elementos registrados en el sistema.</p>

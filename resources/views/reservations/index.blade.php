@@ -83,6 +83,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $reservations->render()) !!}
                 </div>
             </div>
         @else

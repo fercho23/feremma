@@ -67,11 +67,12 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $distributions->render()) !!}
                 </div>
             </div>
         @else
             <div class="alert alert-danger">
-                <p>Aún no hay elementos registrados en el sistema.</p>
+                <p>No hay Distribuciones en el sistema.</p>
             </div>
         @endif
     @endsection

@@ -12,7 +12,7 @@ class ReservationsController extends Controller {
      * @return Vista con Reservas (Reservation)
      */
     public function index() {
-        $reservations = Reservation::all();
+        $reservations = Reservation::paginate(15);
         return view('reservations.index', compact('reservations'));
     }
 

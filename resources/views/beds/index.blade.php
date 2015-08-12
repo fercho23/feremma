@@ -21,7 +21,7 @@
                                 <th>Cantidad de Personas</th>
                                 <th>Precio</th>
                                 <th>Descripción</th>
-                                if(Auth::user()->canAnyActionsByModel('beds', ['edit', 'show']))
+                                @if(Auth::user()->canAnyActionsByModel('beds', ['edit', 'show']))
                                     <th></th>
                                 @endif
                                 @if(Auth::user()->can('beds/destroy'))
@@ -67,6 +67,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $beds->render()) !!}
                 </div>
             </div>
         @else

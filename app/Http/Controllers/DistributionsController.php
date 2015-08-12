@@ -12,7 +12,7 @@ class DistributionsController extends Controller {
      * @return Vista con Distribuciones (Distribution)
      */
     public function index() {
-        $distributions = Distribution::all();
+        $distributions = Distribution::paginate(15);
         return view('distributions.index', compact('distributions'));
     }
 

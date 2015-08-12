@@ -56,6 +56,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $tasks->render()) !!}
                 </div>
             </div>
         @else

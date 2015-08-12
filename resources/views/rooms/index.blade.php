@@ -74,6 +74,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {!! str_replace('/?', '?', $rooms->render()) !!}
                 </div>
             </div>
         @else
