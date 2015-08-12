@@ -21,8 +21,8 @@ class CreateReservationsTable extends Migration {
             $table->decimal('due', 10, 2);
             $table->date('check_in');
             $table->date('check_out');
-            $table->datetime('real_check_in')->nullable();
-            $table->datetime('real_check_out')->nullable();
+            $table->datetime('real_check_in')->nullable()->default(null);
+            $table->datetime('real_check_out')->nullable()->default(null);
             $table->timestamps();
         });
     }

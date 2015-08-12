@@ -69,6 +69,47 @@ class ReservationTableSeeder extends Seeder {
 
         $reservation->booking()->sync([4, 5, 6]);
 
+        $reservation = Reservation::create(array(
+            'owner_id'      => '4',
+            'total_price'    => '1500',
+            'sign'           => '500',
+            'due'            => '0',
+            'check_in'       => date("Y-m-d", strtotime('-10 day')),
+            'check_out'      => date('Y-m-d', strtotime('-5 day')),
+            'real_check_in'  => date('Y-m-d', strtotime('-10 day')),
+            'real_check_out' => date('Y-m-d', strtotime('-5 day')),
+            'created_at'     => date('Y-m-d', strtotime('-10 day'))
+            ));
+
+        $reservation->rooms()->sync([ 1 => ['distribution_id' => 4,
+                                            'price' => '800'
+                                           ],
+                                      2 => ['distribution_id' => 2,
+                                            'price' => '400'
+                                           ]
+                                    ]);
+        // $reservation->rooms()->sync([1, 3]);
+
+        $service1 = DB::table('services')->find(2);
+        $service2 = DB::table('services')->find(4);
+        $service3 = DB::table('services')->find(6);
+
+        $reservation->services()->sync([ $service1->id => ['name'=>$service1->name,
+                                                          'quantity'=>'2',
+                                                          'price'=>$service1->price
+                                                          ],
+                                         $service2->id => ['name'=>$service2->name,
+                                                          'quantity'=>'3',
+                                                          'price'=>$service2->price
+                                                          ],
+                                         $service3->id => ['name'=>$service3->name,
+                                                          'quantity'=>'1',
+                                                          'price'=>$service3->price
+                                                          ],
+                                       ]);
+
+        $reservation->booking()->sync([4, 5, 6]);
+
 
     }
 

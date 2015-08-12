@@ -14,7 +14,7 @@
                                 <th>Precio Base</th>
                                 <th>Distribuciones</th>
                                 <th>Ubicación</th>
-                                <th>Plano</th>
+                                <th>Habilitada</th>
                                 <th>Descripción</th>
                                 @if(Auth::user()->can('rooms/edit'))
                                     <th></th>
@@ -36,7 +36,7 @@
                                     @endforeach
                                 </td>
                                 <td>{!! $room->location !!}</td>
-                                <td>{!! $room->plan !!}</td>
+                                <td>{!! ($room->available ? 'Si' : 'No') !!}</td>
                                 <td>{!! $room->description !!}</td>
                                 @if(Auth::user()->can('rooms/edit'))
                                     <td>

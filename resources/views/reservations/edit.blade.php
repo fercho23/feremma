@@ -6,8 +6,8 @@
             @include('errors.list')
             @include('reservations.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
-    @stop
+    @endsection
 
     @section('extra_js')
         @include('reservations.partials.form_js')
-    @stop
+    @endsection

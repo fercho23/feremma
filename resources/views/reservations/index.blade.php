@@ -42,14 +42,20 @@
                                 <td>{!! $reservation->total_price !!}</td>
                                 <td>{!! $reservation->sign !!}</td>
                                 <td>{!! $reservation->due !!}</td>
-                                <td>{!! $reservation->check_in !!}</td>
-                                <td>{!! $reservation->check_out !!}</td>
+                                <td>{!! date("d/m/Y", strtotime($reservation->check_in)) !!}</td>
+                                <td>{!! date("d/m/Y", strtotime($reservation->check_out)) !!}</td>
                                 <td>{!! $reservation->description !!}</td>
                                 @if(Auth::user()->can('reservations/edit'))
                                     <td>
-                                        <a href="{!! URL::to('reservations/'.$reservation->id.'/edit') !!}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                        @if($reservation->canBeModified())
+                                            <a href="{!! URL::route('reservations-edit', $reservation->id) !!}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @else
+                                            <a href="{!! URL::route('reservations-show', $reservation->id) !!}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 @endif
                                 @if(Auth::user()->can('reservations/destroy'))

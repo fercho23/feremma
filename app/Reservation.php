@@ -55,6 +55,19 @@ class Reservation extends Model {
         return $this->belongsToMany('FerEmma\User', 'reservation_user');
     }
 
+    /// Verifica si la Reserva (Reservation) puede ser modificada.
+    /*!
+     * Determina si esta Reserva puede ser modificada, eso es posible siempre y cuando
+     * esta no tenga el campo real_chek_in.
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function canBeModified() {
+        if($this->real_check_in === null)
+            return true;
+        return false;
+    }
+
+
     static function todaysChekIns() {
         return count(Reservation::where('check_in', '=', date("Y-m-d", strtotime("today")))->get());
     }
