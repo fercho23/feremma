@@ -1,5 +1,7 @@
 <?php namespace FerEmma\Http\Controllers;
 
+use FerEmma\Report;
+use FerEmma\Http\Requests\ReportRequest;
 
 //! Controlador de Reportes
 class ReportsController extends Controller {
@@ -12,5 +14,10 @@ class ReportsController extends Controller {
         return view('reports.index');
     }
 
+    public function generate(ReportRequest $request) {
+        dd("Hola");
+        //flash()->success('Se creara el reporte.');
+        return redirect('reports');
+    }
 
 }

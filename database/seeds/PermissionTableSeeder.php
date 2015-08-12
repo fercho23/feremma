@@ -332,6 +332,12 @@ class PermissionTableSeeder extends Seeder {
         ));
 
         Permission::create(array(//61
+            'title'         =>'Genera informe',
+            'slug'          =>'reports/generate',
+            'description'   =>'Crea un informe'
+        ));
+        
+        Permission::create(array(//62
             'title'         =>'Reducir Deuda Reserva',
             'slug'          =>'reservations/reduceDebt',
             'description'   =>'Reducir la deuda de una reserva'
