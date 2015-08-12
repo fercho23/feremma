@@ -15,9 +15,7 @@ class ReportsController extends Controller {
     }
 
     public function generate(ReportRequest $request) {
-        dd("Hola");
-        //flash()->success('Se creara el reporte.');
-        return redirect('reports');
+        $items=(new Report)->generateReport($request->all());
+        return view('reports.generate', ['items'=>$items, 'request'=>$request->all()]);
     }
-
 }
