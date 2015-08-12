@@ -18,7 +18,7 @@ class ReservationTableSeeder extends Seeder {
             'created_at'  => date('Y-m-d', strtotime('-4 day')),
             ));
 
-        $reservation->rooms()->sync([ 3 => ['distribution_id' => 6,
+        $reservation->rooms()->sync([ 3 => ['distribution_id' => 1,
                                             'price' => '5550'
                                            ]
                                     ]);

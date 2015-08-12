@@ -35,37 +35,39 @@ class ReservationsController extends Controller {
      * @return Vista "index" con el mensaje Flash pertinente
      */
     public function store(ReservationRequest $request) {
-        $reservation = Reservation::create($request->all());
+        if($reservation = Reservation::create($request->all())) {
 
-        $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
-        $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
-        $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
+            $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
+            $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
+            $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
 
-        $reservation->update($request->all());
+            $reservation->update($request->all());
 
-        $services = [];
-        foreach($services_id as $id) {
-            $service = [];
-            $service["name"] = $request->input('service-name-'.$id);
-            $service["quantity"] = $request->input('service-quantity-'.$id);
-            $service["price"] = $request->input('service-price-'.$id);
-            $services[$id] = $service;
-        }
+            $services = [];
+            foreach($services_id as $id) {
+                $service = [];
+                $service["name"] = $request->input('service-name-'.$id);
+                $service["quantity"] = $request->input('service-quantity-'.$id);
+                $service["price"] = $request->input('service-price-'.$id);
+                $services[$id] = $service;
+            }
 
-        $rooms = [];
-        foreach($rooms_id as $id) {
-            $room = [];
-            $room["reservation_id"] = $reservation->id;
-            $room["distribution_id"] = $request->input('room-'.$id.'-distributions');
-            $room["price"] = $request->input('room-final_price-'.$id);
-            $rooms[$id] = $room;
-        }
+            $rooms = [];
+            foreach($rooms_id as $id) {
+                $room = [];
+                $room["reservation_id"] = $reservation->id;
+                $room["distribution_id"] = $request->input('room-'.$id.'-distributions');
+                $room["price"] = $request->input('room-final_price-'.$id);
+                $rooms[$id] = $room;
+            }
 
-        $reservation->rooms()->sync($rooms);
-        $reservation->services()->sync($services);
-        $reservation->booking()->sync($persons_id);
+            $reservation->rooms()->sync($rooms);
+            $reservation->services()->sync($services);
+            $reservation->booking()->sync($persons_id);
 
-        flash()->success('La Reserva fue ingresada con exito.');
+            flash()->success('La Reserva fue ingresada con exito.');
+        } else
+            flash()->error('Error!!! Al intetar ingresar la Reserva.');
 
         return redirect('reservations');
     }
@@ -102,36 +104,42 @@ class ReservationsController extends Controller {
      * @return Response
      */
     public function update($id, ReservationRequest $request) {
-        $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
-        $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
-        $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
 
-        $reservation = Reservation::findOrFail($id);
-        $reservation->update($request->all());
+        if($reservation = Reservation::find($id)) {
+            if($reservation->update($request->all())) {
 
-        $services = [];
-        foreach($services_id as $id) {
-            $service = [];
-            $service["name"] = $request->input('service-name-'.$id);
-            $service["quantity"] = $request->input('service-quantity-'.$id);
-            $service["price"] = $request->input('service-price-'.$id);
-            $services[$id] = $service;
-        }
+                $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
+                $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
+                $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
 
-        $rooms = [];
-        foreach($rooms_id as $id) {
-            $room = [];
-            $room["reservation_id"] = $reservation->id;
-            $room["distribution_id"] = $request->input('room-'.$id.'-distributions');
-            $room["price"] = $request->input('room-final_price-'.$id);
-            $rooms[$id] = $room;
-        }
+                $services = [];
+                foreach($services_id as $id) {
+                    $service = [];
+                    $service["name"] = $request->input('service-name-'.$id);
+                    $service["quantity"] = $request->input('service-quantity-'.$id);
+                    $service["price"] = $request->input('service-price-'.$id);
+                    $services[$id] = $service;
+                }
 
-        $reservation->rooms()->sync($rooms);
-        $reservation->services()->sync($services);
-        $reservation->booking()->sync($persons_id);
+                $rooms = [];
+                foreach($rooms_id as $id) {
+                    $room = [];
+                    $room["reservation_id"] = $reservation->id;
+                    $room["distribution_id"] = $request->input('room-'.$id.'-distributions');
+                    $room["price"] = $request->input('room-final_price-'.$id);
+                    $rooms[$id] = $room;
+                }
 
-        flash()->success('La Reserva fue editada con exito.');
+                $reservation->rooms()->sync($rooms);
+                $reservation->services()->sync($services);
+                $reservation->booking()->sync($persons_id);
+
+                flash()->success('La Reserva fue editada con exito.');
+
+            } else
+                flash()->error('Error!!! Al intetar editar la Reserva.');
+        } else
+            flash()->error('Error!!! La Reserva que intenta editar no existe.');
 
         return redirect('reservations');
     }

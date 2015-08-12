@@ -210,10 +210,12 @@ class Room extends Model {
      */
     public function hasThisDistributionId($distribution_id) {
         if(Distribution::find($distribution_id)) {
-            if($this->distributions()->where('room_distribution.distribution_id', $distribution_id)
-                                     ->where('room_distribution.room_id', $this->id)
-                                     ->first()->pivot->available)
-                return true;
+            if(in_array($distribution_id, $this->distributions()->getRelatedIds())) {
+                if($this->distributions()->where('room_distribution.distribution_id', $distribution_id)
+                                         ->where('room_distribution.room_id', $this->id)
+                                         ->first()->pivot->available)
+                    return true;
+            }
         }
         return false;
     }
