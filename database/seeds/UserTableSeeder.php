@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder {
             'surname'  => 'de Super Usuario',
             'cuil'     => '00100000100',
             'dni'      => '1000001',
-            'address'  => 'Casa del usuario13',
+            'address'  => 'Casa del usuario 1',
             'username' => 'user1',
             'phone'    => '12345678910',
             'role_id'  => '1',//Super Usuario

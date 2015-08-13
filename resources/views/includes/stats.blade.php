@@ -48,7 +48,7 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>{!! FerEmma\Reservation::todaysChekIns() !!}</h3>
+                        <h3>{!! FerEmma\Reservation::todaysChekOuts() !!}</h3>
                         <p>Check-outs para hoy</p>
                     </div>
                     <div class="icon">
