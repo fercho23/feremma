@@ -22,12 +22,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('tasks/start/{id}', 'TasksController@start');
     Route::get('tasks/end/{id}', 'TasksController@end');
     Route::get('tasks/cancel/{id}', 'TasksController@cancel');
+    Route::get('users/profile', 'UsersController@profile');
 
     Route::group(['middleware' => 'acl'], function () {
 
         Route::get('tasks/create_mine', ['as'=>'tasks-create-mine', 'uses'=>'TasksController@createMine']);
 
-        Route::get('users/profile', ['as'=>'users-profile', 'UsersController@profile']);
 
         Route::get('permissions', ['as'=>'permissions-index', 'uses'=>'PermissionsController@index']);
 
