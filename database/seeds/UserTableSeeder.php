@@ -10,11 +10,11 @@ class UserTableSeeder extends Seeder {
 
         User::create(array(//1
             'email'    => 'user1@user.com',
-            'name'     => 'User1',
-            'surname'  => 'de Recepción',
-            'cuil'     => '00100000100',
-            'dni'      => '1000001',
-            'address'  => 'Casa del usuario13',
+            'name'     => 'Emmanuel',
+            'surname'  => 'Sanchez',
+            'cuil'     => '32395520',
+            'dni'      => '32395520',
+            'address'  => 'Sarmiento 2345',
             'username' => 'user1',
             'phone'    => '12345678910',
             'role_id'  => '1',//Super Usuario
