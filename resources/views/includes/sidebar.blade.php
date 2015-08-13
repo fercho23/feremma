@@ -100,7 +100,7 @@
             <li class="header">SOPORTE</li>
             <li>
                 <a target="_blank" href="{{ asset('user_manual.pdf') }}">
-                    <i class="fa fa-book"></i> Manual de Usuario
+                    <i class="fa fa-file-text-o"></i> Manual de Usuario
                 </a>
             </li>
             <li class="header">PROYECTO</li>
@@ -111,7 +111,7 @@
             </li>
             <li>
                 <a target="_blank" href="http://localhost/feremma/doxy/html/">
-                    <i class="fa fa-file-text-o"></i> Doxygen
+                    <i class="fa fa-list-alt"></i> Doxygen
                 </a>
             </li>
         </ul>
