@@ -34,7 +34,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{!! URL('users/profile') !!}" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="{!! URL::route('users-profile') !!}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{!! URL('auth/logout') !!}" class="btn btn-default btn-flat">logout</a>
