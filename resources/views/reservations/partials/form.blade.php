@@ -255,10 +255,7 @@
             <i class="fa fa-usd"></i>
             <i class="fa fa-usd"></i>
         </span>
-        {!! Form::input('number', 'due', null, ['class'=>'form-control',
-                                                'max'=>'9999999999',
-                                                'min'=>'0',
-                                                'step'=>'0.01']) !!}
+        {!! Form::text('due', null, ['class'=>'form-control', 'readonly'=>'True']) !!}
     </div>
 </div>
 

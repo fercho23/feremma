@@ -72,6 +72,15 @@ class Reservation extends Model {
         flash()->error('Error desconocido al intentar borrar Reserva.');
     }
 
+    /// Guarda la nueva deuda de la Reserva (Reservation).
+    /*!
+     * @return Booleano (Verdadero o Falso)
+     */
+    public function calculateDue() {
+        $this->due = $this->total_price - $this->sign;
+        $this->save();
+    }
+
     /// Realiza el Check In de la Reserva (Reservation).
     /*!
      * Actualiza al tiempo y hora de este momento el campo real_check_in.

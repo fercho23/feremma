@@ -53,7 +53,7 @@
                                 <td>{!! $reservation->description !!}</td>
                                 @if(Auth::user()->can('reservations/edit'))
                                     <td>
-                                        @if(!$reservation->canBeModified())
+                                        @if($reservation->due != 0)
                                             <button type="button" class="btn btn-link btn-modal" data-toggle="modal" data-id="{!! $reservation->id !!}" data-due="{!! $reservation->due !!}" title="Reducir Deuda de la Reserva">
                                                 <i class="fa fa-money"></i>
                                             </button>

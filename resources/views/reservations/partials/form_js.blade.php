@@ -17,8 +17,6 @@
 
     function refreshPosibleRooms() {
         $('div#posible-rooms').empty();
-        $('div#label-rooms').empty();
-        countElement('rooms');
         $.ajax({
             url: '{!! route("search-free-rooms") !!}',
             type: 'GET',
@@ -28,10 +26,10 @@
                 check_out: $('#check_out').val()
             },
         }).done(function(data) {
-            $('div#posible-rooms').append('<div>');
-            $('div#posible-rooms').append('Posibles habitaciones ('+data.length+'):');
+            $('div#posible-rooms').append('Posibles habitaciones ('+data.length+' en total):');
+            $('div#posible-rooms').append('<div class="row">');
             $.each(data, function(index, value) {
-                $('div#posible-rooms').append('<div>&nbsp;&nbsp;&nbsp;&nbsp - '+value.value+'</div>');
+                $('div#posible-rooms').append('<div class="col-lg-4 col-xs-4">'+value.value+'</div>');
             });
             $('div#posible-rooms').append('</div>');
         });
@@ -106,9 +104,13 @@
 
     $(document).on('change', 'input[name=check_in]', function() {
         refreshPosibleRooms();
+        $('div#label-rooms').empty();
+        countElement('rooms');
     });
     $(document).on('change', 'input[name=check_out]', function() {
         refreshPosibleRooms();
+        $('div#label-rooms').empty();
+        countElement('rooms');
     });
 
     $(document).on('change', 'div#label-rooms select[name^=room-]', function() {

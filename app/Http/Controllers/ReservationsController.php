@@ -91,13 +91,14 @@ class ReservationsController extends Controller {
      * @return Vista "index" con el mensaje Flash pertinente
      */
     public function store(ReservationRequest $request) {
-        if($reservation = Reservation::create($request->all())) {
+
+        if($reservation = Reservation::create($request->except('due'))) {
+
+            $reservation->calculateDue();
 
             $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
             $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
             $persons_id = ($request->input('persons_id') ? array_map('intval', explode(',', $request->input('persons_id'))) : []);
-
-            $reservation->update($request->all());
 
             $services = [];
             foreach($services_id as $id) {
@@ -123,7 +124,7 @@ class ReservationsController extends Controller {
 
             flash()->success('La Reserva fue ingresada con exito.');
         } else
-            flash()->error('Error!!! Al intetar ingresar la Reserva.');
+            flash()->error('Error!!! Al intentar ingresar la Reserva.');
 
         return redirect('reservations');
     }
@@ -173,7 +174,8 @@ class ReservationsController extends Controller {
 
         if($reservation = Reservation::find($id)) {
             if($reservation->canBeModified()) {
-                if($reservation->update($request->all())) {
+                if($reservation->update($request->except('due'))) {
+                    $reservation->calculateDue();
 
                     $rooms_id = ($request->input('rooms_id') ? array_map('intval', explode(',', $request->input('rooms_id'))) : []);
                     $services_id = ($request->input('services_id') ? array_map('intval', explode(',', $request->input('services_id'))) : []);
@@ -204,7 +206,7 @@ class ReservationsController extends Controller {
                     flash()->success('La Reserva fue editada con exito.');
 
                 } else
-                    flash()->error('Error!!! Al intetar editar la Reserva.');
+                    flash()->error('Error!!! Al intentar editar la Reserva.');
             } else
                 flash()->error('La Reserva que intenta ya posee fecha real de entrada ingresada.');
         } else

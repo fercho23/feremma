@@ -89,7 +89,7 @@ class ReservationRequest extends Request {
                 $distributions_id = [];
 
                 $posible_rooms_id = Room::getFreeRoomsIdsByDates($check_in, $check_out);
-                $previous_posible_rooms_id = Reservation::find($this->reservations)->rooms()->getRelatedIds();
+                $previous_posible_rooms_id = ($this->reservations ? Reservation::find($this->reservations)->rooms()->getRelatedIds() : []);
 
                 if(in_array($owner_id, $persons_id))
                     $validator->errors()->add('persons_id', 'El Propietario no puede estar entre los Pasajeros.');
