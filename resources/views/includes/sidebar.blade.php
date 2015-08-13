@@ -99,13 +99,8 @@
 
             <li class="header">SOPORTE</li>
             <li>
-                <a href="documentation/index.html">
-                    <i class="fa fa-book"></i> Ayuda
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-circle-o text-info"></i> Acerca de...
+                <a target="_blank" href="{{ asset('user_manual.pdf') }}">
+                    <i class="fa fa-book"></i> Manual de Usuario
                 </a>
             </li>
             <li class="header">PROYECTO</li>
