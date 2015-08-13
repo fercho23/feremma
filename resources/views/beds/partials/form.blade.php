@@ -42,6 +42,5 @@
     {!! Form::text('description', null, ['class'=>'form-control']) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::submit($submitButtontext, ['class'=>'btn btn-primary form-control']) !!}
-</div>
+@include('includes.partials.form-actions', ['model'=>'beds'])
+

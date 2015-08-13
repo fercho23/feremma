@@ -2,6 +2,9 @@
 
     @section('content')
 
+        <h1>Ver Cargo {!! $role->id !!}</h1>
+        <hr/>
+
         {!! Form::label('name','Nombre:') !!}
         <div class="form-control" readonly="True">{!! $role->name !!}</div>
         </br>

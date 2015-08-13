@@ -2,6 +2,9 @@
 
     @section('content')
 
+        <h1>Ver Tarea {!! $task->id !!}</h1>
+        <hr/>
+
         {!! Form::label('name','Nombre:') !!}
         <div class="form-control" readonly="True">{!! $task->name !!}</div>
         </br>

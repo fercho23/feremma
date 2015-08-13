@@ -47,6 +47,4 @@
     {!! Form::select('sex', ['m'=>'Masculino', 'f'=>'Femenino'], null, ['class'=>'form-control']) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::submit($submitButtontext, ['class'=>'btn btn-primary form-control']) !!}
-</div>
+@include('includes.partials.form-actions', ['model'=>'users'])

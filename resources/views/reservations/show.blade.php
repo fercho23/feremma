@@ -1,6 +1,9 @@
 @extends('app')
     @section('content')
 
+        <h1>Ver Reservación {!! $reservation->id !!}</h1>
+        <hr/>
+
         {!! Form::label('check_in', 'Fecha entrada:') !!}
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>

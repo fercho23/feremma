@@ -1,4 +1,5 @@
 @extends('app')
+
     @section('content')
         <h1>Editar Servicio {!! $service->id !!}</h1>
         <hr/>
@@ -6,4 +7,4 @@
             @include('errors.list')
             @include('services.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
-    @stop
+    @endsection

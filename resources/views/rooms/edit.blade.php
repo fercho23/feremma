@@ -1,4 +1,5 @@
 @extends('app')
+
     @section('content')
         <h1>Editar Habitación {!! $room->id !!}</h1>
         <hr/>
@@ -6,8 +7,8 @@
             @include('errors.list')
             @include('rooms.partials.form', ['submitButtontext'=>'Actualizar'])
         {!! Form::close() !!}
-    @stop
+    @endsection
 
     @section('extra_js')
         @include('rooms.partials.form_js')
-    @stop
+    @endsection

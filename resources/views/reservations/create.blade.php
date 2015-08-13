@@ -6,7 +6,6 @@
             @include('errors.list')
             @include('reservations.partials.form', ['submitButtontext'=>'Guardar'])
         {!! Form::close() !!}
-        <a href="{!! URL('home') !!}" class="btn btn-warning form-control" type="submit" value="Cancelar">Cancelar</a>
     @endsection
 
     @section('extra_js')

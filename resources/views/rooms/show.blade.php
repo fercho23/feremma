@@ -2,6 +2,9 @@
 
     @section('content')
 
+        <h1>Ver Habitación {!! $room->id !!}</h1>
+        <hr/>
+
         {!! Form::label('name','Nombre:') !!}
         <div class="form-control" readonly="True">{!! $room->name !!}</div>
         </br>
