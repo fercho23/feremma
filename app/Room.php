@@ -95,30 +95,16 @@ class Room extends Model {
         return true;
     }
 
-
+    /// Obtiene Habitaciones (Room) libres entre fechas.
+    /*!
+     * Esto lo hace realizando una seria de consultas:
+     * - @see Reservation::getReservationIdsByDates
+     * - Con estas Reservas (Reservation) obtenemos las Habitaciones (Room) ocupadas en esas fechas.
+     * - Por último se consulta a la base de datos, las Habitaciones (Room) que no coincidan con el listado de Habitaciones (Room) ocupadas.
+     * @return $ids de Habitaciones libres
+     */
     static function getFreeRoomsIdsByDates($check_in, $check_out) {
-
-        $reservations = Reservation::where('check_out', '>=', $check_in)
-                                   ->where('check_in', '<=', $check_in)
-                                   ->lists('id');
-
-        $query = Reservation::where('check_in', '<=', $check_out)
-                            ->where('check_out', '>=', $check_out)
-                            ->whereNotIn('id', $reservations)
-                            ->lists('id');
-        $reservations = array_merge($reservations, $query);
-
-        $query = Reservation::where('check_in', '>=', $check_in)
-                            ->where('check_out', '<=', $check_out)
-                            ->whereNotIn('id', $reservations)
-                            ->lists('id');
-        $reservations = array_merge($reservations, $query);
-
-        $query = Reservation::where('check_in', '<=', $check_in)
-                            ->where('check_out', '>=', $check_out)
-                            ->whereNotIn('id', $reservations)
-                            ->lists('id');
-        $reservations = array_merge($reservations, $query);
+        $reservations = Reservation::getReservationIdsByDates($check_in, $check_out);
 
         $rooms_id = \DB::table('room_reservation')
                        ->whereIn('reservation_id', $reservations)
@@ -128,7 +114,6 @@ class Room extends Model {
                    ->where('available', 1)
                    ->lists('id');
     }
-
 
     /// Obtiene las Distribuciones (Distribution) disponibles para esta Habitación (Room).
     /*!

@@ -1,7 +1,6 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Support\Facades\DB;
 
 //! Modelo Reserva
 class Reservation extends Model {
@@ -119,6 +118,45 @@ class Reservation extends Model {
         if($this->real_check_in === null)
             return true;
         return false;
+    }
+
+    /// Obtiene Reservas (Reservation) entre fechas.
+    /*!
+     * Esto lo hace realizando una seria de consultas:
+     * - Busca Reservas (Reservation) cuya fecha de salida sea posterior o igual a la entrada solicitada y 
+     * a su vez que la entrada solicitada sea posterior o igual a la entrada de la reserva.
+     * - Busca Reservas (Reservation) cuya fecha de entrada sea anterior o igual a la fecha de salida solicitada y 
+     * a su vez cuya fecha de salida sea posterior o igual a la fecha de salida solicitada.
+     * - Busca Reservas (Reservation) cuya fecha de entrada sea posterior o igual a la fecha de entrada solicitada y 
+     * su fecha de salida sea anterior o igual a la fecha de salida solicitada.
+     * - Busca Reservas (Reservation) cuya fecha de entrada sea anterior o igual a la fecha de entrada solicitada y 
+     * a su vez cuya fecha de salida sea posterior o igual a la fecha de salida solicitada.
+     * @return $ids de Reservas
+     */
+    static function getReservationIdsByDates($check_in, $check_out) {
+        $reservations = Reservation::where('check_out', '>=', $check_in)
+                                   ->where('check_in', '<=', $check_in)
+                                   ->lists('id');
+
+        $query = Reservation::where('check_in', '<=', $check_out)
+                            ->where('check_out', '>=', $check_out)
+                            ->whereNotIn('id', $reservations)
+                            ->lists('id');
+        $reservations = array_merge($reservations, $query);
+
+        $query = Reservation::where('check_in', '>=', $check_in)
+                            ->where('check_out', '<=', $check_out)
+                            ->whereNotIn('id', $reservations)
+                            ->lists('id');
+        $reservations = array_merge($reservations, $query);
+
+        $query = Reservation::where('check_in', '<=', $check_in)
+                            ->where('check_out', '>=', $check_out)
+                            ->whereNotIn('id', $reservations)
+                            ->lists('id');
+        $reservations = array_merge($reservations, $query);
+
+        return $reservations;
     }
 
     /// Obtiene las Reservas (Reservation) que se puede hacer Chek In.

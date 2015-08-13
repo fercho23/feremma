@@ -1,7 +1,6 @@
 <?php namespace FerEmma;
 
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Support\Facades\DB;
 
  //! Modelo Cama
 class Bed extends Model {

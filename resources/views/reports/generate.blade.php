@@ -3,7 +3,7 @@
     @section('content')
         <h1>Generación de Informe</h1>
         @include('flash::message')
-        @if (sizeof($items)>0)        
+        @if (sizeof($items)>0)
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box">
@@ -22,7 +22,7 @@
                                 <tbody>
                                     <tr>
                                         @foreach($items[0]['attributes'] as $key => $value)
-                                          <th>{!!$key!!}</th>                              
+                                          <th>{!!$key!!}</th>
                                         @endforeach
                                     </tr>
                                     @foreach($items as $item)
@@ -50,7 +50,7 @@
         @endif
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{!! URL('reports') !!}" class="btn btn-block btn-danger btn-lg" href="">Volver a selección de Reportes</a>                    
+                    <a href="{!! URL('reports') !!}" class="btn btn-block btn-danger btn-lg" href="">Volver a selección de Reportes</a>
                 </div>
             </div>
     @endsection
