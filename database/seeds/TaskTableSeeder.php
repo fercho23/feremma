@@ -8,7 +8,7 @@ class TaskTableSeeder extends Seeder {
     public function run() {
         DB::table('tasks')->truncate();
 
-        Task::create(array(
+        Task::create(array(//1
             'name'        => 'Limpiar Habitación 101',
             'description' => '',
             'attendant_id'=> null,
@@ -17,7 +17,7 @@ class TaskTableSeeder extends Seeder {
             'role_id'     => '4',
             'created_at'  => date("Y-m-d")
         ));
-        Task::create(array(
+        Task::create(array(//2
             'name'        => 'Limpiar Habitación 103',
             'description' => '',
             'attendant_id'=> null,
@@ -26,7 +26,7 @@ class TaskTableSeeder extends Seeder {
             'role_id'     => '4',
             'created_at'  => date("Y-m-d")
         ));
-        Task::create(array(
+        Task::create(array(//3
             'name'        => 'Limpiar Habitación 203',
             'description' => '',
             'attendant_id'=> null,
@@ -36,7 +36,7 @@ class TaskTableSeeder extends Seeder {
             'created_at'  => date('Y-m-d', strtotime('-2 day'))
         ));
 
-        Task::create(array(
+        Task::create(array(//4
             'name'        => 'Inodoro tapado Habitación 204',
             'description' => '',
             'attendant_id'=> null,
@@ -45,7 +45,7 @@ class TaskTableSeeder extends Seeder {
             'role_id'     => '5',
             'created_at'  => date("Y-m-d")
         ));
-        Task::create(array(
+        Task::create(array(//5
             'name'        => 'Pintar paredes Habitación 204',
             'description' => '',
             'attendant_id'=> null,
@@ -54,7 +54,7 @@ class TaskTableSeeder extends Seeder {
             'role_id'     => '5',
             'created_at'  => date("Y-m-d")
         ));
-        Task::create(array(
+        Task::create(array(//6
             'name'        => 'Arreglar ventana Habitación 204',
             'description' => '',
             'attendant_id'=> null,
@@ -63,8 +63,17 @@ class TaskTableSeeder extends Seeder {
             'role_id'     => '5',
             'created_at'  => date('Y-m-d', strtotime('-2 day'))
         ));
+        Task::create(array(//7
+            'name'        => 'Arreglar calefactor Habitación 204',
+            'description' => '',
+            'attendant_id'=> null,
+            'priority'    => '',
+            'state'       => 'pendiente',
+            'role_id'     => '5',
+            'created_at'  => date('Y-m-d', strtotime('-3 day'))
+        ));
 
-        Task::create(array(
+        Task::create(array(//8
             'name'        => 'Despertar Habitación 102 ',
             'description' => '',
             'attendant_id'=> null,
@@ -73,7 +82,7 @@ class TaskTableSeeder extends Seeder {
             'role_id'     => '2',
             'created_at'  => date("Y-m-d")
         ));
-        Task::create(array(
+        Task::create(array(//9
             'name'        => 'Ordenar facturas',
             'description' => '',
             'attendant_id'=> null,
@@ -82,7 +91,7 @@ class TaskTableSeeder extends Seeder {
             'role_id'     => '2',
             'created_at'  => date('Y-m-d')
         ));
-        Task::create(array(
+        Task::create(array(//10
             'name'        => 'Pagar servicios',
             'description' => '',
             'attendant_id'=> null,

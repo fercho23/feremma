@@ -8,8 +8,8 @@ class ReservationTableSeeder extends Seeder {
     public function run() {
         DB::table('reservations')->truncate();
 
-        $reservation = Reservation::create(array(
-            'owner_id'      => '1',
+        $reservation = Reservation::create(array(//1
+            'owner_id'      => '8',
             'total_price'   => '6550',
             'sign'          => '4550',
             'due'           => '2000',
@@ -31,8 +31,9 @@ class ReservationTableSeeder extends Seeder {
                                                           'price'=>'200']
                                        ]);
 
-        $reservation = Reservation::create(array(
-            'owner_id'      => '3',
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//2
+            'owner_id'      => '9',
             'total_price'   => '1500',
             'sign'          => '500',
             'due'           => '1000',
@@ -51,7 +52,6 @@ class ReservationTableSeeder extends Seeder {
                                             'price' => '700'
                                            ]
                                     ]);
-        // $reservation->rooms()->sync([1, 3]);
 
         $service1 = DB::table('services')->find(2);
         $service2 = DB::table('services')->find(4);
@@ -71,10 +71,11 @@ class ReservationTableSeeder extends Seeder {
                                                           ],
                                        ]);
 
-        $reservation->booking()->sync([4, 5, 6]);
+        $reservation->booking()->sync([10, 11, 12]);
 
-        $reservation = Reservation::create(array(
-            'owner_id'      => '7',
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//3
+            'owner_id'       => '10',
             'total_price'    => '1500',
             'sign'           => '500',
             'due'            => '0',
@@ -95,7 +96,6 @@ class ReservationTableSeeder extends Seeder {
                                             'price' => '700'
                                            ]
                                     ]);
-        // $reservation->rooms()->sync([1, 3]);
 
         $service1 = DB::table('services')->find(2);
         $service2 = DB::table('services')->find(4);
@@ -114,8 +114,76 @@ class ReservationTableSeeder extends Seeder {
                                                           'price'=>$service3->price
                                                           ],
                                        ]);
-
         $reservation->booking()->sync([4, 5, 6]);
+
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//4
+            'owner_id'       => '13',
+            'total_price'    => '1500',
+            'sign'           => '500',
+            'due'            => '0',
+            'check_in'       => date("Y-m-d", strtotime('-25 day')),
+            'check_out'      => date('Y-m-d', strtotime('-22 day')),
+            'real_check_in'  => date('Y-m-d', strtotime('-25 day')),
+            'real_check_out' => date('Y-m-d', strtotime('-22 day')),
+            'created_at'     => date('Y-m-d', strtotime('-25 day'))
+            ));
+
+        $reservation->rooms()->sync([ 2 => ['distribution_id' => 2,
+                                            'price' => '800'
+                                           ]
+                                    ]);
+
+        $service1 = DB::table('services')->find(2);
+        $service3 = DB::table('services')->find(6);
+
+        $reservation->services()->sync([ $service1->id => ['name'=>$service1->name,
+                                                          'quantity'=>'2',
+                                                          'price'=>$service1->price
+                                                          ],
+                                         $service3->id => ['name'=>$service3->name,
+                                                          'quantity'=>'1',
+                                                          'price'=>$service3->price
+                                                          ],
+                                       ]);
+        $reservation->booking()->sync([10]);
+
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//5
+            'owner_id'       => '14',
+            'total_price'    => '1500',
+            'sign'           => '500',
+            'due'            => '0',
+            'check_in'       => date("Y-m-d", strtotime('-22 day')),
+            'check_out'      => date('Y-m-d', strtotime('-18 day')),
+            'real_check_in'  => date('Y-m-d', strtotime('-22 day')),
+            'real_check_out' => date('Y-m-d', strtotime('-18 day')),
+            'created_at'     => date('Y-m-d', strtotime('-22 day'))
+            ));
+
+        $reservation->rooms()->sync([ 2 => ['distribution_id' => 2,
+                                            'price' => '800'
+                                           ]
+                                    ]);
+        $reservation->booking()->sync([16]);
+
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//6
+            'owner_id'       => '15',
+            'total_price'    => '1500',
+            'sign'           => '500',
+            'due'            => '0',
+            'check_in'       => date("Y-m-d", strtotime('-21 day')),
+            'check_out'      => date('Y-m-d', strtotime('-15 day')),
+            'real_check_in'  => date('Y-m-d', strtotime('-21 day')),
+            'real_check_out' => date('Y-m-d', strtotime('-15 day')),
+            'created_at'     => date('Y-m-d', strtotime('-21 day'))
+            ));
+
+        $reservation->rooms()->sync([ 7 => ['distribution_id' => 1,
+                                            'price' => '400'
+                                           ]
+                                    ]);
 
 
     }
