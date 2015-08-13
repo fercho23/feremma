@@ -29,7 +29,7 @@ class UserRequest extends Request {
             'cuil'     => 'required',
             'birthday' => 'required|date',
             'password' => 'required',
-            'sex'      => 'required|in:s, m',
+            'sex'      => 'required|in:f,m',
         ];
     }
 
