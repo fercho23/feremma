@@ -35,6 +35,10 @@
 
                                 </tbody>
                             </table>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Total de Registros</span>
+                                <input value="{!!count($items)!!}" type="text" class="form-control" readonly="true" placeholder="0">
+                            </div>
                         </div><!-- /.box-body -->
                     </div>
                 </div>
