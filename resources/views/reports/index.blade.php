@@ -22,14 +22,16 @@
 			</div><!-- /.col -->
 			<div class="col-md-4">
 				@include('reports.partials.box', ['class'=>'info-box bg-yellow' , 'form'=>'form-between-dates', 'comparefield'=>'','reporttitle'=>'Servicios por fechas','reporttype'=>'servicesBetweenDates','icon'=>'glyphicon glyphicon-glass','reportDescription'=>'Servicios contratados entre fechas'])
-				@include('reports.partials.box', ['class'=>'info-box bg-green' , 'form'=>'form-between-dates', 'comparefield'=>'','reporttitle'=>'SALDO PENDIENTE POR RESERVAS.','reporttype'=>'nextReservationsDue','icon'=>'fa fa-usd','reportDescription'=>''])
-				@include('reports.partials.box', ['class'=>'info-box bg-red' , 'form'=>'form-between-dates', 'comparefield'=>'','reporttitle'=>'SALDO PENDIENTE POR RESERVAS POR FECHA.','reporttype'=>'nextReservationsDueBetweenDates','icon'=>'fa fa-usd','reportDescription'=>''])
-		  	</div>
-		  	
+				@include('reports.partials.box', ['class'=>'info-box bg-green' , 'form'=>'form-between-dates', 'comparefield'=>'','reporttitle'=>'SALDO PENDIENTE POR RESERVAS.','reporttype'=>'nextReservationsDue','icon'=>'fa fa-usd','reportDescription'=>'Ingresos por reservas proximas'])
+				@include('reports.partials.box', ['class'=>'info-box bg-red' , 'form'=>'form-between-dates', 'comparefield'=>'','reporttitle'=>'SALDO PENDIENTE POR RESERVAS POR FECHA.','reporttype'=>'nextReservationsDueBetweenDates','icon'=>'fa fa-usd','reportDescription'=>'Ingresos por reservas entre fechas'])
+		  	</div> 	
 		</div>	
 		<div class="row" id="forms-row">
 		  		<div class="col-md-12">
 		  			@include('reports.partials.form')
 		  		</div>
+		  		<div class="col-lg-12 again">
+					<a href="{!! URL('reports') !!}" class="btn btn-block btn-danger btn-lg" href="">Volver a selección de Reportes</a>                    
+				</div>
 		</div>	
 	@endsection

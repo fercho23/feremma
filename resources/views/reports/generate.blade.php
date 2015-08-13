@@ -50,7 +50,7 @@
         @endif
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{!! URL('reports') !!}" class="btn btn-block btn-primary btn-lg" href="">Volver a selección de Informes</a>                    
+                    <a href="{!! URL('reports') !!}" class="btn btn-block btn-danger btn-lg" href="">Volver a selección de Reportes</a>                    
                 </div>
             </div>
     @endsection

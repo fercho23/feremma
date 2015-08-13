@@ -1,7 +1,7 @@
 <!-- Form Entre Fechas -->
   <div id="form" class="box box-danger">
 	<div class="box-header with-border">
-	  <h3 id="form-title" class="box-title">Ingrese fechas para generar el reporte</h3>
+	  <h3 id="form-title" class="box-title">Generar Reporte</h3>
 	</div>
 	<div class="box-body">
 	  <div class="row">
@@ -9,20 +9,20 @@
 		{!! Form::hidden('reporttype', '', array('id' => 'reporttype')) !!}
 		{!! Form::hidden('reporttitle', '', array('id' => 'reporttitle')) !!}
 		{!! Form::hidden('comparefield', '', array('id' => 'comparefield')) !!}
-		<div class="col-xs-4" id="select-room">	
+		<div class="col-xs-4 selectall" id="selectroom">	
 			<label>Habitación</label>
 			<div class="input-group">			    
 			    {!! Form::select('room_id', $rooms, null, ['class'=>'form-control']) !!}
 			</div>
 		</div>
-		<div class="col-xs-4" id="select-firstdate">
+		<div class="col-xs-4 selectdate selectall">
 			<label>Fecha de Inicio</label>
 			<div class="input-group">				
 				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				{!! Form::input('date','firstDate', null, ['class'=>'form-control']) !!}
 			</div>
 		</div>
-		<div class="col-xs-4" id="select-seconddate">
+		<div class="col-xs-4 selectdate selectall">
 			<label>Fecha de Fin</label>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -31,7 +31,7 @@
 		</div>
 		<div class="col-xs-4">
 			<label> </label>
-		  	{!! Form::submit("Enviar", ['class'=>'btn btn-block btn-primary']) !!}
+		  	{!! Form::submit("Generar", ['class'=>'btn btn-block btn-primary']) !!}
 		</div>
 		{!! Form::close() !!}
 	  </div>
