@@ -99,7 +99,10 @@ class TasksController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        if($task = Task::find($id))
+            return view('tasks.show', compact('task'));
+        flash()->error('Error!!! La Tarea que intenta ver no existe.');
+        return redirect('tasks');
     }
 
     /// Fomulario de edición de una Tarea (Task) específica.

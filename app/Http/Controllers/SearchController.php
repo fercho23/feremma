@@ -5,6 +5,7 @@ use FerEmma\Distribution;
 use FerEmma\Room;
 use FerEmma\Role;
 use FerEmma\Service;
+use FerEmma\Task;
 use FerEmma\User;
 
 use Request;
@@ -91,7 +92,6 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
-
     /// Obtiene un Servicio (Service) por su nombre.
     /*!
      * @return Respose Json
@@ -108,7 +108,21 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /// Obtiene un Tarea (Task) por su nombre.
+    /*!
+     * @return Respose Json
+     */
+    public function getTaskByName() {
+        $term = Request::input('term', '');
 
+        $results = array();
+        $queries = Task::where('name', 'LIKE', '%'.$term.'%')
+                          ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->name];
+        return response()->json($results);
+    }
 
     /// Obtiene Camas (Bed) restantes.
     /*!

@@ -1,5 +1,12 @@
 @extends('app')
+
     @section('content')
+
+        @if(Auth::user()->canAnyActionsByModel('tasks', ['edit', 'show']))
+            @include('includes.partials.search', ['id'=> 'task',
+                                                  'placeholder' => 'Ingresar Nombre de una Tarea . . .'])
+        @endif
+
         <h1>Tareas</h1>
         @include('flash::message')
 
@@ -15,7 +22,7 @@
                                 <th>Prioridad</th>
                                 <th>Estado</th>
                                 <th>Descripción</th>
-                                @if(Auth::user()->can('tasks/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('tasks', ['edit', 'show']))
                                     <th></th>
                                 @endif
                                 @if(Auth::user()->can('tasks/destroy'))
@@ -36,20 +43,30 @@
                                 <td>{!! $task->priority !!}</td>
                                 <td>{!! $task->state !!}</td>
                                 <td>{!! $task->description !!}</td>
-                                @if(Auth::user()->can('tasks/edit'))
+                                @if(Auth::user()->canAnyActionsByModel('tasks', ['edit', 'show']))
                                     <td>
-                                        <a href="{!! URL::to('tasks/'.$task->id.'/edit') !!}">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                        @if(Auth::user()->can('tasks/edit'))
+                                            <a href="{!! URL::route('tasks-edit', $task->id) !!}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @else
+                                            @if(Auth::user()->can('tasks/show'))
+                                                <a href="{!! URL::route('tasks-show', $task->id) !!}">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            @endif
+                                        @endif
                                     </td>
                                 @endif
                                 @if(Auth::user()->can('tasks/destroy'))
                                     <td>
-                                        {!! Form::open(['method' => 'DELETE', 'action' => ['TasksController@destroy', $task->id]]) !!}
-                                            <button class="btn-link" type="submit">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        {!! Form::close() !!}
+                                        @if($task->canBeEliminated())
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['tasks-destroy', $task->id]]) !!}
+                                                <button class="btn-link" type="submit">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 @endif
                             </tr>
@@ -65,3 +82,9 @@
             </div>
         @endif
     @endsection
+
+    @if(Auth::user()->canAnyActionsByModel('tasks', ['edit', 'show']))
+        @section('extra_js')
+            @include('tasks.partials.search-js')
+        @endsection
+    @endif
