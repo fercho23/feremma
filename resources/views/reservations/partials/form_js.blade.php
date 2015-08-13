@@ -1,7 +1,24 @@
 <script type="text/javascript">
 
+    function getDays() {
+        $check_in = ($('#check_in').val()).split('-');
+        $check_out = ($('#check_out').val()).split('-');
+
+        var firstDate = new Date($check_in[0], $check_in[1], $check_in[2]);
+        var secondDate = new Date($check_out[0], $check_out[1], $check_out[2]);
+
+        var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(24*60*60*1000)));
+
+        if(diffDays) {
+            return diffDays;
+        }
+        return 0;
+    }
+
     function refreshPosibleRooms() {
         $('div#posible-rooms').empty();
+        $('div#label-rooms').empty();
+        countElement('rooms');
         $.ajax({
             url: '{!! route("search-free-rooms") !!}',
             type: 'GET',
@@ -33,10 +50,11 @@
     }
 
     function getRoomsPrice() {
+        $days = getDays();
         $total = 0;
         $('div#label-rooms div.row select[name^=room-]').each(function(k, v) {
             $n = parseInt($(v).attr('name').match(/[0-9]+/g));
-            $total += parseFloat($('input[name^=room-final_price-'+$n+']').val());
+            $total += $days * (parseFloat($('input[name^=room-final_price-'+$n+']').val()));
         });
         return $total;
     }

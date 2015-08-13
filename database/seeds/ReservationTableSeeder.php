@@ -7,6 +7,9 @@ class ReservationTableSeeder extends Seeder {
 
     public function run() {
         DB::table('reservations')->truncate();
+        DB::table('reservation_user')->truncate();
+        DB::table('room_reservation')->truncate();
+        DB::table('service_reservation')->truncate();
 
         // ------------------------------------------------------------- //
         $reservation = Reservation::create(array(//1
