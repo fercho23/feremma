@@ -107,6 +107,7 @@ class UserTableSeeder extends Seeder {
             'password' => '1234'
          ));
 
+
         User::create(array(//8
             'email'    => 'client1@client.com',
             'name'     => 'Client1',
@@ -146,7 +147,7 @@ class UserTableSeeder extends Seeder {
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
             'birthday' => '1990/01/01',
-            'sex'      => 'f',
+            'sex'      => 'm',
             'password' => '1234'
          ));
         User::create(array(//11
@@ -191,7 +192,7 @@ class UserTableSeeder extends Seeder {
             'sex'      => 'm',
             'password' => '1234'
          ));
-        User::create(array(//13
+        User::create(array(//14
             'email'    => 'client7@client.com',
             'name'     => 'Client7',
             'surname'  => 'Surname7',
@@ -202,10 +203,10 @@ class UserTableSeeder extends Seeder {
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
             'birthday' => '1990/01/01',
-            'sex'      => 'm',
+            'sex'      => 'f',
             'password' => '1234'
          ));
-        User::create(array(//14
+        User::create(array(//15
             'email'    => 'cliente8@client.com',
             'name'     => 'Client8',
             'surname'  => 'Surname8',
@@ -219,7 +220,7 @@ class UserTableSeeder extends Seeder {
             'sex'      => 'f',
             'password' => '1234'
          ));
-        User::create(array(//15
+        User::create(array(//16
             'email'    => 'client9@client.com',
             'name'     => 'Client9',
             'surname'  => 'Surname9',
@@ -233,7 +234,7 @@ class UserTableSeeder extends Seeder {
             'sex'      => 'm',
             'password' => '1234'
          ));
-        User::create(array(//16
+        User::create(array(//17
             'email'    => 'client10@client.com',
             'name'     => 'Client10',
             'surname'  => 'Surname10',
@@ -247,7 +248,7 @@ class UserTableSeeder extends Seeder {
             'sex'      => 'f',
             'password' => '1234'
          ));
-        User::create(array(//17
+        User::create(array(//18
             'email'    => 'client11@client.com',
             'name'     => 'Client11',
             'surname'  => 'Surname11',
@@ -261,14 +262,126 @@ class UserTableSeeder extends Seeder {
             'sex'      => 'm',
             'password' => '1234'
          ));
-        User::create(array(//18
-            'email'    => 'client20@client.com',
+        User::create(array(//19
+            'email'    => 'client12@client.com',
             'name'     => 'Client12',
             'surname'  => 'Surname12',
             'cuil'     => '00100120100',
             'dni'      => '1001201',
             'address'  => 'Casa del cliente 12',
             'username' => 'client12',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'f',
+            'password' => '1234'
+         ));
+        User::create(array(//20
+            'email'    => 'client13@client.com',
+            'name'     => 'Client13',
+            'surname'  => 'Surname13',
+            'cuil'     => '00100130100',
+            'dni'      => '1001301',
+            'address'  => 'Casa del cliente 13',
+            'username' => 'client13',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'm',
+            'password' => '1234'
+         ));
+        User::create(array(//21
+            'email'    => 'client14@client.com',
+            'name'     => 'Client14',
+            'surname'  => 'Surname14',
+            'cuil'     => '00100140100',
+            'dni'      => '1001401',
+            'address'  => 'Casa del cliente 14',
+            'username' => 'client14',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'f',
+            'password' => '1234'
+         ));
+        User::create(array(//22
+            'email'    => 'client15@client.com',
+            'name'     => 'Client15',
+            'surname'  => 'Surname15',
+            'cuil'     => '00100150100',
+            'dni'      => '1001501',
+            'address'  => 'Casa del cliente 15',
+            'username' => 'client15',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'm',
+            'password' => '1234'
+         ));
+        User::create(array(//23
+            'email'    => 'client16@client.com',
+            'name'     => 'Client16',
+            'surname'  => 'Surname16',
+            'cuil'     => '00100160100',
+            'dni'      => '1001601',
+            'address'  => 'Casa del cliente 16',
+            'username' => 'client16',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'f',
+            'password' => '1234'
+         ));
+        User::create(array(//24
+            'email'    => 'client17@client.com',
+            'name'     => 'Client17',
+            'surname'  => 'Surname17',
+            'cuil'     => '00100170100',
+            'dni'      => '1001701',
+            'address'  => 'Casa del cliente 17',
+            'username' => 'client17',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'f',
+            'password' => '1234'
+         ));
+        User::create(array(//25
+            'email'    => 'client18@client.com',
+            'name'     => 'Client18',
+            'surname'  => 'Surname18',
+            'cuil'     => '00100180100',
+            'dni'      => '1001801',
+            'address'  => 'Casa del cliente 18',
+            'username' => 'client18',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'm',
+            'password' => '1234'
+         ));
+        User::create(array(//26
+            'email'    => 'client19@client.com',
+            'name'     => 'Client19',
+            'surname'  => 'Surname19',
+            'cuil'     => '00100190100',
+            'dni'      => '1001901',
+            'address'  => 'Casa del cliente 19',
+            'username' => 'client19',
+            'phone'    => '12345678910',
+            'role_id'  => '6',//Cliente
+            'birthday' => '1990/01/01',
+            'sex'      => 'f',
+            'password' => '1234'
+         ));
+        User::create(array(//27
+            'email'    => 'client20@client.com',
+            'name'     => 'Client20',
+            'surname'  => 'Surname20',
+            'cuil'     => '00100200100',
+            'dni'      => '1002001',
+            'address'  => 'Casa del cliente 20',
+            'username' => 'client20',
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
             'birthday' => '1990/01/01',
