@@ -162,10 +162,13 @@ class Reservation extends Model {
     /// Obtiene las Reservas (Reservation) que se puede hacer Chek In.
     /*!
      * Obtiene totas las Reservas que se puede hacer Check In, que es siempre y cuando el 
-     * campo real_check_in sea NULL
+     * campo real_check_in sea NULL.
+     * @param $pagination = null -> es para setear la cantidad de objetos por página
      * @return Consulta de Base de Datos
      */
-    static function getReservationsForCheckIn() {
+    static function getReservationsForCheckIn($pagination=null) {
+        if(isset($pagination))
+            return Reservation::where("real_check_in", null)->paginate($pagination);
         return Reservation::where("real_check_in", null)->get();
     }
 
@@ -173,9 +176,13 @@ class Reservation extends Model {
     /*!
      * Obtiene totas las Reservas que se puede hacer Check Out, que es siempre y cuando el 
      * campo real_check_in no sea NULL y el campo real_check_out sea NULL.
+     * @param $pagination = null -> es para setear la cantidad de objetos por página
      * @return Consulta de Base de Datos
      */
-    static function getReservationsForCheckOut() {
+    static function getReservationsForCheckOut($pagination=null) {
+        if(isset($pagination))
+            return Reservation::whereNotNull("real_check_in")
+                              ->where("real_check_out", null)->paginate($pagination);
         return Reservation::whereNotNull("real_check_in")
                           ->where("real_check_out", null)->get();
     }

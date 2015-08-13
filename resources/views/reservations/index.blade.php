@@ -1,7 +1,10 @@
 @extends('app')
 
     @section('content')
-        <h1>Reservas</h1>
+        <h1>
+            Reservas
+            <small>( {!! $reservations->total() !!} en total)</small>
+        </h1>
         @include('flash::message')
 
         @if (sizeof($reservations)>0)

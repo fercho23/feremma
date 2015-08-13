@@ -7,7 +7,10 @@
                                                   'placeholder' => 'Ingresar Nombre de una Tarea . . .'])
         @endif
 
-        <h1>Tareas</h1>
+        <h1>
+            Tareas
+            <small>( {!! $tasks->total() !!} en total)</small>
+        </h1>
         @include('flash::message')
 
         @if (sizeof($tasks)>0)

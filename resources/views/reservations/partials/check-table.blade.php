@@ -1,5 +1,8 @@
 @section('content')
-    <h1>Reservas para hacer Check {!! $title !!}</h1>
+    <h1>
+        Reservas para hacer Check {!! $title !!}
+        <small>( {!! $reservations->total() !!} en total)</small>
+    </h1>
 
     @if (sizeof($reservations)>0)
         <div class="row">
@@ -46,6 +49,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {!! str_replace('/?', '?', $reservations->render()) !!}
             </div>
         </div>
     @else

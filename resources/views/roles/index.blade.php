@@ -7,7 +7,10 @@
                                                   'placeholder' => 'Ingresar Nombre de un Cargo . . .'])
         @endif
 
-        <h1>Cargos</h1>
+        <h1>
+            Cargos
+            <small>( {!! $roles->total() !!} en total)</small>
+        </h1>
         @include('flash::message')
 
         @if (sizeof($roles)>0)

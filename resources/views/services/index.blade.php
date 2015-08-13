@@ -6,7 +6,10 @@
                                                   'placeholder' => 'Ingresar Nombre de un Servicio . . .'])
         @endif
 
-        <h1>Servicios</h1>
+        <h1>
+            Servicios
+            <small>( {!! $services->total() !!} en total)</small>
+        </h1>
         @include('flash::message')
 
         @if (sizeof($services)>0)

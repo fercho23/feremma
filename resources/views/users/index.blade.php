@@ -7,7 +7,10 @@
                                                   'placeholder' => 'Ingresar Nombre, Apellido o DNI de un Usuario . . .'])
         @endif
 
-        <h1>Usuarios</h1>
+        <h1>
+            Usuarios
+            <small>( {!! $users->total() !!} en total)</small>
+        </h1>
         @include('flash::message')
 
         @if (sizeof($users)>0)

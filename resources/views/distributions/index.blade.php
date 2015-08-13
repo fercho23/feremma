@@ -7,7 +7,10 @@
                                                   'placeholder' => 'Ingresar Nombre de una Distribución . . .'])
         @endif
 
-        <h1>Distribuciones</h1>
+        <h1>
+            Distribuciones
+            <small>( {!! $distributions->total() !!} en total)</small>
+        </h1>
         @include('flash::message')
 
         @if (sizeof($distributions)>0)

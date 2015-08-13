@@ -21,7 +21,7 @@ class ReservationsController extends Controller {
      * @return Vista con Reservas (Reservation)
      */
     public function indexCheckIn() {
-        $reservations = Reservation::getReservationsForCheckIn();
+        $reservations = Reservation::getReservationsForCheckIn($pagination=15);
         return view('reservations.index-check-in', compact('reservations'));
     }
 
@@ -30,7 +30,7 @@ class ReservationsController extends Controller {
      * @return Vista con Reservas (Reservation)
      */
     public function indexCheckOut() {
-        $reservations = Reservation::getReservationsForCheckOut();
+        $reservations = Reservation::getReservationsForCheckOut($pagination=15);
         return view('reservations.index-check-out', compact('reservations'));
     }
 

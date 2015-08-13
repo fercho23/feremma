@@ -7,7 +7,10 @@
                                                   'placeholder' => 'Ingresar Nombre de una Cama . . .'])
         @endif
 
-        <h1>Camas</h1>
+        <h1>
+            Camas
+            <small>( {!! $beds->total() !!} en total)</small>
+        </h1>
         @include('flash::message')
 
         @if (sizeof($beds)>0)
