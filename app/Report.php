@@ -11,33 +11,55 @@ class Report extends Model {
 	public function generateReport($fields)
 	{			
 		if ($fields['reporttype']=='checkInsBetweenDates') {
-
+			if ($fields['firstDate']=="" || $fields['secondDate']=="" || $fields['comparefield']=="") {
+	        	flash()->error('Error: Debe completar los campos.');
+	            return array();
+        	}
 			return $this->betweenDates($fields['firstDate'], $fields['secondDate'], $fields['comparefield'] );
 		}
 		if ($fields['reporttype']=='checkOutsBetweenDates') {
-
+			if ($fields['firstDate']=="" || $fields['secondDate']=="" || $fields['comparefield']=="") {
+	        	flash()->error('Error: Debe completar los campos.');
+	            return array();
+        	}			
 			return $this->betweenDates($fields['firstDate'], $fields['secondDate'], $fields['comparefield'] );
 		}
 		if ($fields['reporttype']=='disabledRooms') {
-			
+			if ($fields['comparefield']=="") {
+	        	flash()->error('Error: Debe completar los campos.');
+	            return array();
+        	}
 			return $this->disabledRooms($fields['comparefield']);
 		}
 		if ($fields['reporttype']=='nextReservations') {
 			return $this->nextReservations();
 		}
 		if ($fields['reporttype']=='roomsReservationsBetweenDates') {
+			if ($fields['firstDate']=="" || $fields['secondDate']=="") {
+	        	flash()->error('Error: Debe completar los campos.');
+	            return array();
+        	}
 			return $this->roomsReservationsBetweenDates($fields['firstDate'], $fields['secondDate']);
 		}
 		if ($fields['reporttype']=='servicesBetweenDates') {
-			//dd($this->servicesBetweenDates($fields['firstDate'], $fields['secondDate']));
+			if ($fields['firstDate']=="" || $fields['secondDate']=="") {
+	        	flash()->error('Error: Debe completar los campos.');
+	            return array();
+        	}
 			return $this->servicesBetweenDates($fields['firstDate'], $fields['secondDate']);
 		}
 		if ($fields['reporttype']=='historicRoom') {
-			//dd($fields['room_id']);
-			//dd($this->historicRoom($fields['room_id']));
+			if ($fields['room_id']=="") {
+	        	flash()->error('Error: Debe completar los campos.');
+	            return array();
+        	}
 			return $this->historicRoom($fields['room_id']);
 		}
 		if ($fields['reporttype']=='nextReservationsDueBetweenDates') {
+			if ($fields['firstDate']=="" || $fields['secondDate']=="") {
+	        	flash()->error('Error: Debe completar los campos.');
+	            return array();
+        	}			
 			return $this->reservationsBetweenDates($fields['firstDate'], $fields['secondDate']);
 		}
 		if ($fields['reporttype']=='nextReservationsDue') {
