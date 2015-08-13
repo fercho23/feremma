@@ -144,7 +144,7 @@ class RoomTableSeeder extends Seeder {
             'name'        => 'Habitación 202',
             'location'    => 'Segundo Piso Hab. 202',
             'available'   => '1',
-            'price'       => '400',
+            'price'       => '300',
         ));
         $room->distributions()->sync([1 => ['available' => '1',
                                             'order' => '1']]);

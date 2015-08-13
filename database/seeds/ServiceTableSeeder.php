@@ -104,6 +104,12 @@ class ServiceTableSeeder extends Seeder {
             'price'        => '500.00'
         ));
 
+        Service::create(array(//17
+            'description'  => 'Acceso a la piscina del hotel por 1 semana. Incluye Toallas',
+            'name'         => 'Acceso a la Piscina por 1 semana',
+            'price'        => '300.00'
+        ));
+
     }
 
 }

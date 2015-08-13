@@ -148,6 +148,7 @@ class ReservationTableSeeder extends Seeder {
             'check_out'      => date("Y-m-d"),
             'real_check_in'  => date('Y-m-d', strtotime('-10 day')),
             'created_at'     => date('Y-m-d', strtotime('-10 day')),
+            'updated_at'     => date('Y-m-d', strtotime('-10 day')),
             ));
         $reservation->booking()->sync([14]);
 
@@ -173,11 +174,13 @@ class ReservationTableSeeder extends Seeder {
         $reservation = Reservation::create(array(//6
             'owner_id'       => '15',
             'description'    => 'Pareja con un niño pequeño.',
-            'total_price'    => '13250',//600*7 + 200*8 + 50*12 + 400*2 + 500*3 + 450*7 + 100*14
-            'sign'           => '8250',
-            'due'            => '0',
+            'total_price'    => '10550',//600*7 + 200*8 + 50*12 + 400*2 + 500*3 + 450*1 + 100*14
+            'sign'           => '5550',
+            'due'            => '5000',
             'check_in'       => date('Y-m-d', strtotime('+1 day')),
             'check_out'      => date("Y-m-d", strtotime('+8 day')),
+            'created_at'     => date('Y-m-d', strtotime('-2 day')),
+            'updated_at'     => date('Y-m-d', strtotime('-2 day')),
             ));
         $reservation->booking()->sync([16]);
 
@@ -198,13 +201,146 @@ class ReservationTableSeeder extends Seeder {
                                                 'quantity' => '3',
                                                 'price' => '500'],
                                          13 => ['name' => 'Estadía por semana Camioneta',
-                                                'quantity' => '7',
+                                                'quantity' => '1',
                                                 'price' => '450'],
                                          3  => ['name' => 'Pensión completa',
                                                 'quantity' => '14',
                                                 'price' => '100'],
                                        ]);
 
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//7
+            'owner_id'       => '17',
+            'total_price'    => '16275',//1200*10 + 450*1 + 75*3 + 400*4 + 50*2 + 200*2 + 150*2 + 300*4
+            'sign'           => '6275',
+            'due'            => '10000',
+            'check_in'       => date('Y-m-d'),
+            'check_out'      => date("Y-m-d", strtotime('+10 day')),
+            'created_at'     => date('Y-m-d', strtotime('-3 day')),
+            'updated_at'     => date('Y-m-d', strtotime('-3 day')),
+            ));
+        $reservation->booking()->sync([18, 19, 20]);
+
+        $reservation->rooms()->sync([ 6 => ['distribution_id' => 2,
+                                            'price' => '600'],
+                                      7 => ['distribution_id' => 5,
+                                            'price' => '600'],
+                                           ]);
+
+        $reservation->services()->sync([ 13 => ['name' => 'Estadía por semana Camioneta',
+                                                'quantity' => '1',
+                                                'price' => '450'],
+                                         12 => ['name' => 'Estadía Camioneta',
+                                                'quantity' => '3',
+                                                'price' => '75'],
+                                         15 => ['name' => 'Tour turistico',
+                                                'quantity' => '4',
+                                                'price' => '400'],
+                                         6  => ['name' => 'Cena',
+                                                'quantity' => '2',
+                                                'price' => '50'],
+                                         1  => ['name' => 'Acceso al Spa',
+                                                'quantity' => '2',
+                                                'price' => '200'],
+                                        8  => ['name' => 'Sala de juegos por 1 semana',
+                                                'quantity' => '2',
+                                                'price' => '150'],
+                                        17 => ['name' => 'Acceso a la Piscina por 1 semana',
+                                                'quantity' => '4',
+                                                'price' => '300'],
+                                       ]);
+
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//8
+            'owner_id'       => '22',
+            'total_price'    => '3000',//600*5
+            'sign'           => '3000',
+            'due'            => '0',
+            'check_in'       => date('Y-m-d'),
+            'check_out'      => date("Y-m-d", strtotime('+5 day')),
+            'created_at'     => date('Y-m-d', strtotime('-5 day')),
+            'updated_at'     => date('Y-m-d', strtotime('-5 day')),
+            ));
+        $reservation->booking()->sync([21]);
+
+        $reservation->rooms()->sync([ 8 => ['distribution_id' => 5,
+                                            'price' => '600'],
+                                           ]);
+
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//9
+            'owner_id'       => '23',
+            'total_price'    => '20145',//1100*15 + 450*1 + 75*3 + 400*3 + 200*9 + 150*1 +300*3
+            'sign'           => '10145',
+            'due'            => '10000',
+            'check_in'       => date('Y-m-d'),
+            'check_out'      => date("Y-m-d", strtotime('+15 day')),
+            'created_at'     => date('Y-m-d', strtotime('-1 day')),
+            'updated_at'     => date('Y-m-d', strtotime('-1 day')),
+            ));
+        $reservation->booking()->sync([24, 25]);
+
+        $reservation->rooms()->sync([ 10 => ['distribution_id' => 4,
+                                             'price' => '800'],
+                                      11 => ['distribution_id' => 1,
+                                             'price' => '300'],
+                                           ]);
+
+        $reservation->services()->sync([ 13 => ['name' => 'Estadía por semana Camioneta',
+                                                'quantity' => '1',
+                                                'price' => '450'],
+                                         12 => ['name' => 'Estadía Camioneta',
+                                                'quantity' => '3',
+                                                'price' => '75'],
+                                         15 => ['name' => 'Tour turistico',
+                                                'quantity' => '3',
+                                                'price' => '400'],
+                                         1  => ['name' => 'Acceso al Spa',
+                                                'quantity' => '9',
+                                                'price' => '200'],
+                                         8  => ['name' => 'Sala de juegos por 1 semana',
+                                                'quantity' => '1',
+                                                'price' => '150'],
+                                         17 => ['name' => 'Acceso a la Piscina por 1 semana',
+                                                'quantity' => '3',
+                                                'price' => '300'],
+                                       ]);
+
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//10
+            'owner_id'       => '26',
+            'total_price'    => '2100',//300*7
+            'sign'           => '2100',
+            'due'            => '0',
+            'check_in'       => date('Y-m-d', strtotime('-12 day')),
+            'check_out'      => date("Y-m-d", strtotime('-5 day')),
+            'real_check_in'  => date('Y-m-d', strtotime('-12 day')),
+            'real_check_out' => date('Y-m-d', strtotime('-5 day')),
+            'created_at'     => date('Y-m-d', strtotime('-12 day')),
+            'updated_at'     => date('Y-m-d', strtotime('-5 day')),
+            ));
+
+        $reservation->rooms()->sync([ 11 => ['distribution_id' => 1,
+                                            'price' => '300'],
+                                           ]);
+
+        // ------------------------------------------------------------- //
+        $reservation = Reservation::create(array(//11
+            'owner_id'       => '27',
+            'total_price'    => '6600',//600*11
+            'sign'           => '3200',
+            'due'            => '0',
+            'check_in'       => date('Y-m-d', strtotime('-15 day')),
+            'check_out'      => date("Y-m-d", strtotime('-4 day')),
+            'real_check_in'  => date('Y-m-d', strtotime('-15 day')),
+            'real_check_out' => date('Y-m-d', strtotime('-4 day')),
+            'created_at'     => date('Y-m-d', strtotime('-15 day')),
+            'updated_at'     => date('Y-m-d', strtotime('-4 day')),
+            ));
+
+        $reservation->rooms()->sync([ 6 => ['distribution_id' => 2,
+                                            'price' => '600'],
+                                           ]);
 
 
 

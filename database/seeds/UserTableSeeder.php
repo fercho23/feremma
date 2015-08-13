@@ -11,7 +11,7 @@ class UserTableSeeder extends Seeder {
         User::create(array(//1
             'email'    => 'user1@user.com',
             'name'     => 'User1',
-            'surname'  => 'de Recepción',
+            'surname'  => 'de Super Usuario',
             'cuil'     => '00100000100',
             'dni'      => '1000001',
             'address'  => 'Casa del usuario13',
@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder {
         User::create(array(//2
             'email'    => 'user2@user.com',
             'name'     => 'User2',
-            'surname'  => 'de Recepción',
+            'surname'  => 'de Director',
             'cuil'     => '00200000200',
             'dni'      => '2000002',
             'address'  => 'Casa del usuario 2',
@@ -254,7 +254,7 @@ class UserTableSeeder extends Seeder {
             'surname'  => 'Surname11',
             'cuil'     => '00100110100',
             'dni'      => '1001101',
-            'address'  => 'Casa del cliente 11',
+            'address'  => 'Casa del cliente 10',
             'username' => 'client11',
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
@@ -266,13 +266,12 @@ class UserTableSeeder extends Seeder {
             'email'    => 'client12@client.com',
             'name'     => 'Client12',
             'surname'  => 'Surname12',
-            'cuil'     => '00100120100',
             'dni'      => '1001201',
-            'address'  => 'Casa del cliente 12',
+            'address'  => 'Casa del cliente 10',
             'username' => 'client12',
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
-            'birthday' => '1990/01/01',
+            'birthday' => '2005/01/01',
             'sex'      => 'f',
             'password' => '1234'
          ));
@@ -280,13 +279,12 @@ class UserTableSeeder extends Seeder {
             'email'    => 'client13@client.com',
             'name'     => 'Client13',
             'surname'  => 'Surname13',
-            'cuil'     => '00100130100',
             'dni'      => '1001301',
-            'address'  => 'Casa del cliente 13',
+            'address'  => 'Casa del cliente 10',
             'username' => 'client13',
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
-            'birthday' => '1990/01/01',
+            'birthday' => '2007/01/01',
             'sex'      => 'm',
             'password' => '1234'
          ));
@@ -315,7 +313,7 @@ class UserTableSeeder extends Seeder {
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
             'birthday' => '1990/01/01',
-            'sex'      => 'm',
+            'sex'      => 'f',
             'password' => '1234'
          ));
         User::create(array(//23
@@ -329,7 +327,7 @@ class UserTableSeeder extends Seeder {
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
             'birthday' => '1990/01/01',
-            'sex'      => 'f',
+            'sex'      => 'm',
             'password' => '1234'
          ));
         User::create(array(//24
@@ -356,7 +354,7 @@ class UserTableSeeder extends Seeder {
             'username' => 'client18',
             'phone'    => '12345678910',
             'role_id'  => '6',//Cliente
-            'birthday' => '1990/01/01',
+            'birthday' => '2000/01/01',
             'sex'      => 'm',
             'password' => '1234'
          ));
