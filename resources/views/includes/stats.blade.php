@@ -10,7 +10,7 @@
                     <div class="icon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <a href="{{ URL('reservations/create') }}" class="small-box-footer">Nueva Reserva <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{!! URL::route('reservations-create') !!}" class="small-box-footer">Nueva Reserva <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
 
@@ -24,7 +24,7 @@
                     <div class="icon">
                         <i class="fa fa-user-plus"></i>
                     </div>
-                    <a href="{{ URL('users/create') }}" class="small-box-footer">Nuevo Usuario <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{!! URL::route('users-create') !!}" class="small-box-footer">Nuevo Usuario <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
 
@@ -40,7 +40,7 @@
                     <div class="icon">
                         <i class="fa fa-arrow-left"></i>
                     </div>
-                    <a href="{{ URL('reservations') }}" class="small-box-footer">Ver mas... <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{!! URL::route('reservations-index-check-in') !!}" class="small-box-footer">Ver mas... <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
 
@@ -54,7 +54,7 @@
                     <div class="icon">
                         <i class="fa fa-arrow-right"></i>
                     </div>
-                    <a href="{{ URL('reservations') }}" class="small-box-footer">Ver mas... <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{!! URL::route('reservations-index-check-out') !!}" class="small-box-footer">Ver mas... <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
         </div><!-- /.row -->
