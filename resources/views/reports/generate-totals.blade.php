@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-        <h1>Generación de Informe</h1>
+        <h1>Reporte</h1>
         @include('flash::message')
         @if (sizeof($items)>0)
             <div class="row">
