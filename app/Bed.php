@@ -51,7 +51,7 @@ class Bed extends Model {
      */
     public function canBeEliminated() {
         foreach ($this->distributions as $distribution) {
-            if(!$distribution->canBeModified())
+            if(!$distribution->canBeModified() || (count($distribution->beds) == 1))
                 return false;
         }
         return true;
