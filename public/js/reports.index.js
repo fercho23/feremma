@@ -1,14 +1,27 @@
 window.onload=function()
 {
-	$('#form-between-dates').hide();
+	$('#form').hide();
+
 	$('a.create').click(
 		function(){
-			$('#forms-row').slideDown();
-			$('#reports-row').slideUp();
-			$('#'+this.getAttribute("form")).show();			
-			document.getElementById('comparefield').setAttribute("value", this.getAttribute("compareField"));
-			document.getElementById('reporttype').setAttribute("value", this.getAttribute("reporttype"));
+			$('div#form').show();
+			$('#forms-row').slideDown();//muestro los formularios
+			$('#reports-row').slideUp();//oculto el selector de reportes
+										//le paso datos al form
+
+
+			$('input#reporttype').attr('value',this.getAttribute('reporttype'));
+			rt=$('span#'+this.getAttribute('reporttype')).children('#reporttitle').attr('value');
+			cf=$('span#'+this.getAttribute('reporttype')).children('#comparefield').attr('value');
+			$('h3#form-title').text('Ingrese fechas para generar el reporte: '+rt);
+			$('input#reporttitle').attr('value', rt);
+			$('input#comparefield').attr('value', cf);		
+			
+
 		}
 	);
+
+
+ 
 
 }

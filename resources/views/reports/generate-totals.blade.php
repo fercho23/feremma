@@ -9,12 +9,12 @@
                     <div class="box">
                         <div class="box-header">
                           <h3 class="box-title">{!!$request['reporttitle']!!}</h3>
-                          @if($request['comparefield']!="" and $request['firstDate']!="" and $request['secondDate']!="")
+                            @if($request['comparefield']!="" and $request['firstDate']!="" and $request['secondDate']!="")
                             <p>Con {!!$request['comparefield']!!} entre: {!!$request['firstDate']!!} y {!!$request['secondDate']!!}</p>
                             @else
-                                @if($request['firstDate']!="" and $request['secondDate']!="")
-                                <p>Entre: {!!$request['firstDate']!!} y {!!$request['secondDate']!!}</p>
-                                @endif
+	                            @if($request['firstDate']!="" and $request['secondDate']!="")
+	                            <p>Entre: {!!$request['firstDate']!!} y {!!$request['secondDate']!!}</p>
+	                            @endif
                             @endif
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
@@ -25,16 +25,21 @@
                                           <th>{!!$key!!}</th>                              
                                         @endforeach
                                     </tr>
+                                    <?php $total=0 ?>
                                     @foreach($items as $item)
                                         <tr>
                                             @foreach($item['attributes'] as $key => $value)
                                                 <td>{!!$value!!}</td>
                                             @endforeach
                                         </tr>
+                                        <?php $total+=$item['attributes']['total_price'] ?>
                                     @endforeach
-
                                 </tbody>
                             </table>
+                            <div class="input-group">
+			                    <span class="input-group-addon">$</span>
+			                    <input value="{!!$total!!}" type="text" class="form-control" readonly="true" placeholder="0000.00">
+			                </div>
                         </div><!-- /.box-body -->
                     </div>
                 </div>
