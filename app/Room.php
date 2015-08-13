@@ -121,7 +121,7 @@ class Room extends Model {
         $reservations = array_merge($reservations, $query);
 
         $rooms_id = \DB::table('room_reservation')
-                       ->whereIn('room_id', $reservations)
+                       ->whereIn('reservation_id', $reservations)
                        ->lists('room_id');
 
         return Room::whereNotIn('id', $rooms_id)
