@@ -252,11 +252,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             return true;
     }
 
-            /// Obtiene las tareas atrasadas.
+    /// Obtiene las Tareas (Task) atrasadas.
     /*!
      * Obtiene las tareas pendientes para un rol y en proceso para un  usuario, con mas de unsa semana desde su ultima modificación.
-     * @param $state = cadena de caracteres
-     * @param $today = booleano
+     * @return Consulta de Base de Datos
      */
     public function delayTasks() {
         $waitingTasks=DB::table('tasks')->where('role_id', '=', $this->role->id)->where('state', '=', 'pendiente')->where('updated_at', '<=', date('Y-m-d H:m:s', strtotime('-7 days')));

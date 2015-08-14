@@ -24,7 +24,7 @@ class CheckPermission implements Middleware {
 
     /// Verifica si el Usuario (User) tiene el Permisos (Permission) a la ruta requerida.
     /*!
-     * @param  \Illuminate\Http\Request $request
+     * @param  Request $request
      * @return Boolean true if has permission otherwise false
      */
     protected function hasPermission($request) {
@@ -34,17 +34,11 @@ class CheckPermission implements Middleware {
 
     /// Verifica la ruta con el Permiso (Permission).
     /*!
-     * /param  \Illuminate\Http\Request  $request
+     * /param  Request  $request
      * /return String slug connected to the Route
      */
     protected function requiredPermission() {
         $route = \Route::currentRouteAction();
-
-        // $route = null, osea que no existe ruta?? no entiendo!!!
-        // dd( $route );
-
-        // este If lo puse para que por lo menos no tire un error, osea en este caso te manda al home, 
-        // como en el caso de que no tenes permisos
         if(isset($route)) {
             $route = class_basename($route);
             $route = explode("Controller@", $route, 2);
@@ -63,7 +57,7 @@ class CheckPermission implements Middleware {
     /**
      * Check if current route is hidden to current user role
      *
-     * /param  \Illuminate\Http\Request $request
+     * /param  Request $request
      * /return Booleano (Verdadero o Flase)
      */
     protected function forbiddenRoute($request) {
