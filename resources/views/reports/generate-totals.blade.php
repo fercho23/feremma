@@ -1,7 +1,7 @@
 @extends('app')
 
     @section('content')
-        <h1>Reporte</h1>
+        <h1>Informe</h1>
         @include('flash::message')
         @if (sizeof($items)>0)
             <div class="row">
@@ -17,7 +17,7 @@
                                 @endif
                             @endif
                         </div><!-- /.box-header -->
-                        <div class="box-body table-responsive no-padding">
+                        <div id="div-print" class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <tbody>
                                     <tr>
@@ -49,9 +49,5 @@
                 <p>No se registran elementos que cumplan con las condiciones definidas para el reporte.</p>
             </div>
         @endif
-            <div class="row">
-                <div class="col-lg-12">
-                    <a href="{!! URL('reports') !!}" class="btn btn-block btn-danger btn-lg" href="">Volver a selección de Reportes</a>
-                </div>
-            </div>
+        @include('reports.partials.row-options')
     @endsection

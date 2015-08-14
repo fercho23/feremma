@@ -1,7 +1,7 @@
 <!-- Form Entre Fechas -->
   <div id="form" class="box box-danger">
     <div class="box-header with-border">
-      <h3 id="form-title" class="box-title">Generar Reporte</h3>
+      <h3 id="form-title" class="box-title">Generar Informe</h3>
     </div>
     <div class="box-body">
       <div class="row">

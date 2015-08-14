@@ -97,7 +97,7 @@
                                                        'icons'=>['list-ol']])
 
                 @include('includes.partials.section', ['model'=>'reports',
-                                                       'title'=>'Reportes',
+                                                       'title'=>'Informes',
                                                        'icon'=>'fa fa-file-text',
                                                        'actions'=>['index'],
                                                        'names'=>['Ver'],

@@ -117,6 +117,8 @@
         <script src="{{ asset('/dist/js/pages/dashboard.js') }}" type="text/javascript"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('/dist/js/demo.js') }}" type="text/javascript"></script>
+        <!-- PrintThis -->
+        <script src="{{ asset('/js/printthis/printthis.js') }}"></script>
         @yield('extra_js')
     </body>
 </html>

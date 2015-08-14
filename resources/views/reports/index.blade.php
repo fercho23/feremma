@@ -1,6 +1,6 @@
 @extends('reports')
     @section('content')
-        <h1>Gestión de Reportes</h1>
+        <h1>Gestión de Informes</h1>
         @include('flash::message')
         @include('errors.list')
         <div class="row" id="reports-row">
@@ -31,7 +31,7 @@
                     @include('reports.partials.form')
                 </div>
                 <div class="col-lg-12 again">
-                    <a href="{!! URL('reports') !!}" class="btn btn-block btn-danger btn-lg" href="">Volver a selección de Reportes</a>
+                    <a href="{!! URL('reports') !!}" class="btn btn-block btn-danger btn-lg" href="">Volver a selección de Informes</a>
                 </div>
         </div>  
     @endsection
