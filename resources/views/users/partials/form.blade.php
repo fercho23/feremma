@@ -6,10 +6,12 @@
     {!! Form::label('surname','Apellido:') !!}
     {!! Form::text('surname', null, ['class'=>'form-control']) !!}
 </div>
-<div class="form-group">
-    {!! Form::label('role_id','Cargo:') !!}
-    {!! Form::select('role_id', $roles, null, ['class'=>'form-control']) !!}
-</div>
+@if(!isset($is_client))
+    <div class="form-group">
+        {!! Form::label('role_id','Cargo:') !!}
+        {!! Form::select('role_id', $roles, null, ['class'=>'form-control']) !!}
+    </div>
+@endif
 <div class="form-group">
     {!! Form::label('username','Nombre de Usuario:') !!}
     {!! Form::text('username', null, ['class'=>'form-control']) !!}

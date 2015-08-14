@@ -60,6 +60,16 @@ Route::group(['middleware' => 'auth'], function () {
                                                                 'destroy' => 'beds-destroy']
                                                     ]);
 
+        Route::resource('clients', 'ClientsController', [
+                                                    'names' => ['index'   => 'clients-index',
+                                                                'show'    => 'clients-show',
+                                                                'edit'    => 'clients-edit',
+                                                                'update'  => 'clients-update',
+                                                                'create'  => 'clients-create',
+                                                                'store'   => 'clients-store',
+                                                                'destroy' => 'clients-destroy']
+                                                    ]);
+
         Route::resource('distributions', 'DistributionsController', [
                                                                     'names' => ['index'   => 'distributions-index',
                                                                                 'show'    => 'distributions-show',
@@ -145,6 +155,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('bed', ['as' => 'search-bed', 'uses' => 'SearchController@getBedByName']);
         Route::get('beds', ['as' => 'search-remaining-beds', 'uses' => 'SearchController@getRemainingBedsByName']);
+
+        Route::get('client', ['as' => 'search-client', 'uses' => 'SearchController@getClientByNameOrSurnameOrDni']);
 
         Route::group(array('prefix' => 'distribution'), function() {
             Route::get('/', ['as' => 'search-distribution', 'uses' => 'SearchController@getDistributionByName']);

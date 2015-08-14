@@ -33,6 +33,13 @@
                                                        'names'=>['Ver', 'Nuevo'],
                                                        'icons'=>['list-ol', 'user-plus']])
 
+                @include('includes.partials.section', ['model'=>'clients',
+                                                       'title'=>'Clientes',
+                                                       'icon'=>['male'],
+                                                       'actions'=>['index', 'create'],
+                                                       'names'=>['Ver', 'Nuevo'],
+                                                       'icons'=>['list-ol', 'plus']])
+
                 @include('includes.partials.section', ['model'=>'roles',
                                                        'title'=>'Cargos',
                                                        'icon'=>'shield',

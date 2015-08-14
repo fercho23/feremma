@@ -29,6 +29,28 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
+    /// Obtiene Clientes (User).
+    /*!
+     * Por medio de Request obtiene los caracteres que usa para buscar al Usuario
+     * por el nombre, apellido o dni y devuelve las primeras 10 coincidencias.
+     * @return Respose Json
+     */
+    public function getClientByNameOrSurnameOrDni() {
+        $term = Request::input('term', '');
+        $results = array();
+        $queries = User::where('role_id', 6)
+                       ->where(function($query) use ($term){
+                            $query->where('name', 'LIKE', '%'.$term.'%');
+                            $query->orWhere('surname', 'LIKE', '%'.$term.'%');
+                            $query->orWhere('dni', 'LIKE', '%'.$term.'%');
+                        })
+                       ->take(10)->get();
+        foreach ($queries as $query)
+            $results[] = ['id' => $query->id,
+                          'value' => $query->fullname().' ['.$query->dni.']'];
+        return response()->json($results);
+    }
+
     /// Obtiene una Distribución (Distribution) por su $id.
     /*!
      * @return Respose Json
@@ -57,6 +79,25 @@ class SearchController extends Controller {
         foreach ($queries as $query)
             $results[] = ['id' => $query->id,
                           'value' => $query->representation()];
+        return response()->json($results);
+    }
+
+    /// Obtiene Distribuciones (Distribution) por $id de Habitación (Room).
+    /*!
+     * Por medio de Request obtiene el $id de la Habitación con la cual
+     * buscaa las Distribuciones que puede tener, devuelve todas las que están 
+     * disponibles y en el orden correcto.
+     * @return Respose Json
+     */
+    public function getDistributionsByRoomId() {
+        $id = Request::input('id', '');
+
+        $results = array();
+        foreach (Room::find($id)->getMyAvailableDistributions() as $distribution)
+                $results[] = ['id' => $distribution->id,
+                              'name' => $distribution->name,
+                              'price' => $distribution->price(),
+                              'totalPersons' => $distribution->totalPersons()];
         return response()->json($results);
     }
 
@@ -252,24 +293,7 @@ class SearchController extends Controller {
         return response()->json($results);
     }
 
-    /// Obtiene Distribuciones (Distribution) por $id de Habitación (Room).
-    /*!
-     * Por medio de Request obtiene el $id de la Habitación con la cual
-     * buscaa las Distribuciones que puede tener, devuelve todas las que están 
-     * disponibles y en el orden correcto.
-     * @return Respose Json
-     */
-    public function getDistributionsByRoomId() {
-        $id = Request::input('id', '');
 
-        $results = array();
-        foreach (Room::find($id)->getMyAvailableDistributions() as $distribution)
-                $results[] = ['id' => $distribution->id,
-                              'name' => $distribution->name,
-                              'price' => $distribution->price(),
-                              'totalPersons' => $distribution->totalPersons()];
-        return response()->json($results);
-    }
 
     /// Obtiene Usuarios (User).
     /*!
