@@ -31,7 +31,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link href="{{ asset('/css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/css/feremma.min.css') }}" rel="stylesheet" type="text/css" />
         @yield('extra_css')
     </head>
@@ -82,7 +82,7 @@
         <!-- jQuery 2.1.4 -->
         <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
         <!-- jQuery UI 1.11.4 -->
-        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="{{ asset('/js/jquery-ui.min.js') }}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
             $.widget.bridge('uibutton', $.ui.button);
@@ -90,7 +90,6 @@
         <!-- Bootstrap 3.3.2 JS -->
         <script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="{{ asset('/plugins/morris/morris.min.js') }}" type="text/javascript"></script>
         <!-- Sparkline -->
         <script src="{{ asset('/plugins/sparkline/jquery.sparkline.min.js') }}" type="text/javascript"></script>
